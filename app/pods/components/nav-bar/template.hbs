@@ -1,0 +1,49 @@
+<header>
+  <nav class="main-nav">
+    <div class="nav-left">
+      <span class="hamburger-parent">
+        <i class="hamburger fas fa-bars"></i>
+      </span>
+
+      <span class="logo-parent">
+        {{#link-to 'index' activeClass=''}}
+        <img src="/images/logo.svg" alt="online-logo" class="nav-logo pointer"> {{/link-to}}
+      </span>
+    </div>
+    <div class="dsp-none-sm">
+      <div class="nav-right">
+        <ul class="nav-list">
+
+          {{#if session.isAuthenticated}}
+          <li class="nav-items pointer">
+            This is a Nav
+          </li>
+
+          <div class="round-img">
+            <img src="{{user.photo}}" alt="">
+          </div>
+
+          <div class="card">
+            <div class="top-offset"></div>
+            <div class="nav-info">
+              <div class="flex-row justify-content-end grey">
+                <a href="https://account.codingblocks.com/users/me" target="_black">
+                  <span class="pointer">MY PROFILE</span>
+                </a>
+              </div>
+              <div class="separator"></div>
+              <div class="flex-row justify-content-end grey">
+                <span class="pointer">{{login-button}}</span>
+              </div>
+            </div>
+          </div>
+          {{else}}
+          <li class="nav-items pointer">
+              {{login-button}}
+          </li>
+          {{/if}}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
