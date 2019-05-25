@@ -28,7 +28,6 @@ export default Route.extend(ApplicationRouteMixin, {
         
         try {
           await this.session.authenticate('authenticator:jwt', { identification: code, password: code, code })
-          await this.currentUser.load()
         } catch (error) {
           console.log(error)
           if (error.err === 'USER_EMAIL_NOT_VERIFIED') {

@@ -13,12 +13,18 @@
     <div class="dsp-none-sm">
       <div class="nav-right">
         <ul class="nav-list">
-
-          {{#if session.isAuthenticated}}
           <li class="nav-items pointer">
-            This is a Nav
+            {{#link-to 'dcb'}}
+              Daily Code Byte
+            {{/link-to}}
+          </li>
+          <li class="nav-items pointer">
+            {{#link-to 'contests'}}
+              Contests
+            {{/link-to}}
           </li>
 
+          {{#if session.isAuthenticated}}
           <div class="round-img">
             <img src="{{user.photo}}" alt="">
           </div>

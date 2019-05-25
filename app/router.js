@@ -7,7 +7,10 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('contests');
+  this.route('contests', function() {});
+  this.route('dcb');
+  this.route('loading');
+  this.route('logout');
 });
 
 export default Router;
