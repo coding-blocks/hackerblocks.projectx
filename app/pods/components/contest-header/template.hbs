@@ -1,1 +1,6 @@
-{{yield}}
+{{humanize_date}}
+
+{{#if top_problem}}
+  <h1>{{top_problem.content.name}}</h1>
+  <p>{{top_problem.content.description}}</p>
+{{/if}}

@@ -8,7 +8,7 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
   this.route('contests', function() {});
-  this.route('dcb');
+  this.route('dcb', function() {});
   this.route('loading');
   this.route('logout');
 });
