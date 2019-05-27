@@ -2,6 +2,9 @@ import DS from 'ember-data';
 const { Model } = DS;
 
 export default Model.extend({
+  score: DS.attr(),
+  time: DS.attr(),
   contest: DS.belongsTo('contest'),
-  problems: DS.hasMany('problem')
-});
+  user: DS.belongsTo('user'),
+  college: DS.belongsTo('college')
+})

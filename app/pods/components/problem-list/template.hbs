@@ -1,0 +1,12 @@
+{{#if title}}
+  <h3>{{title}}</h3>
+{{/if}}
+<ul>
+  {{#each problems as |problem|}}
+    <li>
+      {{#link-to 'dcb.problem' problem.id}}
+        {{problem.name}}
+      {{/link-to}}
+    </li>
+  {{/each}}
+</ul>

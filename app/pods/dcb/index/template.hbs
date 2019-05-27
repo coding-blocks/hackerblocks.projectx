@@ -13,5 +13,16 @@
         @contest={{contest}} 
         @top_problem={{top_problem}} />
     </div>
+    <div class="col-5">
+      <LeaderboardView
+        @leaderboard={{leaderboard}} />
+    </div>
+  </div>
+  <div class="c-summary row mb-5 no-gutters">
+    <div class="col-7">
+      <ProblemList
+        @problems={{previous_problems}}
+        @title="Previous DCBs" />
+    </div>
   </div>
 </div>

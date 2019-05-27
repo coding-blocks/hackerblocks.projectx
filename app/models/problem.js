@@ -9,4 +9,5 @@ export default Model.extend({
   time_limit: DS.attr(),
   image: DS.attr(),
   source: DS.attr(),
+  dcbProblems: DS.attr()
 });

@@ -1,0 +1,22 @@
+<h3>leaderboard</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rank</th>
+      <th>User</th>
+      <th>College</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each sorted_leaderboard as |row i|}}
+      <tr>
+        <td>{{inc i}}</td>
+        <td>{{row.user.name}}</td>
+        <td>{{row.college.name}}</td>
+        <td>{{row.score}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

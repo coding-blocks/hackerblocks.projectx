@@ -3,4 +3,7 @@
 {{#if top_problem}}
   <h1>{{top_problem.content.name}}</h1>
   <p>{{top_problem.content.description}}</p>
+  {{#link-to 'dcb.problem' top_problem.id}}
+    {{top_problem.name}}
+  {{/link-to}}
 {{/if}}
