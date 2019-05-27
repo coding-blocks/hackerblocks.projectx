@@ -10,7 +10,6 @@ export default class DCBIndexController extends Controller {
 
   @computed('problems')
   get previous_problems() {
-    debugger
     return this.problems.filter(problem => problem.dcbProblems && !(Moment(problem.dcbProblems.start) > Moment().subtract(1, 'day')))
   }
 }

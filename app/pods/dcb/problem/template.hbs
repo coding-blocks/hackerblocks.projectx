@@ -1,7 +1,15 @@
-{{model.name}} <br>
+{{problem.name}} <br>
 
-{{model.content.name}} <br>
+{{problem.content.name}} <br>
 
-{{model.content.description}} <br>
+{{problem.content.description}} <br>
 
-{{model.content.constraints}} <br>
+{{problem.content.constraints}} <br>
+
+
+<h1>Leaderboard</h1>
+<ul>
+  {{#each leaderboard as |row| }}
+    <li>{{row.user.name}} - {{row.score}}</li>
+  {{/each}}
+</ul>

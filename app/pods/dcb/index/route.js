@@ -9,7 +9,9 @@ export default class DCBIndexRoute extends Route {
     const dcb = this.modelFor('dcb')
     const problems = dcb.problems
     const leaderboard = this.store.query('contest_leaderboard', {
-      contestId: dcb.contest.get('id'),
+      filter: {
+        contestId: dcb.contest.get('id')
+      },
       include: 'college,user',
       exclude: 'college.*,user.*'
     })

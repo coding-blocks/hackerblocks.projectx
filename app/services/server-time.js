@@ -1,0 +1,44 @@
+import Service from '@ember/service';
+import Moment from 'moment';
+import ENV from 'hackerblocks/config/environment';
+import { inject as service } from '@ember/service';
+import { task } from 'ember-concurrency';
+
+export default Service.extend({
+  poll: service(),
+  ajax: service(),
+  now: null,
+
+  init () {
+    this._super (...arguments)
+
+    const tickPollId = this.poll.addPoll({
+      interval: 1000,
+      callback: () => this.set('now', this.now.add(1, 'second'))
+    })
+    const refreshPollId = this.poll.addPoll({
+      interval: 60,
+      callback: () => this.refreshCurrentTime.perform()
+    })
+    this.set('tickPollId', tickPollId)
+    this.set('refreshPollId', refreshPollId)
+  },
+
+  willDestroyElement() {
+    this.poll.stopPoll(this.tickPollId)
+    this.poll.stopPoll(this.refreshPollId)
+  },
+
+  refreshCurrentTime: task (function * () {
+    const data = yield this.ajax.request(ENV.apiHost + '/time')
+    this.set ('now', Moment.unix(data.now/1000))
+  }).restartable(),
+
+  getUnixTime () {
+    return this.now.unix()
+  },
+
+  getTime () {
+    return this.now
+  }
+});
