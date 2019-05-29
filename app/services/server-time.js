@@ -12,12 +12,14 @@ export default Service.extend({
   init () {
     this._super (...arguments)
 
+    this.refreshCurrentTime.perform()
+    this.set('now', Moment())
     const tickPollId = this.poll.addPoll({
       interval: 1000,
-      callback: () => this.set('now', this.now.add(1, 'second'))
+      callback: () => this.tick.perform()
     })
     const refreshPollId = this.poll.addPoll({
-      interval: 60,
+      interval: 60000,
       callback: () => this.refreshCurrentTime.perform()
     })
     this.set('tickPollId', tickPollId)
@@ -28,6 +30,10 @@ export default Service.extend({
     this.poll.stopPoll(this.tickPollId)
     this.poll.stopPoll(this.refreshPollId)
   },
+
+  tick: task(function* () {
+    yield this.now.add(1, 'second')
+  }),
 
   refreshCurrentTime: task (function * () {
     const data = yield this.ajax.request(ENV.apiHost + '/time')

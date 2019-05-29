@@ -31,8 +31,8 @@ export default class ContdownTimerComponent extends Component {
   @computed('now')
   get displayString() {
     if (!this.now) return ''
-    
-    const now = this.now
+
+    const now = Moment.unix(this.now)
     const endTime = this.countdownEndTime
     const diff = Moment(endTime - now)
     const sec = diff.seconds()
@@ -44,7 +44,9 @@ export default class ContdownTimerComponent extends Component {
 
   @computed('now')
   get isCompleted() {
-    const now = this.now
+    if (!this.now) return false
+    
+    const now = Moment.unix(this.now)
     const endTime = this.countdownEndTime
     if (now >= endTime) {
       this.get('poll').stopAll();
@@ -59,7 +61,6 @@ export default class ContdownTimerComponent extends Component {
 
   @action
   tick() {
-    // set now equal to unix timestamp in seconds
-    this.set('now', this.serverTime.getTime());
+    this.set('now', this.serverTime.getUnixTime());
   }
 }
