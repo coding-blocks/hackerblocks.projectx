@@ -8,6 +8,10 @@ module.exports = function(defaults) {
     'ember-composable-helpers': {
       only: ['range', 'pipe', 'inc'],
     },
+    'ember-cli-uglify': {
+      /* https://github.com/mike-north/ember-monaco/issues/54 */
+      exclude: EmberApp.env() == 'production' ? ['ember-monaco/**'] : []
+    }
   });
 
   // Use `app.import` to add additional libraries to the generated

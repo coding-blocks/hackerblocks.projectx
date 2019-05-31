@@ -21,7 +21,7 @@ export default Route.extend(ApplicationRouteMixin, {
     async beforeModel (transition) {
       if (!isNone(transition.to.queryParams.code)) {
         if (this.get('session.isAuthenticated')) {
-          return this.transitionTo({ queryParams: { code: undefined } })
+          return this.transitionTo('index', { queryParams: { code: undefined } })
         }
         // we have ?code qp
         const { code } = transition.to.queryParams

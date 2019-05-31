@@ -8,6 +8,10 @@ export default class IndexRoute extends Route {
 
   model() {
     return this.store.query('contest', {
+      custom: {
+        ext: 'url',
+        url: 'public'
+      },
       page: {
         limit: this.limit,
         offset: this.offset

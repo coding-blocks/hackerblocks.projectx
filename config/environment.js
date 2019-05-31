@@ -13,7 +13,7 @@ module.exports = function(environment) {
       tokenPropertyName: 'jwt',
       refreshAccessTokens: true,
       tokenExpireName: 'exp',
-      refreshLeeway: 60, //send a request for refresh_token 60sec before actual expiration
+      refreshLeeway: 250, //send a request for refresh_token 60sec before actual expiration
       authorizationPrefix: 'JWT ',
     },
     EmberENV: {
@@ -58,6 +58,13 @@ module.exports = function(environment) {
     ENV.APP.autoboot = false;
     ENV.oneauthURL = 'https://account.codingblocks.com'
     ENV.clientId = 3680446660
+  }
+
+  if (environment === 'staging') {
+    ENV.publicUrl = 'http://hack.codingblocks.xyz/admin';
+    ENV.apiHost = 'https://api.codingblocks.xyz';
+    ENV.oneauthURL = 'https://account.codingblocks.com'
+    ENV.clientId = "2146237097"
   }
 
   if (environment === 'production') {
