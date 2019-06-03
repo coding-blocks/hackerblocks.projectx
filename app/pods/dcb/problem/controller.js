@@ -12,6 +12,7 @@ export default class ProblemController extends Controller {
     const response = yield this.api.request('submissions/run', {
       method: 'POST',
       data: {
+        problem_id: this.problem.id,
         input: 'some input',
         source: code,
         language

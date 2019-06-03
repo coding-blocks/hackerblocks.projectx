@@ -47,7 +47,10 @@
       <div class="row p-0">
         <div class="align-self-center pl-3">
           <p>
-            {{onSubmitTask.lastSuccessful.value}}
+            {{onSubmitTask.lastSuccessful.value.judge_result.result}}
+          </p>
+          <p>
+            {{onRunTask.lastSuccessful.value.judge_result}}
           </p>
         </div>
       </div>
