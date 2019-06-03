@@ -13,7 +13,7 @@ module.exports = function(environment) {
       tokenPropertyName: 'jwt',
       refreshAccessTokens: true,
       tokenExpireName: 'exp',
-      refreshLeeway: 250, //send a request for refresh_token 60sec before actual expiration
+      refreshLeeway: 60, //send a request for refresh_token 60sec before actual expiration
       authorizationPrefix: 'JWT ',
     },
     EmberENV: {

@@ -37,11 +37,18 @@
       <div class="row p-0">
         <div class="align-self-center pl-3">
           <div class="button-solid">
-            <button {{action onRun selectedLanguage code}}>Run</button>
+            <button {{action (perform onRunTask selectedLanguage.code code)}}>Run</button>
           </div>
           <div class="button-solid">
-            <button {{action onSubmit selectedLanguage code}}>Submit</button>
+            <button {{action (perform onSubmitTask selectedLanguage.code code)}}>Submit</button>
           </div>
+        </div>
+      </div>
+      <div class="row p-0">
+        <div class="align-self-center pl-3">
+          <p>
+            {{onSubmitTask.lastSuccessful.value}}
+          </p>
         </div>
       </div>
     </div>
