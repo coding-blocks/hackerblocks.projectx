@@ -1,55 +1,57 @@
-<header>
-  <nav class="main-nav">
-    <div class="nav-left">
-      <span class="hamburger-parent">
-        <i class="hamburger fas fa-bars"></i>
-      </span>
-
-      <span class="logo-parent">
-        {{#link-to 'index' activeClass=''}}
-        <img src="/images/logo.svg" alt="online-logo" class="nav-logo pointer"> {{/link-to}}
-      </span>
-    </div>
-    <div class="dsp-none-sm">
-      <div class="nav-right">
-        <ul class="nav-list">
-          <li class="nav-items pointer">
-            {{#link-to 'dcb'}}
-              Daily Code Byte
-            {{/link-to}}
-          </li>
-          <li class="nav-items pointer">
-            {{#link-to 'contests'}}
-              Contests
-            {{/link-to}}
-          </li>
-
-          {{#if session.isAuthenticated}}
-          <div class="round-img">
-            <img src="{{user.photo}}" alt="">
-          </div>
-
-          <div class="card">
-            <div class="top-offset"></div>
-            <div class="nav-info">
-              <div class="flex-row justify-content-end grey">
-                <a href="https://account.codingblocks.com/users/me" target="_black">
-                  <span class="pointer">MY PROFILE</span>
-                </a>
-              </div>
-              <div class="separator"></div>
-              <div class="flex-row justify-content-end grey">
-                <span class="pointer">{{login-button}}</span>
-              </div>
+<div class="row topnav py-3 justify-content-between">
+  <div class="col-6">
+    <ul>
+      <li class="top-nav-option pl-4">
+        <div class="logo">
+          <i class="fab fa-slack fa-3x"></i>
+        </div>
+      </li>
+      <li class="top-nav-option px-3 mt-3">
+        <a href="#online-courses">
+          <h6>Online Courses</h6>
+        </a>
+      </li>
+      <li class="top-nav-option px-3 mt-3">
+        <a href="#classroom-courses">
+          <h6>Classroom Courses</h6>
+        </a>
+      </li>
+      <li class="top-nav-option px-3 mt-3">
+        <a href="#hiring-blocks">
+          <h6>Hiring Blocks</h6>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-4 align-items-center">
+    <ul class="right-nav">
+      <li class="top-nav-option px-3 pt-3">
+        <a href="#search">
+          <i class="fas fa-search fa-lg"></i>
+        </a>
+      </li>
+      <li class="top-nav-option px-3 pt-3">
+        <a href="#notification">
+          <i class="far fa-bell fa-lg"></i>
+        </a>
+      </li>
+      <li class="top-nav-option px-3 pt-3">
+        <a href="#help">
+          <i class="far fa-question-circle fa-lg"></i>
+        </a>
+      </li>
+      <li>
+        {{#if session.isAuthenticated}}
+          <div class="img-desc align-items-center px-5 font-sm pt-2">
+            <img class="round s-30x30" src="/images/placeholder.gif" alt="">
+            <div class="description ml-3">
+              Hi, {{user.name}}
             </div>
           </div>
-          {{else}}
-          <li class="nav-items pointer">
-              {{login-button}}
-          </li>
-          {{/if}}
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
+        {{else}}
+          <LoginButton />
+        {{/if}}
+      </li>
+    </ul>
+  </div>
+</div>

@@ -3,8 +3,11 @@ import { computed } from '@ember/object';
 import moment, { duration } from 'moment';
 
 export default class ContestHeaderComponent extends Component {
-  startTime = moment()
-  duration = 10000
+  @computed('top_problem')
+  get top_problem_end() {
+    return moment(this.top_problem.dcbProblems.start).add(86400, 'second')
+  }
+
   @computed('contest.start_time')
   get humanize_date() {
     return moment(this.contest.start_time).format('dddd, D MMM')
