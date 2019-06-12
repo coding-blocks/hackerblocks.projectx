@@ -12,4 +12,9 @@ export default class DCBIndexController extends Controller {
   get previous_problems() {
     return this.problems.filter(problem => problem.dcbProblems && !(Moment(problem.dcbProblems.start) > Moment().subtract(1, 'day')))
   }
+
+  @computed('levels')
+  get currentContestLevel() {
+    return this.levels.findBy('contest.id', this.contest.id)
+  }
 }

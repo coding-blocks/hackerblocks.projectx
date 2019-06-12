@@ -1,4 +1,9 @@
 import Component from '@ember/component';
+import { computed } from '@ember/object'
 
-export default Component.extend({
-});
+export default class DailyGoalCardComponent extends Component {
+  @computed('level')
+  get progress() {
+    return Math.floor(this.level.perfectSubmissionCount / this.level.nextRequiredSubmissionCount)
+  }
+}
