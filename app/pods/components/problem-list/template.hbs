@@ -1,12 +1,37 @@
-{{#if title}}
-  <h3>{{title}}</h3>
-{{/if}}
-<ul>
-  {{#each problems as |problem|}}
-    <li>
-      {{#link-to 'dcb.problem' problem.id}}
-        {{problem.name}}
-      {{/link-to}}
-    </li>
-  {{/each}}
-</ul>
+<div class="border-card previous-dcb">
+  {{#if title}}
+    <h4 class="mb-5">{{ title }}</h4>
+  {{/if}}
+  <div class="list-divided border-none">
+    {{#each problems as |problem|}}
+    <div class="row no-gutters pointer my-4 pb-4">
+      <div class="li-left">
+        <div>
+          <h5>{{problem.name}}</h5>
+          <ul class="divided-list">
+            <li class="list-item">
+              <div class="list-heading">{{problem.difficultyString}}</div>
+              <div class="list-data">Difficulty</div>
+            </li>
+            <li class="list-item">
+              <div class="list-heading">345</div>
+              <div class="list-data">Submissions</div>
+            </li>
+            <li class="list-item">
+              <div class="list-heading">100</div>
+              <div class="list-data">Max Points</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="li-right">
+        <div>
+          {{#link-to 'dcb.problem' problem.id class="button-gradient-blue mt-3"}}
+            Solve Challenge
+          {{/link-to}}
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>

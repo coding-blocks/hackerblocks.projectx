@@ -11,10 +11,6 @@
           as |time|>
           <ul class="divided-list timer">
             <li class="timer-item">
-              <div class="list-heading white">{{time.days}}</div>
-              <div class="list-data">Days</div>
-            </li>
-            <li class="timer-item">
               <div class="list-heading white">{{time.hours}}</div>
               <div class="list-data">Hours</div>
             </li>
@@ -34,13 +30,13 @@
       <div class="divider-h bg-white dcb-divider"></div>
       <h3 class="mb-4 mt-4">{{top_problem.content.name}}</h3>
       <div class="font-xs mb-5">
-        {{top_problem.content.description}}
+        {{markdown-to-html top_problem.content.description}}
       </div>
       <div class="row justify-content-between">
         <div class="col-md-8 col-sm-12 col-12">
           <ul class="divided-list">
             <li class="list-item">
-              <div class="list-heading">Hard</div>
+              <div class="list-heading">{{top_problem.difficultyString}}</div>
               <div class="list-data">Difficulty</div>
             </li>
             <li class="list-item">
@@ -48,7 +44,7 @@
               <div class="list-data">Submissions</div>
             </li>
             <li class="list-item">
-              <div class="list-heading">200</div>
+              <div class="list-heading">100</div>
               <div class="list-data">Max Points</div>
             </li>
             <li class="list-item">

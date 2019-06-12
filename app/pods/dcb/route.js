@@ -3,6 +3,8 @@ import RSVP from 'rsvp';
 
 export default class DCBRoute extends Route {
   model() {
-    return this.store.findRecord('dcb', 2)
+    return this.store.findRecord('contest', 1, {
+      include: 'dcb'
+    })
   }
 }

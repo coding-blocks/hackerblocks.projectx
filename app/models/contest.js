@@ -23,5 +23,6 @@ export default Model.extend({
   moss: DS.attr(),
   allow_editorial_unlocks: DS.attr(),
   allow_testcase_unlocks: DS.attr(),
-  plagiarismFiltering: DS.attr()
+  plagiarismFiltering: DS.attr(),
+  dcb: DS.belongsTo('dcb')
 });
