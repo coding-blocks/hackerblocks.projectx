@@ -1,31 +1,25 @@
-<div class="row justify-content-center">
-  <div class="sidenav pt-3 col-1 small-sidenav">
-    <div class="logo pb-5">
-      <i class="fab fa-slack fa-3x"></i>
-    </div>
-    <LinkTo 
-      @route='index' 
-      class="nav-element p-sm-4">
-      <i class="fas fa-chart-pie font-xl"></i>
-      <h6 class="pt-2">Dashboard</h6>
-    </LinkTo>
-    <LinkTo
-      @route='dcb'
-      class="nav-element py-lg-4 px-lg-4 py-md-3 px-md-3 py-sm-2 px-sm-2">
-      <i class="far fa-calendar font-xl"></i>
-      <h6 class="pt-2">Daily Code</h6>
-    </LinkTo>
-    <a href="#contests" class="nav-element py-lg-4 px-lg-4 py-md-3 px-md-3 py-sm-2 px-sm-2">
-      <i class="fas fa-trophy font-xl"></i>
-      <h6 class="pt-2">Contests</h6>
-    </a>
-    <a href="#practice" class="nav-element py-lg-4 px-lg-4 py-md-3 px-md-3 py-sm-2 px-sm-2">
-      <i class="fas fa-code font-xl"></i>
-      <h6 class="pt-2">Practice</h6>
-    </a>
-    <a href="#compete" class="nav-element py-lg-4 px-lg-4 py-md-3 px-md-3 py-sm-2 px-sm-2">
-      <i class="fas fa-graduation-cap font-xl"></i>
-      <h6 class="pt-2">Compete</h6>
-    </a>
+<div class="c-sidenav pt-3 col-1 d-sm-none d-md-block">
+  <div class="logo pb-5">
+    <i class="fab fa-slack fa-3x"></i>
   </div>
+  <LinkTo @route="index" class="nav-element p-lg-4 py-md-3 px-md-2 p-sm-2">
+    <i class="fas fa-chart-pie font-xl"></i>
+    <h6 class="pt-2">Dashboard</h6>
+  </LinkTo>
+  <LinkTo @route="dcb" class="nav-element p-lg-4 py-md-3 px-md-2 p-sm-2">
+    <i class="far fa-calendar font-xl"></i>
+    <h6 class="pt-2">Daily Code</h6>
+  </LinkTo>
+  <a href="#contests" class="nav-element p-lg-4 py-md-3 px-md-2 p-sm-2">
+    <i class="fas fa-trophy font-xl"></i>
+    <h6 class="pt-2">Contests</h6>
+  </a>
+  <a href="#practice" class="nav-element p-lg-4 py-md-3 px-md-2 p-sm-2">
+    <i class="fas fa-code font-xl"></i>
+    <h6 class="pt-2">Practice</h6>
+  </a>
+  <a href="#compete" class="nav-element p-lg-4 py-md-3 px-md-2 p-sm-2">
+    <i class="fas fa-graduation-cap font-xl"></i>
+    <h6 class="pt-2">Compete</h6>
+  </a>
 </div>

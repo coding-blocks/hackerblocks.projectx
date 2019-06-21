@@ -12,7 +12,7 @@ export default Model.extend({
   nextLevel: Ember.computed('level', function() {
     return this.level + 1
   }),
-  nextRequiredSubmissionCount: Ember.computed('perfectSubmissionCount', function() {
-    return fib(this.level+1)
+  nextRequiredSubmissionCount: Ember.computed('perfectSubmissionCount', 'level', function() {
+    return fib(this.level+2)
   })
 });

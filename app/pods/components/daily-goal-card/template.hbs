@@ -1,24 +1,17 @@
-<div class="img-card daily-goal-card">
+<div class="img-card c-daily-goal-card">
   <h4>Daily Goal</h4>
   <div class="font-xs">Complete daily goal to count it as streak</div>
-  <progress value="{{progress}}" max="100" class="mt-4 mb-2"></progress>
-  <h6 class="bold">{{level.perfectSubmissionCount}}/{{level.nextRequiredSubmissionCount}} Points Scored</h6>
-  <div class="divider-h my-4"></div>
-  <h4>Unlock Badge</h4>
-  <div class="font-xs">Complete 3 more consecutive DCB’s to unlock badge</div>
-  <img src="/images/hexagon.jpg" alt="Badge Logo" class="badge mt-5 mb-3" />
-  <h4>{{level.level}}</h4>
-  <div class="divider-h my-4"></div>
-  <h4>My Badges</h4>
-  <div class="row badge-scroll my-4">
-  <div class="col-4 col-lg-3">
-    <img src="/images/hexagon.jpg" alt="Badge Logo" class="mybadge" />
-  </div>
-  <div class="col-4 col-lg-3">
-    <img src="/images/hexagon.jpg" alt="Badge Logo" class="mybadge" />
-  </div>
-  <div class="col-4 col-lg-3">
-    <img src="/images/hexagon.jpg" alt="Badge Logo" class="mybadge" />
-  </div>
-  </div>
+  {{#if level}}
+    <progress value="{{progress}}" max="100" class="mt-4 mb-2"></progress>
+    <h6 class="bold">{{level.perfectSubmissionCount}}/{{level.nextRequiredSubmissionCount}} Points Scored</h6>
+    <div class="divider-h my-4"></div>
+    <h4>Unlock Badge</h4>
+    <div class="font-xs">Complete 3 more consecutive DCB’s to unlock badge</div>
+    <img src="/images/hexagon.jpg" alt="Badge Logo" class="badge mt-5 mb-3" />
+    <h4>{{level.level}}</h4>
+  {{else}}
+    <progress value="0" max="100" class="mt-4 mb-2"></progress>
+    <h6 class="bold"> 0/1 Points Scored</h6>
+  {{/if}}
+  {{yield}}
 </div>

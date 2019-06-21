@@ -3,11 +3,11 @@ import RSVP from 'rsvp';
 
 export default class ProblemRoute extends Route {
   model(params) {
-    const dcb = this.modelFor('dcb')
+    const contest = this.modelFor('dcb')
     const problem = this.store.findRecord('problem', params.problem_id)
     const leaderboard = this.store.query('problem_leaderboard', {
       filter: {
-        contestId: dcb.contest.get('id'),
+        contestId: contest.get('id'),
         problemId: params.problem_id
       },
       include: 'college,user',

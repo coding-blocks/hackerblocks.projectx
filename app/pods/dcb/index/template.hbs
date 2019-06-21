@@ -7,20 +7,26 @@
   </div>
   <div class="row justify-content-between">
     <div class="col-8">
-      <DcbHeader 
-        @contest={{contest}} 
-        @top_problem={{top_problem}} 
-        class="pb-5" />
-      <ProblemList
-        @problems={{previous_problems}}
-        @title="Previous DCBs" />
+      <DcbHeader @contest={{contest}} @top_problem={{top_problem}} class="pb-5" />
+      <ProblemList @problems={{previous_problems}} @title="Previous DCBs" />
     </div>
     <div class="col-4">
-      <DailyGoalCard 
-        @level={{currentContestLevel}}
-        class="pb-5" />
-      <LeaderboardView
-        @leaderboard={{leaderboard}} />
+      <DailyGoalCard @level={{currentContestLevel}} class="pb-5">
+        <div class="divider-h my-4"></div>
+        <h4>My Badges</h4>
+        <div class="row badge-scroll my-4">
+          <div class="col-4 col-lg-3">
+            <img src="/images/hexagon.jpg" alt="Badge Logo" class="mybadge" />
+          </div>
+          <div class="col-4 col-lg-3">
+            <img src="/images/hexagon.jpg" alt="Badge Logo" class="mybadge" />
+          </div>
+          <div class="col-4 col-lg-3">
+            <img src="/images/hexagon.jpg" alt="Badge Logo" class="mybadge" />
+          </div>
+        </div>
+      </DailyGoalCard>
+      <LeaderboardView @leaderboard={{leaderboard}} />
     </div>
   </div>
 </div>
