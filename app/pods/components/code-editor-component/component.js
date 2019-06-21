@@ -54,7 +54,7 @@ export default class CodeEditorComponent extends Component {
     this._super(...arguments)
     const languages = this.get('allowedLanguages') || ['c', 'cpp', 'python2', 'python3', 'java', 'node', 'csharp']
     this.set('languages', languages)
-    this.selectLanguage(languages[0])
+    this.selectLanguage(languages[1])
   }
 
   @action
