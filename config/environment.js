@@ -16,6 +16,9 @@ module.exports = function(environment) {
       refreshLeeway: 60, //send a request for refresh_token 60sec before actual expiration
       authorizationPrefix: 'JWT ',
     },
+    'ember-cli-string-helpers': {
+      only: ['truncate'],
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

@@ -6,19 +6,15 @@ export default class DCBIndexRoute extends Route {
   @service api
 
   model() {
-    const contest = this.modelFor('dcb')
-    const problems = contest.get('dcb.problems')
+    const contest = this.modelFor('dcb').contest
+    const levels = this.modelFor('dcb').levels
+    const problems = this.modelFor('dcb').problems
     const leaderboard = this.store.query('contest_leaderboard', {
       filter: {
         contestId: contest.get('id')
       },
       include: 'college,user',
       exclude: 'college.*,user.*'
-    })
-    const levels = this.store.query('user_level', {
-      filter: {
-        contestId: contest.get('id')
-      }
     })
     return RSVP.hash({
       contest,

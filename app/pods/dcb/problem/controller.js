@@ -1,11 +1,17 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 import { dropTask } from 'ember-concurrency-decorators';
-import { timeout } from 'ember-concurrency'
+import { timeout } from 'ember-concurrency';
 
 export default class ProblemController extends Controller {
   @service store
   @service api
+
+  @computed('levels')
+  get currentContestLevel() {
+    return this.levels.findBy('contest.id', this.contest.id)
+  }
 
   @dropTask
   onRunTask = function*(language, code) {

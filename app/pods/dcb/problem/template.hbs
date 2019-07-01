@@ -1,18 +1,21 @@
-{{problem.name}} <br>
-
-{{problem.content.name}} <br>
-
-{{problem.content.description}} <br>
-
-{{problem.content.constraints}} <br>
-
-<CodeEditorComponent 
-  @onRunTask={{onRunTask}}
-  @onSubmitTask={{onSubmitTask}} />
-
-<h1>Leaderboard</h1>
-<ul>
-  {{#each leaderboard as |row| }}
-    <li>{{row.user.name}} - {{row.score}}</li>
-  {{/each}}
-</ul>
+<div class="row px-5">
+  <div class="col-8">
+    <DcbProblemCard
+      class="py-4"
+      @problem={{problem}} />
+    <ProblemView 
+      class="py-4"
+      @problem={{problem}} />
+    <CodeEditorComponent 
+      class="py-4"
+      @onRunTask={{onRunTask}} 
+      @onSubmitTask={{onSubmitTask}} />
+  </div>
+  <div class="col-4">
+    <DailyGoalCardSmall 
+      class="py-4"
+      @level={{currentContestLevel}} />
+    <RatingCard class="py-4" />
+    <AuthorCard class="py-4" />
+  </div>
+</div>

@@ -3584,6 +3584,14 @@ ember-cli-sri@^2.1.1:
   dependencies:
     broccoli-sri-hash "^2.1.0"
 
+ember-cli-string-helpers@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-string-helpers/-/ember-cli-string-helpers-3.0.0.tgz#b548a37786e79ea48cc6d77ae0b5e3d687a4a6f7"
+  integrity sha512-pd9YPiAwvL70oer/qT5GEfZXWF/b1FHAYrIg+isOMNtSS/pehGEdQlChkB223xs4rmyGO6UncJLQ33sbbnpm5A==
+  dependencies:
+    broccoli-funnel "^2.0.2"
+    ember-cli-babel "^7.7.3"
+
 ember-cli-string-utils@^1.0.0, ember-cli-string-utils@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ember-cli-string-utils/-/ember-cli-string-utils-1.1.0.tgz#39b677fc2805f55173735376fcef278eaa4452a1"
@@ -3804,6 +3812,13 @@ ember-concurrency@^0.10.1:
   dependencies:
     ember-cli-babel "^7.1.0"
     ember-getowner-polyfill "^1.1.0 || ^2.0.0"
+
+ember-copy@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ember-copy/-/ember-copy-1.0.0.tgz#426554ba6cf65920f31d24d0a3ca2cb1be16e4aa"
+  integrity sha512-aiZNAvOmdemHdvZNn0b5b/0d9g3JFpcOsrDgfhYEbfd7SzE0b69YiaVK2y3wjqfjuuiA54vOllGN4pjSzECNSw==
+  dependencies:
+    ember-cli-babel "^6.6.0"
 
 ember-data@~3.10.0:
   version "3.10.0"
@@ -5769,6 +5784,21 @@ linkify-it@^2.0.0:
   dependencies:
     uc.micro "^1.0.1"
 
+liquid-fire@^0.30.0:
+  version "0.30.0"
+  resolved "https://registry.yarnpkg.com/liquid-fire/-/liquid-fire-0.30.0.tgz#20e6673f9db32d503f909592fd2c691452b07d6d"
+  integrity sha512-5ffmsrPvAzc4EQdjVHouiPc0m+c+wt4YOBgABrPgO+30cSAlYLYuIhQIQ5j+zX87oa61btq0BJVjjtxunG1Nrg==
+  dependencies:
+    broccoli-funnel "^2.0.2"
+    broccoli-merge-trees "^3.0.2"
+    broccoli-stew "^2.1.0"
+    ember-cli-babel "^7.7.3"
+    ember-cli-htmlbars "^3.0.1"
+    ember-cli-version-checker "^3.1.3"
+    ember-copy "^1.0.0"
+    match-media "^0.2.0"
+    velocity-animate "^1.5.2"
+
 livereload-js@^2.3.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/livereload-js/-/livereload-js-2.4.0.tgz#447c31cf1ea9ab52fc20db615c5ddf678f78009c"
@@ -6287,6 +6317,11 @@ markdown-it@^8.3.1, markdown-it@^8.4.2:
     linkify-it "^2.0.0"
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
+
+match-media@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/match-media/-/match-media-0.2.0.tgz#ea4e09742e7253cc7d7e1599ba627e0fa29fbc50"
+  integrity sha1-6k4JdC5yU8x9fhWZumJ+D6KfvFA=
 
 matcher-collection@^1.0.0, matcher-collection@^1.0.5, matcher-collection@^1.1.1:
   version "1.1.2"
@@ -8485,6 +8520,11 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
+
+velocity-animate@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/velocity-animate/-/velocity-animate-1.5.2.tgz#5a351d75fca2a92756f5c3867548b873f6c32105"
+  integrity sha512-m6EXlCAMetKztO1ppBhGU1/1MR3IiEevO6ESq6rcrSQ3Q77xYSW13jkfXW88o4xMrkXJhy/U7j4wFR/twMB0Eg==
 
 walk-sync@^0.2.5:
   version "0.2.7"
