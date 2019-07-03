@@ -1,0 +1,28 @@
+<div class="py-4">
+  <h4 class="mb-5 pt-4">My Submissions</h4>
+  <table class="w-100">
+    <thead class="font-sm extra-bold b-bottom">
+      <td class="pb-2">Result</td>
+      <td class="pb-2">Score</td>
+      <td class="pb-2">Time</td>
+      <td class="pb-2">Language</td>
+    </thead>
+    <tbody class="bold">
+      {{#each submissions as |submission|}}
+        <tr>
+          <td class="pb-4 pt-4 green font-sm">
+            <i class="fas fa-check pr-3"></i>
+            <span>ACCEPTED</span>
+          </td>
+          <td class="pb-4 pt-4">{{submission.score}}/100</td>
+          <td class="pb-4 pt-4">{{submission.msecs_elapsed}}</td>
+          <td class="pb-4 pt-4">{{submission.language}}</td>
+          <td class="pb-4 pt-4 t-align-r">
+            <a href="#View" class="pr-3 orange">View</a>
+            <span class="grey normal">10 mins ago</span>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

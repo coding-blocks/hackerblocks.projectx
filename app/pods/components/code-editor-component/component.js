@@ -5,50 +5,50 @@ export default class CodeEditorComponent extends Component {
   code = ''
   isLanguageSelectOpen = false
   
-  languageSpecs = {
-    cpp: {
+  languageSpecs = [
+    {
       name: "C++",
       code: "cpp",
       mode: "cpp",
       source: ""
     },
-    c: {
+    {
       name: "C",
       code: "c",
       mode: "c",
       source: ""
     },
-    py2: {
+    {
       name: "Python 2.7",
       code: "py2",
       mode: "python",
       source: ""
     },
-    py3: {
+    {
       name: "Python 3",
       code: "py3",
       mode: "python",
       source: ""
     },
-    js: {
+    {
       name: "Node",
       code: "js",
       mode: "javascript",
       source: ""
     },
-    java: {
+    {
       name: "Java 8",
       code: "java",
       mode: "java",
       source: ""
     },
-    csharp: {
+    {
       name: "C#",
       code: "csharp",
       mode: "csharp",
       source: ""
     }
-  }
+  ]
 
   didReceiveAttrs() {
     this._super(...arguments)
@@ -59,7 +59,9 @@ export default class CodeEditorComponent extends Component {
 
   @action
   selectLanguage(languageCode) {
-    this.set('selectedLanguage', this.languageSpecs[languageCode])
+    this.set('selectedLanguage', this.languageSpecs.filterBy('code', languageCode)[0])
+    const codeStub = this.codeStubs.filterBy('language', this.selectedLanguage.code)[0]
+    this.set('code', codeStub.body)
   }
 
   @action

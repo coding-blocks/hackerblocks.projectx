@@ -8,6 +8,12 @@ module.exports = function(defaults) {
     'ember-composable-helpers': {
       only: ['range', 'pipe', 'inc'],
     },
+    'ember-truth-helpers': {
+      only: ['eq'],
+    },
+    'ember-cli-string-helpers': {
+      only: ['truncate'],
+    },
     'ember-cli-uglify': {
       /* https://github.com/mike-north/ember-monaco/issues/54 */
       exclude: EmberApp.env() == 'production' ? ['ember-monaco/**'] : []

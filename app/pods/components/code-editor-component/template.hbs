@@ -1,12 +1,15 @@
 <div class="border-card c-code-editor p-0 border-none w-100">
   <div class="row px-5 py-4 justify-content-between align-items-center bg-grey m-0">
     <div class="col-3 p-0">
-      <i class="fas fa-ellipsis-h"></i>
-      <span class="font-sm extra-bold">Code Editor</span>
+      <span class="font-sm extra-bold">{...} Code Editor</span>
     </div>
     <div>
       <i class="fas fa-expand-arrows-alt"></i>
-      <div class="dropdown d-inline-block">Choose Language</div>
+      <select class="dropdown d-inline-block" onchange={{action "selectLanguage" value="target.value"}}>
+        {{#each-in languageSpecs as |key value|}}
+          <option value="{{value.code}}">{{value.name}}</option>
+        {{/each-in}}
+      </select>
     </div>
   </div>
   <div>
@@ -19,69 +22,25 @@
   </div>
   <div class="pt-4 pb-5 px-5 input-div">
     <div class="row justify-content-between align-items-center">
-      <div class="col-4 white extra-bold p-0">
+      <div class="col-4 white extra-bold p-0 pointer">
         <i class="fas fa-angle-up mx-3"></i>
         <span>Provide Custom Input</span>
       </div>
       <div>
-        <button class="button-dashed button-orange ml-3 mr-1">Compile and Test</button>
-        <button class="button-solid button-orange mr-3 ml-1">Submit Code</button>
+        <button 
+          class="button-dashed button-orange ml-3 mr-1"
+          disabled={{or onRunTask.isRunning onSubmitTask.isRunning}}
+          {{action (perform onRunTask selectedLanguage.code code input)}}>
+          {{if onRunTask.isRunning "Running" "Compile and Test"}}
+        </button>
+        <button 
+          class="button-solid button-orange mr-3 ml-1" 
+          disabled={{or onRunTask.isRunning onSubmitTask.isRunning}}
+          {{action (perform onSubmitTask selectedLanguage.code code)}}>
+          {{if onSubmitTask.isRunning "Submitting" "Submit Code"}}
+          </button>
       </div>
     </div>
-    <textarea name="input" cols="30" rows="5" class="mx-auto my-4 white w-100">
-      {{!-- text goes here --}}
-    </textarea>
+    {{textarea name="input" cols="30" rows="5" class="mx-auto my-4 white w-100" value=input}}
   </div>
 </div>
-  {{!-- <div class="editor-options row no-gutters justify-content-between">
-      <div class="row no-gutters">
-        <div class="select-list align-self-center pl-3">
-          <div
-            class="select-box pointer row justify-content-between align-items-center p-2"
-            onclick={{action "toggleLanguageSelectOpen"}}
-          >
-            {{selectedLanguage.name}}
-            {{#if isLanguageSelectOpen}}
-              <span>
-                <i class="fas fa-angle-up"></i>
-              </span>
-            {{else}}
-              <span>
-                <i class="fas fa-angle-down"></i>
-              </span>
-            {{/if}}
-          </div>
-          <div
-            class="open-select-box {{if isLanguageSelectOpen "display-block"}}"
-          >
-            <ul>
-              {{#each allLanguages as |language|}}
-                <li class="pointer" {{action selectLanguage language}}>
-                  {{language.name}}
-                </li>
-              {{/each}}
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="row p-0">
-        <div class="align-self-center pl-3">
-          <div class="button-solid">
-            <button {{action (perform onRunTask selectedLanguage.code code)}}>Run</button>
-          </div>
-          <div class="button-solid">
-            <button {{action (perform onSubmitTask selectedLanguage.code code)}}>Submit</button>
-          </div>
-        </div>
-      </div>
-      <div class="row p-0">
-        <div class="align-self-center pl-3">
-          <p>
-            {{onSubmitTask.lastSuccessful.value.judge_result.result}}
-          </p>
-          <p>
-            {{onRunTask.lastSuccessful.value.judge_result}}
-          </p>
-        </div>
-      </div>
-    </div> --}}

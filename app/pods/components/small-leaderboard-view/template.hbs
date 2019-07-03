@@ -1,0 +1,40 @@
+<div class="c-hb-leaderboard pt-5">
+  <div class="border-card mb-5">
+    <h4 class="mb-5 t-align-c pt-4">Leaderboard</h4>
+    <table class="w-100 blue">
+      <thead class="font-sm extra-bold">
+        <td class="pb-4 t-align-c">Rank</td>
+        <td class="pb-4">User</td>
+        <td class="pb-4 t-align-c">Score</td>
+      </thead>
+      <tbody>
+        <tr class="self">
+          <td class="pb-4 pt-4">#40</td>
+          <td class="pb-4 pt-4">
+            <div class="img-desc align-items-center">
+              <img class="round s-30x30" src="/images/placeholder.gif" alt="">
+              <div class="description ml-3">
+                Siddharth Jain
+              </div>
+            </div>
+          </td>
+          <td class="pb-4 pt-4">2345</td>
+        </tr>
+        {{#each leaderboard as |row i|}}
+        <tr>
+          <td class="pb-4 pt-4">{{inc i}}</td>
+          <td class="pb-4 pt-4">
+            <div class="img-desc align-items-center">
+              <img class="round s-30x30" src="/images/placeholder.gif" alt="">
+              <div class="description ml-3">
+                {{row.user.name}}
+              </div>
+            </div>
+          </td>
+          <td class="pb-4 pt-4">{{row.score}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="border-card p-5">
+  {{#if (eq result "compile_error")}}
+    <h1>Compilation Error</h1>
+  {{else if (eq result "success")}}
+    <h1>Success</h1>
+  {{else}}
+    <h1>Judge Error</h1>
+  {{/if}}
+  <span class="font-sm">Check the compiler output, fix the error and try again.</span>
+
+  <div class="divider-h"></div>
+
+  <span class="font-sm bold">Compile Message</span>
+  <div class="bg-grey p-2">
+    <pre>{{output}}</pre>
+  </div>
+</div>

@@ -14,13 +14,13 @@ export default class ProblemController extends Controller {
   }
 
   @dropTask
-  onRunTask = function*(language, code) {
+  onRunTask = function*(language, code, input) {
     const response = yield this.api.request('submissions/run', {
       method: 'POST',
       data: {
         problem_id: this.problem.id,
-        input: 'some input',
-        source: code,
+        input: window.btoa(input),
+        source: window.btoa(code),
         language
       }
     })
@@ -43,7 +43,7 @@ export default class ProblemController extends Controller {
       data: {
         contest_id: 1,
         problem_id: this.problem.id,
-        source: code,
+        source: window.btoa(code),
         language
       }
     })

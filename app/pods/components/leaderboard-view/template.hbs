@@ -1,16 +1,35 @@
-<div class="c-hb-leaderboard">
-  <div class="border-card mb-5">
-    <h4 class="mb-5 t-align-c pt-4">Leaderboard</h4>
+<div class="row mt-4 align-items-center justify-content-around">
+  <div class="col-1">
+    <h6>Filter</h6>
+  </div>
+  <div class="col-4 px-4">
+    <div class="dropdown py-3 px-2">
+      <span class="font-xs">By College</span>
+    </div>
+  </div>
+  <div class="col-4 px-4">
+    <div class="dropdown py-3 px-2">
+      <span class="font-xs">By Language</span>
+    </div>
+  </div>
+  <div class="col-2">
+    <button class="button-solid button-orange font-sm extra-bold my-3">Apply Filter</button>
+  </div>
+</div>
+<div class="py-4">
+  <div class="c-hb-leaderboard">
     <table class="w-100">
       <thead class="font-sm extra-bold">
-        <td class="pb-4 t-align-c">Rank</td>
+        <td class="pb-4">Rank</td>
         <td class="pb-4">User</td>
-        <td class="pb-4 t-align-c">Score</td>
+        <td class="pb-4">College</td>
+        <td class="pb-4">Language</td>
+        <td class="pb-4">Score</td>
       </thead>
       <tbody>
         <tr class="self">
-          <td class="pb-4 pt-4">#40</td>
-          <td class="pb-4 pt-4">
+          <td class="py-4">#40</td>
+          <td class="py-4">
             <div class="img-desc align-items-center">
               <img class="round s-30x30" src="/images/placeholder.gif" alt="">
               <div class="description ml-3">
@@ -18,21 +37,25 @@
               </div>
             </div>
           </td>
-          <td class="pb-4 pt-4">2345</td>
+          <td class="py-4">JSS Noida</td>
+          <td class="py-4">C++</td>
+          <td class="py-4">2345</td>
         </tr>
-        {{#each sorted_leaderboard as |row i|}}
-          <tr>
-            <td class="pb-4 pt-4">{{inc i}}</td>
-            <td class="pb-4 pt-4">
-              <div class="img-desc align-items-center">
-                <img class="round s-30x30" src="/images/placeholder.gif" alt="">
-                <div class="description ml-3">
-                  {{row.user.name}}
-                </div>
+        {{#each leaderboard as |row i| }}
+        <tr>
+          <td class="py-4">{{inc i}}</td>
+          <td class="py-4">
+            <div class="img-desc align-items-center">
+              <img class="round s-30x30" src="/images/placeholder.gif" alt="">
+              <div class="description ml-3">
+                {{row.user.name}}
               </div>
-            </td>
-            <td class="pb-4 pt-4">{{row.score}}</td>
-          </tr>
+            </div>
+          </td>
+          <td class="py-4">{{row.college.name}}</td>
+          <td class="py-4">{{row.language}}</td>
+          <td class="py-4">{{row.score}}</td>
+        </tr>
         {{/each}}
       </tbody>
     </table>

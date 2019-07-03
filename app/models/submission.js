@@ -1,3 +1,5 @@
+import Ember from 'ember';
+import moment from 'moment';
 import DS from 'ember-data';
 const { Model } = DS;
 
@@ -15,5 +17,8 @@ export default Model.extend({
   plagiarism_detected: DS.attr(),
   problem: DS.attr(),
   contest: DS.attr(),
-  user: DS.attr()
+  user: DS.attr(),
+  submitAtHumanize: Ember.computed('submit_at', () => {
+    return moment.unix(this.submit_at).humanize()
+  })
 });

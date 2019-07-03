@@ -1,12 +1,33 @@
 <div class="img-card p-5 hb-tab-nav">
   <div class="tab-nav-underline">
-    <div class="tab active py-4">Problem</div>
-    <div class="tab py-4">Submissions</div>
-    <div class="tab py-4">Leaderboard</div>
-    <div class="tab py-4">Discuss</div>
-    <div class="tab py-4">Solution</div>
+    <div 
+      class="tab {{if (eq selectedTab "problem") "active"}} py-4 pointer"
+      {{action (mut selectedTab) "problem"}}>
+      Problem
+    </div>
+    <div 
+      class="tab {{if (eq selectedTab "submissions") "active"}} py-4 pointer"
+      {{action (mut selectedTab) "submissions"}}>
+      Submissions
+    </div>
+    <div 
+      class="tab {{if (eq selectedTab "leaderboard") "active"}} py-4 pointer"
+      {{action (mut selectedTab) "leaderboard"}}>
+      Leaderboard
+    </div>
+    <div 
+      class="tab {{if (eq selectedTab "discuss") "active"}} py-4 pointer"
+      {{action (mut selectedTab) "discuss"}}>
+      Discuss
+    </div>
+    <div 
+      class="tab {{if (eq selectedTab "solution") "active"}} py-4 pointer"
+      {{action (mut selectedTab) "solution"}}>
+      Solution
+    </div>
   </div>
 
+  {{#liquid-if (eq selectedTab "problem")}}
   <div class="py-4">
     <p>
       {{markdown-to-html problem.content.description}}
@@ -27,15 +48,23 @@
     </p>
     <div class="extra-bold">Sample Input</div>
     <div class="bg-grey br-5 w-60 px-4 py-2 my-2">
-      <p>
-        {{markdown-to-html problem.content.sample-input}}
-      </p>
+      <pre>{{problem.content.sample-input}}</pre>
     </div>
     <div class="extra-bold">Sample Output</div>
     <div class="bg-grey br-5 w-60 px-4 py-2 my-2">
-      <p>
-        {{markdown-to-html problem.content.sample-output}}
-      </p>
+      <pre>{{problem.content.sample-output}}</pre>
     </div>
   </div>
+  {{else if (eq selectedTab "submissions")}}
+  <SubmissionsList 
+    @submissions={{fetchSubmissionsTask.lastSuccessful.value}} />
+  {{else if (eq selectedTab "leaderboard")}}
+  <LeaderboardView
+    @leaaderboard={{fetchLeaderboardTask.lastSuccessful.value}} />
+  {{else if (eq selectedTab "solution")}}
+  <SolutionComponent 
+    @problem={{problem}} />
+  {{else}}
+  fghjk
+  {{/liquid-if}}
 </div>

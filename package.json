@@ -53,6 +53,7 @@
     "ember-simple-auth-token": "^4.0.7",
     "ember-source": "~3.10.0",
     "ember-timer": "^1.1.0",
+    "ember-truth-helpers": "^2.1.0",
     "ember-welcome-page": "^4.0.0",
     "eslint-plugin-ember": "^6.2.0",
     "eslint-plugin-node": "^9.0.1",

@@ -8,8 +8,15 @@
       @problem={{problem}} />
     <CodeEditorComponent 
       class="py-4"
+      @input={{problem.content.sample-input}}
+      @codeStubs={{problem.solutionStubs}}
       @onRunTask={{onRunTask}} 
       @onSubmitTask={{onSubmitTask}} />
+    {{#if onRunTask.lastSuccessful.value}}
+      <RunResult 
+        class="py-4"
+        @judgeResult={{onRunTask.lastSuccessful.value.judge_result}} />
+    {{/if}}
   </div>
   <div class="col-4">
     <DailyGoalCardSmall 
