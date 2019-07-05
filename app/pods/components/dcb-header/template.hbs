@@ -1,60 +1,58 @@
-<div class="c-dcb-card">
-  <div class="img-card gradient-blue-lr">
-    <div class="row justify-content-between">
-      <div class="col-md-4 col-sm-6 col-6">
-        <h5>TODAY'S CODE BYTE</h5>
-        <h5 class="mt-2 mb-4">{{humanize_date}}</h5>
-      </div>
-      <div>
-        <Timer @to={{top_problem_end}} as |time|>
-          <ul class="divided-list timer">
-            <li class="timer-item">
-              <div class="list-heading white">{{time.hours}}</div>
-              <div class="list-data">Hours</div>
-            </li>
-            <li class="timer-item">
-              <div class="list-heading white">{{time.minutes}}</div>
-              <div class="list-data">Minutes</div>
-            </li>
-            <li class="timer-item">
-              <div class="list-heading white">{{time.seconds}}</div>
-              <div class="list-data">Seconds</div>
-            </li>
-          </ul>
-        </Timer>
-      </div>
+<div class="border-card c-dcb-card p-5 bg-gradient-blue-lr">
+  <div class="row justify-content-between">
+    <div class="col-md-4 col-sm-6 col-6">
+      <h5>TODAY'S CODE BYTE</h5>
+      <h5 class="mt-2 mb-4">{{humanize_date}}</h5>
     </div>
-    <div class="divider-h bg-white dcb-divider"></div>
-    <h3 class="mb-4 mt-4">{{top_problem.content.name}}</h3>
-    <div class="font-xs mb-5">
-      {{markdown-to-html (truncate top_problem.content.description 300 true)}}
-    </div>
-    <div class="row justify-content-between">
-      <div class="col-sm-12 col-12 col-lg-9">
-        <ul class="divided-list">
-          <li class="list-item">
-            <div class="list-heading">{{top_problem.difficultyString}}</div>
-            <div class="list-data">Difficulty</div>
+    <div>
+      <Timer @to={{top_problem_end}} as |time|>
+        <ul class="divided-list timer">
+          <li class="timer-item">
+            <div class="list-heading white">{{time.hours}}</div>
+            <div class="list-data">Hours</div>
           </li>
-          <li class="list-item">
-            <div class="list-heading">345</div>
-            <div class="list-data">Submissions</div>
+          <li class="timer-item">
+            <div class="list-heading white">{{time.minutes}}</div>
+            <div class="list-data">Minutes</div>
           </li>
-          <li class="list-item">
-            <div class="list-heading">200</div>
-            <div class="list-data">Max Points</div>
-          </li>
-          <li class="list-item">
-            <div class="list-heading">24</div>
-            <div class="list-data">Time (Hours)</div>
+          <li class="timer-item">
+            <div class="list-heading white">{{time.seconds}}</div>
+            <div class="list-data">Seconds</div>
           </li>
         </ul>
-      </div>
-      <div>
-        {{#link-to 'dcb.problem' top_problem.id class="button-solid button-white bold mt-3"}}
-          Solve Challenge
-        {{/link-to}}
-      </div>
+      </Timer>
+    </div>
+  </div>
+  <div class="divider-h bg-white dcb-divider"></div>
+  <h3 class="mb-4 mt-4">{{top_problem.content.name}}</h3>
+  <div class="font-xs mb-5">
+    {{markdown-to-html (truncate top_problem.content.description 300 true)}}
+  </div>
+  <div class="row justify-content-between">
+    <div class="col-xl-9 col-12">
+      <ul class="divided-list">
+        <li class="px-lg-3 px-2">
+          <div class="list-heading">{{top_problem.difficultyString}}</div>
+          <div class="list-data">Difficulty</div>
+        </li>
+        <li class="px-lg-3 px-2">
+          <div class="list-heading">345</div>
+          <div class="list-data">Submissions</div>
+        </li>
+        <li class="px-lg-3 px-2">
+          <div class="list-heading">200</div>
+          <div class="list-data">Max Points</div>
+        </li>
+        <li class="px-lg-3 px-2">
+          <div class="list-heading">24</div>
+          <div class="list-data">Time (Hours)</div>
+        </li>
+      </ul>
+    </div>
+    <div>
+      {{#link-to 'dcb.problem' top_problem.id class="button-solid button-white bold mt-3"}}
+      Solve Challenge
+      {{/link-to}}
     </div>
   </div>
 </div>

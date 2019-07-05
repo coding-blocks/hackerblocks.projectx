@@ -13,6 +13,12 @@ Router.map(function() {
   });
   this.route('loading');
   this.route('logout');
+  this.route('practice', function() {
+    this.route('contest', {path: '/:practice_id'}, function() {
+      this.route('problem', {path: '/p/:problem_id'});
+    });
+  });
+  this.route('problem');
 });
 
 export default Router;

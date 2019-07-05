@@ -57,10 +57,10 @@
   </div>
   {{else if (eq selectedTab "submissions")}}
   <SubmissionsList 
-    @submissions={{fetchSubmissionsTask.lastSuccessful.value}} />
+    @problem={{problem}} />
   {{else if (eq selectedTab "leaderboard")}}
   <LeaderboardView
-    @leaaderboard={{fetchLeaderboardTask.lastSuccessful.value}} />
+    @fetchLeaderboardTask={{fetchLeaderboardTask}} />
   {{else if (eq selectedTab "solution")}}
   <SolutionComponent 
     @problem={{problem}} />
@@ -68,3 +68,14 @@
   fghjk
   {{/liquid-if}}
 </div>
+<CodeEditorComponent 
+  class="py-4"
+  @input={{problem.content.sample-input}}
+  @codeStubs={{problem.solutionStubs}}
+  @onRunTask={{onRunTask}} 
+  @onSubmitTask={{onSubmitTask}} />
+{{#if onRunTask.lastSuccessful.value}}
+  <RunResult 
+    class="py-4"
+    @judgeResult={{onRunTask.lastSuccessful.value.judge_result}} />
+{{/if}}

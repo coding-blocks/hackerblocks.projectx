@@ -11,8 +11,10 @@ export default Model.extend({
   image: DS.attr(),
   source: DS.attr(),
   dcbProblems: DS.attr(),
+  contest: DS.belongsTo('contest'),
   solutionStubs: DS.hasMany('solution-stub'),
   editorial: DS.belongsTo('editorial'),
+  createdBy: DS.belongsTo('user'),
   difficultyString: Ember.computed('difficulty', function() {
     switch (parseInt(this.difficulty)) {
       case 1: return 'Easy'

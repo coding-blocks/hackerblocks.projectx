@@ -24,5 +24,6 @@ export default Model.extend({
   allow_editorial_unlocks: DS.attr(),
   allow_testcase_unlocks: DS.attr(),
   plagiarismFiltering: DS.attr(),
-  dcb: DS.belongsTo('dcb')
+  dcb: DS.belongsTo('dcb'),
+  problems: DS.hasMany('problems')
 });

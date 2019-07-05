@@ -4,6 +4,7 @@ import { computed, action } from '@ember/object';
 export default class CodeEditorComponent extends Component {
   code = ''
   isLanguageSelectOpen = false
+  customInputOpen = false
   
   languageSpecs = [
     {
@@ -67,6 +68,11 @@ export default class CodeEditorComponent extends Component {
   @action
   toggleLanguageSelectOpen() {
     this.toggleProperty('isLanguageSelectOpen')
+  }
+
+  @action
+  toggleCustomInputOpen() {
+    this.toggleProperty('customInputOpen')
   }
 
 }

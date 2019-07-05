@@ -41,7 +41,7 @@
           <td class="py-4">C++</td>
           <td class="py-4">2345</td>
         </tr>
-        {{#each leaderboard as |row i| }}
+        {{#each fetchLeaderboardTask.lastSuccessful.value as |row i| }}
         <tr>
           <td class="py-4">{{inc i}}</td>
           <td class="py-4">

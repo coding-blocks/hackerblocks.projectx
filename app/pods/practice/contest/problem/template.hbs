@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-12">
+    <PracticeProblemCard 
+      @problem={{problem}} />
+  </div>
+</div>
+<div class="row">
+  <div class="col-8">
+    <ProblemView 
+      class="py-4"
+      @contest={{contest}}
+      @problem={{problem}} />
+  </div>
+  <div class="col-4">
+    <DailyGoalCardSmall 
+      class="py-4"
+      @level={{currentContestLevel}} />
+    <RatingCard class="py-4" />
+    <AuthorCard 
+      class="py-4"
+      @author={{problem.createdBy}} />
+  </div>
+</div>

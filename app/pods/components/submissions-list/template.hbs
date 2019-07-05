@@ -8,7 +8,7 @@
       <td class="pb-2">Language</td>
     </thead>
     <tbody class="bold">
-      {{#each submissions as |submission|}}
+      {{#each fetchSubmissionsTask.lastSuccessful.value as |submission|}}
         <tr>
           <td class="pb-4 pt-4 green font-sm">
             <i class="fas fa-check pr-3"></i>
