@@ -6,6 +6,7 @@ import { timeout } from 'ember-concurrency';
 
 export default class ProblemViewComponent extends Component {
   @service store
+  @service api
 
   selectedTab = 'problem'
 
@@ -16,6 +17,7 @@ export default class ProblemViewComponent extends Component {
     const leaderboard = yield this.store.query('problem-leaderboard', {
       include: 'user,college',
       exclude: 'user.*,college.*',
+      sort: '-score,time',
       filter: {
         contestId: contest_id,
         problemId: problem_id
@@ -26,6 +28,7 @@ export default class ProblemViewComponent extends Component {
   }
 
   @dropTask onRunTask = function*(language, code, input) {
+    debugger
     const response = yield this.api.request('submissions/run', {
       method: 'POST',
       data: {

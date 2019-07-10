@@ -15,7 +15,12 @@
     <DailyGoalCardSmall 
       class="py-4"
       @level={{currentContestLevel}} />
-    <RatingCard class="py-4" />
+    {{#if canSubmitReview}}
+      <RatingCard 
+        class="py-4"
+        @contest={{contest}}
+        @problem={{problem}} />
+    {{/if}}
     <AuthorCard 
       class="py-4"
       @author={{problem.createdBy}} />

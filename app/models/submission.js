@@ -15,10 +15,54 @@ export default Model.extend({
   explanation: DS.attr(),
   is_top_submission: DS.attr(),
   plagiarism_detected: DS.attr(),
-  problem: DS.attr(),
-  contest: DS.attr(),
-  user: DS.attr(),
-  submitAtHumanize: Ember.computed('submit_at', () => {
-    return moment.unix(this.submit_at).humanize()
+  problem: DS.belongsTo('problem'),
+  contest: DS.belongsTo('contest'),
+  user: DS.belongsTo('user'),
+  submitAtHumanize: Ember.computed('submit_at', function() {
+    return moment.duration(this.submit_at / 1000).humanize()
+  }),
+  resultParams: Ember.computed('explanation', function() {
+    switch(this.explanation) {
+      case 'Perfect': return {
+        color: 'green',
+        icon: 'fas fa-check',
+        message: 'Accepted'
+      }
+      case 'FailedTestcase': return {
+        color: 'red',
+        icon: 'fas fa-times',
+        message: 'Wrong Answer'
+      }
+      case 'TimeLimitExceeded': return {
+        color: 'orange',
+        icon: 'fas fa-exclamation',
+        message: 'TLE'
+      }
+      case 'CompilationError': return {
+        color: 'orange',
+        icon: 'fas fa-exclamation',
+        message: 'Compilation Error'
+      }
+      case 'ContestOver': return {
+        color: 'orange',
+        icon: 'fas fa-exclamation',
+        message: 'Contest Over'
+      }
+      case 'TestcaseUnlocked': return {
+        color: 'orange',
+        icon: 'fas fa-exclamation',
+        message: 'Test Case Unlocked'
+      }
+      case 'EditorialUnlocked': return {
+        color: 'orange',
+        icon: 'fas fa-exclamation',
+        message: 'Editorial Unlocked'
+      }
+      default: return {
+        color: 'orange',
+        icon: 'fas fa-exclamation',
+        message: 'Submission Not Judged'
+      }
+    }
   })
 });

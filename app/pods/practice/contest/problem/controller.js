@@ -10,4 +10,9 @@ export default class ProblemController extends Controller {
   get currentContestLevel() {
     return this.levels.findBy('contest.id', this.contest.id)
   }
+
+  @computed('problem')
+  get canSubmitReview() {
+    return this.problem.canSubmitReview
+  }
 }

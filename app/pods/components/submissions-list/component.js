@@ -10,7 +10,7 @@ export default class SubmissionListComponent extends Component {
   }
 
   @restartableTask fetchSubmissionsTask = function *() {
-    const contest_id = 1
+    const contest_id = this.contest.id
     const problem_id = this.problem.id
 
     const submissions = yield this.store.query('submission', {

@@ -9,7 +9,7 @@ module.exports = function(defaults) {
       only: ['range', 'pipe', 'inc'],
     },
     'ember-truth-helpers': {
-      only: ['eq'],
+      only: ['eq', 'lt'],
     },
     'ember-cli-string-helpers': {
       only: ['truncate'],

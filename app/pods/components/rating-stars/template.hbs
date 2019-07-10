@@ -1,0 +1,9 @@
+<div class="rating py-4">
+  {{#each (range 1 (inc scale)) as |star|}}
+    <span 
+      onClick={{action updateRating star}}
+      class="pointer {{if (lte star value) "pos-rating orange" "neg-rating"}}">
+        <i class="fas fa-star"></i>
+    </span>
+  {{/each}}
+</div>

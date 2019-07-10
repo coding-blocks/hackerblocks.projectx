@@ -57,6 +57,7 @@
   </div>
   {{else if (eq selectedTab "submissions")}}
   <SubmissionsList 
+    @contest={{contest}}
     @problem={{problem}} />
   {{else if (eq selectedTab "leaderboard")}}
   <LeaderboardView

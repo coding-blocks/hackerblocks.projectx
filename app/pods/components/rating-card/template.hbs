@@ -1,22 +1,18 @@
 <div class="img-card p-5">
-  <h4>Rate this problem?</h4>
-  <div class="rating py-4">
-    <span class="pos-rating orange">
-      <i class="fas fa-star"></i>
-    </span>
-    <span class="pos-rating orange">
-      <i class="fas fa-star"></i>
-    </span>
-    <span class="pos-rating orange">
-      <i class="fas fa-star"></i>
-    </span>
-    <span class="pos-rating orange">
-      <i class="fas fa-star"></i>
-    </span>
-    <span class="neg-rating">
-      <i class="fas fa-star"></i>
-    </span>
-  </div>
-  <textarea name="rating-msg" rows="5" cols="30" placeholder="Help us improve."></textarea>
-  <button class="button-solid button-orange font-sm extra-bold my-3">Submit Feedback</button>
+  {{#if saveFeedbackTask.lastSuccessful.value}}
+    Thanks for the review
+  {{else}}
+    <h4>Rate this problem?</h4>
+    <RatingStars
+      @value={{feedback.stars}}
+      @scale={{5}}
+      @updateRating={{action (mut feedback.stars)}} />
+    <Textarea 
+      @value={{feedback.body}}
+      @rows="5" 
+      @cols="30" 
+      placeholder="Help us improve.">
+    </Textarea>
+    <button class="button-solid button-orange font-sm extra-bold my-3" {{action (perform saveFeedbackTask)}}>Submit Feedback</button>
+  {{/if}}
 </div>
