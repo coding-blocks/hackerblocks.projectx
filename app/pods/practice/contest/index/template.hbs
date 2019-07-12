@@ -5,7 +5,8 @@
         @practice={{practice}} />
       <ProblemList
         class="mt-5"
-        @color="purple"
+        @route="practice.contest.problem"
+        @theme="purple"
         @title="Practice Problems"
         @problems={{filteredProblems}}>
         <div>
@@ -41,7 +42,7 @@
         @changeDifficultyFilter={{changeDifficultyFilter}}/>
       <SmallLeaderboardView
         class="mt-5"
-        @color={{"purple"}}
+        @theme={{"purple"}}
         @leaderboard={{leaderboard}} />
     </div>
   </div>
