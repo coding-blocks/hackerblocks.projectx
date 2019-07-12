@@ -8,13 +8,13 @@
   <div class="row no-gutters mb-3">
     <div class="col-6">
       <label class="input-checkbox checkbox-solid">
-        <input type="radio" checked={{eq status "solved"}} onClick={{action changeStatusFilter "solved"}}> Solved
+        <input type="checkbox" checked={{includes status "solved"}} onClick={{action updateStatusFilter "solved"}}> Solved
         <span></span>
       </label>
     </div>
     <div class="col-6">
       <label class="input-checkbox checkbox-solid">
-        <input type="radio" checked={{eq status "unsolved"}} onClick={{action changeStatusFilter "unsolved"}}> Unsolved
+        <input type="checkbox" checked={{includes status "unsolved"}} onClick={{action updateStatusFilter "unsolved"}}> Unsolved
         <span></span>
       </label>
     </div>
@@ -22,13 +22,13 @@
   <div class="row no-gutters mb-3">
     <div class="col-6">
       <label class="input-checkbox checkbox-solid">
-        <input type="radio" checked={{eq status "wrong"}} onClick={{action changeStatusFilter "wrong"}}> Wrong
+        <input type="checkbox" checked={{includes status "wrong"}} onClick={{action updateStatusFilter "wrong"}}> Wrong
         <span></span>
       </label>
     </div>
     <div class="col-6">
       <label class="input-checkbox checkbox-solid">
-        <input type="radio" checked={{eq status "partial"}} onClick={{action changeStatusFilter "partial"}}> Partially Solved
+        <input type="checkbox" checked={{includes status "partial"}} onClick={{action updateStatusFilter "partial"}}> Partially Solved
         <span></span>
       </label>
     </div>
@@ -37,19 +37,19 @@
   <div class="row no-gutters mb-3">
     <div class="col-4">
       <label class="input-checkbox checkbox-solid">
-        <input type="radio" checked={{eq difficulty 1}} onClick={{action changeDifficultyFilter 1}}>Easy
+        <input type="checkbox" checked={{includes difficulty 1}} onClick={{action updateDifficultyFilter 1}}>Easy
         <span></span>
       </label>
     </div>
     <div class="col-4">
       <label class="input-checkbox checkbox-solid">
-        <input type="radio" checked={{eq difficulty 2}} onClick={{action changeDifficultyFilter 2}}>Medium
+        <input type="checkbox" checked={{includes difficulty 2}} onClick={{action updateDifficultyFilter 2}}>Medium
         <span></span>
       </label>
     </div>
     <div class="col-4">
       <label class="input-checkbox checkbox-solid">
-        <input type="radio" checked={{eq difficulty 3}} onClick={{action changeDifficultyFilter 3}}>Hard
+        <input type="checkbox" checked={{includes difficulty 3}} onClick={{action updateDifficultyFilter 3}}>Hard
         <span></span>
       </label>
     </div>

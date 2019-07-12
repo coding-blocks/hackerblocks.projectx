@@ -6,7 +6,7 @@ module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     // Add options here
     'ember-composable-helpers': {
-      only: ['range', 'pipe', 'inc'],
+      only: ['range', 'pipe', 'inc', 'includes'],
     },
     'ember-truth-helpers': {
       only: ['eq', 'lt'],
