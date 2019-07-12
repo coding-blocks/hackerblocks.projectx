@@ -1,7 +1,12 @@
 <div class="border-card">
-  {{#if title}}
-    <h4 class="mb-5">{{ title }}</h4>
-  {{/if}}
+  <div class="row no-gutters justify-content-between">
+    {{#if title}}
+    <div class="col-6">
+      <h4 class="mb-5">{{ title }}</h4>
+    </div>
+    {{yield}}
+    {{/if}}
+  </div>
   <div class="list-divided border-none">
     {{#each problems as |problem|}}
     <div class="row no-gutters pointer my-4 pb-4">
@@ -26,9 +31,12 @@
       </div>
       <div class="li-right">
         <div>
-          {{#link-to 'dcb.problem' problem.id class="button-dashed button-blue mt-3"}}
+          <LinkTo
+            @route="dcb.problem"
+            @model={{problem.id}}
+            class="button-dashed button-{{color}} mt-3">
             Solve Challenge
-          {{/link-to}}
+          </LinkTo>
         </div>
       </div>
     </div>

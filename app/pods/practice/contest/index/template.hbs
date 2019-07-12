@@ -3,77 +3,46 @@
     <div class="col-12 col-md-8">
       <PracticeHeader 
         @practice={{practice}} />
-      <div class="border-card c-previous-dcb my-5">
-        <div class="row no-gutters justify-content-between">
-          <div class="col-6">
-            <h4>Practice Problems</h4>
-          </div>
-          <div>
-            {{#if difficulty.length}}
-              {{#each difficulty as |tag|}}
-                <button class="button-solid button-orange font-xs bold py-2">
-                  {{#if (eq tag 1)}}
-                    Easy
-                  {{else if (eq tag 2)}}
-                    Medium
-                  {{else}}
-                    Hard
-                  {{/if}}
-                </button>
-              {{/each}}
-            {{/if}}
-            {{#if status.length}}
-              {{#each status as |tag|}}
-                <button class="button-solid button-orange font-xs bold py-2">
-                  {{tag}}
-                </button>
-              {{/each}}
-            {{/if}}
-          </div>
+      <ProblemList
+        class="mt-5"
+        @color="purple"
+        @title="Practice Problems"
+        @problems={{filteredProblems}}>
+        <div>
+          {{#if difficulty.length}}
+            {{#each difficulty as |tag|}}
+              <button class="button-solid button-orange font-xs bold py-2">
+                {{#if (eq tag 1)}}
+                  Easy
+                {{else if (eq tag 2)}}
+                  Medium
+                {{else}}
+                  Hard
+                {{/if}}
+              </button>
+            {{/each}}
+          {{/if}}
+          {{#if status.length}}
+            {{#each status as |tag|}}
+              <button class="button-solid button-orange font-xs bold py-2">
+                {{tag}}
+              </button>
+            {{/each}}
+          {{/if}}
         </div>
-        <div class="list-divided border-none bold">
-          {{#each filteredProblems as |problem|}}
-            <div class="row no-gutters pointer my-4 pb-4">
-              <div class="li-left">
-                <div>
-                  <h5>{{problem.name}}</h5>
-                  <ul class="divided-list">
-                    <li class="px-3">
-                      <div class="list-heading purple">{{problem.difficultyString}}</div>
-                      <div class="list-data">Difficulty</div>
-                    </li>
-                    <li class="px-3">
-                      <div class="list-heading purple">345</div>
-                      <div class="list-data">Submissions</div>
-                    </li>
-                    <li class="px-3">
-                      <div class="list-heading purple">200</div>
-                      <div class="list-data">Max Points</div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-              <div class="li-right">
-                <div>
-                  {{#link-to 'practice.contest.problem' problem.id class="button-dashed button-purple mt-3"}}
-                    Solve Challenge
-                  {{/link-to}}
-                </div>
-              </div>
-            </div>
-          {{/each}}
-        </div>
-      </div>
+      </ProblemList>
     </div>
 
     <div class="col-12 col-md-4">
-
       <PracticeFilterComponent 
         @status={{status}} 
         @changeStatusFilter={{changeStatusFilter}}
         @difficulty={{difficulty}}
         @changeDifficultyFilter={{changeDifficultyFilter}}/>
-
+      <SmallLeaderboardView
+        class="mt-5"
+        @color={{"purple"}}
+        @leaderboard={{leaderboard}} />
     </div>
   </div>
 </div>

@@ -10,7 +10,7 @@
       {{#if top_problem}}
         <DcbHeader @contest={{contest}} @top_problem={{top_problem}} class="pb-5" />
       {{/if}}
-      <ProblemList @problems={{previous_problems}} @title="Previous DCBs" />
+      <ProblemList @problems={{previous_problems}} @title="Previous DCBs" @color="blue" />
     </div>
     <div class="col-4">
       <DailyGoalCard @level={{currentContestLevel}} class="pb-5">
@@ -28,7 +28,9 @@
           </div>
         </div>
       </DailyGoalCard>
-      <SmallLeaderboardView @leaderboard={{leaderboard}} />
+      <SmallLeaderboardView 
+        @color={{"blue"}}
+        @leaderboard={{leaderboard}} />
     </div>
   </div>
 </div>
