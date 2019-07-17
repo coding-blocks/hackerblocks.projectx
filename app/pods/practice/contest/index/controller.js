@@ -5,20 +5,37 @@ import {inject as service} from '@ember/service';
 export default class ContestController extends Controller {
   @service store
 
-  status = []
+  queryParams = ['offset', 'limit', 'difficulty', 'status']
+  offset = 0
+  limit = 10
   difficulty = []
+  status = []
+
+  @computed('offset')
+  get page () {
+    return {
+      offset: this.offset,
+      limit: this.limit
+    }
+  }
 
   @computed('difficulty', 'status')
-  get filteredProblems() {
+  get problemFilter () {
+    console.log('filter changed')
     const filter = {}
     if (this.difficulty.length) {
       filter.difficulty = this.difficulty
     }
     filter.submission_status = this.status
-    
+    return filter
+  }
+
+  @computed('page.offset', 'problemFilter')
+  get filteredProblems() {
     return this.store.query('problem', { 
-      filter,
-      contest_id: this.contest.id
+      filter: this.problemFilter,
+      contest_id: this.contest.id,
+      page: this.page
     })
   }
 
@@ -28,6 +45,10 @@ export default class ContestController extends Controller {
   }
   @action
   changeDifficultyFilter(difficulty) {
-    this.set('difficulty', difficulty)
+    this.set('difficulty', [...difficulty])
+  }
+  @action
+  setOffset(offset) {
+    this.set('offset', offset)
   }
 }
