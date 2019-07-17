@@ -21,7 +21,6 @@ export default class ContestController extends Controller {
 
   @computed('difficulty', 'status')
   get problemFilter () {
-    console.log('filter changed')
     const filter = {}
     if (this.difficulty.length) {
       filter.difficulty = this.difficulty
@@ -45,7 +44,7 @@ export default class ContestController extends Controller {
   }
   @action
   changeDifficultyFilter(difficulty) {
-    this.set('difficulty', [...difficulty])
+    this.set('difficulty', difficulty)
   }
   @action
   setOffset(offset) {
