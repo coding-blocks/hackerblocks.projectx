@@ -12,7 +12,7 @@ module.exports = function(defaults) {
       only: ['eq', 'lt'],
     },
     'ember-cli-string-helpers': {
-      only: ['truncate'],
+      only: ['truncate', 'concat'],
     },
     'ember-cli-uglify': {
       /* https://github.com/mike-north/ember-monaco/issues/54 */

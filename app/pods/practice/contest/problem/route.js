@@ -9,7 +9,8 @@ export default class ProblemRoute extends Route {
     const contest = this.modelFor('practice.contest').contest
     const levels = this.modelFor('practice.contest').levels
     const problem = this.store.findRecord('problem', params.problem_id, {
-      include: 'solution_stubs'
+      include: 'solution_stubs',
+      reload: true
     })
 
     return RSVP.hash({

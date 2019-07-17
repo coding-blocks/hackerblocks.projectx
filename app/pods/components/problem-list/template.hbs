@@ -31,12 +31,9 @@
       </div>
       <div class="li-right">
         <div>
-          <LinkTo
-            @route={{route}}
-            @model={{problem.id}}
-            class="button-dashed button-{{theme}} mt-3">
+          {{#link-to route problem.id class=(concat "mt-3 button-dashed button-" theme)}}
             Solve Challenge
-          </LinkTo>
+          {{/link-to}}
         </div>
       </div>
     </div>
