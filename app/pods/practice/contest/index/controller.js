@@ -1,34 +1,25 @@
 import Controller from '@ember/controller';
 import { action, computed } from '@ember/object';
+import {inject as service} from '@ember/service';
 
 export default class ContestController extends Controller {
+  @service store
+
   status = []
   difficulty = []
 
-  @computed('contest.problems', 'difficulty', 'status')
+  @computed('difficulty', 'status')
   get filteredProblems() {
-    let problems = this.contest.problems
+    const filter = {}
     if (this.difficulty.length) {
-      problems = problems.filter(p => this.difficulty.indexOf(p.difficulty) !== -1)
+      filter.difficulty = this.difficulty
     }
-    if (this.status.length) {
-      let filtered = []
-      if (this.status.includes("solved")) {
-        filtered = filtered.concat(problems.filter(p => p.topSubmission.get('score') === 100))
-      }
-      if (this.status.includes("wrong")) {
-        filtered = filtered.concat(problems.filter(p => p.topSubmission.get('score') === 0))
-      }
-      if (this.status.includes("partial")) {
-        filtered = filtered.concat(problems.filter(p => p.topSubmission.get('score') > 0 && p.topSubmission.get('score') < 100 ))
-      }
-      if (this.status.includes("unsolved")) {
-        filtered = filtered.concat(problems.filter(p => !p.topSubmission.get('id')))
-      }
-      problems = filtered
-    }
-
-    return problems
+    filter.submission_status = this.status
+    
+    return this.store.query('problem', { 
+      filter,
+      contest_id: this.contest.id
+    })
   }
 
   @action
