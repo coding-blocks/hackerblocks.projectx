@@ -3,6 +3,21 @@ import RSVP from 'rsvp'
 import { inject as service } from '@ember/service';
 
 export default class IndexRoute extends Route {
+  queryParams = {
+    offset: {
+      refreshModel: false
+    },
+    limit: {
+      refreshModel: false
+    },
+    difficulty: {
+      refreshModel: false
+    },
+    status: {
+      refreshModel: false
+    }
+  }
+
   @service store
 
   model() {
@@ -16,18 +31,12 @@ export default class IndexRoute extends Route {
       include: 'college,user',
       exclude: 'college.*,user.*'
     })
-    const problems = this.store.query('problem', { 
-      contest_id: contest.get('id'),
-      page: {
-        offset: 0,
-        limit: 20
-      }
-    })
+
     return RSVP.hash({
       practice,
       contest,
       leaderboard,
-      problems
+      // problems
     })
   }
 
@@ -35,6 +44,5 @@ export default class IndexRoute extends Route {
     controller.set('practice', model.practice)
     controller.set('contest', model.contest)
     controller.set('leaderboard', model.leaderboard)
-    controller.set('problems', model.problems)
   }
 }

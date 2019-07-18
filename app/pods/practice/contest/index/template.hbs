@@ -8,7 +8,9 @@
         @route="practice.contest.problem"
         @theme="purple"
         @title="Practice Problems"
-        @problems={{filteredProblems}}>
+        @problems={{filteredProblems}}
+        @setOffset={{action 'setOffset'}}
+        @pagination={{filteredProblems.meta.pagination}} >
         <div>
           {{#if difficulty.length}}
             {{#each difficulty as |tag|}}
