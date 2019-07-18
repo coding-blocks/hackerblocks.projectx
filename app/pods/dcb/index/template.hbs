@@ -10,14 +10,20 @@
       {{#if top_problem}}
         <DcbHeader @contest={{contest}} @top_problem={{top_problem}} class="pb-5" />
       {{/if}}
-      <ProblemList 
-        @route="dcb.problem"
-        @problems={{previous_problems}} 
-        @title="Previous DCBs" 
-        @theme="blue" />
+      <div class="border-card">
+        <div class="row no-gutters justify-content-between">
+          <div class="col-6">
+            <h4 class="mb-5">Previous DCBs</h4>
+          </div>
+        </div>
+        <ProblemList 
+          @route="dcb.problem"
+          @problems={{previous_problems}} 
+          @theme="blue" />
+      </div>
     </div>
     <div class="col-4">
-      <DailyGoalCard @level={{currentContestLevel}} class="pb-5">
+      <DailyGoalCard @level={{level}} class="pb-5">
         <div class="divider-h my-4"></div>
         <h4>My Badges</h4>
         <div class="row badge-scroll my-4">
@@ -34,7 +40,7 @@
       </DailyGoalCard>
       <SmallLeaderboardView 
         @theme={{"blue"}}
-        @leaderboard={{leaderboard}} />
+        @contest={{contest}} />
     </div>
   </div>
 </div>

@@ -7,7 +7,7 @@ export default class ProblemRoute extends Route {
 
   model(params) {
     const contest = this.modelFor('practice.contest').contest
-    const levels = this.modelFor('practice.contest').levels
+    const level = this.modelFor('practice.contest').level
     const problem = this.store.findRecord('problem', params.problem_id, {
       include: 'solution_stubs',
       reload: true
@@ -16,13 +16,13 @@ export default class ProblemRoute extends Route {
     return RSVP.hash({
       contest,
       problem,
-      levels
+      level
     })
   }
 
   setupController(controller, model) {
     controller.set('contest', model.contest)
     controller.set('problem', model.problem)
-    controller.set('levels', model.levels)
+    controller.set('level', model.level)
   }
 }

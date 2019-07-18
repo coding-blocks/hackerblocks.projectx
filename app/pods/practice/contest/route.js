@@ -8,7 +8,7 @@ export default class ContestRoute extends Route {
   async model(params) {
     const practice = await this.store.findRecord('practice', params.practice_id)
     const contest = await practice.contest
-    const levels = this.store.query('user_level', {
+    const levels = await this.store.query('user_level', {
       filter: {
         contestId: contest.get('id')
       }
@@ -16,7 +16,7 @@ export default class ContestRoute extends Route {
     return RSVP.hash({
       practice,
       contest,
-      levels
+      level: levels.toArray()[0]
     })
   }
 }

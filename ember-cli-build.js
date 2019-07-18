@@ -11,6 +11,9 @@ module.exports = function(defaults) {
     'ember-truth-helpers': {
       only: ['eq', 'lt'],
     },
+    'ember-math-helpers' : {
+      only: ['sub']
+    },
     'ember-cli-string-helpers': {
       only: ['truncate', 'concat'],
     },
