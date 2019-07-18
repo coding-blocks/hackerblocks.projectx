@@ -43,16 +43,8 @@
     {{/each}}
   </div>
 
-  <div class="divider-h w-40 mx-auto"></div>
-  <div class="t-align-c mt-3 bold">
-    <button {{action setOffset pagination.prevOffset}} disabled={{eq pagination.currentPage 1}}>
-      &lt; Prev
-    </button>
-    <span class="grey mx-4">
-      {{or (inc currentOffset) 1}} - {{pagination.nextOffset}} of {{pagination.count}}
-    </span> 
-    <button {{action setOffset pagination.nextOffset}} disabled={{not pagination.nextOffset}}>
-      Next &gt; 
-    </button>
-  </div>
+  {{#if problems.length}}
+    <div class="divider-h w-40 mx-auto"></div>
+    <PaginationPill @pagination={{pagination}} @setOffset={{action setOffset}} />
+  {{/if}}
 </div>
