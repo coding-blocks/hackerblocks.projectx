@@ -3,12 +3,28 @@ import RSVP from 'rsvp'
 import { inject as service } from '@ember/service';
 
 export default class IndexRoute extends Route {
+  queryParams = {
+    offset: {
+      refreshModel: false
+    },
+    limit: {
+      refreshModel: false
+    },
+    difficulty: {
+      refreshModel: false
+    },
+    status: {
+      refreshModel: false
+    }
+  }
+
   @service store
 
   model() {
     const practice = this.modelFor('practice.contest').practice
     const contest = this.modelFor('practice.contest').contest
     const level = this.modelFor('practice.contest').level
+    
     return RSVP.hash({
       practice,
       contest,
