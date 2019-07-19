@@ -6,7 +6,7 @@ export default class ProblemRoute extends Route {
   @service store
 
   model(params) {
-    const contest = this.modelFor('practice.contest').contest
+    const contest = this.modelFor('practice.contest').practice.contest
     const level = this.modelFor('practice.contest').level
     const problem = this.store.findRecord('problem', params.problem_id, {
       include: 'solution_stubs',

@@ -5,22 +5,16 @@ import { inject as service } from '@ember/service';
 export default class ProblemListView extends Component {
   @service store
   
-  status = []
-  difficulty = []
   problems = []
 
   didReceiveAttrs() {
-    const filter = {}
-    if (this.difficulty.length) {
-      filter.difficulty = this.difficulty
-    }
-    filter.submission_status = this.status
-    this.fetchProblemsTask.perform(filter)
+    this.fetchProblemsTask.perform(this.filter, this.page)
   }
 
-  @restartableTask fetchProblemsTask = function *(filter) {
+  @restartableTask fetchProblemsTask = function *(filter = {}, page = {}) {
     const problems = yield this.store.query('problem', { 
       filter,
+      page,
       contest_id: this.contest.id
     })
     this.set('problems', problems)

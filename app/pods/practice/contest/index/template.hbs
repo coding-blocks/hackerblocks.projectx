@@ -33,12 +33,15 @@
         </div>
         <ProblemListView
           @contest={{contest}}
-          @status={{status}}
-          @difficulty={{difficulty}} as |problems|>
+          @filter={{problemFilter}}
+          @page={{page}} as |problems|>
           <ProblemList
             @route="practice.contest.problem"
             @theme="purple"
-            @problems={{problems.problems}} />
+            @problems={{problems}} />
+          <PaginationPill 
+            @pagination={{problems.meta.pagination}}
+            @setOffset={{action 'setOffset'}} />
         </ProblemListView>
       </div>
     </div>

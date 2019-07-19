@@ -29,15 +29,6 @@ export default class ContestController extends Controller {
     return filter
   }
 
-  @computed('page.offset', 'problemFilter')
-  get filteredProblems() {
-    return this.store.query('problem', { 
-      filter: this.problemFilter,
-      contest_id: this.contest.id,
-      page: this.page
-    })
-  }
-
   @action
   changeStatusFilter(status) {
     this.set('status', status)

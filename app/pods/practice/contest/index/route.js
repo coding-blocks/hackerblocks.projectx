@@ -22,12 +22,11 @@ export default class IndexRoute extends Route {
 
   model() {
     const practice = this.modelFor('practice.contest').practice
-    const contest = this.modelFor('practice.contest').contest
     const level = this.modelFor('practice.contest').level
     
     return RSVP.hash({
       practice,
-      contest,
+      contest: practice.contest,
       level
     })
   }
