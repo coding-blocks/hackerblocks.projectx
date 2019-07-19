@@ -55,14 +55,14 @@ export default class CodeEditorComponent extends Component {
     this._super(...arguments)
     const languages = this.get('allowedLanguages') || ['c', 'cpp', 'python2', 'python3', 'java', 'node', 'csharp']
     this.set('languages', languages)
-    this.selectLanguage(languages[1])
+    this.selectLanguage(this.codeStubs.toArray()[0].language)
   }
 
   @action
   selectLanguage(languageCode) {
-    this.set('selectedLanguage', this.languageSpecs.filterBy('code', languageCode)[0])
-    const codeStub = this.codeStubs.filterBy('language', this.selectedLanguage.code)[0]
-    this.set('code', codeStub.body)
+    this.set('selectedLanguage', this.languageSpecs.find(spec => spec.code === languageCode))
+    const codeStub = this.codeStubs.find(stub => stub.language === this.selectedLanguage.code)
+    this.set('code', codeStub ? codeStub.body : '')
   }
 
   @action
