@@ -6,7 +6,7 @@ export default class DCBRoute extends Route {
     const contest = await this.store.findRecord('contest', 1, {
       include: 'dcb'
     })
-    const levels = this.store.query('user_level', {
+    const levels = await this.store.query('user_level', {
       filter: {
         contestId: contest.get('id')
       }
@@ -14,7 +14,7 @@ export default class DCBRoute extends Route {
     const problems = contest.get('dcb.problems')
     return RSVP.hash({
       contest,
-      levels,
+      level: levels.toArray()[0],
       problems
     })
   }

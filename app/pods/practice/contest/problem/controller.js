@@ -6,11 +6,6 @@ export default class ProblemController extends Controller {
   @service store
   @service api
 
-  @computed('levels')
-  get currentContestLevel() {
-    return this.levels.findBy('contest.id', this.contest.id)
-  }
-
   @computed('problem')
   get canSubmitReview() {
     return this.problem.canSubmitReview

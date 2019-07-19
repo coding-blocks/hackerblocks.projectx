@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { restartableTask, dropTask } from 'ember-concurrency-decorators';
+import { dropTask } from 'ember-concurrency-decorators';
 import { timeout } from 'ember-concurrency';
 
 
@@ -11,7 +11,6 @@ export default class ProblemViewComponent extends Component {
   selectedTab = 'problem'
 
   @dropTask onRunTask = function*(language, code, input) {
-    debugger
     const response = yield this.api.request('submissions/run', {
       method: 'POST',
       data: {

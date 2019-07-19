@@ -11,8 +11,11 @@ module.exports = function(defaults) {
     'ember-truth-helpers': {
       only: ['eq', 'lt'],
     },
+    'ember-math-helpers' : {
+      only: ['sub']
+    },
     'ember-cli-string-helpers': {
-      only: ['truncate'],
+      only: ['truncate', 'concat'],
     },
     'ember-cli-uglify': {
       /* https://github.com/mike-north/ember-monaco/issues/54 */

@@ -22,27 +22,18 @@ export default class IndexRoute extends Route {
 
   model() {
     const practice = this.modelFor('practice.contest').practice
-    const contest = this.modelFor('practice.contest').contest
-    const leaderboard = this.store.query('contest_leaderboard', {
-      filter: {
-        contestId: contest.get('id')
-      },
-      sort: '-score,time',
-      include: 'college,user',
-      exclude: 'college.*,user.*'
-    })
-
+    const level = this.modelFor('practice.contest').level
+    
     return RSVP.hash({
       practice,
-      contest,
-      leaderboard,
-      // problems
+      contest: practice.contest,
+      level
     })
   }
 
   setupController(controller, model) {
     controller.set('practice', model.practice)
     controller.set('contest', model.contest)
-    controller.set('leaderboard', model.leaderboard)
+    controller.set('level', model.level)
   }
 }

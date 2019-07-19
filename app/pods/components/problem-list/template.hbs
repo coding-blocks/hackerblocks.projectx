@@ -1,50 +1,32 @@
-<div class="border-card">
-  <div class="row no-gutters justify-content-between">
-    {{#if title}}
-    <div class="col-6">
-      <h4 class="mb-5">{{ title }}</h4>
-    </div>
-    {{yield}}
-    {{/if}}
-  </div>
-  <div class="list-divided border-none">
-    {{#each problems as |problem|}}
-    <div class="row no-gutters pointer my-4 pb-4">
-      <div class="li-left">
-        <div>
-          <h5>{{problem.name}}</h5>
-          <ul class="divided-list">
-            <li class="px-3">
-              <div class="list-heading">{{problem.difficultyString}}</div>
-              <div class="list-data">Difficulty</div>
-            </li>
-            <li class="px-3">
-              <div class="list-heading">345</div>
-              <div class="list-data">Submissions</div>
-            </li>
-            <li class="px-3">
-              <div class="list-heading">100</div>
-              <div class="list-data">Max Points</div>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="li-right">
-        <div>
-          <LinkTo
-            @route={{route}}
-            @model={{problem.id}}
-            class="button-dashed button-{{theme}} mt-3">
-            Solve Challenge
-          </LinkTo>
-        </div>
+<div class="list-divided border-none">
+  {{#each problems as |problem|}}
+  <div class="row no-gutters pointer my-4 pb-4">
+    <div class="li-left">
+      <div>
+        <h5>{{problem.name}}</h5>
+        <ul class="divided-list">
+          <li class="px-3">
+            <div class="list-heading">{{problem.difficultyString}}</div>
+            <div class="list-data">Difficulty</div>
+          </li>
+          <li class="px-3">
+            <div class="list-heading">345</div>
+            <div class="list-data">Submissions</div>
+          </li>
+          <li class="px-3">
+            <div class="list-heading">100</div>
+            <div class="list-data">Max Points</div>
+          </li>
+        </ul>
       </div>
     </div>
-    {{/each}}
+    <div class="li-right">
+      <div>
+        {{#link-to route problem.id class=(concat "mt-3 button-dashed button-" theme)}}
+          Solve Challenge
+        {{/link-to}}
+      </div>
+    </div>
   </div>
-
-  {{#if problems.length}}
-    <div class="divider-h w-40 mx-auto"></div>
-    <PaginationPill @pagination={{pagination}} @setOffset={{action setOffset}} />
-  {{/if}}
+  {{/each}}
 </div>
