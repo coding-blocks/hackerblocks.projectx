@@ -1,0 +1,16 @@
+<div class="t-align-c">
+  <h2 class="mb-2">Competitions</h2>
+  <div class="font-md bold">
+    Participate in competitions and see where you stand amongst your peers
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="row">
+    {{#each competitions as |competition|}}
+    <div class="col-md-4 col-12">
+      <CompetitionCard @competition={{competition}} />
+    </div>
+    {{/each}}
+  </div>
+</div>

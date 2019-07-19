@@ -10,23 +10,6 @@ export default class ProblemViewComponent extends Component {
 
   selectedTab = 'problem'
 
-  @restartableTask fetchLeaderboardTask = function *() {
-    const contest_id = this.contest.id
-    const problem_id = this.problem.id
-
-    const leaderboard = yield this.store.query('problem-leaderboard', {
-      include: 'user,college',
-      exclude: 'user.*,college.*',
-      sort: '-score,time',
-      filter: {
-        contestId: contest_id,
-        problemId: problem_id
-      }
-    })
-
-    return leaderboard
-  }
-
   @dropTask onRunTask = function*(language, code, input) {
     debugger
     const response = yield this.api.request('submissions/run', {

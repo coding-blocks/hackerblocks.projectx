@@ -61,7 +61,10 @@
     @problem={{problem}} />
   {{else if (eq selectedTab "leaderboard")}}
   <LeaderboardView
-    @fetchLeaderboardTask={{fetchLeaderboardTask}} />
+    @for="problem"
+    @contestId={{problem.contest.id}}
+    @problemId={{problem.id}}
+    @allowFilter=true />
   {{else if (eq selectedTab "solution")}}
   <SolutionComponent 
     @problem={{problem}} />
