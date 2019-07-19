@@ -19,6 +19,9 @@ Router.map(function() {
     });
   });
   this.route('problem');
+  this.route('competitions', function() {
+    this.route('id', {path: '/:competition_id'});
+  });
 });
 
 export default Router;

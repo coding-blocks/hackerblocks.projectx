@@ -54,10 +54,10 @@
         @changeStatusFilter={{changeStatusFilter}}
         @difficulty={{difficulty}}
         @changeDifficultyFilter={{changeDifficultyFilter}}/>
-      <SmallLeaderboardView
-        class="mt-5"
+      <LeaderboardView
+        @for="contest"
         @theme={{"purple"}}
-        @contest={{contest}} />
+        @contestId={{contest.id}} />
     </div>
   </div>
 </div>
