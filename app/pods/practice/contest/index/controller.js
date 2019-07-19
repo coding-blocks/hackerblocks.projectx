@@ -31,10 +31,12 @@ export default class ContestController extends Controller {
 
   @action
   changeStatusFilter(status) {
+    this.set('offset', 0)
     this.set('status', status)
   }
   @action
   changeDifficultyFilter(difficulty) {
+    this.set('offset', 0)
     this.set('difficulty', difficulty)
   }
   @action

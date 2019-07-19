@@ -20,7 +20,11 @@ Router.map(function() {
   });
   this.route('problem');
   this.route('competitions', function() {
-    this.route('id', {path: '/:competition_id'});
+    this.route('id', {path: '/:competition_id'}, function() {
+      this.route('contest', {path: '/c/:contest_id'}, function() {
+        this.route('attempt');
+      });
+    });
   });
 });
 

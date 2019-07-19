@@ -10,17 +10,31 @@ export default class LeaderboardViewComponent extends Component {
   }
 
   @restartableTask fetchLeaderboardTask = function* () {
-    const contest_id = this.contestId
-    const problem_id = this.problemId
+    let filter = {}
+    let sort = ''
+    if (this.for === 'problem') {
+      filter = {
+        contestId: this.contestId,
+        problemId: this.problemId
+      }
+      sort = '-score,time'
+    } else if (this.for === 'contest') {
+      filter = {
+        contestId: this.contestId
+      }
+      sort = '-score,time'
+    } else if (this.for === 'competition') {
+      filter = {
+        competitionId: this.competitionId
+      }
+      sort = '-score'
+    }
 
     const leaderboard = yield this.store.query(`${this.for}-leaderboard`, {
       include: 'user,college',
       exclude: 'user.*,college.*',
-      sort: '-score,time',
-      filter: {
-        contestId: contest_id,
-        problemId: problem_id
-      }
+      sort,
+      filter
     })
 
     return leaderboard

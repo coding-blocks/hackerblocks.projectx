@@ -1,1 +1,5 @@
-{{yield problems}}
+{{#if fetchProblemsTask.isRunning}}
+  <LoadingComponent />
+{{else}}
+  {{yield problems}}
+{{/if}}
