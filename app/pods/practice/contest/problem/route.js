@@ -8,7 +8,12 @@ export default class ProblemRoute extends Route {
   model(params) {
     const contest = this.modelFor('practice.contest').practice.contest
     const level = this.modelFor('practice.contest').level
-    const problem = this.store.findRecord('problem', params.problem_id, {
+    const problem = this.store.queryRecord('problem', {
+      custom: {
+        ext: 'url',
+        url: `${params.problem_id}`
+      },
+      contest_id: contest.get('id'),
       include: 'solution_stubs',
       reload: true
     })

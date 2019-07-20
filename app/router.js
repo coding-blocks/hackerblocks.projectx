@@ -22,7 +22,7 @@ Router.map(function() {
   this.route('competitions', function() {
     this.route('id', {path: '/:competition_id'}, function() {
       this.route('contest', {path: '/c/:contest_id'}, function() {
-        this.route('attempt');
+        this.route('attempt', {path: '/p/:problem_id'});
       });
     });
   });

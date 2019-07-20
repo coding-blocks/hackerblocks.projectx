@@ -1,48 +1,8 @@
-<div class="border-card c-code-editor p-0 border-none w-100">
-  <div class="row px-5 py-4 justify-content-between align-items-center bg-grey m-0">
-    <div class="col-3 p-0">
-      <span class="font-sm extra-bold">{...} Code Editor</span>
-    </div>
-    <div>
-      <i class="fas fa-expand-arrows-alt"></i>
-      <select class="dropdown d-inline-block" onchange={{action "selectLanguage" value="target.value"}}>
-        {{#each-in languageSpecs as |key value|}}
-          <option value="{{value.code}}" selected={{eq value.code selectedLanguage.mode}}>{{value.name}}</option>
-        {{/each-in}}
-      </select>
-    </div>
-  </div>
-  <div>
-    <MonacoEditor
-      class="monaco-editor"
-      @language={{selectedLanguage.mode}}
-      @code={{code}}
-      @onChange={{action (mut code)}}
-      @theme="vs-dark" />
-  </div>
-  <div class="pt-4 pb-5 px-5 input-div">
-    <div class="row justify-content-between align-items-center">
-      <a class="col-4 white extra-bold p-0 pointer" {{action "toggleCustomInputOpen"}}>
-        <i class="fas fa-angle-{{if customInputOpen "up" "down"}} mx-3"></i>
-        <span>Provide Custom Input</span>
-      </a>
-      <div>
-        <button 
-          class="button-dashed button-orange ml-3 mr-1"
-          disabled={{or onRunTask.isRunning onSubmitTask.isRunning}}
-          {{action (perform onRunTask selectedLanguage.code code input)}}>
-          {{if onRunTask.isRunning "Running" "Compile and Test"}}
-        </button>
-        <button 
-          class="button-solid button-orange mr-3 ml-1" 
-          disabled={{or onRunTask.isRunning onSubmitTask.isRunning}}
-          {{action (perform onSubmitTask selectedLanguage.code code)}}>
-          {{if onSubmitTask.isRunning "Submitting" "Submit Code"}}
-          </button>
-      </div>
-    </div>
-    {{#if customInputOpen}}
-      {{textarea name="input" cols="30" rows="5" class="mx-auto my-4 white w-100" value=input}}
-    {{/if}}
-  </div>
-</div>
+<CodeWindow 
+  @input={{problem.content.sample-input}}
+  @codeStubs={{problem.solutionStubs}}
+  @onRunTask={{onRunTask}} 
+  @onSubmitTask={{onSubmitTask}} />
+
+{{yield onRunTask.lastSuccessful.value.judge_result}}
+  

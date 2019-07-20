@@ -1,78 +1,53 @@
 import Component from '@ember/component';
-import { computed, action } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { dropTask } from 'ember-concurrency-decorators';
+import { timeout } from 'ember-concurrency';
 
 export default class CodeEditorComponent extends Component {
-  code = ''
-  isLanguageSelectOpen = false
-  customInputOpen = false
-  
-  languageSpecs = [
-    {
-      name: "C++",
-      code: "cpp",
-      mode: "cpp",
-      source: ""
-    },
-    {
-      name: "C",
-      code: "c",
-      mode: "c",
-      source: ""
-    },
-    {
-      name: "Python 2.7",
-      code: "py2",
-      mode: "python",
-      source: ""
-    },
-    {
-      name: "Python 3",
-      code: "py3",
-      mode: "python",
-      source: ""
-    },
-    {
-      name: "Node",
-      code: "js",
-      mode: "javascript",
-      source: ""
-    },
-    {
-      name: "Java 8",
-      code: "java",
-      mode: "java",
-      source: ""
-    },
-    {
-      name: "C#",
-      code: "csharp",
-      mode: "csharp",
-      source: ""
+  @service api
+  @service store
+
+  @dropTask onRunTask = function*(language, code, input) {
+    const response = yield this.api.request('submissions/run', {
+      method: 'POST',
+      data: {
+        problem_id: this.problem.id,
+        input: window.btoa(input),
+        source: window.btoa(code),
+        language
+      }
+    })
+
+    let maxTries = 20
+    while(maxTries--) {
+      yield timeout(2000)
+      const submission = yield this.store.findRecord('submission', response.submissionId, { refresh: true })
+      if (submission.judge_result){
+        return submission
+      }
     }
-  ]
-
-  didReceiveAttrs() {
-    this._super(...arguments)
-    const languages = this.get('allowedLanguages') || ['c', 'cpp', 'python2', 'python3', 'java', 'node', 'csharp']
-    this.set('languages', languages)
-    this.selectLanguage(this.codeStubs.toArray()[0].language)
+    return null
   }
 
-  @action
-  selectLanguage(languageCode) {
-    this.set('selectedLanguage', this.languageSpecs.find(spec => spec.code === languageCode))
-    const codeStub = this.codeStubs.find(stub => stub.language === this.selectedLanguage.code)
-    this.set('code', codeStub ? codeStub.body : '')
-  }
+  @dropTask onSubmitTask = function*(language, code) {
+    const response = yield this.api.request('submissions/submit', {
+      method: 'POST',
+      data: {
+        contest_id: this.contest.id,
+        problem_id: this.problem.id,
+        source: window.btoa(code),
+        language
+      }
+    })
 
-  @action
-  toggleLanguageSelectOpen() {
-    this.toggleProperty('isLanguageSelectOpen')
+    let maxTries = 20
+    while(maxTries--) {
+      yield timeout(2000)
+      const submission = yield this.store.findRecord('submission', response.submissionId, { refresh: true })
+      if (submission.judge_result){
+        return submission
+      }
+    }
+    return null
   }
-
-  @action
-  toggleCustomInputOpen() {
-    this.toggleProperty('customInputOpen')
-  }
-
 }

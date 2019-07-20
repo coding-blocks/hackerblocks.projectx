@@ -11,18 +11,24 @@
             <div class="list-data font-mds">Problems</div>
           </li>
           <li class="px-4">
-            <div class="list-heading font-md extra-bold mb-2 orange">{{moment contest.start_time 'DD MM'}}</div>
+            <div class="list-heading font-md extra-bold mb-2 orange">{{moment-format contest.start_time 'D MMM'}}</div>
             <div class="list-data font-mds">Starts</div>
           </li>
           <li class="pl-4">
-            <div class="list-heading font-md extra-bold mb-2 orange">{{moment contest.end_time 'DD MM'}}</div>
+            <div class="list-heading font-md extra-bold mb-2 orange">{{moment-format contest.end_time 'D MMM'}}</div>
             <div class="list-data font-mds">Ends</div>
           </li>
         </ul>
       </div>
     </div>
     <div>
-      <button class="button-solid button-orange font-sm extra-bold my-3">Start Challenge</button>
+      {{#link-to
+        'competitions.id.contest.attempt'
+        nextProblemId
+        class="button-solid button-orange font-sm extra-bold my-3"
+      }}
+        Start Challenge
+      {{/link-to}}
     </div>
   </div>
 </div>
