@@ -54,10 +54,13 @@
         @changeStatusFilter={{changeStatusFilter}}
         @difficulty={{difficulty}}
         @changeDifficultyFilter={{changeDifficultyFilter}}/>
-      <LeaderboardView
-        @for="contest"
-        @theme={{"purple"}}
-        @contestId={{contest.id}} />
+      <div class="border-card mt-5">
+        <h5 class="t-align-c">Leaderboard</h5>
+        <LeaderboardView
+          @for="contest"
+          @theme={{"purple"}}
+          @contestId={{contest.id}} />
+      </div>
     </div>
   </div>
 </div>

@@ -1,12 +1,23 @@
 import Component from '@ember/component';
 import { restartableTask } from 'ember-concurrency-decorators';
 import { inject as service } from '@ember/service';
+import { computed } from '@ember/object';
 
 export default class LeaderboardViewComponent extends Component {
   @service store;
 
   didReceiveAttrs() {
     this.fetchLeaderboardTask.perform()
+  }
+
+  @computed('columns')
+  get showLanguage() {
+    return this.columns && this.columns.includes('language')
+  }
+
+  @computed('columns')
+  get showCollege() {
+    return this.columns && this.columns.includes('college')
   }
 
   @restartableTask fetchLeaderboardTask = function* () {
