@@ -5,25 +5,32 @@
       <div class="font-sm">This is a timed contest. You have limited attempts to attempt this test.</div>
     </div>
     <div class="mx-3">
-      <ul class="divided-list timer font-xs d-inline mr-4">
-        <li class="timer-item pr-md-3 pr-2">
-          <div class="list-heading font-xl bold">00</div>
-          <div class="list-data">Days</div>
-        </li>
-        <li class="timer-item pr-md-3 pr-2">
-          <div class="list-heading font-xl bold">12</div>
-          <div class="list-data">Hours</div>
-        </li>
-        <li class="timer-item pr-md-3 pr-2">
-          <div class="list-heading font-xl bold">30</div>
-          <div class="list-data">Minutes</div>
-        </li>
-        <li class="timer-item pr-md-3 pr-2">
-          <div class="list-heading font-xl bold">05</div>
-          <div class="list-data">Seconds</div>
-        </li>
-      </ul>
-      <button class="button-solid button-orange font-sm extra-bold mx-3">Submit Test</button>
+      <Timer 
+        @to={{contest_attempt.end_time_moment}} as |time| >
+        <ul class="divided-list timer font-xs d-inline mr-4">
+          <li class="timer-item pr-md-3 pr-2">
+            <div class="list-heading font-xl bold">{{time.days}}</div>
+            <div class="list-data">Days</div>
+          </li>
+          <li class="timer-item pr-md-3 pr-2">
+            <div class="list-heading font-xl bold">{{time.hours}}</div>
+            <div class="list-data">Hours</div>
+          </li>
+          <li class="timer-item pr-md-3 pr-2">
+            <div class="list-heading font-xl bold">{{time.minutes}}</div>
+            <div class="list-data">Minutes</div>
+          </li>
+          <li class="timer-item pr-md-3 pr-2">
+            <div class="list-heading font-xl bold">{{time.seconds}}</div>
+            <div class="list-data">Seconds</div>
+          </li>
+        </ul>
+        <button 
+          class="button-solid button-orange font-sm extra-bold mx-3"
+          {{action (perform submitTask)}}>
+          Submit Test
+        </button>
+      </Timer>
     </div>
   </div>
   <div class="row no-gutters flex-1 w-100">

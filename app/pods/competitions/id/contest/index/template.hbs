@@ -22,13 +22,21 @@
       </div>
     </div>
     <div>
-      {{#link-to
-        'competitions.id.contest.attempt'
-        nextProblemId
-        class="button-solid button-orange font-sm extra-bold my-3"
-      }}
-        Start Challenge
-      {{/link-to}}
+      {{#if contest_attempt}}
+        {{#link-to
+          'competitions.id.contest.attempt'
+          nextProblemId
+          class="button-solid button-orange font-sm extra-bold my-3"
+        }}
+          Resume Challenge
+        {{/link-to}}
+      {{else}}
+        <button
+          class="button-solid button-orange font-sm extra-bold my-3"
+          {{action (toggle 'showStartDialog' this)}} >
+          Start Challenge
+        </button>
+      {{/if}}
     </div>
   </div>
 </div>
@@ -68,3 +76,38 @@
     </li>
   </ul>
 </div>
+
+{{#if showStartDialog}}
+<ModalDialog
+  @onClose={{action (mut showStartDialog) false}}
+  @translucentOverlay={{true}}
+>
+  <div class="overflow-hidden bg-white t-align-c">
+    <div class="bg-grey py-4">
+      <h5>START TEST</h5>
+    </div>
+    <div class="p-5">
+      <div>
+        Click below to start this contest. Note that if you close your
+        browser, your session will resume from where you left off, but the
+        timer will NOT stop.
+      </div>
+      <div class="row justify-content-center mt-4">
+        <button 
+          class="button-dashed button-orange font-sm extra-bold mr-2"
+          {{action (mut showStartDialog) false}} >
+          <i class="fas fa-arrow-left mr-3"></i>
+          <span class="d-sm-inline d-none">Take me back</span>
+          <span class="d-sm-none d-inline">Back</span>
+        </button>
+        <button 
+          class="button-solid button-orange font-sm extra-bold ml-2"
+          {{action (perform createAttemptTask)}}>
+          <span class="d-sm-inline d-none">Yes, start with my test</span>
+          <span class="d-inline d-sm-none">Start</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</ModalDialog>
+{{/if}}
