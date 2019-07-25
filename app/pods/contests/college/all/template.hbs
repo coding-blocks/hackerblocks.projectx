@@ -1,6 +1,23 @@
-<div class="tab-nav-underline mb-5">
-  <LinkTo @route="contests.college.all.live" class="tab">Live Contests</LinkTo>
-  <LinkTo @route="contests.college.all.upcoming" class="tab">Upcoming Contests</LinkTo>
-  <LinkTo @route="contests.college.all.archived" class="tab">Archived Contests</LinkTo>
+<div class="t-align-c">
+  <h2 class="mb-2">COLLEGE CONTESTS</h2>
+  <h5 class="bold mt-1 mb-2">Participate in college contests and boost your rank</h5>
 </div>
+<div class="tab-nav-underline my-5 font-md bold justify-content-between">
+  <LinkTo @route="contests.college.all.live" class="tab py-4 px-lg-5 px-4">
+    <i class="fas fa-podcast mr-3 fa-lg d-md-inline d-none"></i>Live Contests
+    {{!-- <span class="d-md-inline d-none">(03)</span> --}}
+  </LinkTo>
+  
+  <LinkTo @route="contests.college.all.upcoming" class="tab py-4 px-lg-5 px-4">
+    <i class="far fa-calendar mr-3 fa-lg d-md-inline d-none"></i>Upcoming Contests
+    {{!-- <span class="d-md-inline d-none">(08)</span> --}}
+  </LinkTo>
+  
+  <LinkTo @route="contests.college.all.archived" class="tab py-4 px-lg-5 px-4">
+    <i class="fas fa-archive mr-3 fa-lg d-md-inline d-none"></i>Archived Contests
+    {{!-- <span class="d-md-inline d-none">(10)</span> --}}
+  </LinkTo>
+  
+</div>
+
 {{liquid-outlet}}

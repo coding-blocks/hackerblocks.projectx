@@ -9,7 +9,6 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('contests', function() {
     this.route('college', function() {
-      this.route('live');
       this.route('id', {path: '/:college_contest_id'}, function() {
         this.route('problem', {path: '/p/:problem_id'});
       });

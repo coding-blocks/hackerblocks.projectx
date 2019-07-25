@@ -1,7 +1,17 @@
+<div class="t-align-c font-sm mb-5">
+  Archived Contests are already ended.
+  You can still participate, however you will not be awarded any points for these contest.
+</div>
 <div class="row">
   {{#each contests as |contest|}}
   <div class="col-12 col-md-4">
-    <CollegeContestCard @collegeContest={{contest}} />
+    <ContestCard 
+      @collegeContest={{contest}}
+      @showTimer=true>
+        {{#link-to "contests.college.id" contest.id class="button-solid button-orange mt-3 mb-2 mx-auto" tagName="button"}}
+          Solve Challenge
+        {{/link-to}}
+    </ContestCard>
   </div>
   {{/each}}
 </div>
