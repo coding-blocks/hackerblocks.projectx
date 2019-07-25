@@ -18,27 +18,7 @@ export default class ContestController extends Controller {
       limit: this.limit
     }
   }
-
-  @computed('difficulty', 'status')
-  get problemFilter () {
-    const filter = {}
-    if (this.difficulty.length) {
-      filter.difficulty = this.difficulty
-    }
-    filter.submission_status = this.status
-    return filter
-  }
-
-  @action
-  changeStatusFilter(status) {
-    this.set('offset', 0)
-    this.set('status', status)
-  }
-  @action
-  changeDifficultyFilter(difficulty) {
-    this.set('offset', 0)
-    this.set('difficulty', difficulty)
-  }
+  
   @action
   setOffset(offset) {
     this.set('offset', offset)

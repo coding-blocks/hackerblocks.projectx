@@ -1,0 +1,19 @@
+{{log contest}}
+<ProblemListView @contest={{contest}} @page={{page}} as |problemView|>
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <div class="border-card">
+        <ProblemList @route="contests.college.id.problem" @theme="purple" @problems={{problemView.problems}} />
+        <PaginationPill @pagination={{problemView.problems.meta.pagination}} @setOffset={{action 'setOffset'}} />
+      </div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      {{problemView.filterComponent}}
+      <div class="border-card mt-5">
+        <h5 class="t-align-c">Leaderboard</h5>
+        <LeaderboardView @for="contest" @theme={{"purple"}} @contestId={{contest.id}} />
+      </div>
+    </div>
+  </div>
+</ProblemListView>

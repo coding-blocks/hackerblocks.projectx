@@ -39,7 +39,8 @@
     @for="problem"
     @contestId={{problem.contest.id}}
     @problemId={{problem.id}}
-    @allowFilter=true />
+    @allowFilter=true 
+    @columns={{array 'college' 'language'}} />
   {{else if (eq selectedTab "solution")}}
   <SolutionComponent 
     @problem={{problem}} />

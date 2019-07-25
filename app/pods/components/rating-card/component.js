@@ -25,7 +25,6 @@ export default class RatingCardComponent extends Component {
 
   @action
   updateFeedbackStars(value) {
-    debugger
     this.feedback.set('stars', value)
   }
 }

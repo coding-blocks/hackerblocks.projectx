@@ -1,4 +1,4 @@
-<div class="row mt-4 align-items-center justify-content-around">
+<div class="row align-items-center justify-content-around">
   {{#if allowFilter}}
     <div class="col-1">
       <h6>Filter</h6>
@@ -24,8 +24,12 @@
       <thead class="font-sm extra-bold">
         <td class="pb-4">Rank</td>
         <td class="pb-4">User</td>
+        {{#if showCollege}}
         <td class="pb-4">College</td>
+        {{/if}}
+        {{#if showLanguage}}
         <td class="pb-4">Language</td>
+        {{/if}}
         <td class="pb-4">Score</td>
       </thead>
       <tbody>
@@ -39,8 +43,12 @@
               </div>
             </div>
           </td>
+          {{#if showCollege}}
           <td class="py-4">JSS Noida</td>
+          {{/if}}
+          {{#if showLanguage}}
           <td class="py-4">C++</td>
+          {{/if}}
           <td class="py-4">2345</td>
         </tr>
         {{#each fetchLeaderboardTask.lastSuccessful.value as |row i| }}
@@ -54,8 +62,12 @@
               </div>
             </div>
           </td>
+          {{#if showCollege}}
           <td class="py-4">{{row.college.name}}</td>
+          {{/if}}
+          {{#if showLanguage}}
           <td class="py-4">{{row.language}}</td>
+          {{/if}}
           <td class="py-4">{{row.score}}</td>
         </tr>
         {{/each}}

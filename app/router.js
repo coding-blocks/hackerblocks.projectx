@@ -7,7 +7,19 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('contests', function() {});
+  this.route('contests', function() {
+    this.route('college', function() {
+      this.route('live');
+      this.route('id', {path: '/:college_contest_id'}, function() {
+        this.route('problem', {path: '/p/:problem_id'});
+      });
+      this.route('all', function() {
+        this.route('live');
+        this.route('upcoming');
+        this.route('archived');
+      });
+    });
+  });
   this.route('dcb', function() {
     this.route('problem', {path: '/:problem_id'});
   });

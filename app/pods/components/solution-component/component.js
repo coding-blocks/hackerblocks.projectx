@@ -8,7 +8,6 @@ export default class SolutionComponent extends Component {
 
   @computed('problem.editorial')
   get editorial() {
-    debugger
     return this.problem.editorial
   }
 
