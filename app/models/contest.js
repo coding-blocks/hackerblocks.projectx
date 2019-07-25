@@ -1,4 +1,6 @@
 import DS from 'ember-data';
+import Ember from 'ember';
+import moment from 'moment';
 const { Model } = DS;
 
 export default Model.extend({
@@ -25,5 +27,11 @@ export default Model.extend({
   allow_testcase_unlocks: DS.attr(),
   plagiarismFiltering: DS.attr(),
   dcb: DS.belongsTo('dcb'),
-  problems: DS.hasMany('problems')
+  problems: DS.hasMany('problems'),
+  hasEnded: Ember.computed('end_time', function(){
+    return moment(this.end_time).isBefore(moment())
+  }),
+  isYetToStart: Ember.computed('start_time', function(){
+    return moment().isBefore(moment(this.start_time))
+  })
 });

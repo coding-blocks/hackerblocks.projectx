@@ -1,66 +1,68 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12 col-md-8">
-      <PracticeHeader 
-        @practice={{practice}} />
-      <div class="border-card mt-5">
-        <div class="row no-gutters justify-content-between">
-          <div class="col-6">
-            <h4>Practice Problems</h4>
-          </div>
-          <div>
-            {{#if difficulty.length}}
-              {{#each difficulty as |tag|}}
-                <button class="button-solid button-orange font-xs bold py-2">
-                  {{#if (eq tag 1)}}
-                    Easy
-                  {{else if (eq tag 2)}}
-                    Medium
-                  {{else}}
-                    Hard
-                  {{/if}}
-                </button>
-              {{/each}}
-            {{/if}}
-            {{#if status.length}}
-              {{#each status as |tag|}}
-                <button class="button-solid button-orange font-xs bold py-2">
-                  {{tag}}
-                </button>
-              {{/each}}
-            {{/if}}
-          </div>
-        </div>
-        <ProblemListView
-          @contest={{contest}}
-          @filter={{problemFilter}}
-          @page={{page}} as |problems|>
-          <ProblemList
-            @route="practice.contest.problem"
-            @theme="purple"
-            @problems={{problems}} />
-          <PaginationPill 
-            @pagination={{problems.meta.pagination}}
-            @setOffset={{action 'setOffset'}} />
-        </ProblemListView>
-      </div>
-    </div>
+  <ProblemListView 
+    @contest={{contest}} 
+    @filter={{problemFilter}} 
+    @page={{page}} as |problemView|>
+    
+    <div class="row">
+      <div class="col-12 col-md-8">
+        <PracticeHeader 
+          @practice={{practice}} />
+        
+        <div class="border-card mt-5">
+          <div class="row no-gutters justify-content-between">
+            <div class="col-6">
+              <h4>Practice Problems</h4>
+            </div>
+            <div>
+              {{#if difficulty.length}}
+                {{#each difficulty as |tag|}}
+                  <button class="button-solid button-orange font-xs bold py-2">
+                    {{#if (eq tag 1)}}
+                      Easy
+                    {{else if (eq tag 2)}}
+                      Medium
+                    {{else}}
+                      Hard
+                    {{/if}}
+                  </button>
+                {{/each}}
+              {{/if}}
+              {{#if status.length}}
+                {{#each status as |tag|}}
+                  <button class="button-solid button-orange font-xs bold py-2">
+                    {{tag}}
+                  </button>
+                {{/each}}
+              {{/if}}
+            </div>
 
-    <div class="col-12 col-md-4">
-      <LevelCard
-        @level={{level}} />
-      <PracticeFilterComponent 
-        @status={{status}} 
-        @changeStatusFilter={{changeStatusFilter}}
-        @difficulty={{difficulty}}
-        @changeDifficultyFilter={{changeDifficultyFilter}}/>
-      <div class="border-card mt-5">
-        <h5 class="t-align-c">Leaderboard</h5>
-        <LeaderboardView
-          @for="contest"
-          @theme={{"purple"}}
-          @contestId={{contest.id}} />
+          </div>
+          <ProblemList 
+            @route="practice.contest.problem" 
+            @theme="purple" 
+            @problems={{problemView.problems}} />
+
+          <PaginationPill 
+            @pagination={{problemView.problems.meta.pagination}} 
+            @setOffset={{action 'setOffset'}} />
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <LevelCard
+          @level={{level}} />
+
+          {{problemView.filterComponent}}
+
+          <div class="border-card mt-5">
+            <h5 class="t-align-c">Leaderboard</h5>
+            <LeaderboardView
+              @for="contest"
+              @theme={{"purple"}}
+              @contestId={{contest.id}} />
+          </div>
       </div>
     </div>
-  </div>
+  </ProblemListView>
 </div>

@@ -1,6 +1,5 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp'
-import { inject as service } from '@ember/service';
 
 export default class IndexRoute extends Route {
   queryParams = {
@@ -17,8 +16,6 @@ export default class IndexRoute extends Route {
       refreshModel: false
     }
   }
-
-  @service store
 
   model() {
     const practice = this.modelFor('practice.contest').practice
