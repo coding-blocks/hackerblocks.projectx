@@ -1,0 +1,78 @@
+<div class="c-code-window flex-col">
+  <div class="d-flex white bg-dark-grey align-items-center justify-content-between py-4 w-100 top-bar">
+    <div class="col-xl-7 col-lg-6 col-5 offset-1">
+      <h2>{{contest.name}}</h2>
+      <div class="font-sm">This is a timed contest. You have limited attempts to attempt this test.</div>
+    </div>
+    <div class="mx-3">
+      <Timer 
+        @to={{attempt.end_time_moment}} as |time| >
+        <ul class="divided-list timer font-xs d-inline mr-4">
+          <li class="timer-item pr-md-3 pr-2">
+            <div class="list-heading font-xl bold">{{time.days}}</div>
+            <div class="list-data">Days</div>
+          </li>
+          <li class="timer-item pr-md-3 pr-2">
+            <div class="list-heading font-xl bold">{{time.hours}}</div>
+            <div class="list-data">Hours</div>
+          </li>
+          <li class="timer-item pr-md-3 pr-2">
+            <div class="list-heading font-xl bold">{{time.minutes}}</div>
+            <div class="list-data">Minutes</div>
+          </li>
+          <li class="timer-item pr-md-3 pr-2">
+            <div class="list-heading font-xl bold">{{time.seconds}}</div>
+            <div class="list-data">Seconds</div>
+          </li>
+        </ul>
+        <button 
+          class="button-solid button-orange font-sm extra-bold mx-3"
+          {{action (mut showSubmitDialog) true}}>
+          Submit Test
+        </button>
+      </Timer>
+    </div>
+  </div>
+  <div class="row no-gutters flex-1 w-100">
+    <FullScreenProblemList
+      @contest={{contest}} />
+    <div class="col-11 offset-1">
+      <FullScreenProblemView
+        @problem={{activeProblem}}
+        @contest={{contest}} />
+    </div>
+  </div>
+</div>
+
+{{#if showSubmitDialog}}
+  <ModalDialog
+    @onClose={{action (mut showSubmitDialog) false}}
+    @translucentOverlay={{true}}
+  >
+    <div class="br-15 overflow-hidden p-0 bg-white t-align-c">
+      <div class="bg-grey py-4">
+        <h5>SUBMIT TEST</h5>
+      </div>
+      <div class="p-5">
+        <div>Once submitted, you can no longer view or modify this test. Are you sure you are done, and want to close
+          the
+          test?</div>
+        <div class="row justify-content-center mt-4">
+          <button 
+            class="button-dashed button-orange font-sm extra-bold mr-2"
+            {{action (mut showSubmitDialog) false}} >
+            <i class="fas fa-arrow-left mr-3"></i>
+            <span class="d-sm-inline d-none">Take me back</span>
+            <span class="d-sm-none d-inline">Back</span>
+          </button>
+          <button 
+            class="button-solid button-orange font-sm extra-bold ml-2"
+            {{action (perform submitTask)}} >
+            <span class="d-sm-inline d-none">Yes, I am done with my test</span>
+            <span class="d-inline d-sm-none">Submit</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ModalDialog>
+{{/if}}

@@ -19,4 +19,10 @@ export default class ContestRoute extends Route {
       level: levels.toArray()[0]
     })
   }
+
+  afterModel(model) {
+    this.set('breadCrumb', {
+      title: model.practice.name
+    })
+  }
 }

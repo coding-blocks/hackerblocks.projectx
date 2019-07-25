@@ -7,7 +7,7 @@ export default class AttemptController extends Controller {
 
   @restartableTask submitTask = function *() {
     try {
-      yield this.api.request(`contest-attempts/${this.contest_attempt.id}/submit`, {
+      this.api.request(`contest-attempts/${this.contest_attempt.id}/submit`, {
         method: 'POST'
       })
       this.transitionToRoute('competitions.id')
