@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 import { restartableTask } from 'ember-concurrency-decorators';
 import { inject as service } from '@ember/service';
 
@@ -8,6 +9,9 @@ export default class CompetitionContestComponent extends Component {
   @service currentUser
 
   showStartDialog = false
+
+  @alias('contest.currentAttempt')
+  contest_attempt
 
   @computed('contest')
   get problemCount() {
@@ -21,6 +25,9 @@ export default class CompetitionContestComponent extends Component {
       contest: this.contest
     })
     yield contest_attempt.save()
-    this.transitionToRoute('competitions.id.contest', this.contest.id)
+    this.set('showStartDialog', false)
+    if (this.onAfterCreate){
+      this.onAfterCreate()
+    }
   }
 }

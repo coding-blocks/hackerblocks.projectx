@@ -7,7 +7,8 @@ export default class ProblemRoute extends Route {
   @service navigation
 
   model(params) {
-    const { contest, contest_attempt } = this.modelFor('competitions.id.contest')
+    const contest = this.modelFor('competitions.id.contest')
+    const contest_attempt = contest.get('currentAttempt')
     const problem = this.store.queryRecord('problem', {
       custom: {
         ext: 'url',

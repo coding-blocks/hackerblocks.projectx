@@ -91,8 +91,15 @@
         browser, your session will resume from where you left off, but the
         timer will NOT stop.
       </div>
+      <div>
+        {{#if createAttemptTask.last.isError}}
+          <span class="red">
+            Maximum number of contest attempts reached.
+          </span>
+        {{/if}}
+      </div>
       <div class="row justify-content-center mt-4">
-        <button 
+        <button  
           class="button-dashed button-orange font-sm extra-bold mr-2"
           {{action (mut showStartDialog) false}} >
           <i class="fas fa-arrow-left mr-3"></i>

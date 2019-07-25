@@ -25,5 +25,6 @@ export default Model.extend({
   allow_testcase_unlocks: DS.attr(),
   plagiarismFiltering: DS.attr(),
   dcb: DS.belongsTo('dcb'),
-  problems: DS.hasMany('problems')
+  problems: DS.hasMany('problems'),
+  currentAttempt: DS.belongsTo('contest-attempt')
 });
