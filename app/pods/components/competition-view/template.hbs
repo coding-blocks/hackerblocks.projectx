@@ -1,7 +1,7 @@
 <h3 class="mb-5">{{competition.name}}</h3>
 <div class="row">
   <div class="col-12 col-md-8">
-    <div class="border-card px-5 pb-0 pt-5 bg-gradient-dblue white">
+    <div class="border-card px-5 pb-0 pt-5 bg-gradient-dblue-lr white">
       <img src="{{competition.banner}}" alt="">
       <div class="divider-h mt-4"></div>
       <div class="word-wrap white my-4">
@@ -107,7 +107,7 @@
       {{#link-to
         'competitions.id.contest'
         fetchRecentContestTask.lastSuccessful.value.id
-        class="button-solid button-orange extra-bold mt-4 mb-2 mx-auto d-block"
+        class="button-solid button-orange mt-4 mb-2 mx-auto"
       }}
         Solve Challenge
       {{/link-to}}

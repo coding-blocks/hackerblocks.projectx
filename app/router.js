@@ -19,6 +19,14 @@ Router.map(function() {
         this.route('archived');
       });
     });
+    this.route('admission', function() {
+      this.route('cast', function() {});
+      this.route('case');
+    });
+
+    this.route('admissions', function() {
+      this.route('case', function() {});
+    });
   });
   this.route('dcb', function() {
     this.route('problem', {path: '/:problem_id'});

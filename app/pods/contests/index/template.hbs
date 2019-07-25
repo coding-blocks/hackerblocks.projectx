@@ -1,7 +1,14 @@
-{{#each contests as |contest|}}
-  {{contest.name}}
-{{/each}}
+<div class="row">
+  {{#each contests as |contest|}}
+    {{contest.name}}
+  {{/each}}
+</div>
 
-<LinkTo @route="contests.college.all.live" class="button-solid button-orange">
-College Contests
-</LinkTo>
+<div class="row">
+  <LinkTo @route="contests.college.all.live" class="button-solid button-orange">
+    College Contests
+  </LinkTo>
+  <LinkTo @route="contests.admission" class="button-solid button-orange">
+    Admission Contests
+  </LinkTo>
+</div>

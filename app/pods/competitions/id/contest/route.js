@@ -15,10 +15,6 @@ export default class ContestRoute extends Route {
     contest.set("currentAttempt", contest_attempt)
 
     return contest
-    // return RSVP.hash({
-    //   contest,
-    //   contest_attempt
-    // })
   }
   afterModel(model) {
     this.set('breadCrumb', {
