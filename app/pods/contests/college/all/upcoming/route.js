@@ -10,6 +10,6 @@ export default class UpcomingContestRoute extends Route {
   }
 
   async setupController(controller, model) {
-    controller.set('contests', model)
+    controller.set('college_contests', model)
   }
 }

@@ -10,6 +10,6 @@ export default class ArchiveContestRoute extends Route {
   }
 
   async setupController(controller, model) {
-    controller.set('contests', model)
+    controller.set('college_contests', model)
   }
 }
