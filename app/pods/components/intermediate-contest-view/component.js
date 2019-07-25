@@ -4,7 +4,7 @@ import { alias } from '@ember/object/computed';
 import { restartableTask } from 'ember-concurrency-decorators';
 import { inject as service } from '@ember/service';
 
-export default class CompetitionContestComponent extends Component {
+export default class IntermediateContestComponent extends Component {
   @service store
   @service currentUser
 
