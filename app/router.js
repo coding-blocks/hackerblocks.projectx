@@ -19,11 +19,18 @@ Router.map(function() {
       });
     });
     this.route('admission', function() {
-      this.route('cast');
+      this.route('cast', function() {
+        this.route('upcoming');
+        this.route('archived');
+      });
       this.route('contest', {path: '/c/:admission_contest_id'}, function() {
         this.route('attempt', function() {
           this.route('problem', {path: '/p/:problem_id'});
         });
+      });
+      this.route('apat', function() {
+        this.route('archived');
+        this.route('upcoming');
       });
     });
 
