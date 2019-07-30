@@ -13,7 +13,7 @@ export default class IntermediateContestComponent extends Component {
   @alias('contest.currentAttempt')
   contest_attempt
 
-  @computed('contest')
+  @computed('contest.problems')
   get problemCount() {
     if (this.contest) {
       return this.get('contest').hasMany('problems').ids().length
