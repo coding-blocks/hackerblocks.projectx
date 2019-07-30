@@ -1,8 +1,8 @@
 <div class="row">
-  {{#each contests as |contest|}}
+  {{#each college_contests as |college_contest|}}
   <div class="col-12 col-md-4">
     <ContestCard 
-      @collegeContest={{contest}}
+      @contest={{college_contest.contest}}
       @showTimer=true>
         <button class="button-solid button-orange mt-3 mb-2 mx-auto" 
           {{action (perform createAttemptTask contest)}}>
