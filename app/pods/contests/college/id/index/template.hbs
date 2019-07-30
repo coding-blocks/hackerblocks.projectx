@@ -22,8 +22,17 @@
       </div>
 
       <div class="border-card mt-4">
-        <ProblemList @route="contests.college.id.problem" @theme="purple" @problems={{problemView.problems}} />
-        <PaginationPill @pagination={{problemView.problems.meta.pagination}} @setOffset={{action 'setOffset'}} />
+        {{#if problemView.showError}}
+          You are not authorized to view problems of this contest.
+        {{else}}
+          <ProblemList 
+            @route="contests.college.id.problem" 
+            @theme="purple" 
+            @problems={{problemView.problems}} />
+          <PaginationPill 
+            @pagination={{problemView.problems.meta.pagination}} 
+            @setOffset={{action 'setOffset'}} />
+        {{/if}}
       </div>
     </div>
 

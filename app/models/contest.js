@@ -29,6 +29,7 @@ export default Model.extend({
   dcb: DS.belongsTo('dcb'),
   problems: DS.hasMany('problems'),
   currentAttempt: DS.belongsTo('contest-attempt'),
+  college_contest: DS.belongsTo('college_contest'),
   hasEnded: Ember.computed('end_time', function(){
     return moment(this.end_time).isBefore(moment())
   }),

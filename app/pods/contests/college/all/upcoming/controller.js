@@ -7,7 +7,7 @@ export default class UpcomingController extends Controller{
   @service currentUser
 
   @restartableTask createAttemptTask = function *(collegeContest){
-    yield this.store.createRecord('contest-attempt', {
+    yield this.store.createRecord('registration', {
       contest: collegeContest.get('contest'), 
     }).save()
   }

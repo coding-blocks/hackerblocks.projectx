@@ -9,6 +9,7 @@ export default class ProblemListView extends Component {
   problems = []
   difficulty = []
   status = []
+  showError = false
 
   didReceiveAttrs() {
     this.fetchProblemsTask.perform(this.problemFilter, this.page)
@@ -41,6 +42,8 @@ export default class ProblemListView extends Component {
       page,
       contest_id: this.contest.id
     })
+    .catch(err => { this.set('showError', true)})
+    
     this.set('problems', problems)
     return problems
   }
