@@ -3,20 +3,28 @@
     <div class="col-4 b-right">
       <div class="mx-auto">
         <h4 class="mb-3">All Time Best</h4>
-        <div class="font-mdxl extra-bold orange">#32</div>
-        <div class="extra-bold">Achieved on 18 May 2018</div>
+        <div class="font-mdxl extra-bold orange">#{{performance.bestRank}}</div>
+        <div class="extra-bold">Achieved on {{moment-format (moment performance.bestRankAchievedOn) 'DD MMM YYYY'}}</div>
       </div>
     </div>
     <div class="col-4 b-right">
       <h4 class="mb-3">Current Ranking</h4>
-      <div class="font-mdxl extra-bold">4300</div>
-      <div class="extra-bold green v-align-ma"><i class="fas fa-caret-up mr-2 fa-2x"></i>20 Ranks from last month</div>
+      <div class="font-mdxl extra-bold">{{performance.currentOverallRank}}</div>
     </div>
     <div class="col-4">
       <h4 class="mb-3">Performance</h4>
-      <div class="font-mdxl extra-bold">34000 Points</div>
-      <div class="extra-bold red v-align-ma"><i class="fas fa-caret-down mr-2 fa-2x"></i>200 Points from last month
-      </div>
+      <div class="font-mdxl extra-bold">{{performance.currentMonthScore}} Points</div>
+      {{#if (gt performance.currentMonthScore performance.previousMonthScore)}}
+        <div class="extra-bold green v-align-ma">
+          <i class="fas fa-caret-up mr-2 fa-2x"></i>
+          {{sub performance.currentMonthScore performance.previousMonthScore}} Points from last month
+        </div>
+      {{else}}
+        <div class="extra-bold red v-align-ma">
+          <i class="fas fa-caret-down mr-2 fa-2x"></i>
+          {{sub performance.previousMonthScore performance.currentMonthScore}} Points from last month
+        </div>
+      {{/if}}
     </div>
   </div>
 </div>

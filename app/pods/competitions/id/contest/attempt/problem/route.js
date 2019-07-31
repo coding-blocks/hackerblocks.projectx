@@ -1,10 +1,9 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 
 export default class ProblemRoute extends Route {
-  @service navigation
+  breadCrumbs = null
 
   model(params) {
     const contest = this.modelFor('competitions.id.contest')
@@ -35,15 +34,5 @@ export default class ProblemRoute extends Route {
     if (err.isAdapterError) {
       this.transitionTo('competitions.id.contest')
     }
-  }
-
-  @action
-  willTransition() {
-    this.navigation.setVisibility(true)
-  }
-  
-  @action
-  didTransition() {
-    this.navigation.setVisibility(false)
   }
 }

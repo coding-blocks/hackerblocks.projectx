@@ -6,10 +6,10 @@
         <a href="#" class="white"><i class="fas fa-info-circle fa-lg"></i></a>
       </div>
       <div class="divider-h bg-white my-3"></div>
-      <h3 class="bold mt-3">Birthday Candle</h3>
+      <h3 class="bold mt-3">{{ topProblem.name }}</h3>
       <ul class="divided-list">
         <li class="pr-xl-3 pr-lg-2 pr-3">
-          <div class="list-heading font-mds extra-bold yellow">Hard</div>
+          <div class="list-heading font-mds extra-bold yellow">{{ topProblem.difficultyString }}</div>
           <div class="list-data">Dificulty</div>
         </li>
         <li class="px-xl-3 px-lg-2 px-3">
@@ -17,34 +17,62 @@
           <div class="list-data">Submissions</div>
         </li>
         <li class="pl-xl-3 pl-lg-2 pl-3">
-          <div class="list-heading font-mds extra-bold yellow">200</div>
+          <div class="list-heading font-mds extra-bold yellow">100</div>
           <div class="list-data">Max Pts</div>
         </li>
       </ul>
-      <button class="button-solid button-white mt-3 float-right extra-bold">Continue</button>
+      <LinkTo 
+        @route='dcb.problem'
+        @model={{topProblem.id}}
+        class="button-solid button-white mt-3 float-right extra-bold">
+        Continue
+      </LinkTo>
     </div>
   </div>
   <div class="align-items-center t-align-c px-xl-4 px-3 pb-5 pt-4">
-    <div class="font-mds mb-4 mt-2">Earn your First Badge</div>
-    <div class="img-desc font-sm pt-2 all-center px-md-3 px-2 mt-4">
-      <div class="pr-0 col-2 col-lg-3 pl-2">
-        <img src="/images/hexagon.jpg" alt="">
-      </div>
-      <div class="description ml-3 t-align-l col-lg-9 col-10 pl-0">
-        <div class="row justify-content-between align-items-center no-gutters">
-          <h3>Streak Master</h3>
-          <a href="#" class="white"><i class="fas fa-info-circle fa-md blue"></i></a>
+    {{#if level}}
+      <div class="img-desc font-sm pt-2 all-center px-md-3 px-2 mt-4">
+        <div class="pr-0 col-2 col-lg-3 pl-2">
+          <img src="/images/hexagon.jpg" alt="">
         </div>
-        <span class="Font-sm">Solve 4 more DCB’s</span>
-        <div class="row mx-0 mt-1 align-items-center">
-          <div class="col-10 px-0">
-            <progress value="35" max="100" class="w-90 d-inline-block"></progress>
+        <div class="description ml-3 t-align-l col-lg-9 col-10 pl-0">
+          <div class="row justify-content-between align-items-center no-gutters">
+            <h3>Level {{ level.level }}</h3>
+            <a href="#" class="white"><i class="fas fa-info-circle fa-md blue"></i></a>
           </div>
-          <div class="col-2 px-0">
-            <span class="card-md bold float-right">3/7</span>
+          <span class="Font-sm">Solve {{sub level.nextRequiredSubmissionCount level.perfectSubmissionCount}} more DCB’s</span>
+          <div class="row mx-0 mt-1 align-items-center">
+            <div class="col-10 px-0">
+              <progress value="{{ progress }}" max="100" class="w-90 d-inline-block"></progress>
+            </div>
+            <div class="col-2 px-0">
+              <span class="card-md bold float-right">{{ level.perfectSubmissionCount }}/{{ level.nextRequiredSubmissionCount }}</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    {{else}}
+      <div class="font-mds mb-4 mt-2">Earn your First Badge</div>
+      <div class="img-desc font-sm pt-2 all-center px-md-3 px-2 mt-4">
+        <div class="pr-0 col-2 col-lg-3 pl-2">
+          <img src="/images/hexagon.jpg" alt="">
+        </div>
+        <div class="description ml-3 t-align-l col-lg-9 col-10 pl-0">
+          <div class="row justify-content-between align-items-center no-gutters">
+            <h3>Streak Master</h3>
+            <a href="#" class="white"><i class="fas fa-info-circle fa-md blue"></i></a>
+          </div>
+          <span class="Font-sm">Solve 1 more DCB</span>
+          <div class="row mx-0 mt-1 align-items-center">
+            <div class="col-10 px-0">
+              <progress value="35" max="100" class="w-90 d-inline-block"></progress>
+            </div>
+            <div class="col-2 px-0">
+              <span class="card-md bold float-right">0/1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/if}}
   </div>
 </div>

@@ -38,9 +38,13 @@
           </div>
         </div>
       </DailyGoalCard>
-      <SmallLeaderboardView 
-        @theme={{"blue"}}
-        @contest={{contest}} />
+      <div class="border-card px-0 mt-5">
+        <h5 class="t-align-c">Leaderboard</h5>
+        <LeaderboardView
+          @for="contest"
+          @theme="blue"
+          @contestId={{contest.id}} />
+      </div>
     </div>
   </div>
 </div>
