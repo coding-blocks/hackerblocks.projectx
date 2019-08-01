@@ -26,6 +26,7 @@ Router.map(function() {
       this.route('contest', {path: '/c/:admission_contest_id'}, function() {
         this.route('attempt', function() {
           this.route('problem', {path: '/p/:problem_id'});
+          this.route('quiz', {path: '/q/:quiz_id'});
         });
       });
       this.route('apat', function() {

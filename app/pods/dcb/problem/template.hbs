@@ -20,10 +20,12 @@
     <DailyGoalCardSmall 
       class="py-4"
       @level={{level}} />
-    <RatingCard 
-      class="py-4"
-      @contest={{contest}}
-      @problem={{problem}} />
+    {{#if problem.canSubmitReview}}
+      <RatingCard 
+        class="py-4"
+        @contest={{contest}}
+        @problem={{problem}} />
+    {{/if}}
     <AuthorCard class="py-4" />
   </div>
 </div>

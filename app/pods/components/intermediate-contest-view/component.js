@@ -20,6 +20,13 @@ export default class IntermediateContestComponent extends Component {
     }
   }
 
+  @computed('contest.quizzes')
+  get quizCount() {
+    if (this.contest) {
+      return this.get('contest').hasMany('quizzes').ids().length
+    }
+  }
+
   @restartableTask createAttemptTask = function *() {
     const contest_attempt = this.store.createRecord('contest-attempt', {
       contest: this.contest

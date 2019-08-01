@@ -3,15 +3,16 @@ import RSVP from 'rsvp';
 
 export default class DCBRoute extends Route {
   async model() {
-    const contest = await this.store.findRecord('contest', 1, {
-      include: 'dcb'
+    const dcb = await this.store.findRecord('dcb', 1, {
+      include: 'contest'
     })
+    const contest = await dcb.contest
     const levels = await this.store.query('user_level', {
       filter: {
         contestId: contest.get('id')
       }
     })
-    const problems = contest.get('dcb.problems')
+    const problems = dcb.get('problems')
     return RSVP.hash({
       contest,
       level: levels.toArray()[0],
