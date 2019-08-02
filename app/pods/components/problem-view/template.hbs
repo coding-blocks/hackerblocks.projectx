@@ -48,15 +48,11 @@
   fghjk
   {{/liquid-if}}
 </div>
-<div class="border-card c-code-editor p-0 border-none w-100">
+<div class="border-card p-0 border-none w-100">
   <CodeEditorComponent 
     class="py-4"
     @problem={{problem}}
-    @contest={{contest}} as |judge_result|>
-    {{#if judge_result}}
-      <RunResult 
-        class="py-4"
-        @judgeResult={{judge_result}} />
-    {{/if}}
+    @contest={{contest}} as |ResultView|>
+    <ResultView />
   </CodeEditorComponent>
 </div>

@@ -5,5 +5,5 @@
   @onSubmitTask={{onSubmitTask}} 
   class="br-15 overflow-hidden" />
 
-{{yield onRunTask.lastSuccessful.value.judge_result}}
+{{yield (component resultComponent judgeResult=lastResult)}}
   

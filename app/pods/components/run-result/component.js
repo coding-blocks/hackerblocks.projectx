@@ -12,9 +12,4 @@ export default class RunResultComponent extends Component {
       return 'Your solution could not be judged in time. If the problem persists, please report it to Hacker Blocks admins - info@hackerblocks.com.'
     }
   }
-
-  @computed('judgeResult')
-  get result() {
-    return this.judgeResult.result
-  }
 }
