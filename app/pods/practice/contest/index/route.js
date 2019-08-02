@@ -19,18 +19,14 @@ export default class IndexRoute extends Route {
 
   model() {
     const practice = this.modelFor('practice.contest').practice
-    const level = this.modelFor('practice.contest').level
-    
     return RSVP.hash({
       practice,
-      contest: practice.contest,
-      level
+      contest: practice.contest
     })
   }
 
   setupController(controller, model) {
     controller.set('practice', model.practice)
     controller.set('contest', model.contest)
-    controller.set('level', model.level)
   }
 }

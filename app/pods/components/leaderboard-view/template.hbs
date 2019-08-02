@@ -21,7 +21,7 @@
 <div class="py-4">
   <div class="c-hb-leaderboard">
     <table class="w-100">
-      <thead class="font-sm extra-bold">
+      <thead class="font-sm extra-bold {{theme}}">
         <td class="pb-4">Rank</td>
         <td class="pb-4">User</td>
         {{#if showCollege}}
@@ -33,43 +33,43 @@
         <td class="pb-4">Score</td>
       </thead>
       <tbody>
-        <tr class="self">
-          <td class="py-4">#40</td>
-          <td class="py-4">
-            <div class="img-desc align-items-center">
-              <img class="round s-30x30" src="/images/placeholder.gif" alt="">
-              <div class="description ml-3">
-                Siddharth Jain
+        {{#if myRank}}
+          <tr class="bg-gradient-{{theme}} white extra-bold">
+            <td class="py-4">#{{myRank.rank}}</td>
+            <td class="py-4">
+              <div class="img-desc align-items-center">
+                <img class="round s-30x30" src="/images/placeholder.gif" alt="">
+                <div class="description ml-3">
+                  {{myRank.user_name}}
+                </div>
               </div>
-            </div>
-          </td>
-          {{#if showCollege}}
-          <td class="py-4">JSS Noida</td>
-          {{/if}}
-          {{#if showLanguage}}
-          <td class="py-4">C++</td>
-          {{/if}}
-          <td class="py-4">2345</td>
-        </tr>
-        {{#each fetchLeaderboardTask.lastSuccessful.value as |row i| }}
-        <tr>
-          <td class="py-4">{{inc i}}</td>
-          <td class="py-4">
-            <div class="img-desc align-items-center">
-              <img class="round s-30x30" src="/images/placeholder.gif" alt="">
-              <div class="description ml-3">
-                {{row.user.name}}
+            </td>
+            {{#if showCollege}}
+            <td class="py-4">{{myRank.college_name}}</td>
+            {{/if}}
+            <td class="py-4">{{myRank.score}}</td>
+          </tr>
+        {{/if}}
+
+        {{#each leaderboard_rows as |row i| }}
+          <tr class="hover-grey">
+            <td class="py-4">{{inc i}}</td>
+            <td class="py-4">
+              <div class="img-desc align-items-center">
+                <img class="round s-30x30" src="/images/placeholder.gif" alt="">
+                <div class="description ml-3">
+                  {{row.user.name}}
+                </div>
               </div>
-            </div>
-          </td>
-          {{#if showCollege}}
-          <td class="py-4">{{row.college.name}}</td>
-          {{/if}}
-          {{#if showLanguage}}
-          <td class="py-4">{{row.language}}</td>
-          {{/if}}
-          <td class="py-4">{{row.score}}</td>
-        </tr>
+            </td>
+            {{#if showCollege}}
+            <td class="py-4">{{row.college.name}}</td>
+            {{/if}}
+            {{#if showLanguage}}
+            <td class="py-4">{{row.language}}</td>
+            {{/if}}
+            <td class="py-4">{{row.score}}</td>
+          </tr>
         {{/each}}
       </tbody>
     </table>

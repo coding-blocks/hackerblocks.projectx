@@ -1,1 +1,29 @@
-{{yield}}
+<div class="border-card p-0">
+  <div class="row m-0">
+    <div>
+      <ul class="font-mds extra-bold py-5 pl-4 pr-3 mt-0">
+        {{#each judgeResult.data.testcases as |testcase index|}}
+        <li class="pb-3">
+          <a 
+            href="#" 
+            class={{if (eq selectedIndex index) "orange"}}
+            {{action (mut selectedIndex) index}}>
+            Test Case {{index}}
+            {{#if (eq testcase.result "correct")}}
+            <i class="fas fa-check mx-3"></i>
+            {{else}}
+            <i class="fas fa-times mx-3"></i>
+            {{/if}}
+          </a>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="col-sm-8 col-6 py-5 b-left pl-5">
+      <h6 class="bold">Compile Message</h6>
+      <div class="bg-grey p-4 mt-3 mb-5">
+        <div class="font-sm">{{compilerMessage}}</div>
+      </div>
+    </div>
+  </div>
+</div>

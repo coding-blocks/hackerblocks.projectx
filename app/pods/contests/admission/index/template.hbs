@@ -1,3 +1,11 @@
+<div class="row font-xs bold mx-0">
+  <BreadCrumbs
+    @outputStyle="foundation"
+    @tagName="ul"
+    @linkable={{true}}
+    @linkClass="orange"
+    @crumbClass="px-3" />
+</div>
 <div class="t-align-c">
   <h2>ADMISSION CONTESTS</h2>
   <h5 class="bold mt-1 mb-2">Participate in admission test and win scholarships upto 95% on classrooom &amp;
@@ -34,7 +42,11 @@
         development and advanced courses namely Web Dev, Android Dev, Competitive Programming, Algo++, Algo.Java,
         Machine Learning.
       </div>
-      <button class="button-solid button-orange font-sm extra-bold mt-3">View Contests</button>
+      {{#link-to 
+        'contests.admission.apat'
+        class="button-solid button-orange font-sm extra-bold mt-3"}}
+        View Contests
+      {{/link-to}}
     </div>
   </div>
 </div>

@@ -50,18 +50,22 @@
       </div>
 
       <div class="col-12 col-md-4">
-        <LevelCard
-          @level={{level}} />
+        <LevelView 
+          @contest={{contest}}
+          @levelComponent={{component 'level-card'}} 
+          as |LevelCard|>
+          <LevelCard  />
+        </LevelView>
 
-          {{problemView.filterComponent}}
+        {{problemView.filterComponent}}
 
-          <div class="border-card mt-5">
-            <h5 class="t-align-c">Leaderboard</h5>
-            <LeaderboardView
-              @for="contest"
-              @theme={{"purple"}}
-              @contestId={{contest.id}} />
-          </div>
+        <div class="border-card px-0 mt-5">
+          <h5 class="t-align-c">Leaderboard</h5>
+          <LeaderboardView
+            @for="contest"
+            @theme={{"purple"}}
+            @contestId={{contest.id}} />
+        </div>
       </div>
     </div>
   </ProblemListView>

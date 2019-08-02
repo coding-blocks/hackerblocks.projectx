@@ -1,0 +1,71 @@
+<div class="row no-gutters code-area overflow-hidden">
+  <div class="col-7 px-xl-5 px-4 pt-5 h-100 position-relative">
+    {{#if fetchQuestionTask.isRunning}}
+      <LoadingComponent />
+    {{else}}
+      <QuestionContainer
+        @submission={{submission}}
+        @question={{question}} />
+    {{/if}}
+    <div class="position-sticky bl bg-white pb-3">
+      <div class="divider-h mb-2"></div>
+      <div class="row no-gutters align-items-center justify-content-around">
+        <div>
+          {{#if prevIndex}}
+            <button 
+              class="button-dashed button-orange font-sm extra-bold mt-2 mr-3"
+              {{action changeQuestion prevIndex}}>
+              <i class="fas fa-arrow-left mr-3"></i>Previous
+              <span class="d-xl-inline d-none"> Question</span>
+            </button>
+          {{/if}}
+        </div>
+        <div>
+          <button class="button-solid button-orange font-sm extra-bold mx-3 mt-2">
+            Review Later
+          </button>
+        </div>
+        <div>
+          {{#if nextIndex}}
+            <button 
+              class="button-dashed button-orange font-sm extra-bold mt-2 mr-3"
+              {{action changeQuestion nextIndex}}>
+              Next<span class="d-xl-inline d-none"> Question</span>
+              <i class="fas fa-arrow-right ml-3"></i>
+            </button>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-5 p-xl-5 p-4">
+    <div class="border-card question-card px-xl-5 px-4 pb-5 pt-0 t-align-c no-scrollbar">
+      <div class="position-sticky tl bg-white pt-4">
+        <h2 class="mb-4">Total Questions: {{questionCount}}</h2>
+        <div class="row all-center v-align-ma">
+          <div>
+            <span class="font-sm extra-bold green mx-xl-3 mx-2"><span
+                class="font-xl mr-3">&#10625;</span>Attempted</span>
+          </div>
+          <div>
+            <span class="font-sm extra-bold mx-xl-3 mx-2"><span class="font-xl mr-3">&#10625;</span>Unattempted</span>
+          </div>
+          <div>
+            <span class="font-sm extra-bold orange mx-xl-3 mx-2"><span class="font-xl mr-3">&#10625;</span>Marked
+              for Review</span>
+          </div>
+        </div>
+        <div class="divider-h mt-4"></div>
+      </div>
+      <div class="options font-lg bold">
+        {{#each questionIds as |id index|}}
+          <QuestionPill
+            @submissions={{quiz_attempt.quiz_submissions}}
+            @question_id={{id}}
+            @index={{index}}
+            @changeQuestion={{changeQuestion}} />
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</div>

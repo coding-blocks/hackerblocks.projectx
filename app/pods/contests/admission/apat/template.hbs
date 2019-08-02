@@ -1,0 +1,35 @@
+<div class="row font-xs bold mx-0">
+  <BreadCrumbs
+    @outputStyle="foundation"
+    @tagName="ul"
+    @linkable={{true}}
+    @linkClass="orange"
+    @crumbClass="px-3" />
+</div>
+
+<h2 class="t-align-c">APAT CONTESTS</h2>
+
+<div class="tab-nav-underline mt-4 font-md bold justify-content-between">
+  {{#link-to 
+    'contests.admission.apat.index'
+    class="tab py-4 px-lg-5 px-4" }}
+    <i class="fas fa-podcast mr-3 fa-lg d-md-inline d-none"></i>Live Contests
+    <span class="d-md-inline d-none">(03)</span>
+  {{/link-to}}
+
+  {{#link-to 
+    'contests.admission.apat.upcoming'
+    class="tab py-4 px-lg-5 px-4" }}
+    <i class="far fa-calendar mr-3 fa-lg d-md-inline d-none"></i>Upcoming Contests
+    <span class="d-md-inline d-none">(08)</span>
+  {{/link-to}}
+
+  {{#link-to 
+    'contests.admission.apat.archived'
+    class="tab py-4 px-lg-5 px-4" }}
+    <i class="fas fa-archive mr-3 fa-lg d-md-inline d-none"></i>Archived Contests
+    <span class="d-md-inline d-none">(10)</span>
+  {{/link-to}}
+</div>
+
+{{outlet}}

@@ -22,10 +22,11 @@
       {{/link-to}}
     </div>
   </div>
+  {{#if currentLevel}}
   <div class="foot t-align-c p-md-2 p-lg-3 p-5 align-items-center">
     <div class="font-sm bold p-md-0 py-4 my-2">
       <span>Current Level : </span>
-      <span class="orange">Level 0</span>
+      <span class="orange">Level {{ currentLevel.level }}</span>
       <i class="fas fa-crown"></i>
     </div>
     <div class="divider-h w-80 mx-auto my-4"></div>
@@ -35,16 +36,17 @@
       </div>
       <div class="description ml-3 t-align-l col-lg-8 col-9 pl-0">
         <h5>Unlock Badge</h5>
-        <span class="card-md mt-1">5 more problems to Level-1</span>
+        <span class="card-md mt-1">{{sub currentLevel.nextRequiredSubmissionCount currentLevel.perfectSubmissionCount}} more problems to Level-{{currentLevel.nextLevel}}</span>
         <div class="row mx-0">
           <div class="col-10 px-0">
-            <progress value="50" max="100" class="my-3 w-90 d-inline-block"></progress>
+            <progress value="{{progress}}" max="100" class="my-3 w-90 d-inline-block"></progress>
           </div>
           <div class="col-2 px-0">
-            <span class="card-md bold float-right mt-2 pt-1">5/10</span>
+            <span class="card-md bold float-right mt-2 pt-1">{{currentLevel.perfectSubmissionCount}}/{{currentLevel.nextRequiredSubmissionCount}}</span>
           </div>
         </div>
       </div>
     </div>
   </div>
+  {{/if}}
 </div>

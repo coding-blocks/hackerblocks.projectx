@@ -1,10 +1,10 @@
-<div class="col-1 bg-dark-grey side-bar h-100 px-0 pt-4 t-align-c">
-  <div class="white pb-xl-3 pt-3 pb-5">
+<div class="col-1 bg-dark-grey side-bar bl h-100 px-0 t-align-c flex-col">
+  <div class="white pb-xl-3 py-5 logo">
     <i class="fab fa-slack fa-4x"></i>
   </div>
   {{#each problemIds as |id index|}}
     {{#link-to
-      'competitions.id.contest.attempt.problem'
+      problemRoute
       id
       class="white d-block v-align-ma py-4 pointer"
     }}
@@ -21,6 +21,16 @@
         <i class="fas fa-code mx-1 mx-xl-3 font-mds"></i>
         <span class="font-xl extra-bold">{{inc index}}</span>
       </ProblemStatus>
+    {{/link-to}}
+  {{/each}}
+  {{#each quizIds as |id index|}}
+    {{#link-to
+      quizRoute
+      id
+      class="white d-block v-align-ma py-4 pointer"
+    }}
+      <i class="fas fa-puzzle-piece mx-1 mx-xl-3 font-mds"></i>
+      <span class="font-xl extra-bold">{{inc index}}</span>
     {{/link-to}}
   {{/each}}
 </div>

@@ -9,10 +9,10 @@ module.exports = function(defaults) {
       only: ['range', 'toggle', 'inc', 'includes', 'array'],
     },
     'ember-truth-helpers': {
-      only: ['eq', 'lt'],
+      only: ['eq', 'lt', 'gt'],
     },
     'ember-math-helpers' : {
-      only: ['sub']
+      only: ['sub', 'div']
     },
     'ember-cli-string-helpers': {
       only: ['truncate', 'concat'],

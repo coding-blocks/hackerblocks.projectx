@@ -1,0 +1,15 @@
+<div class="overflow-y-auto no-scrollbar question-area">
+  <div class="font-mds mb-4">Question {{question.id}}</div>
+  <div class="font-sm bold word-wrap">
+    {{markdown-to-html question.description}}
+  </div>
+  <div class="bg-grey h-20 my-4 br-5"></div>
+  <div class="mt-5">
+    {{#each question.choices as |choice|}}
+      {{question-container/choice-view
+        choice=choice
+        submission=submission
+        selectAnswer=(action (perform selectAnswerTask choice.id)) }}
+    {{/each}}
+  </div>
+</div>

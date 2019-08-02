@@ -28,6 +28,7 @@ export default Model.extend({
   plagiarismFiltering: DS.attr(),
   dcb: DS.belongsTo('dcb'),
   problems: DS.hasMany('problems'),
+  quizzes: DS.hasMany('quiz'),
   currentAttempt: DS.belongsTo('contest-attempt'),
   college_contest: DS.belongsTo('college_contest'),
   contest_type: DS.attr(),

@@ -17,10 +17,19 @@
       @problem={{problem}} />
   </div>
   <div class="col-4">
-    <DailyGoalCardSmall 
-      class="py-4"
-      @level={{level}} />
-    <RatingCard class="py-4" />
+    <LevelView 
+      @contest={{contest}}
+      @levelComponent={{component 'daily-goal-card-small'}} 
+      class="pb-5"
+      as |LevelCard|>
+      <LevelCard  />
+    </LevelView>
+    {{#if problem.canSubmitReview}}
+      <RatingCard 
+        class="py-4"
+        @contest={{contest}}
+        @problem={{problem}} />
+    {{/if}}
     <AuthorCard class="py-4" />
   </div>
 </div>

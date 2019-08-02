@@ -16,7 +16,7 @@ export default class CompetitionContestComponent extends Component {
   @computed('contest')
   get problemCount() {
     if (this.contest) {
-      return this.contest.hasMany('problems').ids().length
+      return this.get('contest').hasMany('problems').ids().length
     }
   }
 

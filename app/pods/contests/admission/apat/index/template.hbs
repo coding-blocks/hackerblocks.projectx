@@ -1,0 +1,15 @@
+<div class="pt-5">
+  <div class="row">
+    {{#each admission_contests as |contest|}}
+      <ContestCard
+        @contest={{contest.contest}}>
+        {{#link-to
+          'contests.admission.contest'
+          contest.id
+          class="button-solid button-orange extra-bold mt-4 mb-2 mx-auto d-block" }}
+          Solve Challenge
+        {{/link-to}}
+      </ContestCard>
+    {{/each}}
+  </div>
+</div>

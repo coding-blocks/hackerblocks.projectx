@@ -2,9 +2,13 @@ import Component from '@ember/component';
 import { restartableTask } from 'ember-concurrency-decorators';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 
 export default class LeaderboardViewComponent extends Component {
   @service store;
+
+  @alias('fetchLeaderboardTask.lastSuccessful.value') leaderboard_rows
+  @alias('leaderboard_rows.meta.myRank') myRank
 
   didReceiveAttrs() {
     this.fetchLeaderboardTask.perform()

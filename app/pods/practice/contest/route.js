@@ -9,14 +9,8 @@ export default class ContestRoute extends Route {
     const practice = await this.store.findRecord('practice', params.practice_id, {
       include: 'contest'
     })
-    const levels = await this.store.query('user_level', {
-      filter: {
-        contestId: practice.contest.get('id')
-      }
-    })
     return RSVP.hash({
-      practice,
-      level: levels.toArray()[0]
+      practice
     })
   }
 

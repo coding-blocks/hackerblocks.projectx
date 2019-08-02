@@ -1,7 +1,7 @@
 <div class="border-card p-5">
-  {{#if (eq result "compile_error")}}
+  {{#if (eq judgeResult.result "compile_error")}}
     <h1>Compilation Error</h1>
-  {{else if (eq result "success")}}
+  {{else if (eq judgeResult.result "success")}}
     <h1>Success</h1>
   {{else}}
     <h1>Judge Error</h1>

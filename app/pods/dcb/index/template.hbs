@@ -23,24 +23,22 @@
       </div>
     </div>
     <div class="col-4">
-      <DailyGoalCard @level={{level}} class="pb-5">
-        <div class="divider-h my-4"></div>
-        <h4>My Badges</h4>
-        <div class="row badge-scroll my-4">
-          <div class="col-4 col-lg-3">
-            <img src="/images/hexagon.jpg" alt="Badge Logo" class="mybadge" />
-          </div>
-          <div class="col-4 col-lg-3">
-            <img src="/images/hexagon.jpg" alt="Badge Logo" class="mybadge" />
-          </div>
-          <div class="col-4 col-lg-3">
-            <img src="/images/hexagon.jpg" alt="Badge Logo" class="mybadge" />
-          </div>
-        </div>
-      </DailyGoalCard>
-      <SmallLeaderboardView 
-        @theme={{"blue"}}
-        @contest={{contest}} />
+      {{#if session.isAuthenticated}}
+        <LevelView 
+          @contest={{contest}}
+          @levelComponent={{component 'daily-goal-card'}} 
+          class="pb-5"
+          as |LevelCard|>
+          <LevelCard  />
+        </LevelView>
+      {{/if}}
+      <div class="border-card px-0">
+        <h5 class="t-align-c">Leaderboard</h5>
+        <LeaderboardView
+          @for="contest"
+          @theme="blue"
+          @contestId={{contest.id}} />
+      </div>
     </div>
   </div>
 </div>

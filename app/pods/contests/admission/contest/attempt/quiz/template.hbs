@@ -1,0 +1,14 @@
+<FullScreenContestView
+  @route="contests.admission.contest.attempt"
+  @attempt={{contest_attempt}}
+  @submitTask={{submitTask}}
+  @contest={{contest}}>
+  <div class="col-11 offset-1">
+    <FullScreenQuizView
+      @changeQuestion={{changeQuestion}}
+      @quiz_attempt={{quiz_attempt}}
+      @index={{q}}
+      @quiz={{quiz}}
+      @contest={{contest}} />
+  </div>
+</FullScreenContestView>
