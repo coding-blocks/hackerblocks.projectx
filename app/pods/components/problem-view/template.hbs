@@ -37,7 +37,7 @@
   {{else if (eq selectedTab "leaderboard")}}
   <LeaderboardView
     @for="problem"
-    @contestId={{problem.contest.id}}
+    @contestId={{contest.id}}
     @problemId={{problem.id}}
     @allowFilter=true 
     @columns={{array 'college' 'language'}} />

@@ -7,12 +7,10 @@ export default class DCBIndexRoute extends Route {
 
   model() {
     const contest = this.modelFor('dcb').contest
-    const level = this.modelFor('dcb').level
     const problems = this.modelFor('dcb').problems
     return RSVP.hash({
       contest,
-      problems,
-      level
+      problems
     })
   }
 
@@ -20,6 +18,5 @@ export default class DCBIndexRoute extends Route {
     controller.set('dcb', model.contest.dcb)
     controller.set('contest', model.contest)
     controller.set('problems', model.problems)
-    controller.set('level', model.level)
   }
 }

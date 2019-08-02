@@ -12,9 +12,13 @@
       @problem={{problem}} />
   </div>
   <div class="col-4">
-    <DailyGoalCardSmall 
+    <LevelView 
+      @contest={{contest}}
+      @levelComponent={{component 'daily-goal-card-small'}} 
       class="py-4"
-      @level={{level}} />
+      as |LevelCard|>
+      <LevelCard  />
+    </LevelView>
     {{#if canSubmitReview}}
       <RatingCard 
         class="py-4"
