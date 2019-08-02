@@ -14,3 +14,28 @@
   height: 400px;
   border: none;
 }
+
+.q1{
+  background-color: #f3f3f3 !important;
+  fill: #f3f3f3 !important;
+}
+
+.q2{
+    background-color: #f1be33 !important;
+  fill: #f1be33 !important;
+}
+
+.q3{
+    background-color: #f19633 !important;
+  fill: #f19633 !important;
+}
+
+.q4{
+    background-color: #ec6333 !important;
+  fill: #ec6333 !important;
+}
+
+.q5{
+    background-color: #e63030 !important;
+  fill: #e63030 !important;
+}

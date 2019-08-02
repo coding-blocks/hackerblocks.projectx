@@ -5,5 +5,6 @@ export default DS.Model.extend({
   email: DS.attr(),
   course: DS.attr(),
   oauth_id: DS.attr(),
-  photo: DS.attr()
+  photo: DS.attr(),
+  createdAt: DS.attr()
 });

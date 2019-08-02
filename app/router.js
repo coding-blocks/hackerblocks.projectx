@@ -47,6 +47,9 @@ Router.map(function() {
       });
     });
   });
+  this.route('users', function() {
+    this.route('id', { path: '/:user_id' });
+  })
 });
 
 export default Router;

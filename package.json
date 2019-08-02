@@ -69,6 +69,7 @@
   },
   "dependencies": {
     "@coding-blocks/motley": "^0.3.44",
+    "cal-heatmap": "^3.6.2",
     "ember-composable-helpers": "^2.3.1"
   }
 }

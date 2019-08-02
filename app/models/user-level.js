@@ -14,5 +14,6 @@ export default Model.extend({
   }),
   nextRequiredSubmissionCount: Ember.computed('perfectSubmissionCount', 'level', function() {
     return fib(this.level+2)
-  })
+  }),
+  createdAt: DS.attr()
 });
