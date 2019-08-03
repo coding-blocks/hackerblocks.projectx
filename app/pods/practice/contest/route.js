@@ -7,7 +7,7 @@ export default class ContestRoute extends Route {
 
   async model(params) {
     const practice = await this.store.findRecord('practice', params.practice_id, {
-      include: 'contest'
+      include: 'contest,tags'
     })
     return RSVP.hash({
       practice

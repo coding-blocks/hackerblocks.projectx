@@ -3,5 +3,7 @@ const { Model } = DS;
 
 export default Model.extend({
   name: DS.attr(),
-  contest: DS.belongsTo('contest')
+  logo: DS.attr(),
+  contest: DS.belongsTo('contest'),
+  tags: DS.hasMany('tag')
 });

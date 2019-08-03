@@ -52,11 +52,8 @@
       <div class="col-12 col-md-4">
         <LevelView 
           @contest={{contest}}
-          @levelComponent={{component 'level-card'}} 
-          as |LevelCard|>
-          <LevelCard  />
-        </LevelView>
-
+          @levelComponent={{component 'level-card'}} />
+          
         {{problemView.filterComponent}}
 
         <div class="border-card px-0 mt-5">
