@@ -4,7 +4,14 @@
     <img class="round s-50x50" src="{{author.photo}}" alt="">
     <div class="description ml-3">
       <h5>{{author.name}}</h5>
-      <span class="font-xs"><a href="#" class="orange">View Profile</a></span>
+      <span class="font-xs">
+        <LinkTo
+          @route="users.id"
+          @model={{author.id}}
+          class="orange">
+          View Profile
+        </LinkTo>
+      </span>
     </div>
   </div>
 </div>
