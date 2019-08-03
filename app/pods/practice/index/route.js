@@ -5,7 +5,9 @@ export default class PracticeRoute extends Route {
   @service store
 
   model() {
-    return this.store.findAll('practice')
+    return this.store.findAll('practice', {
+      include: 'tags'
+    })
   }
 
   setupController(controller, model) {
