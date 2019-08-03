@@ -18,6 +18,7 @@ export default Model.extend({
   problem: DS.belongsTo('problem'),
   contest: DS.belongsTo('contest'),
   user: DS.belongsTo('user'),
+  createdAt: DS.attr(),
   submitAtHumanize: Ember.computed('submit_at', function() {
     return moment.duration(this.submit_at / 1000).humanize()
   }),

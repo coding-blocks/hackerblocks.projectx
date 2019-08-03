@@ -31,10 +31,12 @@ export default Model.extend({
   quizzes: DS.hasMany('quiz'),
   currentAttempt: DS.belongsTo('contest-attempt'),
   college_contest: DS.belongsTo('college_contest'),
+  contest_type: DS.attr(),
   hasEnded: Ember.computed('end_time', function(){
     return moment(this.end_time).isBefore(moment())
   }),
   isYetToStart: Ember.computed('start_time', function(){
     return moment().isBefore(moment(this.start_time))
-  })
+  }),
+  
 });
