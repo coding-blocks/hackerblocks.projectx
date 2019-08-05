@@ -97,7 +97,11 @@
         Overall Leaderboard
       </h5>
 
-      <LeaderboardView @for="competition" @competitionId={{competition.id}} @allowFilter=true />
+      <LeaderboardView 
+        @for="competition" 
+        @competitionId={{competition.id}} 
+        @columns=['college']
+        @allowFilter=true />
     </div>
   </div>
 

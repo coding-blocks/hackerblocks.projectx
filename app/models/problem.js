@@ -12,6 +12,7 @@ export default Model.extend({
   source: DS.attr(),
   dcbProblems: DS.attr(),
   canSubmitReview: DS.attr(),
+  submissionCount: DS.attr(),
   contest: DS.belongsTo('contest'),
   solutionStubs: DS.hasMany('solution-stub'),
   editorial: DS.belongsTo('editorial'),

@@ -7,4 +7,9 @@ export default class DcbProblemCard extends Component {
   get end_time() {
     return moment(this.problem.dcbProblems.start).add(86400, 'second')
   }
+
+  @computed('problem')
+  get ended() {
+    return moment(this.problem.dcbProblems.start).add(86400, 'second') < moment()
+  }
 }

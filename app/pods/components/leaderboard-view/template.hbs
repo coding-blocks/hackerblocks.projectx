@@ -20,58 +20,70 @@
 </div>
 <div class="py-4">
   <div class="c-hb-leaderboard">
-    <table class="w-100">
-      <thead class="font-sm extra-bold {{theme}}">
-        <td class="pb-4">Rank</td>
-        <td class="pb-4">User</td>
-        {{#if showCollege}}
-        <td class="pb-4">College</td>
-        {{/if}}
-        {{#if showLanguage}}
-        <td class="pb-4">Language</td>
-        {{/if}}
-        <td class="pb-4">Score</td>
-      </thead>
-      <tbody>
-        {{#if myRank}}
-          <tr class="bg-gradient-{{theme}} white extra-bold">
-            <td class="py-4">#{{myRank.rank}}</td>
-            <td class="py-4">
-              <div class="img-desc align-items-center">
-                <img class="round s-30x30" src="/images/placeholder.gif" alt="">
-                <div class="description ml-3">
-                  {{myRank.user_name}}
+    {{#if leaderboard_rows}}
+      <table class="w-100">
+        <thead class="font-sm extra-bold {{theme}}">
+          <td class="pb-4">Rank</td>
+          <td class="pb-4">User</td>
+          {{#if showCollege}}
+          <td class="pb-4">College</td>
+          {{/if}}
+          {{#if showLanguage}}
+          <td class="pb-4">Language</td>
+          {{/if}}
+          <td class="pb-4">Score</td>
+        </thead>
+        <tbody>
+          {{#if myRank}}
+            <tr class="bg-gradient-{{theme}} white extra-bold">
+              <td class="py-4">#{{myRank.rank}}</td>
+              <td class="py-4">
+                <div class="img-desc align-items-center">
+                  <img class="round s-30x30" src="/images/placeholder.gif" alt="">
+                  <div class="description ml-3">
+                    {{myRank.user_name}}
+                  </div>
                 </div>
-              </div>
-            </td>
-            {{#if showCollege}}
-            <td class="py-4">{{myRank.college_name}}</td>
-            {{/if}}
-            <td class="py-4">{{myRank.score}}</td>
-          </tr>
-        {{/if}}
+              </td>
+              {{#if showCollege}}
+              <td class="py-4">{{myRank.college_name}}</td>
+              {{/if}}
+              <td class="py-4">{{myRank.score}}</td>
+            </tr>
+          {{/if}}
 
-        {{#each leaderboard_rows as |row i| }}
-          <tr class="hover-grey">
-            <td class="py-4">{{inc i}}</td>
-            <td class="py-4">
-              <div class="img-desc align-items-center">
-                <img class="round s-30x30" src="/images/placeholder.gif" alt="">
-                <div class="description ml-3">
-                  {{row.user.name}}
+          {{#each leaderboard_rows as |row i| }}
+            <tr class="hover-grey">
+              <td class="py-4">{{add (inc i) page.offset}}</td>
+              <td class="py-4">
+                <div class="img-desc align-items-center">
+                  <img class="round s-30x30" src="{{row.user.photo}}" alt="">
+                  <div class="description ml-3">
+                    {{row.user.name}}
+                  </div>
                 </div>
-              </div>
-            </td>
-            {{#if showCollege}}
-            <td class="py-4">{{row.college.name}}</td>
-            {{/if}}
-            {{#if showLanguage}}
-            <td class="py-4">{{row.language}}</td>
-            {{/if}}
-            <td class="py-4">{{row.score}}</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+              </td>
+              {{#if showCollege}}
+              <td class="py-4">{{row.college.name}}</td>
+              {{/if}}
+              {{#if showLanguage}}
+              <td class="py-4">{{row.language}}</td>
+              {{/if}}
+              <td class="py-4">{{row.score}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+
+      <PaginationPill 
+        @pagination={{leaderboard_rows.meta.pagination}} 
+        @setOffset={{action 'setOffset'}} />
+    {{else}}
+      <div class="t-align-c">
+        <p>
+          We can't show you a leaderboard until the submissions start rolling in, stay tuned!
+        </p>
+      </div>
+    {{/if}}
   </div>
 </div>

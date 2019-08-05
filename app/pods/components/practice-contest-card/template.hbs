@@ -18,30 +18,56 @@
     </div>
   </div>
   {{#if currentLevel}}
-  <div class="foot t-align-c p-md-2 p-lg-3 p-5 align-items-center">
-    <div class="font-sm bold p-md-0 py-4 my-2">
-      <span>Current Level : </span>
-      <span class="orange">Level {{ currentLevel.level }}</span>
-      <i class="fas fa-crown"></i>
-    </div>
-    <div class="divider-h w-80 mx-auto my-4"></div>
-    <div class="img-desc align-items-center font-sm pt-2 justify-content-center px-md-3 px-2 mt-4 mb-2">
-      <div class="pr-0 col-3 col-lg-4 pl-2">
-        <img src="/images/hexagon.jpg" alt="">
+    <div class="foot t-align-c p-md-2 p-lg-3 p-5 align-items-center">
+      <div class="font-sm bold p-md-0 py-4 my-2">
+        <span>Current Level : </span>
+        <span class="orange">Level {{ currentLevel.level }}</span>
+        <i class="fas fa-crown"></i>
       </div>
-      <div class="description ml-3 t-align-l col-lg-8 col-9 pl-0">
-        <h5>Unlock Badge</h5>
-        <span class="card-md mt-1">{{sub currentLevel.nextRequiredSubmissionCount currentLevel.perfectSubmissionCount}} more problems to Level-{{currentLevel.nextLevel}}</span>
-        <div class="row mx-0">
-          <div class="col-10 px-0">
-            <progress value="{{progress}}" max="100" class="my-3 w-90 d-inline-block"></progress>
-          </div>
-          <div class="col-2 px-0">
-            <span class="card-md bold float-right mt-2 pt-1">{{currentLevel.perfectSubmissionCount}}/{{currentLevel.nextRequiredSubmissionCount}}</span>
+      <div class="divider-h w-80 mx-auto my-4"></div>
+      <div class="img-desc align-items-center font-sm pt-2 justify-content-center px-md-3 px-2 mt-4 mb-2">
+        <div class="pr-0 col-3 col-lg-4 pl-2">
+          <img src="/images/hexagon.jpg" alt="">
+        </div>
+        <div class="description ml-3 t-align-l col-lg-8 col-9 pl-0">
+          <h5>Unlock Badge</h5>
+          <span class="card-md mt-1">{{sub currentLevel.nextRequiredSubmissionCount currentLevel.perfectSubmissionCount}} more problems to Level-{{currentLevel.nextLevel}}</span>
+          <div class="row mx-0">
+            <div class="col-10 px-0">
+              <progress value="{{progress}}" max="100" class="my-3 w-90 d-inline-block"></progress>
+            </div>
+            <div class="col-2 px-0">
+              <span class="card-md bold float-right mt-2 pt-1">{{currentLevel.perfectSubmissionCount}}/{{currentLevel.nextRequiredSubmissionCount}}</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  {{else}}
+    <div class="foot t-align-c p-md-2 p-lg-3 p-5 align-items-center">
+      <div class="font-sm bold p-md-0 py-4 my-2">
+        <span>Current Level : </span>
+        <span class="orange">Level 0</span>
+        <i class="fas fa-crown"></i>
+      </div>
+      <div class="divider-h w-80 mx-auto my-4"></div>
+      <div class="img-desc align-items-center font-sm pt-2 justify-content-center px-md-3 px-2 mt-4 mb-2">
+        <div class="pr-0 col-3 col-lg-4 pl-2">
+          <img src="/images/hexagon.jpg" alt="">
+        </div>
+        <div class="description ml-3 t-align-l col-lg-8 col-9 pl-0">
+          <h5>Unlock Badge</h5>
+          <span class="card-md mt-1">1 more problems to Level-1</span>
+          <div class="row mx-0">
+            <div class="col-10 px-0">
+              <progress value="0" max="100" class="my-3 w-90 d-inline-block"></progress>
+            </div>
+            <div class="col-2 px-0">
+              <span class="card-md bold float-right mt-2 pt-1">0/1</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   {{/if}}
 </div>

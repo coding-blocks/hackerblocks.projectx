@@ -17,6 +17,6 @@ export default class QuizController extends Controller {
     this.api.request(`contest-attempts/${this.contest_attempt.id}/submit`, {
       method: 'POST'
     })
-    this.transitionToRoute('contests.admission')
+    this.transitionToRoute('contests.admission.contest.feedback')
   }
 }

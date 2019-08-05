@@ -1,28 +1,36 @@
 <div class="py-4">
   <h4 class="mb-5 pt-4">My Submissions</h4>
-  <table class="w-100">
-    <thead class="font-sm extra-bold b-bottom">
-      <td class="pb-2">Result</td>
-      <td class="pb-2">Score</td>
-      <td class="pb-2">Time</td>
-      <td class="pb-2">Language</td>
-    </thead>
-    <tbody class="bold">
-      {{#each fetchSubmissionsTask.lastSuccessful.value as |submission|}}
-        <tr>
-          <td class="pb-4 pt-4 {{submission.resultParams.color}} font-sm">
-            <i class="{{submission.resultParams.icon}} pr-3"></i>
-            <span>{{submission.resultParams.message}}</span>
-          </td>
-          <td class="pb-4 pt-4">{{submission.score}}/100</td>
-          <td class="pb-4 pt-4">{{submission.msecs_elapsed}}</td>
-          <td class="pb-4 pt-4">{{submission.language}}</td>
-          <td class="pb-4 pt-4 t-align-r">
-            <a href="#View" class="pr-3 orange">View</a>
-            <span class="grey normal">{{submission.submitAtHumanize}}</span>
-          </td>
-        </tr>
-      {{/each}}
-    </tbody>
-  </table>
+  {{#if submissions}}
+    <table class="w-100">
+      <thead class="font-sm extra-bold b-bottom">
+        <td class="pb-2">Result</td>
+        <td class="pb-2">Score</td>
+        <td class="pb-2">Time</td>
+        <td class="pb-2">Language</td>
+      </thead>
+      <tbody class="bold">
+        {{#each submissions as |submission|}}
+          <tr>
+            <td class="pb-4 pt-4 {{submission.resultParams.color}} font-sm">
+              <i class="{{submission.resultParams.icon}} pr-3"></i>
+              <span>{{submission.resultParams.message}}</span>
+            </td>
+            <td class="pb-4 pt-4">{{submission.score}}/100</td>
+            <td class="pb-4 pt-4">{{submission.msecs_elapsed}}</td>
+            <td class="pb-4 pt-4">{{submission.language}}</td>
+            <td class="pb-4 pt-4 t-align-r">
+              <a href="#View" class="pr-3 orange">View</a>
+              <span class="grey normal">{{submission.submitAtHumanize}}</span>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{else}}
+    <div class="t-align-c">
+      <p>
+        You haven't made a submission to this problem yet
+      </p>
+    </div>
+  {{/if}}
 </div>

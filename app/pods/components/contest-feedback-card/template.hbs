@@ -1,0 +1,37 @@
+<div class="t-align-c">
+  <div class="s-80x80 bg-gradient-green-lr br-50 p-4 mx-auto">
+    <i class="fas fa-check white mt-sm-1 mt-2 fa-2x"></i>
+  </div>
+  <div class="my-5">
+    <div class="font-xl bold">{{ contest.name }}</div>
+    <div class="font-md">Your test has been successfully submitted</div>
+  </div>
+  <div class="border-card p-5">
+    <h3>Rate your experience</h3>
+    <RatingStars
+      @value={{feedback.stars}}
+      @scale={{5}}
+      @updateRating={{action (mut feedback.stars)}} />
+    <Textarea 
+      @value={{feedback.body}}
+      @rows="5" 
+      @cols="30" 
+      placeholder="What can we do to improve your experience?"
+      class="w-100">
+    </Textarea>
+    <div class="row all-center">
+      <button 
+        class="button-solid button-orange font-sm extra-bold my-3"
+        {{action (perform saveFeedbackTask)}}>
+        {{#if saveFeedbackTask.isRunning}}
+          Submitting
+        {{else}}
+          Submit Feedback
+        {{/if}}
+      </button>
+      <div class="font-xs extra-bold">
+        <a href="#" class="orange ml-4" {{action onSkip}}>Skip</a>
+      </div>
+    </div>
+  </div>
+</div>

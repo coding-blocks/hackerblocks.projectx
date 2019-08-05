@@ -6,13 +6,9 @@ export default class ProblemController extends Controller {
   @service api
 
   @dropTask submitTask = function *() {
-    try {
-      this.api.request(`contest-attempts/${this.contest_attempt.id}/submit`, {
-        method: 'POST'
-      })
-      this.transitionToRoute('contests.admission')
-    } catch (err) {
-      console.error(err)
-    }
+    this.api.request(`contest-attempts/${this.contest_attempt.id}/submit`, {
+      method: 'POST'
+    })
+    this.transitionToRoute('contests.admission.contest.feedback')
   }
 }
