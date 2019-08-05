@@ -1,30 +1,28 @@
 import Controller from '@ember/controller';
+import { restartableTask } from 'ember-concurrency-decorators';
 import { inject as service } from '@ember/service';
-import { computed, action } from '@ember/object';
+import { computed } from '@ember/object';
 
-export default class UserIdController extends Controller {
+export default class UserIdController extends Controller{
   @service currentUser;
 
-  queryParams = ['offset', 'limit']
-
-  offset = 0
-  limit = 2
-
   @computed('currentUser')
-  get userHimself() {
+  get userHimself(){
     return this.currentUser.user.id === this.user.id
   }
 
-  @computed('offset')
-  get page() {
-    return {
-      offset: this.offset,
-      limit: this.limit
-    }
-  }
+  @restartableTask fetchSubmissionsForDayTask = function* (date) {
+    const submissions = yield this.store.query('submission', {
+      custom: {
+        ext: 'url',
+        url: '/date'
+      },
+      date: date,
+      user_id: this.user.id,
+      include: 'problem',
+      exclude: 'problem.*, user.*, contest.*'
+    })
 
-  @action
-  setOffset(offset) {
-    this.set('offset', offset)
+    this.set('submissions', submissions)
   }
 }
