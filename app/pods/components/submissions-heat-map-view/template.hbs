@@ -33,8 +33,6 @@
         </tbody>
       </table>
       
-      {{yield (hash 
-        submissions=submissions)}}
       <PaginationPill 
         @pagination={{submissions.meta.pagination}} 
         @setOffset={{action setOffset}} />

@@ -8,7 +8,7 @@ export default class UserIdController extends Controller {
   queryParams = ['offset', 'limit']
 
   offset = 0
-  limit = 2
+  limit = 10
 
   @computed('currentUser')
   get userHimself() {
