@@ -1,49 +1,22 @@
-<div class="t-align-c">
-  {{#if editorial}}
-  <pre>{{editorial.content}}</pre>
-  {{else}}
-  <div class="pt-5 pb-4 mt-5">
-    <i class="fas fa-unlock-alt fa-4x w-100 t-align-c"></i>
-  </div>
-  <h4>Editorial Locked</h4>
-  <h6 class="normal">If you unlock the editorial, you will not be awarded any score for this problem</h6>
-  <button class="button-solid button-orange font-sm extra-bold mt-4 mb-5" {{action (perform unlockEditorialTask)}}>Yes, I want to unlock</button>
-  {{/if}}
-
-  <div class="pt-5 pb-4">
-    <i class="fas fa-unlock-alt fa-4x w-100"></i>
-  </div>
-  <h4>Testcases Locked</h4>
-  <h6 class="normal">If you unlock the testcases, you will not be awarded any score for this problem</h6>
-  <button class="button-solid button-orange font-sm extra-bold mt-4 mb-5">Yes, I want to unlock</button>
-
-  <h4 class="mb-4">Download Testcases</h4>
-  <div class="row justify-content-center">
-    <div class="col-6 row">
-      <button class="button-dashed button-orange font-sm extra-bold mx-3 my-3">Input 1<i
-          class="fas fa-arrow-down ml-3"></i></button>
-      <button class="button-dashed button-orange font-sm extra-bold mx-3 my-3">Output 1<i
-          class="fas fa-arrow-down ml-3"></i></button>
+{{#if fetchEditorialTask.isRunning}}
+  <LoadingComponent />
+{{else if editorial}}
+  {{markdown-to-html editorial.content}}
+{{else}}
+  <div class="t-align-c">
+    <div class="pt-5 pb-4 mt-5">
+      <i class="fas fa-unlock-alt fa-4x w-100 t-align-c"></i>
     </div>
-    <div class="col-6 row">
-      <button class="button-dashed button-orange font-sm extra-bold mx-3 my-3">Input 2<i
-          class="fas fa-arrow-down ml-3"></i></button>
-      <button class="button-dashed button-orange font-sm extra-bold mx-3 my-3">Output 2<i
-          class="fas fa-arrow-down ml-3"></i></button>
-    </div>
+    <h4>Editorial Locked</h4>
+    <h6 class="normal">If you unlock the editorial, you will not be awarded any score for this problem</h6>
+    <button 
+      class="button-solid button-orange font-sm extra-bold mt-4 mb-5" 
+      {{action (perform unlockEditorialTask)}}>
+      {{#if unlockEditorialTask.isRunning}}
+        Unlocking...
+      {{else}}
+        Yes, I want to unlock
+      {{/if}}
+    </button>
   </div>
-  <div class="row justify-content-center">
-    <div class="col-6 row">
-      <button class="button-dashed button-orange font-sm extra-bold mx-3 my-3">Input 3<i
-          class="fas fa-arrow-down ml-3"></i></button>
-      <button class="button-dashed button-orange font-sm extra-bold mx-3 my-3">Output 3<i
-          class="fas fa-arrow-down ml-3"></i></button>
-    </div>
-    <div class="col-6 row">
-      <button class="button-dashed button-orange font-sm extra-bold mx-3 my-3">Input 4<i
-          class="fas fa-arrow-down ml-3"></i></button>
-      <button class="button-dashed button-orange font-sm extra-bold mx-3 my-3">Output 4<i
-          class="fas fa-arrow-down ml-3"></i></button>
-    </div>
-  </div>
-</div>
+{{/if}}

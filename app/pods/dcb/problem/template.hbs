@@ -27,6 +27,8 @@
         @contest={{contest}}
         @problem={{problem}} />
     {{/if}}
-    <AuthorCard class="py-4" />
+    <AuthorCard 
+      @author={{problem.createdBy}}
+      class="py-4" />
   </div>
 </div>

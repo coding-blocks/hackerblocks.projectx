@@ -43,6 +43,7 @@
     @columns={{array 'college' 'language'}} />
   {{else if (eq selectedTab "solution")}}
   <SolutionComponent 
+    @contest={{contest}}
     @problem={{problem}} />
   {{else}}
   fghjk
