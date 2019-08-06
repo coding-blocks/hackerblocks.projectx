@@ -1,5 +1,5 @@
-<div class="border-card p-5 bg-black white">
-  <div class="row align-items-center justify-content-between">
+<div class="border-card px-5 py-4 bg-black white mt-3">
+  <div class="d-flex align-items-center justify-content-between">
     <div class="row no-gutters col-md-9 col-12 align-items-center">
       <div class="col-md-4 col-12 pr-2">
         <h3>{{contest.name}}</h3>
@@ -24,7 +24,7 @@
     <div>
       {{#if contest_attempt}}
         {{#link-to
-          'competitions.id.contest.attempt'
+          route
           class="button-solid button-orange font-sm extra-bold my-3"
         }}
           Resume Challenge
@@ -81,7 +81,7 @@
   @onClose={{action (mut showStartDialog) false}}
   @translucentOverlay={{true}}
 >
-  <div class="overflow-hidden bg-white t-align-c">
+  <div class="br-15 overflow-hidden p-0 bg-white t-align-c">
     <div class="bg-grey py-4">
       <h5>START TEST</h5>
     </div>

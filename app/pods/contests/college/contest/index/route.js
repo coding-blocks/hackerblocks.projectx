@@ -12,17 +12,7 @@ export default class IdRoute extends Route {
   }
 
   async model(params) {
-    const { college_contest_id } = this.paramsFor('contests.college.id')
-    const college_contest = await this.store.findRecord('college_contest', college_contest_id, {
-      include: 'contest',
-      reload: true
-    })
-    
-    const contest = college_contest.contest
-    return RSVP.hash({
-      college_contest,
-      contest
-    })
+    return this.modelFor('contests.college.contest')
   }
 
   setupController(controller, model) {

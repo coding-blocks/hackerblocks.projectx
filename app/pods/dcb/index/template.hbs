@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="row justify-content-between">
-    <div class="col-8">
+    <div class="col-12 col-md-8">
       {{#if top_problem}}
         <DcbHeader @contest={{contest}} @top_problem={{top_problem}} class="pb-5" />
       {{/if}}
@@ -27,7 +27,7 @@
           @theme="blue" />
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-12 col-md-4 mt-md-0 mt-5">
       {{#if session.isAuthenticated}}
         <LevelView 
           @contest={{contest}}

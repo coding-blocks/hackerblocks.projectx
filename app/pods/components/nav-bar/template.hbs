@@ -37,12 +37,14 @@
       </li>
       <li class="top-nav-option px-3">
         {{#if session.isAuthenticated}}
-        <div class="img-desc align-items-center font-sm pt-2">
-          <img class="round s-30x30" src="{{user.photo}}" alt="">
-          <div class="description ml-3">
-            Hi, {{user.name}}
+        {{!-- {{#link-to 'users.id' user.id}}
+          <div class="img-desc align-items-center font-sm pt-2">
+            <img class="round s-30x30" src="{{user.photo}}" alt="Profile Pic">
+            <div class="description ml-3">
+              Hi, {{user.name}}
+            </div>
           </div>
-        </div>
+        {{/link-to}} --}}
         {{else}}
         <LoginButton />
         {{/if}}

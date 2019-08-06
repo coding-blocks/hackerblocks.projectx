@@ -1,9 +1,12 @@
+<div class="row my-4">
+  <div class="col-12">
+    <PracticeProblemCard @problem={{problem}} />
+  </div>
+</div>
 
 <div class="row">
   <div class="col-12 col-md-8">
-    <ProblemView 
-      @contest={{contest}}
-      @problem={{problem}} />
+    <ProblemView @contest={{contest}} @problem={{problem}} />
   </div>
   <div class="col-12 col-md-4">
     {{#if canSubmitReview}}

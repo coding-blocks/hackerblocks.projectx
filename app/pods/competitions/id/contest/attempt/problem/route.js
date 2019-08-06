@@ -3,7 +3,7 @@ import RSVP from 'rsvp';
 import { action } from '@ember/object';
 
 export default class ProblemRoute extends Route {
-  breadCrumbs = null
+  breadCrumb = null
 
   model(params) {
     const contest = this.modelFor('competitions.id.contest')

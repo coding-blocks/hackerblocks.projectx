@@ -1,7 +1,7 @@
 <ProblemListView @contest={{contest}} @page={{page}} as |problemView|>
-  <div class="row">
+  <div class="row mt-4">
     <div class="col-12 col-md-8">
-      <div class="border-card p-4 bg-gradient-purple white">
+      <div class="border-card p-4 bg-gradient-black white">
         <div class="row mx-0 align-items-center">
           <div class="col-xl-10 col-md-9 col-9">
             <div class="img-desc align-items-center justify-content-center">
@@ -23,24 +23,32 @@
 
       <div class="border-card mt-4">
         {{#if problemView.showError}}
-          You are not authorized to view problems of this contest.
+        You are not authorized to view problems of this contest.
         {{else}}
+<<<<<<< HEAD:app/pods/contests/college/contest/attempt/index/template.hbs
+        <ProblemList @route="contests.college.contest.attempt.problem" @theme="purple" @problems={{problemView.problems}} />
+        <PaginationPill @pagination={{problemView.problems.meta.pagination}} @setOffset={{action 'setOffset'}} />
+=======
           <ProblemList 
             @route="contests.college.id.problem" 
-            @theme="purple" 
+            @theme="orange" 
             @problems={{problemView.problems}} />
           <PaginationPill 
             @pagination={{problemView.problems.meta.pagination}} 
             @setOffset={{action 'setOffset'}} />
+>>>>>>> parent of 74fa6a9... Revert "paginatino in heatmap":app/pods/contests/college/id/index/template.hbs
         {{/if}}
       </div>
     </div>
 
     <div class="col-12 col-md-4">
-      {{problemView.filterComponent}}
+      {{problemView.filterComponent status=status difficulty=difficulty}}
       <div class="border-card mt-5">
         <h5 class="t-align-c">Leaderboard</h5>
-        <LeaderboardView @for="contest" @theme={{"purple"}} @contestId={{contest.id}} />
+        <LeaderboardView 
+          @for="contest" 
+          @theme="orange"
+          @contestId={{contest.id}} />
       </div>
     </div>
   </div>

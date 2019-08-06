@@ -3,6 +3,7 @@
 
 .ember-modal-dialog {
   padding: 0px;
+  border-radius: 15px;
 }
 
 .ember-modal-overlay {
