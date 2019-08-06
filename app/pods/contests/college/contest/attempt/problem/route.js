@@ -1,8 +1,9 @@
 import Route from '@ember/routing/route';
+import { action } from '@ember/object';
 
 export default class ProblemRoute extends Route {
   model(params) {
-    const { contest } = this.modelFor('contests.college.id')
+    const { contest } = this.modelFor('contests.college.contest')
     const problem = this.store.queryRecord('problem', {
       custom: {
         ext: 'url',
@@ -22,5 +23,12 @@ export default class ProblemRoute extends Route {
   setupController(controller, model) {
     controller.set('contest', model.contest)
     controller.set('problem', model.problem)
+  }
+
+  @action
+  error(err){
+    if (err.isAdapterError) {
+      this.transitionTo('contests.college.contest')
+    }
   }
 }
