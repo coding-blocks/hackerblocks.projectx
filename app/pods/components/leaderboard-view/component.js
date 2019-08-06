@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { restartableTask } from 'ember-concurrency-decorators';
 import { inject as service } from '@ember/service';
-import { computed } from '@ember/object';
+import { computed, action } from '@ember/object';
 import { alias } from '@ember/object/computed';
 
 export default class LeaderboardViewComponent extends Component {
@@ -9,6 +9,11 @@ export default class LeaderboardViewComponent extends Component {
 
   @alias('fetchLeaderboardTask.lastSuccessful.value') leaderboard_rows
   @alias('leaderboard_rows.meta.myRank') myRank
+
+  page = {
+    offset: 0,
+    limit: 10
+  }
 
   didReceiveAttrs() {
     this.fetchLeaderboardTask.perform()
@@ -49,9 +54,16 @@ export default class LeaderboardViewComponent extends Component {
       include: 'user,college',
       exclude: 'user.*,college.*',
       sort,
-      filter
+      filter,
+      page: this.page
     })
 
     return leaderboard
+  }
+
+  @action
+  setOffset(offset) {
+    this.set('page.offset', offset)
+    this.fetchLeaderboardTask.perform()
   }
 }

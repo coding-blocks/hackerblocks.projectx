@@ -24,3 +24,5 @@
 /bower.json.ember-try
 /package.json.ember-try
 DEBUG/
+
+.DS_Store

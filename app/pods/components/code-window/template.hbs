@@ -4,7 +4,6 @@
       <span class="font-sm extra-bold">{...} Code Editor</span>
     </div>
     <div>
-      <i class="fas fa-expand-arrows-alt"></i>
       <select class="dropdown d-inline-block" onchange={{action "selectLanguage" value="target.value"}}>
         {{#each-in languageSpecs as |key value|}}
           <option value="{{value.code}}" selected={{eq value.code selectedLanguage.mode}}>{{value.name}}</option>

@@ -9,5 +9,6 @@ export default Model.extend({
   faqs: DS.attr(),
   banner: DS.attr(),
   thumbnail: DS.attr(),
-  overview: DS.attr()
+  overview: DS.attr(),
+  description: DS.attr()
 });

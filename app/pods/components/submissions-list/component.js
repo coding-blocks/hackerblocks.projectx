@@ -1,9 +1,12 @@
 import Component from '@ember/component';
 import { restartableTask } from 'ember-concurrency-decorators';
 import { inject as service } from '@ember/service';
+import { alias } from '@ember/object/computed';
 
 export default class SubmissionListComponent extends Component {
   @service store
+
+  @alias('fetchSubmissionsTask.lastSuccessful.value') submissions
 
   didReceiveAttrs() {
     this.fetchSubmissionsTask.perform()

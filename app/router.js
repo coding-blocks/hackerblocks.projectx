@@ -9,13 +9,15 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('contests', function() {
     this.route('college', function() {
-      this.route('id', {path: '/c/:college_contest_id'}, function() {
-        this.route('problem', {path: '/p/:problem_id'});
-      });
       this.route('all', function() {
         this.route('live');
         this.route('upcoming');
         this.route('archived');
+      });
+      this.route('contest', { path: '/c/:college_contest_id'}, function() {
+        this.route('attempt', function() {
+          this.route('problem', { path: '/p/:problem_id' });
+        });
       });
     });
     this.route('admission', function() {
@@ -28,6 +30,7 @@ Router.map(function() {
           this.route('problem', {path: '/p/:problem_id'});
           this.route('quiz', {path: '/q/:quiz_id'});
         });
+        this.route('feedback');
       });
       this.route('apat', function() {
         this.route('archived');
@@ -56,6 +59,7 @@ Router.map(function() {
         this.route('attempt', function() {
           this.route('problem', {path: '/p/:problem_id'});
         });
+        this.route('feedback');
       });
     });
   });

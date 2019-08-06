@@ -10,7 +10,7 @@ export default class AttemptController extends Controller {
       this.api.request(`contest-attempts/${this.contest_attempt.id}/submit`, {
         method: 'POST'
       })
-      this.transitionToRoute('competitions.id')
+      this.transitionToRoute('competitions.id.contest.feedback')
     } catch (err) {
       console.error(err)
     }

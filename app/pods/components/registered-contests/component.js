@@ -8,6 +8,7 @@ export default class RegisteredContestComponent extends Component{
 
   @computed('currentUser')
   get registrations(){
+    console.log('main hoon current user', this.currentUser.user)
     return this.store.query('registration', {
       filter: {
         user_id: this.currentUser.user.id

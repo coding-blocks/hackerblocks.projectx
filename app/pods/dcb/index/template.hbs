@@ -6,14 +6,19 @@
     </div>
   </div>
   <div class="row justify-content-between">
-    <div class="col-8">
+    <div class="col-12 col-md-8">
       {{#if top_problem}}
         <DcbHeader @contest={{contest}} @top_problem={{top_problem}} class="pb-5" />
       {{/if}}
       <div class="border-card">
         <div class="row no-gutters justify-content-between">
-          <div class="col-6">
-            <h4 class="mb-5">Previous DCBs</h4>
+          <div class="col-12">
+            <h4 class="mb-2">
+              Previous DCBs
+            </h4>
+            <div class="font-xs mb-2">
+              These Code Bytes are finished. You'll be awarded partial score for these problems.
+            </div>
           </div>
         </div>
         <ProblemList 
@@ -22,7 +27,7 @@
           @theme="blue" />
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-12 col-md-4 mt-md-0 mt-5">
       {{#if session.isAuthenticated}}
         <LevelView 
           @contest={{contest}}

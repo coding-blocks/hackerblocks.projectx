@@ -12,7 +12,7 @@ module.exports = function(defaults) {
       only: ['eq', 'lt', 'gt'],
     },
     'ember-math-helpers' : {
-      only: ['sub', 'div']
+      only: ['sub', 'div', 'add']
     },
     'ember-cli-string-helpers': {
       only: ['truncate', 'concat'],

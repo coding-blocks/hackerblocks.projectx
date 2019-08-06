@@ -1,42 +1,47 @@
 <div class="c-dcb-card">
   <div class="border-card p-5 bg-gradient-blue-lr">
-    <div class="row justify-content-between">
-      <div class="col-md-4 col-sm-6 col-6">
-        <h5>TODAY'S CODE BYTE</h5>
-        <h5 class="mt-2 mb-4">Sunday, 28th April</h5>
+    {{#unless ended}}
+      <div class="row justify-content-between">
+        <div class="col-md-4 col-sm-6 col-6">
+          <h5>TODAY'S CODE BYTE</h5>
+          <h5 class="mt-2 mb-4">Sunday, 28th April</h5>
+        </div>
+        <div>
+          <Timer @to={{end_time}} as |time|>
+            <ul class="divided-list timer">
+              <li class="timer-item">
+                <div class="list-heading white">{{time.hours}}</div>
+                <div class="list-data">Hours</div>
+              </li>
+              <li class="timer-item">
+                <div class="list-heading white">{{time.minutes}}</div>
+                <div class="list-data">Minutes</div>
+              </li>
+              <li class="timer-item">
+                <div class="list-heading white">{{time.seconds}}</div>
+                <div class="list-data">Seconds</div>
+              </li>
+            </ul>
+          </Timer>
+        </div>
       </div>
-      <div>
-        <Timer @to={{end_time}} as |time|>
-          <ul class="divided-list timer">
-            <li class="timer-item">
-              <div class="list-heading white">{{time.hours}}</div>
-              <div class="list-data">Hours</div>
-            </li>
-            <li class="timer-item">
-              <div class="list-heading white">{{time.minutes}}</div>
-              <div class="list-data">Minutes</div>
-            </li>
-            <li class="timer-item">
-              <div class="list-heading white">{{time.seconds}}</div>
-              <div class="list-data">Seconds</div>
-            </li>
-          </ul>
-        </Timer>
-      </div>
-    </div>
-    <div class="divider-h bg-white dcb-divider"></div>
-    <h3 class="mb-4 mt-4">{{problem.content.name}}</h3>
+      <div class="divider-h bg-white dcb-divider mb-4"></div>
+    {{/unless}}
+    <h3 class="mb-4">{{problem.content.name}}</h3>
+    {{#if ended}}
+      <div class="divider-h bg-white dcb-divider mb-4"></div>
+    {{/if}}
     <ul class="divided-list">
       <li class="px-3">
         <div class="list-heading">{{problem.difficultyString}}</div>
         <div class="list-data">Difficulty</div>
       </li>
       <li class="px-3">
-        <div class="list-heading">345</div>
+        <div class="list-heading">{{problem.submissionCount}}</div>
         <div class="list-data">Submissions</div>
       </li>
       <li class="px-3">
-        <div class="list-heading">200</div>
+        <div class="list-heading">100</div>
         <div class="list-data">Max Points</div>
       </li>
       <li class="px-3">
