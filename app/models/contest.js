@@ -38,5 +38,11 @@ export default Model.extend({
   isYetToStart: Ember.computed('start_time', function(){
     return moment().isBefore(moment(this.start_time))
   }),
-  
+  contestTypeDisplay: Ember.computed('contest_type', function() {
+    switch (this.contest_type) {
+      case 'practice': return 'Practice Contest'
+      case 'competition_contest': return 'Competition Contest'
+      default: return 'Contest'
+    }
+  })
 });

@@ -8,6 +8,8 @@ export default class QuizController extends Controller {
 
   queryParams = ['q']
 
+  q = 1
+
   @action
   changeQuestion(question_id) {
     this.set('q', question_id)

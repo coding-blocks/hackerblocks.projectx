@@ -7,7 +7,7 @@
         @submission={{submission}}
         @question={{question}} />
     {{/if}}
-    <div class="position-sticky bl bg-white pb-3">
+    <div class="position-absolute bl bg-white pb-3">
       <div class="divider-h mb-2"></div>
       <div class="row no-gutters align-items-center justify-content-around">
         <div>
@@ -21,7 +21,9 @@
           {{/if}}
         </div>
         <div>
-          <button class="button-solid button-orange font-sm extra-bold mx-3 mt-2">
+          <button 
+            class="button-solid button-orange font-sm extra-bold mx-3 mt-2"
+            {{action (mut submission.review_later) true}}>
             Review Later
           </button>
         </div>
