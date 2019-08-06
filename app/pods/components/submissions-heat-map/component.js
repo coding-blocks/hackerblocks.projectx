@@ -22,15 +22,15 @@ export default class SubmissionHeatMapComponent extends Component {
       legendVerticalPosition: "top",
       legendHorizontalPosition: "right",
       data: submissionsCount,
-      range: 11,
-      start: moment().subtract(10, 'months').toDate(),
+      range: 12,
+      start: moment().subtract(11, 'months').toDate(),
       tooltip: true,
       cellSize: 12,
       cellPadding: 3,
       colLimit: 4,
       domainGutter: 5,
       onClick: function (date, nb) {
-        that.onDateClick.perform(date)
+        that.onDateClick(date)
       }
     });
   }

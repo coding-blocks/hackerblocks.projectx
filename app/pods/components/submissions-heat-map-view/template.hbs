@@ -1,0 +1,43 @@
+<div class="border-card p-5 mt-md-0 mt-5">
+  <h4 class="t-align-c mb-4">Submissions</h4>
+  <SubmissionsHeatMap 
+    @userId={{userId}} 
+    @onDateClick={{fetchSubmissionsForDate}} />
+
+  {{#if submissions.length}}
+    <div class="divider-h bh-grey my-4"></div>
+
+    <div class="c-hb-leaderboard profile">
+      <table class="w-100 ml-md-4">
+        <thead class="font-sm extra-bold orange">
+          <td class="pb-4">Problem</td>
+          <td class="pb-4">Score</td>
+          <td class="pb-4">Language</td>
+          <td class="pb-4">Time</td>
+          {{#if userHimself}}
+          <td class="pb-4">Result</td>
+          {{/if}}
+        </thead>
+        <tbody>
+          {{#each submissions as |submission|}}
+          <tr>
+            <td class="py-3">{{submission.problem.name}}</td>
+            <td class="py-3">{{submission.score}}</td>
+            <td class="py-3">{{submission.language}}</td>
+            <td class="py-3">{{moment-from submission.createdAt}}</td>
+            {{#if userHimself}}
+            <td class="py-3"><a href="#" class="orange">View</a></td>
+            {{/if}}
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      
+      {{yield (hash 
+        submissions=submissions)}}
+      <PaginationPill 
+        @pagination={{submissions.meta.pagination}} 
+        @setOffset={{action setOffset}} />
+    </div>
+  {{/if}}
+</div>
