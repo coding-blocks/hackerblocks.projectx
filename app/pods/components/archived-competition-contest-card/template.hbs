@@ -1,0 +1,22 @@
+<div class="border-card p-xl-4 p-3 bg-gradient-dblue-lr white">
+  <h5 class="bold">{{contest.name}}</h5>
+  <div>Ended {{moment-format contest.end_time 'DD MMM'}}</div>
+  <ul class="divided-list my-4">
+    <li class="px-xl-2 px-sm-1 px-2">
+      <div class="list-heading font-mds extra-bold orange">{{problemCount}}</div>
+      <div class="list-data">Problems</div>
+    </li>
+    <li class="px-xl-2 px-sm-1 px-2">
+      <div class="list-heading font-mds extra-bold orange">500</div>
+      <div class="list-data">Submissions</div>
+    </li>
+  </ul>
+  <div class="font-sm extra-bold t-align-r">
+    <button 
+      class="orange"
+      {{action onParticipate}}>
+      Participate
+      <i class="fas fa-arrow-right mx-3"></i>
+    </button>
+  </div>
+</div>
