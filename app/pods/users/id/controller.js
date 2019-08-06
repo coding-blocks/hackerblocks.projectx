@@ -6,11 +6,6 @@ import { computed } from '@ember/object';
 export default class UserIdController extends Controller{
   @service currentUser;
 
-  queryParams = ['offset', 'limit']
-
-  offset = 0
-  limit = 10
-
   @computed('currentUser')
   get userHimself(){
     return this.currentUser.user.id === this.user.id
