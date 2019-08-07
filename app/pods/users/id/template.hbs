@@ -17,8 +17,9 @@
 
     {{#if userHimself}}
       <div class="row">
-        <div class="col-12">
-          <RegisteredContests />
+        <div class="col-lg-6 col-12">
+          <RegisteredContestsView 
+            @rowComponent="registered-contests-view/contest-row"/>
         </div>
         {{!-- <div class="col-lg-6 col-12">
         </div> --}}

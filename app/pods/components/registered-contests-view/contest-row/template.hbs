@@ -1,0 +1,29 @@
+<div class="row no-gutters hover-grey py-4 px-sm-5 px-4">
+  <div class="li-left">
+    <div class="mr-3">
+      <div class="border-card py-3 px-4 t-align-c orange border-orange">
+        <div class="extra-bold large-font">{{moment-format registration.contest.start_time 'DD'}}</div>
+        <div class="font-sm bold">{{moment-format registration.contest.start_time 'MMM'}}</div>
+      </div>
+    </div>
+    <div class="">
+      <h5 class="bold mb-1">{{ registration.contest.name }}</h5>
+      <div>{{ registration.contest.contestTypeDisplay }}</div>
+    </div>
+    <div class="row mx-0 align-items-center"></div>
+  </div>
+  <div class="t-align-r li-right">
+    <div>
+      <h6 class="mt-2">
+        <LinkTo
+          @route={{registration.route.name}}
+          @models={{registration.route.model}}
+          class="orange">
+          View Contest<i class="fas fa-arrow-right ml-2"></i>
+        </LinkTo>
+      </h6>
+    </div>
+  </div>
+</div>
+
+<div class="divider-h px-sm-5 px-4"></div>
