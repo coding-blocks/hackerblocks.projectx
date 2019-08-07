@@ -1,0 +1,95 @@
+<div class="c-hb-leaderboard">
+  <div class="border-card px-0 py-5">
+    <div class="pb-5 px-xl-5 px-md-3 px-5">
+      <h4 class="mb-5 pt-2">Overall Leaderboard</h4>
+      <div class="d-flex align-items-center my-4 justify-content-between">
+        <div class="row no-gutters align-items-center">
+          <div class="col-4">
+            <div class="img-ring s-70x70">
+              <img class="round w-100 h-100"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmL43mSCo0MAu3fCgV8t6QRsNzyiatE_Har4TjE8M6NZ-i0tKDzA"
+                alt="">
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-12 col-8 pl-lg-3 pl-md-0 pl-3">
+            <div class="font-mds extra-bold mb-2 mt-lg-0 mt-md-2 mt-0">Siddharth Jain</div>
+            <div>43000 Points</div>
+          </div>
+        </div>
+        <div class="font-mdxl extra-bold">#1</div>
+      </div>
+      <div class="divider-h"></div>
+      <div class="d-flex align-items-center my-4 justify-content-between">
+        <div class="row no-gutters align-items-center">
+          <div class="col-4">
+            <div class="img-ring s-70x70">
+              <img class="round w-100 h-100"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmL43mSCo0MAu3fCgV8t6QRsNzyiatE_Har4TjE8M6NZ-i0tKDzA"
+                alt="">
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-12 col-8 pl-lg-3 pl-md-0 pl-3">
+            <div class="font-mds extra-bold mb-2 mt-lg-0 mt-md-2 mt-0">Honey Singh</div>
+            <div>40000 Points</div>
+          </div>
+        </div>
+        <div class="font-mdxl extra-bold">#2</div>
+      </div>
+      <div class="divider-h"></div>
+      <div class="d-flex align-items-center mt-4 justify-content-between">
+        <div class="row no-gutters align-items-center">
+          <div class="col-4">
+            <div class="img-ring s-70x70">
+              <img class="round w-100 h-100"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmL43mSCo0MAu3fCgV8t6QRsNzyiatE_Har4TjE8M6NZ-i0tKDzA"
+                alt="">
+            </div>
+          </div>
+          <div class="col-lg-8 col-md-12 col-8 pl-lg-3 pl-md-0 pl-3">
+            <div class="font-mds extra-bold mb-2 mt-lg-0 mt-md-2 mt-0">Honey Singh</div>
+            <div>40000 Points</div>
+          </div>
+        </div>
+        <div class="font-mdxl extra-bold">#3</div>
+      </div>
+    </div>
+    <table class="w-100">
+      <thead class="font-sm extra-bold orange">
+        <td class="pb-4 t-align-c">Rank</td>
+        <td class="pb-4">User</td>
+        <td class="pb-4">Score</td>
+      </thead>
+      <tbody>
+        <tr class="bg-gradient-orange white extra-bold">
+          <td class="py-4">#{{myRank.rank}}</td>
+          <td class="py-4">
+            <div class="img-desc align-items-center">
+              <img class="round s-30x30" src="{{myRank.user_photo}}" alt="">
+              <div class="description ml-3">
+                {{myRank.user_name}}
+              </div>
+            </div>
+          </td>
+          <td class="py-4">{{myRank.score}}</td>
+        </tr>
+        {{#each leaderboardRows as |row|}}
+          <tr class="hover-grey">
+            <td class="py-3">01</td>
+            <td class="py-3">
+              <div class="img-desc align-items-center">
+                <img class="round s-30x30" src="{{row.user.photo}}" alt="">
+                <div class="description ml-3">
+                  {{row.user.name}}
+                </div>
+              </div>
+            </td>
+            <td class="py-3">{{row.score}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <PaginationPill 
+      @pagination={{leaderboardRows.meta.pagination}} 
+      @setOffset={{action 'setOffset'}} />
+  </div>
+</div>

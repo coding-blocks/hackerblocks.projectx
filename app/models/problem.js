@@ -18,6 +18,7 @@ export default Model.extend({
   editorial: DS.belongsTo('editorial'),
   createdBy: DS.belongsTo('user'),
   topSubmission: DS.belongsTo('submission'),
+  bookmarks: DS.hasMany('bookmarked-problem'),
   difficultyString: Ember.computed('difficulty', function() {
     switch (parseInt(this.difficulty)) {
       case 1: return 'Easy'

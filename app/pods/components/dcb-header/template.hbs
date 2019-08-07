@@ -24,7 +24,12 @@
     </div>
   </div>
   <div class="divider-h bg-white dcb-divider"></div>
-  <h3 class="mb-4 mt-4">{{top_problem.content.name}}</h3>
+  <div class="row justify-content-between align-items-center mr-0">
+      <div class="col-10">
+        <h3 class="mb-4 mt-4">{{top_problem.content.name}}</h3>
+      </div>
+      <a href="#" class="white"><i class="far fa-bookmark fa-2x"></i></a>
+    </div>
   <div class="font-xs mb-5">
     {{markdown-to-html (truncate top_problem.content.description 300 true)}}
   </div>

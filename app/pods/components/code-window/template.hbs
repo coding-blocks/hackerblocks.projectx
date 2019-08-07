@@ -6,7 +6,11 @@
     <div>
       <select class="dropdown d-inline-block" onchange={{action "selectLanguage" value="target.value"}}>
         {{#each-in languageSpecs as |key value|}}
-          <option value="{{value.code}}" selected={{eq value.code selectedLanguage.mode}}>{{value.name}}</option>
+          <option 
+            value="{{value.code}}" 
+            selected={{eq value.code selectedLanguage.code}}>
+            {{value.name}}
+          </option>
         {{/each-in}}
       </select>
     </div>

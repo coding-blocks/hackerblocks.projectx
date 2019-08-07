@@ -1,13 +1,13 @@
 <div class="divider-h w-40 mx-auto"></div>
 
 <div class="t-align-c mt-3 bold">
-  <button {{action setOffset pagination.prevOffset}} disabled={{eq pagination.currentPage 1}}>
+  <a href="#" {{action setOffset pagination.prevOffset}} disabled={{eq pagination.currentPage 1}}>
     &lt; Prev
-  </button>
+  </a>
   <span class="grey mx-4">
     {{or (inc pagination.currentOffset) 1}} - {{or pagination.nextOffset pagination.count}} of {{pagination.count}}
   </span>
-  <button {{action setOffset pagination.nextOffset}} disabled={{not pagination.nextOffset}}>
+  <a href="#" {{action setOffset pagination.nextOffset}} disabled={{not pagination.nextOffset}}>
     Next &gt;
-  </button>
+  </a>
 </div>
