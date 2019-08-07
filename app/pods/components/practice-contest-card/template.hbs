@@ -1,5 +1,39 @@
 <div class="img-card">
-  <div class="head d-flex bg-gradient-purple py-4 px-3 px-md-2 justify-content-center">
+  <div class="head bg-gradient-purple py-4 px-xl-5 px-md-3 px-4 justify-content-center">
+    {{#if showProblem}}
+      <div class="row justify-content-between no-gutters align-items-center">
+        <div class="col-lg-10 col-md-9 col-10">
+          <div>
+            <h3 class="white-underline d-inline-block pb-3">{{practice.name}}</h3>
+          </div>
+        </div>
+        {{#if practice.logo}}
+        <div class="col-lg-2 col-md-3 col-2">
+          <img src="{{ practice.logo }}" alt="Logo" />
+        </div>
+        {{/if}}
+      </div>
+      <h4 class="bold mt-3">{{problem.name}}</h4>
+      <ul class="divided-list">
+        <li class="pr-xl-3 pr-md-2 pr-3">
+          <div class="list-heading extra-bold yellow">{{problem.difficulty}}</div>
+          <div class="list-data">Dificulty</div>
+        </li>
+        <li class="px-xl-3 px-md-2 px-3">
+          <div class="list-heading extra-bold yellow">345</div>
+          <div class="list-data">Submissions</div>
+        </li>
+        <li class="pl-xl-3 pl-md-2 pl-3">
+          <div class="list-heading extra-bold yellow">100</div>
+          <div class="list-data">Max Pts</div>
+        </li>
+      </ul>
+      <div class="t-align-r mb-2">
+        {{#link-to "practice.contest.problem" practice.id problem.id}}
+          <button class="button-solid button-white purple mt-3">Continue</button>
+        {{/link-to}}
+      </div>
+    {{else}}
     <div class="d-flex flex-column t-align-c">
       {{#if practice.logo}}
         <img src="{{ practice.logo }}" alt="Logo" class="mt-2 mb-3 mx-auto w-30" />
@@ -16,6 +50,7 @@
         Solve Challenge
       {{/link-to}}
     </div>
+    {{/if}}
   </div>
   {{#if currentLevel}}
     <div class="foot t-align-c p-md-2 p-lg-3 p-5 align-items-center">
