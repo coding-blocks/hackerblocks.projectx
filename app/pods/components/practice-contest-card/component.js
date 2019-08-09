@@ -22,7 +22,6 @@ export default class PracticeContestCard extends Component {
   }
 
   @restartableTask fetchLevelTask = function *() {
-    // return
     const levels = yield this.store.query('user_level', {
       filter: {
         contestId: this.practice.belongsTo('contest').id()
@@ -33,11 +32,18 @@ export default class PracticeContestCard extends Component {
 
   @restartableTask fetchNextProblemTask = function *() {
     const payload = yield this.api.request(`practices/${this.practice.id}/next_problem`, {
-      filter: {
-        c_id: this.practice.contest_id 
-      }
+      type: 'get',
+      contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+      data: {
+        filter: {
+          contest_id: this.practice.belongsTo('contest').id() 
+        }
+      }  
     })
     
-    this.set('problem', payload.data.attributes)
+    this.store.pushPayload(payload)
+    const problem = this.store.peekRecord('problem', payload.data.id)
+    this.set('problem', problem)
+    return problem
   }
 }

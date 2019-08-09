@@ -8,20 +8,32 @@ export default class OverallLeaderboardView extends Component {
   @service store
 
   @alias('fetchLeaderboardTask.lastSuccessful.value') leaderboardRows
+  @alias('fetchTopThree.lastSuccessful.value') topThreeRows
   @alias('leaderboardRows.meta.myRank') myRank
 
   page = {
-    offset: 0,
+    offset: 3,
     limit: 10
   }
 
   didReceiveAttrs() {
     this.fetchLeaderboardTask.perform()
+    this.fetchTopThree.perform()
   }
 
+  @restartableTask fetchTopThree = function *() {
+    return yield this.store.query('overall-leaderboard', {
+      include: 'user',
+      sort: '-score',
+      page: {
+        limit: 3
+      }
+    })
+  }
   @restartableTask fetchLeaderboardTask = function *() {
     return yield this.store.query('overall-leaderboard', {
       include: 'user',
+      sort: '-score',
       page: this.page
     })
   }
