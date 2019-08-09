@@ -3,7 +3,7 @@ import RSVP from 'rsvp';
 
 export default class IndexRoute extends Route {
   async model() {
-    const contest = this.modelFor('competitions.id.contest')
+    const contest = this.modelFor('competitions.id.contest').contest
     return contest
   }
 

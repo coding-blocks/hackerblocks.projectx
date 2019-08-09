@@ -13,6 +13,17 @@
       <div class="col-4 b-right">
         <h4 class="mb-3">Current Ranking</h4>
         <div class="font-mdxl extra-bold">{{performance.currentOverallRank}}</div>
+        {{#if (gt performance.currentOverallRank performance.previousOverallRank)}}
+          <div class="extra-bold red v-align-ma">
+            <i class="fas fa-caret-down mr-2 fa-2x"></i>
+            {{sub performance.currentOverallRank performance.previousOverallRank}} Ranks from last month
+          </div>
+        {{else}}
+          <div class="extra-bold green v-align-ma">
+            <i class="fas fa-caret-up mr-2 fa-2x"></i>
+            {{sub performance.previousOverallRank performance.currentOverallRank}} Ranks from last month
+          </div>
+        {{/if}}
       </div>
       <div class="col-4">
         <h4 class="mb-3">Performance</h4>
