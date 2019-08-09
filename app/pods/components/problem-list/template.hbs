@@ -26,6 +26,9 @@
       </div>
     </div>
     <div class="li-right">
+      <button {{action toggleBookmark problem}}>
+        <i class="{{if (or problem.bookmarkedBy problem.bookmark) 'fas' 'far'}} fa-bookmark font-lg pr-2"></i>
+      </button>
       <div>
         {{#link-to route problem.id class=(concat "mt-3 button-dashed button-" theme)}}
           Solve Challenge

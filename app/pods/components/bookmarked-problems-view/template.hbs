@@ -3,7 +3,7 @@
 
   {{#if fetchBookmarkedProblemsTask.isRunning}}
     <LoadingComponent />
-  {{else}}
+  {{else if bookmarkedProblems.length}}
     {{#each bookmarkedProblems as |bookmarkedProblem|}}
       <div class="mt-3 py-4">
         <div class="row no-gutters align-items-center justify-content-between">
@@ -34,6 +34,8 @@
       </div>
       <div class="divider-h"></div>
     {{/each}}
+  {{else}}
+    You don't have any bookmarked problems.
   {{/if}}
 
 </div>

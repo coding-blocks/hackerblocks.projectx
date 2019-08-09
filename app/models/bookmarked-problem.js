@@ -22,6 +22,10 @@ export default Model.extend({
         name: 'dcb.problem',
         model: [this.problem.get('id')]
       }
+      case 'college_contest': return {
+        name: 'contests.college.contest.attempt.problem',
+        model: [this.contentTypeId, this.problem.get('id')]
+      }
     }
   })
 });

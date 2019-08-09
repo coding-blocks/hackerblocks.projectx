@@ -1,0 +1,17 @@
+{{yield}}
+{{#if (and contestTypeModel.contest.acceptRegistrations (not contestTypeModel.contest.registeredUser) (not contestTypeModel.contest.registration))}}
+  <button class="button-solid button-orange mt-3 mb-2" 
+    {{action (perform createRegistrationTask contestTypeModel)}}>
+    Register
+  </button>
+{{else if contestTypeModel.contest.isYetToStart}}
+  <div class="pill mt-3 mb-2">
+    Registered
+  </div>
+{{else}}
+  {{#link-to route contestTypeModel.id}}
+    <button class="button-solid button-orange mt-3 mb-2" disabled={{contestTypeModel.contest.isYetToStart}}>
+      Solve Challenge
+    </button>
+  {{/link-to}}
+{{/if}}

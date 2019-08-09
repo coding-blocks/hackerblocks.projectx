@@ -28,7 +28,8 @@
         <ProblemList 
           @route="contests.college.contest.attempt.problem"
           @theme="orange" 
-          @problems={{problemView.problems}} />
+          @problems={{problemView.problems}}
+          @toggleBookmark={{action 'toggleBookmark'}} />
         <PaginationPill 
           @pagination={{problemView.problems.meta.pagination}} 
           @setOffset={{action 'setOffset'}} />

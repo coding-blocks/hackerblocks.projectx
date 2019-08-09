@@ -4,10 +4,9 @@
     <ContestCard 
       @contest={{college_contest.contest}}
       @showTimer=true>
-        <button class="button-solid button-orange mt-3 mb-2 mx-auto" 
-          {{action (perform createAttemptTask college_contest)}}>
-          Register
-        </button>
+        <RegisterButton 
+          @contestTypeModel={{college_contest}}
+          @route="contests.college.contest" />
     </ContestCard>
   </div>
   {{/each}}

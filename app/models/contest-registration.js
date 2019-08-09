@@ -17,6 +17,10 @@ export default Model.extend({
         name: 'competitions.id.contest',
         model: [this.contentTypeId, this.contest.get('id')]
       }
+      case 'college_contest': return {
+        name: 'contests.college.contest',
+        model: [this.contentTypeId]
+      }
     }
   })
 });

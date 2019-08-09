@@ -13,8 +13,9 @@ export default class BookmarkedProblemsView extends Component {
   }
 
   @restartableTask fetchBookmarkedProblemsTask = function *() {
-    return yield this.store.findAll('bookmarked-problem', {
-      include: 'problem'
+    return yield this.store.query('bookmarked-problem', {
+      include: 'problem,contest',
+      exclude: 'problem.*,contest.*'
     })
   }
 }

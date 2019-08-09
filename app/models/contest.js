@@ -23,6 +23,7 @@ export default Model.extend({
   show_leaderboard: DS.attr(),
   show_tags: DS.attr(),
   moss: DS.attr(),
+  acceptRegistrations: DS.attr(),
   allow_editorial_unlocks: DS.attr(),
   allow_testcase_unlocks: DS.attr(),
   plagiarismFiltering: DS.attr(),
@@ -44,5 +45,7 @@ export default Model.extend({
       case 'competition_contest': return 'Competition Contest'
       default: return 'Contest'
     }
-  })
+  }),
+  registeredUser: DS.attr(),
+  registration: DS.belongsTo('contest-registration')
 });

@@ -4,9 +4,13 @@
   </div>
   {{#if fetchRegisteredContestTask.isRunning}}
     <LoadingComponent />
-  {{else}}
+  {{else if registrations.length}}
     {{#each registrations as |registration|}}
       {{component rowComponent registration=registration}}
     {{/each}}
+  {{else}}
+    <div class="px-5">
+      You don't have any registered contests.
+    </div>
   {{/if}}
 </div>

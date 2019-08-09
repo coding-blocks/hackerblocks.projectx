@@ -23,4 +23,20 @@ export default class ContestController extends Controller {
   setOffset(offset) {
     this.set('offset', offset)
   }
+
+  @action
+  async toggleBookmark(problem) {
+    const bookmark = await problem.get('bookmark')
+    if (bookmark) {
+      await bookmark.destroyRecord()
+      return problem.set('bookmarkedBy', null)
+    }
+    const bookmarkProblem = this.store.createRecord('bookmarked-problem', {
+      problem,
+      contest: this.contest,
+      contentTypeId: this.practice.id
+    })
+
+    bookmarkProblem.save()
+  }
 }

@@ -41,7 +41,8 @@
           <ProblemList 
             @route="practice.contest.problem" 
             @theme="purple" 
-            @problems={{problemView.problems}} />
+            @problems={{problemView.problems}}
+            @toggleBookmark={{action 'toggleBookmark'}} />
 
           <PaginationPill 
             @pagination={{problemView.problems.meta.pagination}} 

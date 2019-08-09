@@ -28,12 +28,10 @@ export default class ProblemListView extends Component {
   @action
   changeStatusFilter(status) {
     this.set('status', status)
-    // this.fetchProblemsTask.perform(this.problemFilter, this.page)
   }
   @action
   changeDifficultyFilter(difficulty) {
     this.set('difficulty', difficulty)
-    // this.fetchProblemsTask.perform(this.problemFilter, this.page)
   }
 
   @action
