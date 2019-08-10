@@ -1,0 +1,11 @@
+<div class="t-align-c mb-5">
+  <h2>COURSE CONTESTS</h2>
+  <h5 class="bold mt-2">Compete with your peers and boast your rank</h5>
+</div>
+<div class="row justify-content-center">
+  {{#each courses as |course|}}
+    <div class="col-12 col-lg-3">
+      <CourseContestCard @course={{course}}/>
+    </div>
+  {{/each}}
+</div>

@@ -1,5 +1,5 @@
 <div class="img-card c-competition-card admission-card">
-  <div class="head bg-gradient-black-lr py-5 px-4 all-center">
+  <div class="head py-5 px-4 all-center {{if theme (concat 'bg-gradient-' theme) 'bg-gradient-black-lr'}}">
     <div>
       <div class="img-desc">
         <div class="col-3 pl-0">
@@ -49,8 +49,7 @@
             </li>
           </ul>
         </Timer>
-      {{else if contest.hasEnded}}
-      {{else}}
+      {{else if (not contest.hasEnded)}}
         <div class="font-sm mb-3">ENDS IN</div>
         <Timer @to={{moment contest.end_time}} as |t|>
           <ul class="divided-list timer d-inline-block">

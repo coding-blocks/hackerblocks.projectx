@@ -41,6 +41,12 @@ Router.map(function() {
     this.route('admissions', function() {
       this.route('case', function() {});
     });
+    this.route('course', function() {
+      this.route('contest', { path: '/c/:course_contest_id'}, function() {
+        this.route('problem', { path: '/p/:problem_id' });
+      });
+      this.route('id', { path: '/:course_id'});
+    });
   });
   this.route('dcb', function() {
     this.route('problem', {path: '/:problem_id'});

@@ -1,12 +1,12 @@
 <ProblemListView @contest={{contest}} @page={{page}} as |problemView|>
   <div class="row my-4">
     <div class="col-12 col-md-8">
-      <div class="border-card p-4 bg-gradient-black white">
+      <div class="br-20 p-4 bg-gradient-nostalgia-purple white">
         <div class="row mx-0 align-items-center">
           <div class="col-xl-10 col-md-9 col-9">
             <div class="img-desc align-items-center justify-content-center">
               <div class="col-2">
-                <img src="/images/stack" alt="" class="">
+                <img src="{{contest.image}}" alt="" class="">
               </div>
               <div class="description t-align-l col-10">
                 <h2>{{contest.name}}</h2>
@@ -25,14 +25,9 @@
         {{#if problemView.showError}}
         You are not authorized to view problems of this contest.
         {{else}}
-        <ProblemList 
-          @route="contests.college.contest.attempt.problem"
-          @theme="orange" 
-          @problems={{problemView.problems}}
-          @toggleBookmark={{action 'toggleBookmark'}} />
-        <PaginationPill 
-          @pagination={{problemView.problems.meta.pagination}} 
-          @setOffset={{action 'setOffset'}} />
+        <ProblemList @route="contests.course.contest.problem" @theme="orange"
+          @problems={{problemView.problems}} @toggleBookmark={{action 'toggleBookmark'}} />
+        <PaginationPill @pagination={{problemView.problems.meta.pagination}} @setOffset={{action 'setOffset'}} />
         {{/if}}
       </div>
     </div>
@@ -41,10 +36,7 @@
       {{problemView.filterComponent status=status difficulty=difficulty}}
       <div class="border-card mt-5">
         <h5 class="t-align-c">Leaderboard</h5>
-        <LeaderboardView 
-          @for="contest" 
-          @theme="orange"
-          @contestId={{contest.id}} />
+        <LeaderboardView @for="contest" @theme="orange" @contestId={{contest.id}} />
       </div>
     </div>
   </div>
