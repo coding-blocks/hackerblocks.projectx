@@ -9,6 +9,7 @@ export default class DCBRoute extends Route {
     const contest = await dcb.contest
     const problems = dcb.get('problems')
     return RSVP.hash({
+      dcb,
       contest,
       problems
     })

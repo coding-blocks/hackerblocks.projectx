@@ -6,16 +6,11 @@ export default class DCBIndexRoute extends Route {
   @service api
 
   model() {
-    const contest = this.modelFor('dcb').contest
-    const problems = this.modelFor('dcb').problems
-    return RSVP.hash({
-      contest,
-      problems
-    })
+    return this.modelFor('dcb')
   }
 
   setupController(controller, model) {
-    controller.set('dcb', model.contest.dcb)
+    controller.set('dcb', model.dcb)
     controller.set('contest', model.contest)
     controller.set('problems', model.problems)
   }

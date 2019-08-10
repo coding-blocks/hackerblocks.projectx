@@ -7,7 +7,7 @@ export default class FeedbackRoute extends Route {
   @service navigation
 
   async beforeModel() {
-    const contest = this.modelFor('competitions.id.contest')
+    const contest = this.modelFor('competitions.id.contest').contest
     const feedbacks = await this.store.query('contest-feedback', {
       filter: {
         contest_id: contest.id
@@ -19,7 +19,7 @@ export default class FeedbackRoute extends Route {
   }
   
   model() {
-    const contest = this.modelFor('competitions.id.contest')
+    const contest = this.modelFor('competitions.id.contest').contest
     const contest_attempt = contest.get('currentAttempt')
     const feedback = this.store.createRecord('contest-feedback', {
       stars: 3,

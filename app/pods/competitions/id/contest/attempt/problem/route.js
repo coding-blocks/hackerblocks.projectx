@@ -6,7 +6,7 @@ export default class ProblemRoute extends Route {
   breadCrumb = null
 
   model(params) {
-    const contest = this.modelFor('competitions.id.contest')
+    const contest = this.modelFor('competitions.id.contest').contest
     const contest_attempt = contest.get('currentAttempt')
     const problem = this.store.queryRecord('problem', {
       custom: {
@@ -34,5 +34,6 @@ export default class ProblemRoute extends Route {
     if (err.isAdapterError) {
       this.transitionTo('competitions.id.contest')
     }
+    throw err
   }
 }

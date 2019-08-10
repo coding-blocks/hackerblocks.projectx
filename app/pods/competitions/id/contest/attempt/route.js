@@ -6,7 +6,7 @@ export default class AttemptRoute extends Route {
   @service navigation
 
   beforeModel() {
-    const contest = this.modelFor('competitions.id.contest')
+    const contest = this.modelFor('competitions.id.contest').contest
     const problem_id = contest.hasMany('problems').ids()[0]
     this.transitionTo('competitions.id.contest.attempt.problem', problem_id)
   }
