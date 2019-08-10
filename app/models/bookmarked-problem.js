@@ -26,6 +26,10 @@ export default Model.extend({
         name: 'contests.college.contest.attempt.problem',
         model: [this.contentTypeId, this.problem.get('id')]
       }
+      case 'course_contest': return {
+        name: 'contests.course.contest.problem',
+        model: [this.contentTypeId, this.problem.get('id')]
+      }
     }
   })
 });
