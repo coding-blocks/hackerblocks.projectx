@@ -2,63 +2,32 @@
   <h2>CONTESTS</h2>
   <h5 class="bold mt-3">Participate and improve your coding skills</h5>
 </div>
-
 <div class="row justify-content-center">
   <div class="col-12 col-md-4 col-lg-3">
-    <div class="border-card p-0 contest-card">
-      <div class="p-xl-5 p-3 white position-relative bg-gradient-pink">
-        <h2>College<br />Contests</h2>
-        <div class="bold mt-4">45 Contests</div>
-        <img src="/images/collegecontest_w.png" alt="" class="position-absolute contest-card__header-img">
-      </div>
-      <div class="py-5 px-lg-5 px-4 t-align-c">
-        <div>
-          meta information about college contests. What? Why? When
-        </div>
-        <LinkTo @route="contests.college.all.live">
-          <button class="button-solid button-orange font-sm mt-4">
-            View Contests
-          </button>
-        </LinkTo>
-      </div>
-    </div>
+    <PublicContestCard
+      @title="College"
+      @model="college-contests"
+      @logo="/images/collegecontest_w.png"
+      @description="meta information about college contests. What? Why? When"
+      @route="contests.college.all.live"
+      @theme="pink" />
   </div>
   <div class="col-12 col-md-4 col-lg-3">
-    <div class="border-card p-0 contest-card">
-      <div class="p-xl-5 p-3 white position-relative bg-gradient-purple-blue">
-        <h2>Course<br />Contests</h2>
-        <div class="bold mt-4">45 Contests</div>
-        <img src="/images/coursecontest_w.png" alt="" class="position-absolute contest-card__header-img">
-      </div>
-      <div class="py-5 px-lg-5 px-4 t-align-c">
-        <div>
-          meta information about college contests. What? Why? When
-        </div>
-        <LinkTo @route="contests.course">
-          <button class="button-solid button-orange font-sm mt-4">
-            View Contests
-          </button>
-        </LinkTo>
-      </div>
-    </div>
+    <PublicContestCard
+      @title="Course"
+      @model="course-contests"
+      @logo="/images/coursecontest_w.png"
+      @description="meta information about college contests. What? Why? When"
+      @route="contests.course"
+      @theme="purple-blue" />
   </div>
   <div class="col-12 col-md-4 col-lg-3">
-    <div class="border-card p-0 contest-card">
-      <div class="p-xl-5 p-3 white position-relative bg-gradient-blue">
-        <h2>Admission<br />Contests</h2>
-        <div class="bold mt-4">45 Contests</div>
-        <img src="/images/admissioncontest_w.png" alt="" class="position-absolute contest-card__header-img">
-      </div>
-      <div class="py-5 px-lg-5 px-4 t-align-c">
-        <div>
-          meta information about college contests. What? Why? When
-        </div>
-        <LinkTo @route="contests.admission">
-          <button class="button-solid button-orange font-sm mt-4">
-            View Contests
-          </button>
-        </LinkTo>
-      </div>
-    </div>
+    <PublicContestCard
+      @title="Admission"
+      @model="admission-contests"
+      @logo="/images/admissioncontest_w.png"
+      @description="meta information about college contests. What? Why? When"
+      @route="contests.admission"
+      @theme="blue" />
   </div>
 </div>
