@@ -26,4 +26,10 @@ export default class CourseContestRoute extends Route{
       contest_attempt
     })
   }
+
+  afterModel(model) {
+    this.set('breadCrumb', {
+      title: model.contest.name
+    })
+  }
 }

@@ -25,6 +25,12 @@ export default class ProblemRoute extends Route {
     controller.set('problem', model.problem)
   }
 
+  afterModel(model) {
+    this.set('breadCrumb', {
+      title: model.problem.name
+    })
+  }
+
   @action
   error(err) {
     if (err.isAdapterError) {

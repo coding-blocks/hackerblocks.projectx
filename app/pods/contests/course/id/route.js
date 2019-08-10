@@ -1,11 +1,17 @@
 import Route from '@ember/routing/route';
 
 export default class CourseIdRoute extends Route {
-  model() {
-    return this.modelFor('contests.course')
+  model(params) {
+    return this.store.findRecord('course', params.course_id)
   }
 
   setupController(controller, model) {
-    controller.set('course', model.findBy('id', this.paramsFor('contests.course.id').course_id))
+    controller.set('course', model)
+  }
+
+  afterModel(model) {
+    this.set('breadCrumb', {
+      title: model.name
+    })
   }
 }
