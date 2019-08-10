@@ -3,6 +3,7 @@ import { restartableTask } from 'ember-concurrency-decorators';
 import { alias } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
+import moment from 'moment';
 
 export default class OverallLeaderboardView extends Component {
   @service store
@@ -23,6 +24,10 @@ export default class OverallLeaderboardView extends Component {
 
   @restartableTask fetchTopThree = function *() {
     return yield this.store.query('overall-leaderboard', {
+      filter: {
+        month: moment().month() + 1 ,
+        year: moment().year()
+      },
       include: 'user',
       sort: '-score',
       page: {
@@ -32,6 +37,10 @@ export default class OverallLeaderboardView extends Component {
   }
   @restartableTask fetchLeaderboardTask = function *() {
     return yield this.store.query('overall-leaderboard', {
+      filter: {
+        month: moment().month() + 1 ,
+        year: moment().year()
+      },
       include: 'user',
       sort: '-score',
       page: this.page
