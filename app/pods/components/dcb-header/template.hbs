@@ -5,7 +5,7 @@
       <h5 class="mt-2 mb-4">{{humanize_date}}</h5>
     </div>
     <div>
-      <Timer @to={{top_problem_end}} as |time|>
+      <Timer @to={{top_problem_end}} @onEnd={{action onTimerEnd}} as |time|>
         <ul class="divided-list timer">
           <li class="timer-item">
             <div class="list-heading white">{{time.hours}}</div>
@@ -28,12 +28,14 @@
       <div class="col-10">
         <h3 class="mb-4 mt-4">{{top_problem.content.name}}</h3>
       </div>
-      <a href="#" class="white"><i class="far fa-bookmark fa-2x"></i></a>
+      <button {{action toggleBookmark top_problem}}>
+        <i class="{{if (or top_problem.bookmarkedBy top_problem.bookmark) 'fas' 'far'}} fa-bookmark fa-2x"></i>
+      </button>
     </div>
   <div class="font-xs mb-5">
     {{markdown-to-html (truncate top_problem.content.description 300 true)}}
   </div>
-  <div class="row justify-content-between">
+  <div class="row justify-content-between align-items-center">
     <div class="col-xl-9 col-12">
       <ul class="divided-list">
         <li class="px-lg-3 px-2">
@@ -55,8 +57,8 @@
       </ul>
     </div>
     <div>
-      {{#link-to 'dcb.problem' top_problem.id class="button-solid button-white bold mt-3"}}
-      Solve Challenge
+      {{#link-to 'dcb.problem' top_problem.id}}
+        <button class="button-solid button-white bold">Solve Challenge</button>
       {{/link-to}}
     </div>
   </div>

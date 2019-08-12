@@ -8,7 +8,12 @@
   <div class="row justify-content-between">
     <div class="col-12 col-md-8">
       {{#if top_problem}}
-        <DcbHeader @contest={{contest}} @top_problem={{top_problem}} class="pb-5" />
+        <DcbHeader 
+          class="pb-5"
+          @contest={{contest}} 
+          @top_problem={{top_problem}}
+          @toggleBookmark={{action 'toggleBookmark'}}
+          @onTimerEnd={{action 'onTimerEnd'}} />
       {{/if}}
       <div class="border-card">
         <div class="row no-gutters justify-content-between">
@@ -21,10 +26,11 @@
             </div>
           </div>
         </div>
-        {{!-- <ProblemList 
+        <ProblemList 
           @route="dcb.problem"
           @problems={{previous_problems}} 
-          @theme="blue" /> --}}
+          @theme="blue" 
+          @toggleBookmark={{action 'toggleBookmark'}}/>
       </div>
     </div>
     <div class="col-12 col-md-4 mt-md-0 mt-5">

@@ -1,4 +1,4 @@
-<div class="row font-xs bold mx-0">
+<div class="d-flex font-xs bold mb-4 mt-1">
   <BreadCrumbs
     @outputStyle="foundation"
     @tagName="ul"
@@ -9,7 +9,9 @@
   <div class="col-8">
     <DcbProblemCard
       class="pb-4"
-      @problem={{problem}} />
+      @problem={{problem}}
+      @toggleBookmark={{action 'toggleBookmark'}} 
+      @onTimerEnd={{action 'onTimerEnd'}} />
     <ProblemView 
       class="py-4"
       @contest={{contest}}

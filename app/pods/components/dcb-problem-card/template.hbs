@@ -7,7 +7,7 @@
           <h5 class="mt-2 mb-4">Sunday, 28th April</h5>
         </div>
         <div>
-          <Timer @to={{end_time}} as |time|>
+          <Timer @to={{end_time}} @onEnd={{action onTimerEnd}} as |time|>
             <ul class="divided-list timer">
               <li class="timer-item">
                 <div class="list-heading white">{{time.hours}}</div>
@@ -31,7 +31,9 @@
       <div class="col-10">
         <h3 class="mb-4">{{problem.content.name}}</h3>
       </div>
-      <a href="#" class="white"><i class="far fa-bookmark fa-2x"></i></a>
+      <button {{action toggleBookmark problem}}>
+        <i class="{{if (or problem.bookmarkedBy problem.bookmark) 'fas' 'far'}} fa-bookmark fa-2x"></i>
+      </button>
     </div>
     {{#if ended}}
       <div class="divider-h bg-white dcb-divider mb-4"></div>
