@@ -20,7 +20,8 @@ export default class SubmissionListComponent extends Component {
       filter: {
         contest_id,
         problem_id
-      }
+      },
+      sort: '-createdAt'
     })
 
     return submissions
