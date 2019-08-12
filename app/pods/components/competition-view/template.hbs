@@ -78,14 +78,23 @@
   <div class="col-12 col-md-4">
     {{#if upcomingContest}}
       <UpcomingCompetitionContest
-        @contest={{upcomingContest}} >
-        {{#link-to
-          'competitions.id.contest'
-          fetchRecentContestTask.lastSuccessful.value.id
-          class="button-solid button-orange mt-4 mb-2 mx-auto"
-        }}
-          Participate
-        {{/link-to}}
+        @contest={{upcomingContest}} as |hasStarted|>
+        {{#if hasStarted}}
+          {{#link-to
+            "competitions.id.contest"
+            upcomingContest.id
+            class="button-solid button-orange mt-4 mb-2 mx-auto"
+          }}
+            Participate
+          {{/link-to}}
+        {{else}}
+          <RegisterButton  
+            @contestTypeModel={{hash 
+              contest=upcomingContest
+              id=competition.id
+            }} 
+          @route="contests.admission.contest" />
+      {{/if}}
       </UpcomingCompetitionContest>
     {{/if}}
 

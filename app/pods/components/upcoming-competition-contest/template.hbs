@@ -1,7 +1,7 @@
 <div class="img-card c-competition-card">
   <div class="head bg-gradient-dblue-lr py-4 px-3 all-center">
     <div>
-      <div class="font-mds">Upcoming Contest</div>
+      <div class="font-mds">{{if hasStarted "Live" "Upcoming"}}  Contest</div>
       <h2>{{ contest.name }}</h2>
       <ul class="divided-list">
         <li class="px-xl-3 px-2">
@@ -25,8 +25,9 @@
   </div>
   {{#if contest.end_time}}
     <div class="foot align-items-center t-align-c px-2 py-4">
-      <div class="font-sm mb-4">STARTS IN</div>
-      <Timer class="mb-4" @to={{contest_end_time}} as |time|>
+
+      <div class="font-sm mb-4">{{if hasStarted "ENDS IN" "STARTS IN"}}</div>
+      <Timer class="mb-4" @to={{if hasStarted contest_end_time contest_start_time}} as |time|>
         <ul class="divided-list timer d-inline-block">
           <li class="timer-item">
             <div class="list-heading font-lg extra-bold">{{time.days}}</div>
@@ -46,7 +47,7 @@
           </li>
         </ul>
       </Timer>
-      {{yield}}
+      {{yield hasStarted}}
     </div>
   {{/if}}
 </div>

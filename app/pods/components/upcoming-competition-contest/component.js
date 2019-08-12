@@ -8,6 +8,17 @@ export default class UpcomingCompetitionContestComponent extends Component {
     return Moment(this.contest.end_time)
   }
 
+  @computed('contest')
+  get contest_start_time () {
+    return Moment(this.contest.start_time)
+  }
+
+  // has this contest started yet?
+  @computed('contest.start_time')
+  get hasStarted () {
+    return this.contest.start_time < new Date()
+  }
+
   @computed('contest.problems.@each')
   get problemCount() {
     return ("0" + this.contest.hasMany('problems').ids().length).slice(-2)
