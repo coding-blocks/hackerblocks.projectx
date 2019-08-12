@@ -67,6 +67,9 @@ Router.map(function() {
         });
         this.route('feedback');
       });
+      this.route('contest-archive', {path: '/archive/:contestId'} ,function() {
+        this.route('problem', {path: '/p/:problemId'});
+      });
     });
   });
   this.route('users', function() {

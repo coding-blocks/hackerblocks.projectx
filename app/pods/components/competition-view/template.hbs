@@ -78,14 +78,23 @@
   <div class="col-12 col-md-4">
     {{#if upcomingContest}}
       <UpcomingCompetitionContest
-        @contest={{upcomingContest}} >
-        {{#link-to
-          'competitions.id.contest'
-          fetchRecentContestTask.lastSuccessful.value.id
-          class="button-solid button-orange mt-4 mb-2 mx-auto"
-        }}
-          Solve Challenge
-        {{/link-to}}
+        @contest={{upcomingContest}} as |hasStarted|>
+        {{#if hasStarted}}
+          {{#link-to
+            "competitions.id.contest"
+            upcomingContest.id
+            class="button-solid button-orange mt-4 mb-2 mx-auto"
+          }}
+            Participate
+          {{/link-to}}
+        {{else}}
+          <RegisterButton  
+            @contestTypeModel={{hash 
+              contest=upcomingContest
+              id=competition.id
+            }} 
+          @route="contests.admission.contest" />
+      {{/if}}
       </UpcomingCompetitionContest>
     {{/if}}
 
@@ -120,17 +129,28 @@
         </div>
       </div>
       <div class="flex-row all-center px-2">
-        <span class="font-lg extra-bold"><a href="#">〈</a></span>
-        <div class="row c-card-carousel pb-0 mx-sm-3 mx-1">
-          {{#each competition.contests as |contest|}}
-            <div class="col-xl-3 col-lg-4 col-6">
-              <ArchivedCompetitionContestCard
+        
+        {{!-- <span class="font-lg extra-bold pointer" onclick={{action "seek" "left"}} role="button">
+          〈
+        </span> --}}
+      
+        <div id="carousel-card-row" class="row c-card-carousel pb-0 mx-sm-3 mx-1">
+          {{#each competition.contests as |contest index|}}
+            <div class="col-xl-3 col-lg-4 col-6" id={{concat "card-" index}}>
+              <ArchivedCompetitionContestCard 
+                class="h-100"
                 @onParticipate={{action onParticipate contest.id}}
                 @contest={{contest}} />
             </div>
           {{/each}}
         </div>
-        <span class="font-xl bold"><a href="#">〉</a></span>
+        {{!-- <span class="font-xl bold pointer" onclick={{action "seek" "right"}} role="button">
+          〉
+        </span> --}}
+        <span class="font-xl bold pointer">
+          〉
+        </span>
+
       </div>
     </div>
   </div>
