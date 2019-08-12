@@ -21,17 +21,18 @@
             </div>
           </div>
         </div>
-        <ProblemList 
+        {{!-- <ProblemList 
           @route="dcb.problem"
           @problems={{previous_problems}} 
-          @theme="blue" />
+          @theme="blue" /> --}}
       </div>
     </div>
     <div class="col-12 col-md-4 mt-md-0 mt-5">
       {{#if session.isAuthenticated}}
-        <LevelView 
+        <ContestStreakView 
           @contest={{contest}}
-          @levelComponent={{component 'daily-goal-card'}} 
+          @problem={{top_problem}}
+          @streakComponent={{component 'daily-goal-card'}} 
           class="pb-5" />
       {{/if}}
       <div class="border-card px-0">

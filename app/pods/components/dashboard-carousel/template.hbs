@@ -1,0 +1,23 @@
+{{#if banners}}
+  <div class="position-relative mb-5 banner">
+    {{#carousel-container transitionInterval=400 as |ui controls|}}
+      <div class="carousel-body">
+        {{#each banners as |banner|}}
+          {{#ui.item}}
+            <img 
+              src={{banner.image_url}}
+              alt={{banner.alt_text}} 
+              class="w-100 h-100">
+          {{/ui.item}}
+        {{/each}}
+      </div>
+    
+      <div class="banner-nav tl" onclick={{controls.previous}}>
+        <span><a href="#" class="white extra-bold">&lang;</a></span>
+      </div>
+      <div class="banner-nav tr" onclick={{controls.next}}>
+        <span><a href="#" class="white extra-bold">&rang;</a></span>
+      </div>
+    {{/carousel-container}}
+  </div>
+{{/if}}

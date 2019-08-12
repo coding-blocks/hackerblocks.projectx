@@ -1,0 +1,17 @@
+<div class="border-card p-0 contest-card">
+  <div class="p-xl-5 p-3 white position-relative bg-gradient-{{theme}}">
+    <h2>{{title}} <br> Contests</h2>
+    <div class="bold mt-4">{{contestCount}} Contests</div>
+    <img src="{{logo}}" alt="" class="position-absolute contest-card__header-img">
+  </div>
+  <div class="py-5 px-lg-5 px-4 t-align-c">
+    <div>
+      {{description}}
+    </div>
+    <LinkTo @route={{route}}>
+      <button class="button-solid button-orange font-sm mt-4">
+        View Contests
+      </button>
+    </LinkTo>
+  </div>
+</div>

@@ -16,10 +16,8 @@
       @problem={{problem}} />
   </div>
   <div class="col-4">
-    <LevelView 
-      @contest={{contest}}
-      @levelComponent={{component 'daily-goal-card-small'}} 
-      class="pb-5" />
+    <DailyGoalCardSmall
+      @topSubmission={{problem.topSubmission}} />
     {{#if problem.canSubmitReview}}
       <RatingCard 
         class="py-4"
