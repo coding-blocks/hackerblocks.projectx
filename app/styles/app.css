@@ -4,10 +4,15 @@
 .ember-modal-dialog {
   padding: 0px;
   border-radius: 15px;
+  box-shadow: none;
 }
 
 .ember-modal-overlay {
-  z-index: 1000
+  z-index: 1000;
+}
+
+.ember-modal-overlay.translucent {
+  background-color: rgba(27, 30, 38, 0.93)
 }
 
 .monaco-editor, .monaco-editor * {

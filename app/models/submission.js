@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import moment from 'moment';
+import { get } from '@ember/object'
 import DS from 'ember-data';
 const { Model } = DS;
 
@@ -19,8 +20,15 @@ export default Model.extend({
   contest: DS.belongsTo('contest'),
   user: DS.belongsTo('user'),
   createdAt: DS.attr(),
-  submitAtHumanize: Ember.computed('submit_at', function() {
-    return moment.duration(this.submit_at / 1000).humanize()
+  executionTime: Ember.computed('judge_result', function () {
+    const testcases = get(this, 'judge_result.data.testcases')
+    if (!testcases) 
+      return '--'
+    
+    return testcases.reduce((acc, t) => acc + +t.runtime, 0).toFixed(2)
+  }),
+  submitAtHumanize: Ember.computed('createdAt', function() {
+    return moment(this.createdAt).fromNow()
   }),
   resultParams: Ember.computed('explanation', function() {
     switch(this.explanation) {
