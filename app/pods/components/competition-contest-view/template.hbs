@@ -21,22 +21,24 @@
         </ul>
       </div>
     </div>
-    <div>
-      {{#if contest_attempt}}
-        {{#link-to
-          route
-          class="button-solid button-orange font-sm extra-bold my-3"
-        }}
-          Resume Challenge
-        {{/link-to}}
-      {{else}}
-        <button
-          class="button-solid button-orange font-sm extra-bold my-3"
-          {{action (toggle 'showStartDialog' this)}} >
-          Start Challenge
-        </button>
-      {{/if}}
-    </div>
+    {{#unless contest.isYetToStart}}
+      <div>
+        {{#if contest_attempt}}
+          {{#link-to
+            route
+            class="button-solid button-orange font-sm extra-bold my-3"
+          }}
+            Resume Challenge
+          {{/link-to}}
+        {{else}}
+          <button
+            class="button-solid button-orange font-sm extra-bold my-3"
+            {{action (toggle 'showStartDialog' this)}} >
+            Start Challenge
+          </button>
+        {{/if}}
+      </div>
+    {{/unless}}
   </div>
 </div>
 <div class="font-xs mt-5">

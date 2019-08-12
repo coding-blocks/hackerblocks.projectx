@@ -18,6 +18,12 @@ export default class ContestController extends Controller {
       limit: this.limit
     }
   }
+  @computed('contest')
+  get problemCount() {
+    if (this.contest) {
+      return this.contest.hasMany('problems').ids().length
+    }
+  }
 
   @action
   setOffset(offset) {

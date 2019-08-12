@@ -4221,10 +4221,10 @@ ember-poll@^1.4.0:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-power-select@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/ember-power-select/-/ember-power-select-3.0.2.tgz#655b027a7246caf9412aba37ca10c1d63cf6a05d"
-  integrity sha512-KRic0jj5Cq5Vb0QRldGLz07mKCWH8+NvxeMlwDwfBSf9mKiJ510BeIycTSWhlYagHd6aOUDSbYmOsfp33iglHA==
+ember-power-select@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/ember-power-select/-/ember-power-select-3.0.3.tgz#384073b87a8f5740df470c16592b03ddd9e357fa"
+  integrity sha512-uSUsE8yYpWH+fFnBa3KyNJ+Y85vBrTe6yUFlEcDRTIZXnS3Uls1+r/xsZMuoCMAzQoXi53uMYR4DBRx++TQT2w==
   dependencies:
     "@ember-decorators/component" "^6.0.0"
     ember-basic-dropdown "^2.0.0"

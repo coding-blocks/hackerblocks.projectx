@@ -14,9 +14,12 @@ export default class LeaderboardViewComponent extends Component {
     offset: 0,
     limit: 10
   }
+  selectedCollege = null
+  selectedLanguage = null
 
   didReceiveAttrs() {
     this.fetchLeaderboardTask.perform()
+    this.fetchCollegesTask.perform()
   }
 
   @computed('columns')
@@ -59,6 +62,15 @@ export default class LeaderboardViewComponent extends Component {
     })
 
     return leaderboard
+  }
+  @restartableTask fetchCollegesTask = function *(query = '') {
+    return this.store.query('college', {
+      filter: {
+        name: {
+          $iLike: `%${query}%`
+        }
+      }
+    })
   }
 
   @action

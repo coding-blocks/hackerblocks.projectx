@@ -4,14 +4,14 @@
     {{action (perform createRegistrationTask contestTypeModel)}}>
     Register
   </button>
-{{else if contestTypeModel.contest.isYetToStart}}
-  <div class="pill mt-3 mb-2">
-    Registered
-  </div>
 {{else}}
   {{#link-to route contestTypeModel.id}}
-    <button class="button-solid button-orange mt-3 mb-2" disabled={{contestTypeModel.contest.isYetToStart}}>
-      Solve Challenge
+    <button class="button-solid button-orange mt-3 mb-2">
+      {{#if contestTypeModel.contest.isYetToStart}}
+        View Contest
+      {{else}}
+        Solve Challenge
+      {{/if}}
     </button>
   {{/link-to}}
 {{/if}}

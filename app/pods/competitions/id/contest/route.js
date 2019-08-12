@@ -22,7 +22,7 @@ export default class ContestRoute extends Route {
     controller.set('contest', model.contest)
     model.contest.set("currentAttempt", model.contest_attempt)
     this.set('breadCrumb', {
-      title: 'Start'
+      title: model.contest.name
     })
   }
 }
