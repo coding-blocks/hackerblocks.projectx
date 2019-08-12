@@ -5,9 +5,11 @@
         <div class="row mx-0 align-items-center">
           <div class="col-xl-10 col-md-9 col-9">
             <div class="img-desc align-items-center justify-content-center">
-              <div class="col-2">
-                <img src="{{contest.image}}" alt="" class="">
-              </div>
+              {{#if contest.image}}
+                <div class="col-2">
+                  <img src="{{contest.image}}" alt="" class="">
+                </div>
+              {{/if}}
               <div class="description t-align-l col-10">
                 <h2>{{contest.name}}</h2>
                 <span class="font-sm mt-1">Arrays | LinkedList | Stacks | Queues | Trees | Graphs</span>

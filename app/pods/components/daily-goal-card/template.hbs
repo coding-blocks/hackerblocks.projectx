@@ -5,8 +5,8 @@
   <h6 class="bold">{{or topSubmission.score 0}}/100 Points Scored</h6>
   <div class="divider-h my-4"></div>
   <h4>Unlock Badge</h4>
-  <div class="font-xs">Complete {{sub 7 streak.perfectSubmissionCount}} more consecutive DCB’s to unlock badge</div>
+  <div class="font-xs">Complete {{sub 7 (or streak.perfectSubmissionCount 0)}} more consecutive DCB’s to unlock badge</div>
   <img src="/images/hexagon.jpg" alt="Badge Logo" class="badge mt-5 mb-3 w-30" />
   <progress value="{{streak.perfectSubmissionCount}}" max="7" class="mt-4 mb-2"></progress>
-  <h4 class="font-xs">{{streak.perfectSubmissionCount}} of 7 DCB's completed</h4>
+  <h4 class="font-xs">{{or streak.perfectSubmissionCount 0}} of 7 DCB's completed</h4>
 </div>

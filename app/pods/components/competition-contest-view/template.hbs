@@ -41,6 +41,11 @@
     {{/unless}}
   </div>
 </div>
+
+<div class="all-center my-4">
+  <img class="contest-banner" src={{contest.image}} alt={{contest.name}}>
+</div>
+
 <div class="font-xs mt-5">
   <div class="bold">Instructions</div>
   {{markdown-to-html contest.description}}

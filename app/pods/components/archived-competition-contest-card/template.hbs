@@ -1,6 +1,8 @@
-<div class="border-card p-xl-4 p-3 bg-gradient-dblue-lr white">
-  <h5 class="bold">{{contest.name}}</h5>
-  <div>Ended {{moment-format contest.end_time 'DD MMM'}}</div>
+<div class="border-card p-xl-4 p-3 bg-gradient-dblue-lr white h-100">
+  <div style="height: 4.5rem">
+    <h5 class="bold">{{contest.name}}</h5>
+    <div>Ended {{moment-format contest.end_time 'DD MMM'}}</div>
+  </div>
   <ul class="divided-list my-4">
     <li class="px-xl-2 px-sm-1 px-2">
       <div class="list-heading font-mds extra-bold orange">{{problemCount}}</div>
@@ -15,7 +17,7 @@
     <button 
       class="orange"
       {{action onParticipate}}>
-      Participate
+      Solve Challenge
       <i class="fas fa-arrow-right mx-3"></i>
     </button>
   </div>
