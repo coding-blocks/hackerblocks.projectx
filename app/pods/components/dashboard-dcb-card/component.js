@@ -3,23 +3,32 @@ import { restartableTask } from 'ember-concurrency-decorators';
 import { inject as service } from '@ember/service';
 import { alias } from '@ember/object/computed';
 import { computed } from '@ember/object';
+import moment from 'moment';
 
 export default class DashboardDcbCard extends Component {
   @service api
   @service store
 
   @alias('fetchDcbTopProblemTask.lastSuccessful.value') topProblem
-  @alias('fetchLevelTask.lastSuccessful.value') level
+  @alias('fetchContestStreakTask.lastSuccessful.value') streaks
   dcb_id = 1
 
-  @computed('level')
-  get progress() {
-    return (this.level.perfectSubmissionCount / this.level.nextRequiredSubmissionCount)*100
+  @computed('streaks')
+  get streak() {
+    if (this.streaks) {
+      return this.streaks.toArray()[0]
+    }
+  }
+  @computed('topProblem')
+  get topProblemEnd() {
+    if (this.topProblem) {
+      return moment(this.topProblem.dcbProblems.start).add(86400, 'second')
+    }
   }
 
   didReceiveAttrs() {
     this.fetchDcbTopProblemTask.perform()
-    this.fetchLevelTask.perform()
+    this.fetchContestStreakTask.perform()
   }
 
   @restartableTask fetchDcbTopProblemTask = function *() {
@@ -30,12 +39,11 @@ export default class DashboardDcbCard extends Component {
     return this.store.peekRecord('problem', problem.data.id)
   }
 
-  @restartableTask fetchLevelTask = function *() {
-    const levels = yield this.store.query('user_level', {
+  @restartableTask fetchContestStreakTask = function *() {
+    return yield this.store.query('contest-streak', {
       filter: {
         contestId: 1
       }
     })
-    return levels.toArray()[0]
   }
 }
