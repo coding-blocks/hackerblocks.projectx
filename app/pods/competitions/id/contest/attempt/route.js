@@ -11,13 +11,11 @@ export default class AttemptRoute extends Route {
     this.transitionTo('competitions.id.contest.attempt.problem', problem_id)
   }
 
-  @action
-  willTransition() {
+  deactivate() {
     this.navigation.setVisibility(true)
   }
   
-  @action
-  didTransition() {
+  activate() {
     this.navigation.setVisibility(false)
   }
 }
