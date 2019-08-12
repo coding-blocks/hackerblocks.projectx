@@ -1,6 +1,7 @@
 <div class="pt-5">
   <div class="row">
     {{#each admission_contests as |contest|}}
+    <div class="col-12 col-md-4">
       <ContestCard
         @contest={{contest.contest}}>
         {{#link-to
@@ -10,6 +11,7 @@
           Solve Challenge
         {{/link-to}}
       </ContestCard>
+    </div>
     {{/each}}
   </div>
 </div>

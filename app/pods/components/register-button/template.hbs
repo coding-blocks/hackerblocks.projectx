@@ -1,5 +1,5 @@
 {{yield}}
-{{#if (and contestTypeModel.contest.acceptRegistrations (not contestTypeModel.contest.registeredUser) (not contestTypeModel.contest.registration))}}
+{{#if (and contestTypeModel.contest.acceptRegistrations (not contestTypeModel.contest.registeredUser.length) (not contestTypeModel.contest.registration))}}
   <button class="button-solid button-orange mt-3 mb-2" 
     {{action (perform createRegistrationTask contestTypeModel)}}>
     Register
