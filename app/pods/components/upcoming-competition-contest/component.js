@@ -10,6 +10,6 @@ export default class UpcomingCompetitionContestComponent extends Component {
 
   @computed('contest.problems.@each')
   get problemCount() {
-    return this.contest.hasMany('problems').ids().length
+    return ("0" + this.contest.hasMany('problems').ids().length).slice(-2)
   }
 }
