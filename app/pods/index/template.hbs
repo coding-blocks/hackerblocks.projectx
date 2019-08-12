@@ -5,15 +5,13 @@
       <DashboardMetricsCard />
       <h4 class="my-5">Continue where you left</h4>
       <div class="row">
-        <div class="col-lg-6 col-12">
+        <div class="col-12">
           <DashboardDcbCard />
-        </div>
-        <div class="col-lg-6 col-12 mt-lg-0 mt-5">
-          <DashboardInterviewCard />
         </div>
       </div>
       <RegisteredContestsView
         @rowComponent="registered-contests-view/contest-row" />
+      <BookmarkedProblemsView />
     </div>
     <div class="col-md-4 col-12">
       {{!-- Performance Graph Card to be placed here --}}
@@ -33,11 +31,8 @@
   <DashboardPracticeView />
 
   <div class="row my-5">
-    <div class="col-md-8 col-12">
+    <div class="col-12">
       <ProfileBadges />
-    </div>
-    <div class="col-md-4 col-12 mt-md-0 mt-5">
-      <BookmarkedProblemsView />
     </div>
   </div>
   

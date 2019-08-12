@@ -24,10 +24,7 @@ export default class OverallLeaderboardView extends Component {
 
   @restartableTask fetchTopThree = function *() {
     return yield this.store.query('overall-leaderboard', {
-      filter: {
-        month: moment().month() + 1 ,
-        year: moment().year()
-      },
+      allTime: true,
       include: 'user',
       sort: '-score',
       page: {
@@ -37,10 +34,7 @@ export default class OverallLeaderboardView extends Component {
   }
   @restartableTask fetchLeaderboardTask = function *() {
     return yield this.store.query('overall-leaderboard', {
-      filter: {
-        month: moment().month() + 1 ,
-        year: moment().year()
-      },
+      allTime: true,
       include: 'user',
       sort: '-score',
       page: this.page

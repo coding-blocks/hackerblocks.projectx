@@ -1,4 +1,4 @@
-<div class="border-card py-5 px-4 bookmark mt-5">
+<div class="border-card p-5 bookmark mt-5">
   <h4 class="mb-2">Bookmarked Challenges</h4>
 
   {{#if fetchBookmarkedProblemsTask.isRunning}}
@@ -35,7 +35,16 @@
       <div class="divider-h"></div>
     {{/each}}
   {{else}}
-    You don't have any bookmarked problems.
+    <div class="grey">
+      You don't have any bookmarked problems.
+    </div>
+    <div class="mt-4 font-sm extra-bold">
+      <LinkTo  
+        @route="practice"
+        class="orange">
+        View Challenges
+      </LinkTo>
+    </div>
   {{/if}}
 
 </div>

@@ -1,78 +1,89 @@
 <div class="border-card p-0 h-100">
-  <div class="bg-gradient-blue-lr py-5 px-xl-5 px-4 all-center white">
-    <div class="w-100">
-      <div class="row justify-content-between align-items-center no-gutters">
-        <h3>Daily Code Bytes</h3>
-        <a href="#" class="white"><i class="fas fa-info-circle fa-lg"></i></a>
+  <div class="p-5 bg-gradient-blue-lr white">
+    <div class="row justify-content-between mx-0">
+      <div class="col-md-4 col-sm-6 col-6">
+        <h5>TODAY'S CODE BYTE</h5>
+        <h5 class="mt-2 mb-4">{{humanize_date}}</h5>
       </div>
-      <div class="divider-h bg-white my-3"></div>
-      <h3 class="bold mt-3">{{ topProblem.name }}</h3>
-      <ul class="divided-list">
-        <li class="pr-xl-3 pr-lg-2 pr-3">
-          <div class="list-heading font-mds extra-bold yellow">{{ topProblem.difficultyString }}</div>
-          <div class="list-data">Dificulty</div>
-        </li>
-        <li class="px-xl-3 px-lg-2 px-3">
-          <div class="list-heading font-mds extra-bold yellow">345</div>
-          <div class="list-data">Submissions</div>
-        </li>
-        <li class="pl-xl-3 pl-lg-2 pl-3">
-          <div class="list-heading font-mds extra-bold yellow">100</div>
-          <div class="list-data">Max Pts</div>
-        </li>
-      </ul>
-      <LinkTo 
-        @route='dcb.problem'
-        @model={{topProblem.id}}
-        class="button-solid button-white mt-3 float-right extra-bold">
-        Continue
-      </LinkTo>
+      <div>
+        <Timer @to={{or topProblemEnd (now)}} as |time|>
+          <ul class="divided-list timer">
+            <li class="timer-item">
+              <div class="list-heading white">{{time.hours}}</div>
+              <div class="list-data">Hours</div>
+            </li>
+            <li class="timer-item">
+              <div class="list-heading white">{{time.minutes}}</div>
+              <div class="list-data">Minutes</div>
+            </li>
+            <li class="timer-item">
+              <div class="list-heading white">{{time.seconds}}</div>
+              <div class="list-data">Seconds</div>
+            </li>
+          </ul>
+        </Timer>
+      </div>
+    </div>
+    <div class="divider-h bg-white dcb-divider"></div>
+    <div class="row justify-content-between align-items-center mx-0">
+      <div class="col-10">
+        <h3 class="mb-4 mt-4">{{topProblem.content.name}}</h3>
+      </div>
+      <a href="#" class="white"><i class="far fa-bookmark fa-2x"></i></a>
+    </div>
+    <div class="font-xs mb-5">
+      {{markdown-to-html (truncate topProblem.content.description 300 true)}}
+    </div>
+    <div class="row justify-content-between align-items-center mx-0">
+      <div class="col-xl-9 col-12">
+        <ul class="divided-list">
+          <li class="px-lg-3 px-2">
+            <div class="list-heading">{{topProblem.difficultyString}}</div>
+            <div class="list-data">Difficulty</div>
+          </li>
+          <li class="px-lg-3 px-2">
+            <div class="list-heading">{{topProblem.submissionCount}}</div>
+            <div class="list-data">Submissions</div>
+          </li>
+          <li class="px-lg-3 px-2">
+            <div class="list-heading">200</div>
+            <div class="list-data">Max Points</div>
+          </li>
+          <li class="px-lg-3 px-2">
+            <div class="list-heading">24</div>
+            <div class="list-data">Time (Hours)</div>
+          </li>
+        </ul>
+      </div>
+      <div>
+        {{#link-to 'dcb.problem' topProblem.id class="button-solid button-white bold mt-3"}}
+        Solve Challenge
+        {{/link-to}}
+      </div>
     </div>
   </div>
-  <div class="align-items-center t-align-c px-xl-4 px-3 pb-5 pt-4">
-    {{#if level}}
-      <div class="img-desc font-sm pt-2 all-center px-md-3 px-2 mt-4">
-        <div class="pr-0 col-2 col-lg-3 pl-2">
-          <img src="/images/hexagon.jpg" alt="">
-        </div>
-        <div class="description ml-3 t-align-l col-lg-9 col-10 pl-0">
-          <div class="row justify-content-between align-items-center no-gutters">
-            <h3>Level {{ level.level }}</h3>
-            <a href="#" class="white"><i class="fas fa-info-circle fa-md blue"></i></a>
-          </div>
-          <span class="Font-sm">Solve {{sub level.nextRequiredSubmissionCount level.perfectSubmissionCount}} more DCB’s</span>
-          <div class="row mx-0 mt-1 align-items-center">
-            <div class="col-10 px-0">
-              <progress value="{{ progress }}" max="100" class="w-90 d-inline-block"></progress>
-            </div>
-            <div class="col-2 px-0">
-              <span class="card-md bold float-right">{{ level.perfectSubmissionCount }}/{{ level.nextRequiredSubmissionCount }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    {{else}}
-      <div class="font-mds mb-4 mt-2">Earn your First Badge</div>
-      <div class="img-desc font-sm pt-2 all-center px-md-3 px-2 mt-4">
-        <div class="pr-0 col-2 col-lg-3 pl-2">
-          <img src="/images/hexagon.jpg" alt="">
-        </div>
-        <div class="description ml-3 t-align-l col-lg-9 col-10 pl-0">
+  {{#if streak}}
+    <div class="align-items-center t-align-c px-xl-4 px-3 pb-5 mx-0">
+      <div class="img-desc font-sm pt-2 all-center px-md-3 px-2 mt-4 row justify-content-between">
+        <div class="description ml-3 t-align-l col-8 pl-0">
           <div class="row justify-content-between align-items-center no-gutters">
             <h3>Streak Master</h3>
             <a href="#" class="white"><i class="fas fa-info-circle fa-md blue"></i></a>
           </div>
-          <span class="Font-sm">Solve 1 more DCB</span>
+          <span class="Font-sm">Solve 7 consecutive DCB’s to earn this badge</span>
           <div class="row mx-0 mt-1 align-items-center">
-            <div class="col-10 px-0">
-              <progress value="35" max="100" class="w-90 d-inline-block"></progress>
+            <div class="col-8 px-0">
+              <progress value="{{streak.perfectSubmissionCount}}" max="7" class="w-90 d-inline-block"></progress>
             </div>
-            <div class="col-2 px-0">
-              <span class="card-md bold float-right">0/1</span>
+            <div class="col-4 px-0">
+              <span class="card-md bold float-right">{{streak.perfectSubmissionCount}}/7 DCBs Solved</span>
             </div>
           </div>
         </div>
+        <div class="pr-0 col-2 pl-2">
+          <img src="/images/hexagon.jpg" alt="">
+        </div>
       </div>
-    {{/if}}
-  </div>
+    </div>
+  {{/if}}
 </div>
