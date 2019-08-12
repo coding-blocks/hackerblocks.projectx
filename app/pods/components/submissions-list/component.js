@@ -2,9 +2,12 @@ import Component from '@ember/component';
 import { restartableTask } from 'ember-concurrency-decorators';
 import { inject as service } from '@ember/service';
 import { alias } from '@ember/object/computed';
+import { action } from '@ember/object';
 
 export default class SubmissionListComponent extends Component {
   @service store
+
+  showModal = false
 
   @alias('fetchSubmissionsTask.lastSuccessful.value') submissions
 
@@ -20,9 +23,17 @@ export default class SubmissionListComponent extends Component {
       filter: {
         contest_id,
         problem_id
-      }
+      },
+      sort: '-createdAt'
     })
 
     return submissions
+  }
+
+  @action
+  viewSubmission (submission) {
+    console.log(submission)
+    this.set("showModal", true)
+    this.set("SelectedSubmission", submission)
   }
 }
