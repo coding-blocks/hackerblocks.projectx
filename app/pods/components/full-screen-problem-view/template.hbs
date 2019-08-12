@@ -6,7 +6,7 @@
         <h4>{{problem.name}}</h4>
       </div>
       <div class="col-6">
-        <ul class="divided-list t-align-r mt-0">
+        <ul class="divided-list t-align-r mt-0 pull-right">
           <li class="px-3">
             <h4 class="orange">{{problem.difficultyString}}</h4>
             <div class="list-data font-mds">Dificulty</div>
@@ -54,8 +54,8 @@
       </div>
     </div>
   </div>
-  <div class="col-6">
-    <div class="c-code-editor w-100 flex-col">
+  <div class="col-6 position-relative h-100 overflow-y-auto">
+    <div class="c-code-editor w-100">
       <CodeEditorComponent @problem={{problem}} @contest={{contest}} as |judge_result|>
         {{#if judge_result}}
         <RunResult class="py-4" @judgeResult={{judge_result}} />

@@ -4,7 +4,7 @@ import { action } from '@ember/object';
 export default class CodeWindowComponent extends Component {
   code = ''
   isLanguageSelectOpen = false
-  customInputOpen = false
+  customInputOpen = true
   
   languageSpecs = [
     {
