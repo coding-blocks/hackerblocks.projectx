@@ -2,11 +2,13 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { restartableTask } from 'ember-concurrency-decorators';
 import { alias } from '@ember/object/computed';
-import { action } from '@ember/object';
+// import { action, computed } from '@ember/object';
 
 export default class CompetitionViewComponent extends Component {
   @service api
   @service store
+
+  // cardScrollIndex = 0
 
   @alias('fetchTopThreeTask.lastSuccessful.value') topThree
   @alias('fetchRecentContestTask.lastSuccessful.value') upcomingContest
@@ -39,4 +41,31 @@ export default class CompetitionViewComponent extends Component {
       }
     })
   }
+
+  // @computed ('cardScrollIndex')
+  // get showScrollLeft () {
+  //   return this.cardScrollIndex - 4 >= 0
+  // }
+
+  // @computed ('competition.contests', 'cardScrollIndex')
+  // get showScrollRight () {
+  //   return this.cardScrollIndex + 4 < this.competition.contests.length
+  // }
+
+  // @action
+  // seek (direction) {
+  //   const row = this.element.querySelector('#carousel-card-row')
+  //   switch (direction) {
+  //     case 'left':
+  //       this.incrementProperty('cardScrollIndex', -4)
+  //       break;
+  //     case 'right':
+  //         this.incrementProperty('cardScrollIndex', +4)
+  //   }
+
+  //   row.scrollTo(
+  //     row.querySelector('#card-' + this.cardScrollIndex).offsetLeft,
+  //     0
+  //   )
+  // }
 }
