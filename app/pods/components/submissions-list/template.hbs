@@ -19,7 +19,13 @@
             <td class="pb-4 pt-4">{{submission.executionTime}}</td>
             <td class="pb-4 pt-4">{{submission.language}}</td>
             <td class="pb-4 pt-4 t-align-r">
-              <a href="#View" class="pr-3 orange">View</a>
+              <a 
+                class="pr-3 orange pointer" 
+                role="button"
+                onclick={{action "viewSubmission" submission}}
+              >
+                View
+              </a>
               <span class="normal">{{submission.submitAtHumanize}}</span> 
             </td>
           </tr>
@@ -34,3 +40,12 @@
     </div>
   {{/if}}
 </div>
+
+{{#if showModal}}
+  Hello
+  {{#submissions-list/submission-modal 
+    submission=SelectedSubmission
+    onClose=(action (mut showModal) false)
+  }}
+  {{/submissions-list/submission-modal }}
+{{/if}}

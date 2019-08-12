@@ -1,0 +1,22 @@
+<ModalDialog 
+  @onClose={{onClose}} 
+  @translucentOverlay={{true}}
+  @containerClass="w-50"
+  >
+  <div class="br-15 overflow-hidden p-0 bg-white t-align-c">
+    <div class="bg-grey py-4">
+      <h5>Submission ID: #{{submission.id}}</h5>
+    </div>
+    <div class="p-5">
+      <pre class="bg-grey t-align-l p-3">{{sourceCode}}</pre>
+
+      <div class="row justify-content-center mt-4">
+        <button 
+          class="button-solid button-orange font-sm extra-bold ml-2" 
+          onclick={{onClose}}>
+          <span class="d-sm-inline d-none">Close</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</ModalDialog>
