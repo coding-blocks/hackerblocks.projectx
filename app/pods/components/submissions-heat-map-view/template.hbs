@@ -6,10 +6,10 @@
 
   {{#if fetchSubmissionsForDateTask.isRunning}}
     <LoadingComponent />
-  {{else}}
+  {{else if submissions.length}}
     <div class="divider-h bh-grey my-4"></div>
 
-    <div class="c-hb-leaderboard profile">
+    <div class="c-hb-leaderboard profile pt-3">
       <table class="w-100 ml-md-4">
         <thead class="font-sm extra-bold orange">
           <td class="pb-4">Problem</td>
@@ -23,13 +23,12 @@
         <tbody>
           {{#each submissions as |submission|}}
           <tr>
-            {{log submission.problem.name}}
             <td class="py-3">{{submission.problem.name}}</td>
             <td class="py-3">{{submission.score}}</td>
             <td class="py-3">{{submission.language}}</td>
             <td class="py-3">{{moment-from submission.createdAt}}</td>
             {{#if userHimself}}
-            <td class="py-3"><a href="#" class="orange">View</a></td>
+            <td class="py-3"><a href="#" class="orange" {{action 'viewSubmission' submission}}>View</a></td>
             {{/if}}
           </tr>
           {{/each}}
@@ -39,8 +38,17 @@
       {{yield (hash 
         submissions=submissions)}}
       <PaginationPill 
+        class="mt-4"
         @pagination={{submissions.meta.pagination}} 
         @setOffset={{action setOffset}} />
     </div>
   {{/if}}
 </div>
+
+{{#if showModal}}
+{{#submissions-list/submission-modal 
+    submission=selectedSubmission
+    onClose=(action (mut showModal) false)
+  }}
+{{/submissions-list/submission-modal }}
+{{/if}}

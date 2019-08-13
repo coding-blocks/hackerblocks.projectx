@@ -8,6 +8,7 @@ export default class SubmissionHeatMapComponent extends Component {
   @service currentUser;
 
   date = new Date()
+  showModal = false
 
   @computed('currentUser')
   get userHimself() {
@@ -26,7 +27,7 @@ export default class SubmissionHeatMapComponent extends Component {
       },
       date: this.date,
       user_id: this.userId,
-      include: 'problem',
+      include: 'problem,contest',
       exclude: 'problem.*,user.*,contest.*',
       page: this.page
     })
@@ -36,7 +37,15 @@ export default class SubmissionHeatMapComponent extends Component {
   @action
   fetchSubmissionsForDate(date){
     this.set('date', date)
-    this.set('page.offset', 0)
+    //this will trigger two backend requests
+    //magar honi ko kaun hi taal sakta hai :|
+    this.setOffset(0)
     this.fetchSubmissionsForDateTask.perform()
+  }
+
+  @action
+  viewSubmission(submission){
+    this.set('selectedSubmission', submission)
+    this.set('showModal', true)
   }
 }
