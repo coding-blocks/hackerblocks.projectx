@@ -4,8 +4,6 @@ import { inject as service } from '@ember/service';
 import { action } from '@ember/object'
 
 export default class ProblemRoute extends Route {
-  @service navigation
-  
   async model(params) {
     const contest = await this.modelFor('contests.admission.contest').contest
     const contest_attempt = contest.get('currentAttempt')
@@ -36,15 +34,5 @@ export default class ProblemRoute extends Route {
     if (err.isAdapterError) {
       this.transitionTo('competitions.id.contest')
     }
-  }
-
-  @action
-  willTransition() {
-    this.navigation.setVisibility(true)
-  }
-  
-  @action
-  didTransition() {
-    this.navigation.setVisibility(false)
   }
 }
