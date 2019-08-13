@@ -17,13 +17,15 @@
           </li>
         {{/if}} --}}
         <li class="px-xl-4 px-1 t-align-l">
-          <div class="list-heading font-md extra-bold orange">{{contest.stats.problemCount}}</div>
+          <div class="list-heading font-md extra-bold orange">
+            {{add contest.stats.problemcount contest.stats.quizcount}}
+          </div>
           <div class="list-data font-mds">
             Problems
           </div>
         </li>
         <li class="px-xl-4 px-1 t-align-l">
-          <div class="list-heading font-md extra-bold orange">{{contest.stats.participantCount}}</div>
+          <div class="list-heading font-md extra-bold orange">{{contest.stats.participantcount}}</div>
           <div class="list-data font-mds">
             Participants
           </div>
