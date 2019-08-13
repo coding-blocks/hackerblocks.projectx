@@ -3,27 +3,26 @@
     <div class="col-1">
       <h6>Filter</h6>
     </div>
-    <div class="col-4 px-4">
+    <div class="col-8 px-4">
       <div class="dropdown py-3 px-2">
         <span class="font-xs">By College</span>
         <PowerSelect 
           @searchEnabled={{true}}
           @search={{perform this.fetchCollegesTask}}
           @selected={{this.selectedCollege}}
-          @onChange={{action (mut this.selectedCollege)}}
+          @onchange={{action (mut this.selectedCollege)}}
           @options={{fetchCollegesTask.lastSuccessful.value}}
           @allowClear={{true}} as |college|>
           {{college.name}}
         </PowerSelect>
       </div>
     </div>
-    <div class="col-4 px-4">
-      <div class="dropdown py-3 px-2">
-        <span class="font-xs">By Language</span>
-      </div>
-    </div>
-    <div class="col-2">
-      <button class="button-solid button-orange font-sm extra-bold my-3">Apply Filter</button>
+    <div class="col-3">
+      <button 
+        class="button-solid button-orange font-sm extra-bold my-3"
+        {{action 'applyFilter'}}>
+        Apply Filter
+      </button>
     </div>
   {{/if}}
 </div>

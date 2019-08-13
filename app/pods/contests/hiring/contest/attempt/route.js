@@ -5,14 +5,13 @@ export default class AttemptRoute extends Route {
   @service navigation
 
   async beforeModel() {
-    const admission_contest = this.modelFor('contests.admission.contest')
-    const contest = await admission_contest.contest
+    const { contest } = this.modelFor('contests.hiring.contest')
     const problem_id = contest.hasMany('problems').ids()[0]
     if (problem_id) {
-      this.transitionTo('contests.admission.contest.attempt.problem', problem_id)
+      this.transitionTo('contests.hiring.contest.attempt.problem', problem_id)
     } else {
       const quiz_id = contest.hasMany('quizzes').ids()[0]
-      this.transitionTo('contests.admission.contest.attempt.quiz', quiz_id)
+      this.transitionTo('contests.hiring.contest.attempt.quiz', quiz_id)
     }
   }
 

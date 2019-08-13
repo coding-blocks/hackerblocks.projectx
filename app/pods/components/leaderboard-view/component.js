@@ -14,7 +14,6 @@ export default class LeaderboardViewComponent extends Component {
     offset: 0,
     limit: 10
   }
-  selectedCollege = null
   selectedLanguage = null
 
   didReceiveAttrs() {
@@ -52,6 +51,9 @@ export default class LeaderboardViewComponent extends Component {
       }
       sort = '-score'
     }
+    if (this.selectedCollege) {
+      filter.collegeId = this.selectedCollege.id
+    }
 
     const leaderboard = yield this.store.query(`${this.for}-leaderboard`, {
       include: 'user,college',
@@ -71,6 +73,12 @@ export default class LeaderboardViewComponent extends Component {
         }
       }
     })
+  }
+
+  @action
+  applyFilter() {
+    this.fetchLeaderboardTask.perform()
+    this.set('page.offset', 0)
   }
 
   @action

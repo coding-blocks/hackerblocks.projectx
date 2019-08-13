@@ -1,0 +1,13 @@
+<div class="row">
+  {{#each hiring_contests as |hiring_contest|}}
+  <div class="col-12 col-md-4">
+    <ContestCard 
+      @contest={{hiring_contest.contest}}
+      @showTimer=true>
+        <RegisterButton 
+          @contestTypeModel={{hiring_contest}} 
+          @route="contests.hiring.contest" />
+    </ContestCard>
+  </div>
+  {{/each}}
+</div>

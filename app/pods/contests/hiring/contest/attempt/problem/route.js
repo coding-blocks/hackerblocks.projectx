@@ -1,11 +1,10 @@
 import Route from '@ember/routing/route';
+import { action } from '@ember/object';
 import RSVP from 'rsvp';
-import { inject as service } from '@ember/service';
-import { action } from '@ember/object'
 
 export default class ProblemRoute extends Route {
   async model(params) {
-    const contest = await this.modelFor('contests.admission.contest').contest
+    const contest = await this.modelFor('contests.hiring.contest').contest
     const contest_attempt = contest.get('currentAttempt')
     const problem = this.store.queryRecord('problem', {
       custom: {
@@ -32,7 +31,7 @@ export default class ProblemRoute extends Route {
   @action
   error(err) {
     if (err.isAdapterError) {
-      this.transitionTo('contests.admission.contest')
+      this.transitionTo('contests.hiring.contest')
     }
   }
 }
