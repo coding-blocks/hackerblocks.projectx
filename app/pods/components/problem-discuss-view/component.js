@@ -3,20 +3,21 @@ import { restartableTask } from 'ember-concurrency-decorators';
 import { inject as service } from '@ember/service';
 import { alias } from '@ember/object/computed'
 
-
 export default class ProblemDiscussViewComponent extends Component {
 
   @service api
-
+ 
   currentIndex = 0
   size = 5
   posts = []
+  loaded = false
 
   @alias('fetchTopic.last.value')
   topic
 
+
   // get Topic for this problem in this contest
-  @restartableTask fetchTopic = function *() {
+  @restartableTask() fetchTopic = function *() {
     const { topic } = yield this.api.request(`/problems/${this.problem.id}/topic`, {
       data: { contest_id: this.contest.id }
     })
@@ -24,11 +25,11 @@ export default class ProblemDiscussViewComponent extends Component {
     if(topic)
       yield this.fetchPosts.perform(topic)
 
-    
+    this.set('loaded', true)
     return topic
   }
 
-  @restartableTask fetchPosts = function *(topic) {
+  @restartableTask() fetchPosts = function *(topic) {
     const stream = topic.post_stream.stream
     const ids = stream.slice(stream.length-this.currentIndex-this.size, stream.length-this.currentIndex)
     const { posts: newPosts} = yield this.api.request(`/discuss/topic/${topic.id}/posts`, {
@@ -39,7 +40,7 @@ export default class ProblemDiscussViewComponent extends Component {
     this.incrementProperty('currentIndex', this.size)
   }
 
-  @restartableTask createTopic = function *() {
+  @restartableTask() createTopic = function *() {
     const { topicId } = yield this.api.request('/discuss/topic', {
       method: 'POST',
       data: {
@@ -49,7 +50,7 @@ export default class ProblemDiscussViewComponent extends Component {
     })
 
     window.open(`https://discuss.codingblocks.com/t/${topicId}`, '_blank')
-    
+
     return this.fetchTopic.perform()
   }
 

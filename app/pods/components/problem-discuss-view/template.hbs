@@ -1,3 +1,6 @@
+{{#unless loaded}}
+  <LoadingComponent />
+{{/unless}}
 {{#if topic}}
   <div class="my-5 d-flex justify-content-between">
     <h2>Discussion Thread</h2>
@@ -17,7 +20,7 @@
       </a>
     {{/problem-discuss-view/post-view}}
   {{/each}}
-{{else}}
+{{else if loaded}}
   <div class="t-align-c my-5">
     No discussion about this problem for now.
     <br>
