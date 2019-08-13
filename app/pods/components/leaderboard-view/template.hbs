@@ -54,9 +54,12 @@
                 </div>
               </td>
               {{#if showCollege}}
-              <td class="py-4">{{myRank.college_name}}</td>
+                <td class="py-4">{{myRank.college_name}}</td>
               {{/if}}
-              <td class="py-4">{{myRank.score}}</td>
+              {{#if showLanguage}}
+                <td class="py-4">{{myRank.language}}</td>
+              {{/if}}
+                <td class="py-4">{{myRank.score}}</td>
             </tr>
           {{/if}}
 

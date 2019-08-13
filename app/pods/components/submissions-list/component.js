@@ -32,7 +32,6 @@ export default class SubmissionListComponent extends Component {
 
   @action
   viewSubmission (submission) {
-    console.log(submission)
     this.set("showModal", true)
     this.set("SelectedSubmission", submission)
   }
