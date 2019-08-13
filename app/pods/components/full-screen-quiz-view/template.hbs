@@ -4,10 +4,11 @@
       <LoadingComponent />
     {{else}}
       <QuestionContainer
+        @index={{index}}
         @submission={{submission}}
         @question={{question}} />
     {{/if}}
-    <div class="position-absolute bl bg-white pb-3">
+    <div class="position-absolute bl bg-white pb-3 w-100">
       <div class="divider-h mb-2"></div>
       <div class="row no-gutters align-items-center justify-content-around">
         <div>

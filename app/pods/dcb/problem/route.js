@@ -3,8 +3,7 @@ import RSVP from 'rsvp';
 
 export default class ProblemRoute extends Route {
   model(params) {
-    const contest = this.modelFor('dcb').contest
-    const dcb = this.modelFor('dcb').dcb
+    const { contest, dcb } = this.modelFor('dcb')
     const problem = this.store.queryRecord('problem', {
       custom: {
         ext: 'url',

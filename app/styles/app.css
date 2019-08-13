@@ -21,6 +21,14 @@
   border: none;
 }
 
+.submission-window {
+  max-height: 60vh;
+}
+
+.tab-nav-underline {
+  z-index: 1;
+}
+
 .q1{
   background-color: #f3f3f3 !important;
   fill: #f3f3f3 !important;

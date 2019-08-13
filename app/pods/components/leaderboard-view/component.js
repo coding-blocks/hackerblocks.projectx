@@ -14,9 +14,11 @@ export default class LeaderboardViewComponent extends Component {
     offset: 0,
     limit: 10
   }
+  selectedLanguage = null
 
   didReceiveAttrs() {
     this.fetchLeaderboardTask.perform()
+    this.fetchCollegesTask.perform()
   }
 
   @computed('columns')
@@ -49,6 +51,9 @@ export default class LeaderboardViewComponent extends Component {
       }
       sort = '-score'
     }
+    if (this.selectedCollege) {
+      filter.collegeId = this.selectedCollege.id
+    }
 
     const leaderboard = yield this.store.query(`${this.for}-leaderboard`, {
       include: 'user,college',
@@ -59,6 +64,21 @@ export default class LeaderboardViewComponent extends Component {
     })
 
     return leaderboard
+  }
+  @restartableTask fetchCollegesTask = function *(query = '') {
+    return this.store.query('college', {
+      filter: {
+        name: {
+          $iLike: `%${query}%`
+        }
+      }
+    })
+  }
+
+  @action
+  applyFilter() {
+    this.fetchLeaderboardTask.perform()
+    this.set('page.offset', 0)
   }
 
   @action

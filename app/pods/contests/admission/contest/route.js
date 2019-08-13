@@ -13,7 +13,6 @@ export default class ContestRoute extends Route {
       },
       contest_id: admission_contest.get('contest.id')
     })
-
     admission_contest.contest.set("currentAttempt", contest_attempt)
     return admission_contest
   }
@@ -23,5 +22,6 @@ export default class ContestRoute extends Route {
     if (err.isAdapterError) {
       this.transitionTo('contests.admission')
     }
+    throw err
   }
 }

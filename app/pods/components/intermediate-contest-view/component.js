@@ -31,10 +31,15 @@ export default class IntermediateContestComponent extends Component {
     const contest_attempt = this.store.createRecord('contest-attempt', {
       contest: this.contest
     })
-    yield contest_attempt.save()
-    this.set('showStartDialog', false)
-    if (this.onAfterCreate){
-      this.onAfterCreate()
+    try {
+      yield contest_attempt.save()
+      this.set('showStartDialog', false)
+      if (this.onAfterCreate){
+        this.onAfterCreate()
+      }
+    } catch (err) {
+      contest_attempt.deleteRecord()
+      throw err
     }
   }
 }

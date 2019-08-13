@@ -51,18 +51,8 @@ export default class QuizRoute extends Route {
   @action
   error(err) {
     if (err.isAdapterError) {
-      this.transitionTo('competitions.id.contest')
+      this.transitionTo('contests.admission.contest')
     }
     throw err
-  }
-
-  @action
-  willTransition() {
-    this.navigation.setVisibility(true)
-  }
-  
-  @action
-  didTransition() {
-    this.navigation.setVisibility(false)
   }
 }

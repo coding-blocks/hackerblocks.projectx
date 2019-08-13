@@ -1,5 +1,5 @@
-<div class="overflow-y-auto no-scrollbar question-area">
-  <div class="font-mds mb-4">Question {{question.id}}</div>
+<div class="overflow-y-auto no-scrollbar question-area question-container">
+  <div class="font-mds mb-4">Question {{this.index}}</div>
   <div class="font-sm bold word-wrap">
     {{markdown-to-html question.description}}
   </div>
@@ -13,3 +13,4 @@
     {{/each}}
   </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full"></script>

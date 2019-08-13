@@ -47,6 +47,19 @@ Router.map(function() {
       });
       this.route('id', { path: '/:course_id'});
     });
+    this.route('hiring', function() {
+      this.route('all', function() {
+        this.route('archived');
+        this.route('upcoming');
+      });
+      this.route('contest', { path: '/c/:hiring_contest_id'}, function() {
+        this.route('attempt', function() {
+          this.route('problem', {path: '/p/:problem_id'});
+          this.route('quiz', {path: '/q/:quiz_id'});
+        });
+        this.route('feedback');
+      });
+    });
   });
   this.route('dcb', function() {
     this.route('problem', {path: '/:problem_id'});
