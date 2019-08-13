@@ -7,6 +7,7 @@ export default Model.extend({
   startDate: DS.attr(),
   endDate: DS.attr(),
   faqs: DS.attr(),
+  stats: DS.attr(),
   banner: DS.attr(),
   thumbnail: DS.attr(),
   overview: DS.attr(),
