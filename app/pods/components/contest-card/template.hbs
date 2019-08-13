@@ -2,7 +2,7 @@
   <div class="head py-5 px-4 all-center {{if theme (concat 'bg-gradient-' theme) 'bg-gradient-black-lr'}}">
     <div>
       <div class="img-desc">
-        <div class="col-3 pl-0">
+        <div class="col-3 pl-0"> 
           <img src="{{contest.image}}" alt="IMG">
         </div>
         <div class="description justify-content-center">
@@ -10,22 +10,30 @@
         </div>
       </div>
       <ul class="divided-list t-align-c mt-4 mb-0">
-        {{#if contest.problemCount}}
+        {{!-- {{#if contest.problemCount}}
           <li class="px-xl-2 px-1 t-align-l">
             <div class="list-heading font-md extra-bold orange">{{contest.problemCount}}</div>
             <div class="list-data font-mds">Problems</div>
           </li>
-        {{/if}}
-        <li class="px-xl-2 px-1 t-align-l">
-          <div class="list-heading font-md extra-bold orange">{{moment-format contest.start_time 'DD MMM'}}</div>
+        {{/if}} --}}
+        <li class="px-xl-4 px-1 t-align-l">
+          <div class="list-heading font-md extra-bold orange">{{contest.stats.problemCount}}</div>
           <div class="list-data font-mds">
-            {{if contest.isYetToStart 'Starts' 'Started'}}
+            Problems
           </div>
         </li>
-        <li class="px-xl-2 px-1 t-align-l">
-          <div class="list-heading font-md extra-bold orange">{{moment-format contest.start_time 'DD MMM'}}</div>
+        <li class="px-xl-4 px-1 t-align-l">
+          <div class="list-heading font-md extra-bold orange">{{contest.stats.participantCount}}</div>
           <div class="list-data font-mds">
-            {{if contest.hasEnded 'Ended' 'Ends'}}
+            Participants
+          </div>
+        </li>
+        <li class="px-xl-4 px-1 t-align-l">
+          <div class="list-heading font-md extra-bold orange">
+            {{durationAsHour}}
+          </div>
+          <div class="list-data font-mds">
+            Time
           </div>
         </li>
       </ul>

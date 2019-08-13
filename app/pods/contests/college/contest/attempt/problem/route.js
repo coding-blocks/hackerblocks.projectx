@@ -20,6 +20,12 @@ export default class ProblemRoute extends Route {
     })
   }
 
+  afterModel(model){
+    this.set('breadCrumb', {
+      title: model.problem.name
+    })
+  }
+
   setupController(controller, model) {
     controller.set('contest', model.contest)
     controller.set('problem', model.problem)
