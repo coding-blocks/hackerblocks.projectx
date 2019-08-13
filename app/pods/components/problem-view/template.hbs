@@ -45,8 +45,11 @@
   <SolutionComponent 
     @contest={{contest}}
     @problem={{problem}} />
-  {{else}}
-  fghjk
+  {{else if (eq selectedTab "discuss")}}
+    <ProblemDiscussView
+      @contest={{contest}}
+      @problem={{problem}}
+    />
   {{/liquid-if}}
 </div>
 <div class="border-card p-0 border-none w-100">

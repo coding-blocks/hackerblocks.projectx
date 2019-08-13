@@ -1,0 +1,21 @@
+<div class="pt-4 mb-2 pb-4">
+  <div class="row no-gutters justify-content-between">
+    <div class="img-desc align-items-center">
+      <img src="http://discuss.codingblocks.com/user_avatar/discuss.codingblocks.com/{{post.username}}/150/105_1.png" alt="" class="round s-30x30">
+      <div class="description ml-3">
+        <h6> {{post.name}} </h6>
+      </div>
+    </div>
+    <div>
+      <span class="card-md dark-grey">{{moment-from-now post.created_at}}</span>
+      {{!-- {{#if post.reply_count}}
+      <span class="grey card-md mr-3">{{post.reply_count}} Replies</span>
+      {{/if}} --}}
+    </div>
+  </div>
+  <p class="overflow-hidden">
+    {{{post.cooked}}}
+  </p>
+
+  {{yield}}
+</div>
