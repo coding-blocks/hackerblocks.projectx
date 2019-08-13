@@ -7,8 +7,6 @@ export default class SubmissionHeatMapComponent extends Component {
   @service api
   @service store
 
-  heatMap = new CalHeatMap();
-
   didReceiveAttrs() {
     this.set('submissionsCount', this.fetchSubmissionsCountTask.perform())
   }
@@ -16,6 +14,13 @@ export default class SubmissionHeatMapComponent extends Component {
   @restartableTask fetchSubmissionsCountTask = function *() {
     const that = this
     const submissionsCount = yield this.api.request(`users/${this.userId}/submissions`)
+    
+    // destory this heatmap if exist alread
+    if (this.heatMap) {
+      this.heatMap.destroy()
+    }
+
+    this.set('heatMap', new CalHeatMap())
     this.heatMap.init({
       domain: 'month',
       legend: [0, 10, 15, 20],
