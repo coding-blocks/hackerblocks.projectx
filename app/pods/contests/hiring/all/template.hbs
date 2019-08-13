@@ -1,0 +1,23 @@
+<div class="t-align-c">
+  <h2 class="mb-2">HIRING CONTESTS</h2>
+  <h5 class="bold mt-1 mb-2">Participate in hiring contests and get yourself your dream job</h5>
+</div>
+<div class="tab-nav-underline my-5 font-md bold justify-content-between">
+  <LinkTo @route="contests.hiring.all.index" class="tab py-4 px-lg-5 px-4">
+    <i class="fas fa-podcast mr-3 fa-lg d-md-inline d-none"></i>Live Contests
+    {{!-- <span class="d-md-inline d-none">(03)</span> --}}
+  </LinkTo>
+  
+  <LinkTo @route="contests.hiring.all.upcoming" class="tab py-4 px-lg-5 px-4">
+    <i class="far fa-calendar mr-3 fa-lg d-md-inline d-none"></i>Upcoming Contests
+    {{!-- <span class="d-md-inline d-none">(08)</span> --}}
+  </LinkTo>
+  
+  <LinkTo @route="contests.hiring.all.archived" class="tab py-4 px-lg-5 px-4">
+    <i class="fas fa-archive mr-3 fa-lg d-md-inline d-none"></i>Archived Contests
+    {{!-- <span class="d-md-inline d-none">(10)</span> --}}
+  </LinkTo>
+  
+</div>
+
+{{liquid-outlet}}
