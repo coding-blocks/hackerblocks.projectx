@@ -60,6 +60,8 @@ Router.map(function() {
         this.route('feedback');
       });
     });
+
+    this.route('contest', function() {});
   });
   this.route('dcb', function() {
     this.route('problem', {path: '/:problem_id'});

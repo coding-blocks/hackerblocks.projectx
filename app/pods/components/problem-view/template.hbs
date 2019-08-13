@@ -36,6 +36,7 @@
     @problem={{problem}} />
   {{else if (eq selectedTab "leaderboard")}}
   <LeaderboardView
+    class="pt-5"
     @for="problem"
     @contestId={{contest.id}}
     @problemId={{problem.id}}

@@ -55,7 +55,11 @@ export default class CodeWindowComponent extends Component {
     this._super(...arguments)
     const languages = this.get('allowedLanguages') || ['c', 'cpp', 'python2', 'python3', 'java', 'node', 'csharp']
     this.set('languages', languages)
-    this.selectLanguage(this.codeStubs.toArray()[0].language)
+    if (this.codeStubs.toArray().length) {
+      this.selectLanguage(this.codeStubs.toArray()[0].language)
+    } else {
+      this.selectLanguage('cpp')
+    }
   }
 
   @action

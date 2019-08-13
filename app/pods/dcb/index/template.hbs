@@ -42,8 +42,8 @@
           class="pb-5" />
       {{/if}}
       <div class="border-card px-0">
-        <h5 class="t-align-c">Leaderboard</h5>
         <LeaderboardView
+          @title="Leaderboard"
           @for="contest"
           @theme="blue"
           @contestId={{contest.id}} />
