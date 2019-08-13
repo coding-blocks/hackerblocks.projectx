@@ -36,6 +36,7 @@ export default class SubmissionHeatMapComponent extends Component {
   @action
   fetchSubmissionsForDate(date){
     this.set('date', date)
+    this.set('page.offset', 0)
     this.fetchSubmissionsForDateTask.perform()
   }
 }

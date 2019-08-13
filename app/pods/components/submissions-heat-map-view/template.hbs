@@ -4,7 +4,9 @@
     @userId={{userId}} 
     @onDateClick={{fetchSubmissionsForDate}} />
 
-  {{#if submissions.length}}
+  {{#if fetchSubmissionsForDateTask.isRunning}}
+    <LoadingComponent />
+  {{else}}
     <div class="divider-h bh-grey my-4"></div>
 
     <div class="c-hb-leaderboard profile">
@@ -21,6 +23,7 @@
         <tbody>
           {{#each submissions as |submission|}}
           <tr>
+            {{log submission.problem.name}}
             <td class="py-3">{{submission.problem.name}}</td>
             <td class="py-3">{{submission.score}}</td>
             <td class="py-3">{{submission.language}}</td>

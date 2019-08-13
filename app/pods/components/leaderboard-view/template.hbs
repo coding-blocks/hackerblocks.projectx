@@ -6,6 +6,15 @@
     <div class="col-4 px-4">
       <div class="dropdown py-3 px-2">
         <span class="font-xs">By College</span>
+        <PowerSelect 
+          @searchEnabled={{true}}
+          @search={{perform this.fetchCollegesTask}}
+          @selected={{this.selectedCollege}}
+          @onChange={{action (mut this.selectedCollege)}}
+          @options={{fetchCollegesTask.lastSuccessful.value}}
+          @allowClear={{true}} as |college|>
+          {{college.name}}
+        </PowerSelect>
       </div>
     </div>
     <div class="col-4 px-4">
@@ -59,7 +68,11 @@
                 <div class="img-desc align-items-center">
                   <img class="round s-30x30" src="{{row.user.photo}}" alt="">
                   <div class="description ml-3">
-                    {{row.user.name}}
+                    <LinkTo
+                      @route="users.id"
+                      @model={{row.user.id}}>
+                      {{row.user.name}}
+                    </LinkTo>
                   </div>
                 </div>
               </td>

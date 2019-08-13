@@ -13,7 +13,13 @@
             </div>
           </div>
           <div class="col-lg-8 col-md-12 col-8 pl-lg-3 pl-md-0 pl-3">
-            <div class="font-mds extra-bold mb-2 mt-lg-0 mt-md-2 mt-0">{{row.user.name}}</div>
+            <div class="font-mds extra-bold mb-2 mt-lg-0 mt-md-2 mt-0">
+              <LinkTo
+                @route="users.id"
+                @model={{row.user.id}}>
+                {{row.user.name}}
+              </LinkTo>
+            </div>
             <div>{{row.score}} Points</div>
           </div>
         </div>
@@ -50,7 +56,11 @@
               <div class="img-desc align-items-center">
                 <img class="round s-30x30" src="{{row.user.photo}}" alt="">
                 <div class="description ml-3">
-                  {{row.user.name}}
+                  <LinkTo
+                    @route="users.id"
+                    @model={{row.user.id}}>
+                    {{row.user.name}}
+                  </LinkTo>
                 </div>
               </div>
             </td>
