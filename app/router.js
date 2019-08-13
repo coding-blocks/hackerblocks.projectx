@@ -62,6 +62,9 @@ Router.map(function() {
     });
 
     this.route('contest', function() {});
+    this.route('old-contest', {path: '/c/:contest_id'}, function() {
+      this.route('problem', {path: '/p/:problem_id'});
+    });
   });
   this.route('dcb', function() {
     this.route('problem', {path: '/:problem_id'});
