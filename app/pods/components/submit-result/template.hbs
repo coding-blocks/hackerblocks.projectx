@@ -1,9 +1,11 @@
-{{#if correctAnswer}}
-  {{submit-result/success-submission-message}}
-{{else}}
-  {{submit-result/wrong-submission-message}}
-{{/if}}
-<div class="border-card p-0 test-cases-card">
+<div class="{{unless fullScreen "border-card mb-5"}} p-0">
+  {{#if correctAnswer}}
+    {{submit-result/success-submission-message}}
+  {{else}}
+    {{submit-result/wrong-submission-message}}
+  {{/if}}
+</div>
+<div class="{{unless fullScreen "border-card"}} p-0 test-cases-card">
   <div class="row no-gutters">
     <div class="col-md-2 col-4 bg-grey">
       <h5 class="p-4 test-cases-card__grey-heading">Test Cases</h5>
