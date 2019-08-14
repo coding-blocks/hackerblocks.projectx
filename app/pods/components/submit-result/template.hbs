@@ -1,28 +1,51 @@
-<div class="border-card p-0">
-  <div class="row m-0">
-    <div>
-      <ul class="font-mds extra-bold py-5 pl-4 pr-3 mt-0">
+{{#if correctAnswer}}
+  {{submit-result/success-submission-message}}
+{{else}}
+  {{submit-result/wrong-submission-message}}
+{{/if}}
+<div class="border-card p-0 test-cases-card">
+  <div class="row no-gutters">
+    <div class="col-md-2 col-4 bg-grey">
+      <h5 class="p-4 test-cases-card__grey-heading">Test Cases</h5>
+      <ul class="font-mds extra-bold mt-0">
         {{#each judgeResult.data.testcases as |testcase index|}}
-        <li class="pb-3">
-          <a 
-            href="#" 
-            class={{if (eq selectedIndex index) "orange"}}
-            {{action (mut selectedIndex) index}}>
-            Test Case {{index}}
+          <li class="p-4 d-flex align-items-center {{if (eq selectedIndex index) "test-cases-card__active"}}">
             {{#if (eq testcase.result "correct")}}
-            <i class="fas fa-check mx-3"></i>
+              <a 
+                href="#" 
+                class="gradient-text-green"
+                {{action (mut selectedIndex) index}}>
+                Test Case {{index}}
+              </a>
+              <img src="\images\tick_g.png" alt="" class="d-inline test-cases-card__icon ml-4">
+            {{else if (eq testcase.result "wrong-answer")}}
+              <a 
+                href="#" 
+                class="gradient-text-pink"
+                {{action (mut selectedIndex) index}}>
+                Test Case {{index}}
+              </a>
+              <img src="\images\wrong_r.png" alt="" class="d-inline test-cases-card__icon ml-4">
             {{else}}
-            <i class="fas fa-times mx-3"></i>
+              <a 
+                href="#" 
+                class="gradient-text-orange"
+                {{action (mut selectedIndex) index}}>
+                Test Case {{index}}
+              </a>
+              <img src="\images\error_o.png" alt="" class="d-inline test-cases-card__icon ml-4">
             {{/if}}
-          </a>
-        </li>
+          </li>
         {{/each}}
       </ul>
     </div>
-    <div class="col-sm-8 col-6 py-5 b-left pl-5">
-      <h6 class="bold">Compile Message</h6>
-      <div class="bg-grey p-4 mt-3 mb-5">
-        <div class="font-sm">{{compilerMessage}}</div>
+    <div class="col-md-10 col-8 b-left">
+      <h5 class="py-4 px-5 test-cases-card__grey-heading">Result</h5>
+      <div class="py-5 px-5">
+        <h6 class="bold">Compile Message</h6>
+        <div class="bg-grey p-4 mt-3 mb-5">
+          <div class="font-sm">{{compilerMessage}}</div>
+        </div>
       </div>
     </div>
   </div>

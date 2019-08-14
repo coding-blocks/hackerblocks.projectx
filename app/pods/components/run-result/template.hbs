@@ -1,3 +1,9 @@
+{{#if (eq judgeResult.result "compile_error")}}
+  {{run-result/error-run-message}}
+{{else if (not (eq judgeResult.result "success"))}}
+  {{run-result/judgement-delay-run-message}}
+{{/if}}
+
 <div class="border-card p-5">
   {{#if (eq judgeResult.result "compile_error")}}
     <h1>Compilation Error</h1>
