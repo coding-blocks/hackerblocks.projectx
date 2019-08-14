@@ -8,15 +8,15 @@
     <h3 class="mt-2">{{competition.name}}</h3>
     <ul class="divided-list justify-content-center">
       <li class="px-xl-3 px-md-2 px-4 t-align-l">
-        <div class="list-heading font-mds extra-bold">12</div>
+        <div class="list-heading font-mds extra-bold">{{competition.stats.contest-count}}</div>
         <div class="list-data">Contests</div>
       </li>
       <li class="px-xl-3 px-md-2 px-4 t-align-l">
-        <div class="list-heading font-mds extra-bold">234</div>
+        <div class="list-heading font-mds extra-bold">{{competition.stats.participant-count}}</div> 
         <div class="list-data">Participants</div>
       </li>
       <li class="px-xl-3 px-md-2 px-4 t-align-l">
-        <div class="list-heading font-mds extra-bold">45</div>
+        <div class="list-heading font-mds extra-bold">{{competition.stats.college-count}}</div>
         <div class="list-data">Colleges</div>
       </li>
     </ul>

@@ -58,8 +58,8 @@
         {{problemView.filterComponent}}
 
         <div class="border-card px-0 mt-5">
-          <h5 class="t-align-c">Leaderboard</h5>
           <LeaderboardView
+            @title="Leaderboard"
             @for="contest"
             @theme={{"purple"}}
             @contestId={{contest.id}} />

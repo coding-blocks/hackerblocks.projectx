@@ -37,8 +37,11 @@
     <div class="col-12 col-md-4">
       {{problemView.filterComponent status=status difficulty=difficulty}}
       <div class="border-card mt-5">
-        <h5 class="t-align-c">Leaderboard</h5>
-        <LeaderboardView @for="contest" @theme="orange" @contestId={{contest.id}} />
+        <LeaderboardView 
+          @title="Leaderboard"
+          @for="contest" 
+          @theme="orange" 
+          @contestId={{contest.id}} />
       </div>
     </div>
   </div>

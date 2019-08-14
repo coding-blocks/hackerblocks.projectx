@@ -3,4 +3,5 @@
 	<div class="font-xs">Complete daily goal to count it as streak</div>
 	<progress value="{{or topSubmission.score 0}}" max="100" class="mt-4 mb-2 w-90"></progress>
 	<h6 class="bold">{{or topSubmission.score 0}}/100 Points Scored</h6>
+	{{yield}}
 </div>

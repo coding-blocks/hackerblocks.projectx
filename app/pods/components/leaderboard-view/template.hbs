@@ -1,34 +1,37 @@
-<div class="row align-items-center justify-content-around">
-  {{#if allowFilter}}
-    <div class="col-1">
-      <h6>Filter</h6>
-    </div>
-    <div class="col-8 px-4">
-      <div class="dropdown py-3 px-2">
-        <span class="font-xs">By College</span>
-        <PowerSelect 
-          @searchEnabled={{true}}
-          @search={{perform this.fetchCollegesTask}}
-          @selected={{this.selectedCollege}}
-          @onchange={{action (mut this.selectedCollege)}}
-          @options={{fetchCollegesTask.lastSuccessful.value}}
-          @allowClear={{true}} as |college|>
-          {{college.name}}
-        </PowerSelect>
-      </div>
-    </div>
-    <div class="col-3">
-      <button 
-        class="button-solid button-orange font-sm extra-bold my-3"
-        {{action 'applyFilter'}}>
-        Apply Filter
-      </button>
-    </div>
+{{#if leaderboard_rows}}
+  {{#if title}}
+    <h5 class="t-align-c">{{title}}</h5>
   {{/if}}
-</div>
-<div class="py-4">
-  <div class="c-hb-leaderboard">
-    {{#if leaderboard_rows}}
+  <div class="row align-items-center justify-content-around">
+    {{#if allowFilter}}
+      <div class="col-1">
+        <h6>Filter</h6>
+      </div>
+      <div class="col-8 px-4">
+        <div class="dropdown py-3 px-2">
+          <span class="font-xs">By College</span>
+          <PowerSelect 
+            @searchEnabled={{true}}
+            @search={{perform this.fetchCollegesTask}}
+            @selected={{this.selectedCollege}}
+            @onchange={{action (mut this.selectedCollege)}}
+            @options={{fetchCollegesTask.lastSuccessful.value}}
+            @allowClear={{true}} as |college|>
+            {{college.name}}
+          </PowerSelect>
+        </div>
+      </div>
+      <div class="col-3">
+        <button 
+          class="button-solid button-orange font-sm extra-bold my-3"
+          {{action 'applyFilter'}}>
+          Apply Filter
+        </button>
+      </div>
+    {{/if}}
+  </div>
+  <div class="py-4">
+    <div class="c-hb-leaderboard">
       <table class="w-100">
         <thead class="font-sm extra-bold {{theme}}">
           <td class="pb-4">Rank</td>
@@ -47,7 +50,7 @@
               <td class="py-4">#{{myRank.rank}}</td>
               <td class="py-4">
                 <div class="img-desc align-items-center">
-                  <img class="round s-30x30" src="/images/placeholder.gif" alt="">
+                  <img class="round s-30x30" src="{{myRank.user_photo}}" alt="">
                   <div class="description ml-3">
                     {{myRank.user_name}}
                   </div>
@@ -68,7 +71,7 @@
               <td class="py-4">{{add (inc i) page.offset}}</td>
               <td class="py-4">
                 <div class="img-desc align-items-center">
-                  <img class="round s-30x30" src="{{row.user.photo}}" alt="">
+                  <img class="round s-30x30" src={{or row.user.photo "/images/user.svg"}} alt="">
                   <div class="description ml-3">
                     <LinkTo
                       @route="users.id"
@@ -82,23 +85,28 @@
               <td class="py-4">{{row.college.name}}</td>
               {{/if}}
               {{#if showLanguage}}
-              <td class="py-4">{{row.language}}</td>
+              <td class="py-4">{{row.submission.language}}</td>
               {{/if}}
               <td class="py-4">{{row.score}}</td>
             </tr>
           {{/each}}
         </tbody>
       </table>
-
       <PaginationPill 
         @pagination={{leaderboard_rows.meta.pagination}} 
         @setOffset={{action 'setOffset'}} />
-    {{else}}
-      <div class="t-align-c">
-        <p>
-          We can't show you a leaderboard until the submissions start rolling in, stay tuned!
-        </p>
-      </div>
-    {{/if}}
+    </div>
   </div>
-</div>
+{{else}}
+  <div class="row align-items-center justify-content-around">
+    <div class="t-align-c">
+      <img src="/images/empty_leaderboard.png" alt="Empty Leaderboard" width="87">
+      {{#if title}}
+        <h5 class="t-align-c my-4">{{title}}</h5>
+      {{/if}}
+      <p>
+        We can't show you a leaderboard until the submissions start rolling in. Stay tuned!
+      </p>
+    </div>
+  </div>
+{{/if}}

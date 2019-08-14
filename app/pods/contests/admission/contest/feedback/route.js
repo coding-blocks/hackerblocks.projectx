@@ -22,7 +22,7 @@ export default class FeedbackRoute extends Route {
     const contest = this.modelFor('contests.admission.contest').contest
     const contest_attempt = contest.get('currentAttempt')
     const feedback = this.store.createRecord('contest-feedback', {
-      stars: 3,
+      stars: 5,
       body: '',
       contest: contest
     })

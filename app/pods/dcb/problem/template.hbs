@@ -19,7 +19,16 @@
   </div>
   <div class="col-4">
     <DailyGoalCardSmall
-      @topSubmission={{dcb.top_problem.topSubmission}} />
+      @topSubmission={{dcb.top_problem.topSubmission}}>
+      {{#if dcbEnded}}
+        <div class="divider-h my-3"></div>
+        <div>
+          <p class="orange">
+            Note: You will be awarded partial score for this DCB, since this is an old DCB.
+          </p>
+        </div>
+      {{/if}}
+    </DailyGoalCardSmall>
     {{#if problem.canSubmitReview}}
       <RatingCard 
         class="py-4"
