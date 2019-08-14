@@ -1,4 +1,7 @@
 <div class="pt-5">
+  {{#if (not admission_contests.length)}}
+    {{contest-view/empty-contest-screen}}
+  {{/if}}
   <div class="row">
     {{#each admission_contests as |contest|}}
     <div class="col-12 col-md-4">

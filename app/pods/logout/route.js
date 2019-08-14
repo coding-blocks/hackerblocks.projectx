@@ -1,5 +1,6 @@
 import Route from "@ember/routing/route";
 import { inject as service } from '@ember/service';
+import env from 'hackerblocks/config/environment';
 
 export default class Logout extends Route {
   @service api;
@@ -8,6 +9,6 @@ export default class Logout extends Route {
   async afterModel() {
     await this.api.request("/jwt/logout")
     this.session.invalidate();
-    return this.transitionTo("index")
+    window.location = env.publicUrl
   }
 }

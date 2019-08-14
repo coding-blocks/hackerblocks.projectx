@@ -17,10 +17,10 @@
     <div class="divider-h my-4 px-5"></div>
   </div>
 
-  <h4 class="mb-4 px-md-5 px-4">My Badges</h4>
   {{#if fetchBadgesTask.isRunning}}
     <LoadingComponent />
-  {{else}}
+  {{else if badges.length}}
+    <h4 class="mb-4 px-md-5 px-4">My Badges</h4>
     <div class="flex-row align-items-center px-2">
       <span class="font-lg bold"><a href="#">〈</a></span>
       <div class="row c-card-carousel mx-3">
@@ -34,6 +34,16 @@
         {{/each}}
       </div>
       <span class="font-xl bold"><a href="#">〉</a></span>
+    </div>
+  {{else}}
+    <div class="all-center">
+      <div class="t-align-c">
+        <img src="/app/images/badge_orange.png" alt="Badge">
+        <h4 class="my-2">Badges Earned</h4>
+        <p class="my-2">
+          You have not earned any badge till now. Practice more to earn badges
+        </p>
+      </div>
     </div>
   {{/if}}
 </div>

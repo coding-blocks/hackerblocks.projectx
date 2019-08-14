@@ -1,10 +1,14 @@
-{{#if (eq judgeResult.result "compile_error")}}
-  {{run-result/error-run-message}}
-{{else if (not (eq judgeResult.result "success"))}}
-  {{run-result/judgement-delay-run-message}}
-{{/if}}
+{{#unless (eq judgeResult.result "success")}}
+  <div class="{{unless fullScreen "border-card mb-5"}} p-0">
+    {{#if (eq judgeResult.result "compile_error")}}
+      {{run-result/error-run-message}}
+    {{else if (not (eq judgeResult.result "success"))}}
+      {{run-result/judgement-delay-run-message}}
+    {{/if}}
+  </div>
+{{/unless}}
 
-<div class="border-card p-5">
+<div class="{{unless fullScreen "border-card"}} p-5">
   {{#if (eq judgeResult.result "compile_error")}}
     <h1>Compilation Error</h1>
   {{else if (eq judgeResult.result "success")}}
