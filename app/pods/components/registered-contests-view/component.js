@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { restartableTask } from 'ember-concurrency-decorators';
 import { alias } from '@ember/object/computed';
+import moment from 'moment';
 
 export default class RegisteredContestView extends Component {
   @service store
@@ -13,8 +14,15 @@ export default class RegisteredContestView extends Component {
   }
 
   @restartableTask fetchRegisteredContestTask = function *() {
-    return yield this.store.findAll('contest-registration', {
-      include: 'contest'
+    return yield this.store.query('contest-registration', {
+      include: 'contest',
+      filter: {
+        contest: {
+          start_time: {
+            $gt: moment()
+          }
+        }
+      }
     })
   }
 }
