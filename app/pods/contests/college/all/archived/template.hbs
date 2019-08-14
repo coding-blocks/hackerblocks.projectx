@@ -2,6 +2,9 @@
   Archived Contests are already ended.
   You can still participate, however you will not be awarded any points for these contest.
 </div>
+{{#if (not college_contests.length)}}
+  {{contest-view/empty-contest-screen}}
+{{/if}}
 <div class="row">
   {{#each college_contests as |college_contest|}}
   <div class="col-12 col-md-4">

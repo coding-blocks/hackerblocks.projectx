@@ -1,3 +1,6 @@
+{{#if (not hiring_contests.length)}}
+  {{contest-view/empty-contest-screen}}
+{{/if}}
 <div class="row">
   {{#each hiring_contests as |hiring_contest|}}
   <div class="col-12 col-md-4">
