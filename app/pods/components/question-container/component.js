@@ -3,6 +3,7 @@ import { dropTask } from 'ember-concurrency-decorators';
 import { run } from '@ember/runloop';
 
 export default class QuestionContainer extends Component {
+  classNames = ["h-100"]
   didRender () {
     const questionContainer = document.querySelector('.question-container')
     if (window.MathJax && questionContainer) {

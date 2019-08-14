@@ -47,9 +47,14 @@ export default class FullScreenQuizView extends Component {
     this.fetchQuestionTask.perform()
   }
 
+  @restartableTask markQuestionForReview = function *() {
+    this.submission.toggleProperty('review_later')
+    yield this.submission.save()
+  }
+
   @restartableTask fetchQuestionTask = function *() {
     const index = this.index || 1
     const question_id = this.quiz.hasMany('questions').ids()[index - 1]
-    return yield this.store.findRecord('question', question_id)
+    return this.store.findRecord('question', question_id)
   }
 }

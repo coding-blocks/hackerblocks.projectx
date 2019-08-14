@@ -28,6 +28,7 @@ export default Model.extend({
   allow_testcase_unlocks: DS.attr(),
   plagiarismFiltering: DS.attr(),
   problemCount: DS.attr(),
+  stats: DS.attr(),
   dcb: DS.belongsTo('dcb'),
   problems: DS.hasMany('problems'),
   quizzes: DS.hasMany('quiz'),

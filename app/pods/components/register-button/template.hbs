@@ -1,17 +1,21 @@
 {{yield}}
-{{#if (and contestTypeModel.contest.acceptRegistrations (not contestTypeModel.contest.registeredUser.length) (not contestTypeModel.contest.registration))}}
-  <button class="button-solid button-orange mt-3 mb-2" 
-    {{action (perform createRegistrationTask contestTypeModel)}}>
-    Register
-  </button>
+{{#if registeredNow}}
+  <div class="orange">Registered!</div>
 {{else}}
-  {{#link-to route contestTypeModel.id}}
-    <button class="button-solid button-orange mt-3 mb-2">
-      {{#if contestTypeModel.contest.isYetToStart}}
-        View Contest
-      {{else}}
-        Solve Challenge
-      {{/if}}
+  {{#if (and contestTypeModel.contest.acceptRegistrations (not contestTypeModel.contest.registeredUser.length) (not contestTypeModel.contest.registration))}}
+    <button class="button-solid button-orange mt-3 mb-2" 
+      {{action (perform createRegistrationTask contestTypeModel)}}>
+      Register
     </button>
-  {{/link-to}}
+  {{else}}
+    {{#link-to route contestTypeModel.id}}
+      <button class="button-solid button-orange mt-3 mb-2">
+        {{#if contestTypeModel.contest.isYetToStart}}
+          View Contest
+        {{else}}
+          Solve Challenge
+        {{/if}}
+      </button>
+    {{/link-to}}
+  {{/if}}
 {{/if}}
