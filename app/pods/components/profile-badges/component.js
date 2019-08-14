@@ -10,9 +10,11 @@ export default class ProfileBadgesComponent extends Component{
       this.set('userId', this.currentUser.user.id)
     }
 
-    const badges = this.store.query('user-level', {
+    const badges = this.store.query('badge', {
       include: 'contest',
-      user_id: this.userId
+      filter: {
+        userId: this.userId
+      }
     })
     this.set('badges', badges)
   }
