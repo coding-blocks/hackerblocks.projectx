@@ -1,4 +1,9 @@
-<CompetitionContestView
+{{!-- <CompetitionContestView
   @contest={{contest}} 
   @onAfterCreate={{onAfterCreate}}
-  @route='contests.college.contest.attempt' />
+  @route="contests.college.contest.attempt"/> --}}
+
+<IntermediateContestView
+@nextRoute="contests.college.contest.attempt"
+@onAfterCreate={{onAfterCreate}}
+@contest={{contest}} />

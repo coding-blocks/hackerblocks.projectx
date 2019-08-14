@@ -24,7 +24,12 @@ export default class CompetitionContestComponent extends Component {
     const contest_attempt = this.store.createRecord('contest-attempt', {
       contest: this.contest
     })
-    yield contest_attempt.save()
+    try {
+      yield contest_attempt.save()
+    } catch (e) {
+      contest_attempt.rollbackAttributes()
+    }
+    
     this.set('showStartDialog', false)
     if (this.onAfterCreate){
       this.onAfterCreate()
