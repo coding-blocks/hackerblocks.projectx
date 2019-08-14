@@ -1,22 +1,36 @@
 <div class="border-card py-5 px-lg-5 px-4 t-align-c mt-5">
-  <h4 class="mb-5 mt-2">Badges Earned</h4>
-  <div class="flex-row align-items-center px-2">
-    <span class="font-lg bold"><a href="#">〈</a></span>
-    <div class="row c-card-carousel mx-3 align-items-center">
-      {{#unless badges.length}}
-        You have not earned any badges.
-      {{/unless}}
-      {{#each badges as |badge|}}
+  {{#if fetchBadgesTask.isRunning}}
+    <LoadingComponent />
+  {{else if badges.length}}
+    <h4 class="mb-5 mt-2">Badges Earned</h4>
+    <div class="flex-row align-items-center px-2">
+      <span class="font-lg bold"><a href="#">〈</a></span>
+      <div class="row c-card-carousel mx-3 align-items-center">
+        {{#each badges as |badge|}}
         <div class="col-lg-3 col-sm-4 col-6 px-2">
           <div>
-            <img src="/images/hexagon.jpg" alt="Badge Logo" class="v-align-m w-40">
+            <img src="{{badge.icon}}" alt="Badge Logo" class="v-align-m w-40">
             <h5 class="mt-3">{{badge.contest.name}}</h5>
             <div class="card-md">Completed {{badge.perfectSubmissionCount}} {{badge.contest.name}} Challenges</div>
             <div class="card-mds mt-2 grey">{{moment-format badge.createdAt 'DD MMM YYYY'}}</div>
           </div>
         </div>
-      {{/each}}
+        {{/each}}
+      </div>
+      <span class="font-xl bold"><a href="#">〉</a></span>
     </div>
-    <span class="font-xl bold"><a href="#">〉</a></span>
-  </div>
+  {{else}}
+    <div class="all-center">
+      <div class="t-align-c">
+        <img src="/images/badge_orange.png" alt="Badge">
+        <h4 class="my-2">Badges Earned</h4>
+        <p class="my-2">
+          You have not earned any badge till now. Practice more to earn badges
+        </p>
+        <LinkTo class="orange mt-3 extra-bold" @route="practice">
+          View Challenges
+        </LinkTo>
+      </div>
+    </div>
+  {{/if}}
 </div>

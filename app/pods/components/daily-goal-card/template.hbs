@@ -1,12 +1,39 @@
-<div class="border-card p-md-5 p-4 c-daily-goal-card">
-  <h4>Daily Goal</h4>
-  <div class="font-xs">Complete daily goal to count it as streak</div>
-  <progress value="{{or topSubmission.score 0}}" max="100" class="mt-4 mb-2"></progress>
-  <h6 class="bold">{{or topSubmission.score 0}}/100 Points Scored</h6>
-  <div class="divider-h my-4"></div>
-  <h4>Unlock Badge</h4>
-  <div class="font-xs">Complete {{sub 7 (or streak.perfectSubmissionCount 0)}} more consecutive DCB’s to unlock badge</div>
-  <img src="/images/hexagon.jpg" alt="Badge Logo" class="badge mt-5 mb-3 w-30" />
-  <progress value="{{streak.perfectSubmissionCount}}" max="7" class="mt-4 mb-2"></progress>
-  <h4 class="font-xs">{{or streak.perfectSubmissionCount 0}} of 7 DCB's completed</h4>
+<div class="border-card px-0 c-daily-goal-card">
+  <div class="px-md-5 px-4 ">
+    <h4>Daily Goal</h4>
+    <div class="font-xs">Complete daily goal to count it as streak</div>
+    <progress value="{{or topSubmission.score 0}}" max="100" class="mt-4 mb-2"></progress>
+    <h6 class="bold">{{or topSubmission.score 0}}/100 Points Scored</h6>
+    <div class="divider-h my-4"></div>
+    <h4>Unlock Badge</h4>
+    <div class="font-xs">Complete {{sub 7 (or streak.perfectSubmissionCount 0)}} more consecutive DCB’s to unlock badge</div>
+    <div class="all-center position-relative mt-5 mb-3">
+      <img src="/images/hexagon.jpg" alt="Badge Logo" class="badge w-30" />
+      <i class="fas fa-lock fa-2x position-absolute white"></i>
+    </div>
+    <progress value="{{streak.perfectSubmissionCount}}" max="7" class="mt-4 mb-2"></progress>
+    <h4 class="font-xs">{{or streak.perfectSubmissionCount 0}} of 7 DCB's completed</h4>
+
+    <div class="divider-h my-4 px-5"></div>
+  </div>
+
+  <h4 class="mb-4 px-md-5 px-4">My Badges</h4>
+  {{#if fetchBadgesTask.isRunning}}
+    <LoadingComponent />
+  {{else}}
+    <div class="flex-row align-items-center px-2">
+      <span class="font-lg bold"><a href="#">〈</a></span>
+      <div class="row c-card-carousel mx-3">
+        {{#each badges as |badge|}}
+        <div class="col-md-4 col-3 col-lg-3 px-2">
+          <img src="{{badge.icon}}" alt="Badge Logo" class="v-align-m">
+          <div class="card-md bold mt-2">
+            Completed {{badge.metric}} DCB Streaks
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      <span class="font-xl bold"><a href="#">〉</a></span>
+    </div>
+  {{/if}}
 </div>

@@ -63,11 +63,8 @@
     </div>
 
     <div class="border-card px-5 pb-0 pt-5 mt-4">
-      <h5 class="mb-4 t-align-c">
-        Overall Leaderboard
-      </h5>
-
       <LeaderboardView 
+        @title="Overall Leaderboard"
         @for="competition" 
         @competitionId={{competition.id}} 
         @columns=['college']

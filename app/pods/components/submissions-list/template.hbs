@@ -1,6 +1,6 @@
 <div class="py-4">
-  <h4 class="mb-5 pt-4">My Submissions</h4>
   {{#if submissions}}
+    <h4 class="mb-5 pt-4">My Submissions</h4>
     <table class="w-100">
       <thead class="font-sm extra-bold b-bottom">
         <td class="pb-2">Result</td>
@@ -34,15 +34,17 @@
     </table>
   {{else}}
     <div class="t-align-c">
+      <img src="/images/submission_orange.png" alt="Submission Icon" width="58">
+      <h4>My Submissions</h4>
       <p>
         You haven't made a submission to this problem yet
       </p>
     </div>
   {{/if}}
+  {{submissions-list/analytics-graph contest=contest problem=problem}}
 </div>
 
 {{#if showModal}}
-  Hello
   {{#submissions-list/submission-modal 
     submission=SelectedSubmission
     onClose=(action (mut showModal) false)

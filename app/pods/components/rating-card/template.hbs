@@ -1,6 +1,18 @@
 <div class="img-card p-5">
   {{#if saveFeedbackTask.lastSuccessful.value}}
-    Thanks for the review
+    <div class="all-center">
+      <div class="t-align-c">
+        <div class="s-80x80 bg-gradient-green-lr br-50 p-4 mx-auto mb-3">
+          <i class="fas fa-check white mt-sm-1 mt-2 fa-2x"></i>
+        </div>
+        <h4 class="my-3">
+          Thank You
+        </h4>
+        <p class="mt-3">
+          Your feedback is valuable to us!
+        </p>
+      </div>
+    </div>
   {{else}}
     <h4>Rate this problem?</h4>
     <RatingStars

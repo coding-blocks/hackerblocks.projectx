@@ -56,6 +56,7 @@
     "ember-power-select": "^2.3.5",
     "ember-qunit": "^4.4.1",
     "ember-resolver": "^5.0.1",
+    "ember-scroll-to": "^0.6.5",
     "ember-simple-auth": "^1.8.2",
     "ember-simple-auth-token": "^4.0.7",
     "ember-source": "~3.10.0",

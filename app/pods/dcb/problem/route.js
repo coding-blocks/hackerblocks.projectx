@@ -1,7 +1,9 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
+import AuthenticatedRouteMixin from 'hackerblocks/mixins/authenticated-route-mixin';
 
-export default class ProblemRoute extends Route {
+const AuthenticatedRoute = Route.extend(AuthenticatedRouteMixin)
+export default class ProblemRoute extends AuthenticatedRoute {
   model(params) {
     const { contest, dcb } = this.modelFor('dcb')
     const problem = this.store.queryRecord('problem', {

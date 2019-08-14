@@ -6,6 +6,7 @@ import { timeout } from 'ember-concurrency';
 export default class CodeEditorComponent extends Component {
   @service api
   @service store
+  @service scroller
 
   lastResult = null
 
@@ -27,6 +28,7 @@ export default class CodeEditorComponent extends Component {
       if (submission.judge_result){
         this.set('resultComponent', 'run-result')
         this.set('lastResult', submission.judge_result)
+        this.scroller.scrollVertical('.result');
         return submission
       }
     }
@@ -55,6 +57,7 @@ export default class CodeEditorComponent extends Component {
           this.set('resultComponent', 'submit-result')
         }
         this.set('lastResult', submission.judge_result)
+        this.scroller.scrollVertical('.result');
         return submission
       }
     }
