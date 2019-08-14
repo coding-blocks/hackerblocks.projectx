@@ -71,7 +71,7 @@
               <td class="py-4">{{add (inc i) page.offset}}</td>
               <td class="py-4">
                 <div class="img-desc align-items-center">
-                  <img class="round s-30x30" src="{{row.user.photo}}" alt="">
+                  <img class="round s-30x30" src={{or row.user.photo "/images/user.svg"}} alt="">
                   <div class="description ml-3">
                     <LinkTo
                       @route="users.id"
