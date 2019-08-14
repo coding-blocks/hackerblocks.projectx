@@ -56,10 +56,8 @@
   </div>
   <div class="col-6 position-relative h-100 overflow-y-auto">
     <div class="c-code-editor w-100">
-      <CodeEditorComponent @problem={{problem}} @contest={{contest}} as |judge_result|>
-        {{#if judge_result}}
-        <RunResult class="py-4" @judgeResult={{judge_result}} /> 
-        {{/if}}
+      <CodeEditorComponent @problem={{problem}} @contest={{contest}} as |RunResult|>
+        <RunResult /> 
       </CodeEditorComponent>
     </div>
   </div>

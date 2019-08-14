@@ -22,6 +22,12 @@
             <div class="list-heading">100</div>
             <div class="list-data">Max Points</div>
           </li>
+          {{#if problem.successRate}}
+            <li class="px-3">
+              <div class="list-heading">{{problem.successRate}}%</div>
+              <div class="list-data">Success Rate</div>
+            </li>
+          {{/if}}
         </ul>
       </div>
     </div>

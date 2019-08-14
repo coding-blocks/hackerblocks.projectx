@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
-
-export default class OldContest extends Route {
+import AuthenticatedRouteMixin from 'hackerblocks/mixins/authenticated-route-mixin';
+const AuthenticatedRoute = Route.extend(AuthenticatedRouteMixin)
+export default class OldContest extends AuthenticatedRoute {
   model(params) {
     return this.store.findRecord('contest', params.contest_id)
   }

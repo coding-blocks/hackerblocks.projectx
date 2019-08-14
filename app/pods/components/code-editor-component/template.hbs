@@ -5,5 +5,7 @@
   @onSubmitTask={{onSubmitTask}} 
   class="overflow-hidden {{innerLayoutClass}}" /> 
 
-{{yield (component resultComponent judgeResult=lastResult)}}
+<div class="result">
+  {{yield (component resultComponent judgeResult=lastResult)}}
+</div>
   

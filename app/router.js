@@ -93,6 +93,8 @@ Router.map(function() {
   this.route('users', function() {
     this.route('id', { path: '/:user_id' });
   })
+  this.route('help');
+  this.route('login');
 });
 
 export default Router;

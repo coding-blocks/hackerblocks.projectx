@@ -1,7 +1,9 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
+import AuthenticatedRouteMixin from 'hackerblocks/mixins/authenticated-route-mixin';
+const AuthenticatedRoute = Route.extend(AuthenticatedRouteMixin)
 
-export default class ContestRoute extends Route {
+export default class ContestRoute extends AuthenticatedRoute {
   async model(params) {
     const contest = await this.store.findRecord('contest', params.contest_id)
     const contest_attempt = this.store.queryRecord('contest-attempt', {
