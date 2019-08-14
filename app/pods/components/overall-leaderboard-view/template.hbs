@@ -8,7 +8,7 @@
           <div class="col-4">
             <div class="img-ring s-70x70">
               <img class="round w-100 h-100"
-                src={{or row.user.photo 'images/user.svg'}}
+                src={{or row.user.photo '/app/images/user.svg'}}
                 alt="">
             </div>
           </div>
@@ -40,7 +40,7 @@
             <td class="py-4">#{{myRank.rank}}</td>
             <td class="py-4">
               <div class="img-desc align-items-center">
-                <img class="round s-30x30" src={{or myRank.user_photo 'images/user.svg'}} alt="">
+                <img class="round s-30x30" src={{or myRank.user_photo '/app/images/user.svg'}} alt="">
                 <div class="description ml-3">
                   {{myRank.user_name}}
                 </div>
@@ -54,7 +54,7 @@
             <td class="py-3">{{add page.offset (inc index)}}</td>
             <td class="py-3">
               <div class="img-desc align-items-center">
-                <img class="round s-30x30" src="{{or row.user.photo 'images/user.svg'}}" alt="">
+                <img class="round s-30x30" src="{{or row.user.photo '/app/images/user.svg'}}" alt="">
                 <div class="description ml-3">
                   <LinkTo
                     @route="users.id"
