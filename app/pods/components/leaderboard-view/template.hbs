@@ -8,14 +8,15 @@
         <h6>Filter</h6>
       </div>
       <div class="col-8 px-4">
-        <div class="dropdown py-3 px-2">
-          <span class="font-xs">By College</span>
+        <div class="py-3 px-2">
           <PowerSelect 
             @searchEnabled={{true}}
             @search={{perform this.fetchCollegesTask}}
             @selected={{this.selectedCollege}}
             @onchange={{action (mut this.selectedCollege)}}
             @options={{fetchCollegesTask.lastSuccessful.value}}
+            @placeholder="By College"
+            class="dropdown"
             @allowClear={{true}} as |college|>
             {{college.name}}
           </PowerSelect>

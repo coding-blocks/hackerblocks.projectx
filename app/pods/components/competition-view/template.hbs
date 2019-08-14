@@ -133,7 +133,7 @@
       
         <div id="carousel-card-row" class="row c-card-carousel pb-0 mx-sm-3 mx-1">
           {{#each competition.contests as |contest index|}}
-            <div class="col-xl-3 col-lg-4 col-6" id={{concat "card-" index}}>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-8" id={{concat "card-" index}}>
               <ArchivedCompetitionContestCard 
                 class="h-100"
                 @onParticipate={{action onParticipate contest.id}}
@@ -144,9 +144,9 @@
         {{!-- <span class="font-xl bold pointer" onclick={{action "seek" "right"}} role="button">
           〉
         </span> --}}
-        <span class="font-xl bold pointer">
+        {{!-- <span class="font-xl bold pointer">
           〉
-        </span>
+        </span> --}}
 
       </div>
     </div>
