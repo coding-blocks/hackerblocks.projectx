@@ -17,7 +17,7 @@
                 {{action (mut selectedIndex) index}}>
                 Test Case {{index}}
               </a>
-              <img src="\images\tick_g.png" alt="" class="d-inline test-cases-card__icon ml-4">
+              <img src="\/app/images\tick_g.png" alt="" class="d-inline test-cases-card__icon ml-4">
             {{else if (eq testcase.result "wrong-answer")}}
               <a 
                 href="#" 
@@ -25,7 +25,7 @@
                 {{action (mut selectedIndex) index}}>
                 Test Case {{index}}
               </a>
-              <img src="\images\wrong_r.png" alt="" class="d-inline test-cases-card__icon ml-4">
+              <img src="\/app/images\wrong_r.png" alt="" class="d-inline test-cases-card__icon ml-4">
             {{else}}
               <a 
                 href="#" 
@@ -33,7 +33,7 @@
                 {{action (mut selectedIndex) index}}>
                 Test Case {{index}}
               </a>
-              <img src="\images\error_o.png" alt="" class="d-inline test-cases-card__icon ml-4">
+              <img src="\/app/images\error_o.png" alt="" class="d-inline test-cases-card__icon ml-4">
             {{/if}}
           </li>
         {{/each}}

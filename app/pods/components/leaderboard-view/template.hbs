@@ -71,7 +71,7 @@
               <td class="py-4">{{add (inc i) page.offset}}</td>
               <td class="py-4">
                 <div class="img-desc align-items-center">
-                  <img class="round s-30x30" src={{or row.user.photo "images/user.svg"}} alt="">
+                  <img class="round s-30x30" src={{or row.user.photo "/app/images/user.svg"}} alt="">
                   <div class="description ml-3">
                     <LinkTo
                       @route="users.id"
@@ -100,7 +100,7 @@
 {{else}}
   <div class="row align-items-center justify-content-around px-5">
     <div class="t-align-c">
-      <img src="images/empty_leaderboard.png" alt="Empty Leaderboard" width="87">
+      <img src="/app/images/empty_leaderboard.png" alt="Empty Leaderboard" width="87">
       {{#if title}}
         <h5 class="t-align-c my-4">{{title}}</h5>
       {{/if}}
