@@ -807,10 +807,10 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
-"@coding-blocks/motley@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@coding-blocks/motley/-/motley-0.4.1.tgz#9d7446447f17a6fc4f69347bf5d2257774387779"
-  integrity sha512-i8y3OVXTOISz06LvixOppWOaPwHhS5bKNrOQ2saQ5qZxclbBdgvwXvpjaWJ9cOD/XxAeoL2B1oq83cRD6Z3A1g==
+"@coding-blocks/motley@^0.4.3":
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/@coding-blocks/motley/-/motley-0.4.3.tgz#4ab7ffe2a326eba47bfab66bdc04c6e1823bf1f4"
+  integrity sha512-+5QFY55BTr9tSiFAtBFZE4fd8/EuqVffrQwlY7D84H5ISuiU8UmvVWJqx1ob6jimRFqH3ZQZLh6O07fPEbV7VA==
   dependencies:
     build "^0.1.4"
     run "^1.4.0"
