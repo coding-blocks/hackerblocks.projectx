@@ -1,4 +1,4 @@
-<div class="border-card py-5 px-lg-5 px-4 t-align-c mt-5">
+<div class="border-card py-5 px-lg-5 px-4 t-align-c">
   {{#if fetchBadgesTask.isRunning}}
     <LoadingComponent />
   {{else if badges.length}}
@@ -12,7 +12,7 @@
             <img src="{{badge.icon}}" alt="Badge Logo" class="v-align-m w-40">
             <h5 class="mt-3">{{badge.contest.name}}</h5>
             <div class="card-md">Completed {{badge.perfectSubmissionCount}} {{badge.contest.name}} Challenges</div>
-            <div class="card-mds mt-2 grey">{{moment-format badge.createdAt 'DD MMM YYYY'}}</div>
+            <div class="card-mds mt-2 dark-grey">{{moment-format badge.createdAt 'DD MMM YYYY'}}</div>
           </div>
         </div>
         {{/each}}

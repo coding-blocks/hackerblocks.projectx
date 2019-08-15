@@ -6,7 +6,7 @@
     @crumbClass="px-3" />
 </div>
 <div class="row">
-  <div class="col-8">
+  <div class="col-12 col-md-8">
     <DcbProblemCard
       class="pb-4"
       @problem={{problem}}
@@ -17,7 +17,7 @@
       @contest={{contest}}
       @problem={{problem}} />
   </div>
-  <div class="col-4">
+  <div class="col-12 col-md-4">
     <DailyGoalCardSmall
       @topSubmission={{dcb.top_problem.topSubmission}}>
       {{#if dcbEnded}}

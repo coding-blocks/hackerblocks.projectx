@@ -16,7 +16,7 @@
         {{#if (eq status.score 0)}}
           <span class="font-lg red">&#10625;</span>
         {{else if (not status.score)}}
-          <span class="font-lg grey">&#10625;</span>
+          <span class="font-lg dark-grey">&#10625;</span>
         {{else if (and (gt status.score 0) (lt status.score 100))}}
           <span class="font-lg yellow">&#10625;</span>
         {{else}}
