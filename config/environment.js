@@ -69,7 +69,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.publicUrl = 'https://hack.codingblocks.com/app'
-    ENV.apiHost = 'https://hack.codingblocks.com'
+    ENV.apiHost = 'https://hack-api.codingblocks.com'
     ENV.oneauthURL = 'https://account.codingblocks.com'
     ENV.rootURL = '/app';
     ENV.clientId = 2146237097
