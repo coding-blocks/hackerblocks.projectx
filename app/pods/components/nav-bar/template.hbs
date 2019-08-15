@@ -109,13 +109,13 @@
       <a href="#" class="orange"><i class="fas fa-angle-up fa-lg"></i></a>
     </div>
     <div class="my-4 pl-4">
-      <a href="#" class="hamburger-nav__menu-element {{if (eq mobileSelectedTab "classroom") "active"}}"
+      <div class="hamburger-nav__menu-element {{if (eq mobileSelectedTab "classroom") "active"}}"
         {{action (mut mobileSelectedTab) "classroom"}}>
         <div class="card-md extra-bold">
           Classroom Courses
         </div>
         <div class="card-sm light"><a href="#" class="orange">Explore All</a></div>
-      </a>
+      </div>
       {{#if (eq mobileSelectedTab "classroom")}}
       <div class="pl-4">
         <div class="mt-4">
@@ -186,14 +186,14 @@
       {{/if}}
     </div>
     <div class="my-4 pl-4">
-      <a href="#" class="hamburger-nav__menu-element {{if (eq mobileSelectedTab "online") "active"}}"
+      <div class="hamburger-nav__menu-element {{if (eq mobileSelectedTab "online") "active"}}"
         {{action (mut mobileSelectedTab) "online"}}>
         <div class="card-md extra-bold">
           Online Courses
         </div>
         <div class="card-sm light"><a href="https://online.codingblocks.com" target="blank" class="orange">Explore
             All</a></div>
-      </a>
+      </div>
       {{#if (eq mobileSelectedTab "online")}}
       <div class="pl-4">
         <div class="mt-4">
