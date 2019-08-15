@@ -1,6 +1,10 @@
 @import "ember-modal-dialog/ember-modal-structure.css";
 @import "ember-modal-dialog/ember-modal-appearance.css";
 
+body{
+  padding-top: 62px;
+}
+
 .ember-modal-dialog {
   padding: 0px;
   border-radius: 15px;
