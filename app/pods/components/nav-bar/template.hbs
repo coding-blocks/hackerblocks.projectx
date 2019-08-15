@@ -51,27 +51,27 @@
       </li>
       <li class="top-nav-option hoverable px-3 d-md-block d-none">
         {{#if session.isAuthenticated}}
-          <div class="img-desc align-items-center font-sm pt-1">
-            <img class="round s-30x30" src="{{user.photo}}" alt="Profile Pic">
-            <div class="description ml-3">
-              Hi, {{user.name}}
-            </div>
+        <div class="img-desc align-items-center font-sm pt-1">
+          <img class="round s-30x30" src="{{user.photo}}" alt="Profile Pic">
+          <div class="description ml-3">
+            Hi, {{user.name}}
           </div>
-          <div class="pop-up border-card p-3 br-5">
-            <ul class="t-align-l">
-              <li>
-                <LinkTo @route='users.id' @model={{user.id}}>
-                  Profile
-                </LinkTo>
-              </li>
-              <div class="divider-h my-3"></div>
-              <li>
-                <LinkTo @route='logout' class="dark-grey">
-                  Logout
-                </LinkTo>
-              </li>
-            </ul>
-          </div>
+        </div>
+        <div class="pop-up border-card p-3 br-5">
+          <ul class="t-align-l">
+            <li>
+              <LinkTo @route='users.id' @model={{user.id}}>
+                Profile
+              </LinkTo>
+            </li>
+            <div class="divider-h my-3"></div>
+            <li>
+              <LinkTo @route='logout' class="dark-grey">
+                Logout
+              </LinkTo>
+            </li>
+          </ul>
+        </div>
         {{else}}
         <LoginButton />
         {{/if}}
@@ -90,20 +90,18 @@
   <div class="divider-h"></div>
 
   {{#if session.isAuthenticated}}
-    <div class="d-flex align-items-center my-4 pl-4">  
-      <div class="img-ring s-50x50">
-        <img class="round img"
-          src="{{user.photo}}"
-          alt="ProfilePic">
-      </div>
-    
-      <div class="pl-4">
-        <div class="extra-bold gradient-text">{{user.name}}</div>
-        <LinkTo @route='users.id' @model={{user.id}} class="bold card-sm orange">
-          <button {{action 'toggleHamburgerNav'}}>View Profile</button>
-        </LinkTo>
-      </div>
+  <div class="d-flex align-items-center my-4 pl-4">
+    <div class="img-ring s-50x50">
+      <img class="round img" src="{{user.photo}}" alt="ProfilePic">
     </div>
+
+    <div class="pl-4">
+      <div class="extra-bold gradient-text">{{user.name}}</div>
+      <LinkTo @route='users.id' @model={{user.id}} class="bold card-sm orange">
+        <button {{action 'toggleHamburgerNav'}}>View Profile</button>
+      </LinkTo>
+    </div>
+  </div>
   {{/if}}
   <div class="mt-5 px-4 overflow-y-auto no-scrollbar">
     <div class="d-flex justify-content-between">
@@ -111,10 +109,14 @@
       <a href="#" class="orange"><i class="fas fa-angle-up fa-lg"></i></a>
     </div>
     <div class="my-4 pl-4">
-      <div class="hamburger-nav__menu-element active">
-        <div class="card-md extra-bold">Classroom Courses</div>
+      <a href="#" class="hamburger-nav__menu-element {{if (eq mobileSelectedTab "classroom") "active"}}"
+        {{action (mut mobileSelectedTab) "classroom"}}>
+        <div class="card-md extra-bold">
+          Classroom Courses
+        </div>
         <div class="card-sm light"><a href="#" class="orange">Explore All</a></div>
-      </div>
+      </a>
+      {{#if (eq mobileSelectedTab "classroom")}}
       <div class="pl-4">
         <div class="mt-4">
           <div class="card-sm light extra-bold">Beginner Courses</div>
@@ -139,22 +141,22 @@
           <div class="card-sm light">
             <a href="https://codingblocks.com/classroom-courses/android-app-development-using-kotlin-and-java.html">
               Android App Dev
-            </a>      
+            </a>
           </div>
           <div class="card-sm light">
             <a href="https://codingblocks.com/classroom-courses/web-development-nodejs.html">
               Full Stack Web Dev
-            </a>      
+            </a>
           </div>
           <div class="card-sm light">
             <a href="https://codingblocks.com/classroom-courses/web-development-django.html">
               Python Django
-            </a>      
+            </a>
           </div>
           <div class="card-sm light">
             <a href="https://codingblocks.com/classroom-courses/unity-game-development.html">
               Unity Game Development
-            </a>      
+            </a>
           </div>
         </div>
         <div class="mt-3">
@@ -162,31 +164,109 @@
           <div class="card-sm light">
             <a href="https://codingblocks.com/classroom-courses/android-app-development-using-kotlin-and-java.html">
               Algo++
-            </a>      
+            </a>
           </div>
           <div class="card-sm light">
             <a href="https://codingblocks.com/classroom-courses/web-development-nodejs.html">
               Algo.JAVA
-            </a>      
+            </a>
           </div>
           <div class="card-sm light">
             <a href="https://codingblocks.com/classroom-courses/web-development-django.html">
               Competitive Programming
-            </a>      
+            </a>
           </div>
           <div class="card-sm light">
             <a href="https://codingblocks.com/classroom-courses/unity-game-development.html">
               Machine Learning
-            </a>      
+            </a>
           </div>
         </div>
       </div>
+      {{/if}}
     </div>
     <div class="my-4 pl-4">
-      <div class="hamburger-nav__menu-element">
-        <div class="card-md extra-bold">Online Courses</div>
-        <div class="card-sm light"><a href="https://online.codingblocks.com" target="blank" class="orange">Explore All</a></div>
+      <a href="#" class="hamburger-nav__menu-element {{if (eq mobileSelectedTab "online") "active"}}"
+        {{action (mut mobileSelectedTab) "online"}}>
+        <div class="card-md extra-bold">
+          Online Courses
+        </div>
+        <div class="card-sm light"><a href="https://online.codingblocks.com" target="blank" class="orange">Explore
+            All</a></div>
+      </a>
+      {{#if (eq mobileSelectedTab "online")}}
+      <div class="pl-4">
+        <div class="mt-4">
+          <div class="card-sm light extra-bold">Beginner Courses</div>
+          <div class="card-sm light">
+            <a href="https://online.codingblocks.com/courses/c-plus-plus-online-course-for-beginners">
+              C++ Master Course | Launchpad
+            </a>
+          </div>
+          <div class="card-sm light">
+            <a href="https://online.codingblocks.com/courses/complete-java-course-online">
+              Java Master Course | Crux
+            </a>
+          </div>
+          <div class="card-sm light">
+            <a href="https://online.codingblocks.com/courses/python-for-beginners-developers">
+              Python For Developers
+            </a>
+          </div>
+        </div>
+        <div class="mt-3">
+          <div class="card-sm light extra-bold">Advanced Courses</div>
+          <div class="card-sm light">
+            <a href="https://online.codingblocks.com/courses/python-django">
+              Web Dev with Python-Django
+            </a>
+          </div>
+          <div class="card-sm light">
+            <a href="https://online.codingblocks.com/courses/coding-interview-preparation-online">
+              Interview Prep Bootcamp
+            </a>
+          </div>
+          <div class="card-sm light">
+            <a href="https://online.codingblocks.com/courses/data-structures-and-algorithms-online-course-java-algo">
+              Algo.Java Online
+            </a>
+          </div>
+          <div class="card-sm light">
+            <a href="https://online.codingblocks.com/courses/android-app-training-online">
+              Android App Development Online
+            </a>
+          </div>
+          <div class="card-sm light">
+            <a href="https://online.codingblocks.com/courses/telegram-chatbot-python-online">
+              Build Chatbots in Python
+            </a>
+          </div>
+        </div>
+        <div class="mt-3">
+          <div class="card-sm light extra-bold">Expert Courses</div>
+          <div class="card-sm light">
+            <a href="https://online.codingblocks.com/courses/competitive-programming-course-online">
+              Competitive Programming Online
+            </a>
+          </div>
+          <div class="card-sm light">
+            <a href="https://online.codingblocks.com/courses/coding-interview-preparation-course-online-c-plus-plus">
+              Interview Preparation - C++
+            </a>
+          </div>
+          <div class="card-sm light">
+            <a href="https://online.codingblocks.com/courses/machine-learning-course-online">
+              Machine Learning Master Course
+            </a>
+          </div>
+          <div class="card-sm light">
+            <a href="https://online.codingblocks.com/courses/coding-interview-preparation-course-online-java">
+              Interview Preparation - Java
+            </a>
+          </div>
+        </div>
       </div>
+      {{/if}}
     </div>
     {{!-- <div class="card-md light mt-5 mb-4">Products</div> --}}
     {{!-- <div class="card-md light my-4">Resources</div> --}}
@@ -207,7 +287,7 @@
     </div>
     <div class="card-md light my-4">
       <LinkTo @route='logout'>
-        <button>Logout</button>  
+        <button>Logout</button>
       </LinkTo>
     </div>
   </div>

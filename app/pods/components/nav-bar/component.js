@@ -9,10 +9,10 @@ export default class NavBarComponent extends Component {
   @alias('currentUser.user') user
 
   hideHamburgerNav = true
+  mobileSelectedTab = 'classroom'
 
   @action 
   toggleHamburgerNav() {
-    console.log('arreey toh')
     this.toggleProperty('hideHamburgerNav')
   }
 }
