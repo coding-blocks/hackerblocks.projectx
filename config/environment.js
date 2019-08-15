@@ -68,11 +68,11 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.publicUrl = 'https://srv17.cb.lk/app'
-    ENV.apiHost = 'https://srv17.cb.lk'
+    ENV.publicUrl = 'https://hack.codingblocks.com/app'
+    ENV.apiHost = 'https://hack.codingblocks.com'
     ENV.oneauthURL = 'https://account.codingblocks.com'
     ENV.rootURL = '/app';
-    ENV.clientId = 3680446660
+    ENV.clientId = 2146237097
     // here you can enable a production-specific feature
   }
 
