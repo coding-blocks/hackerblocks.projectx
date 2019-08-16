@@ -1,48 +1,16 @@
-<ProblemListView @contest={{contest}} @page={{page}} as |problemView|>
-  <div class="row my-4">
-    <div class="col-12 col-md-8">
-      <div class="br-20 p-4 bg-gradient-nostalgia-purple white">
-        <div class="row mx-0 align-items-center">
-          <div class="col-xl-10 col-md-9 col-9">
-            <div class="img-desc align-items-center justify-content-center">
-              {{#if contest.image}}
-                <div class="col-2">
-                  <img src="{{contest.image}}" alt="" class="">
-                </div>
-              {{/if}}
-              <div class="description t-align-l col-10">
-                <h2>{{contest.name}}</h2>
-                <span class="font-sm mt-1">Arrays | LinkedList | Stacks | Queues | Trees | Graphs</span>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div style="font-size: 2.58rem" class="extra-bold">{{problemCount}}</div>
-            <div class="font-sm">PROBLEMS</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="border-card mt-4">
-        {{#if problemView.showError}}
-        You are not authorized to view problems of this contest.
-        {{else}}
-        <ProblemList @route="contests.old-contest.problem" @theme="orange"
-          @problems={{problemView.problems}} @toggleBookmark={{action 'toggleBookmark'}} />
-        <PaginationPill @pagination={{problemView.problems.meta.pagination}} @setOffset={{action 'setOffset'}} />
-        {{/if}}
-      </div>
-    </div>
-
-    <div class="col-12 col-md-4">
-      {{problemView.filterComponent status=status difficulty=difficulty}}
-      <div class="border-card mt-5 p-0 pt-5">
-        <LeaderboardView 
-          @title="Leaderboard"
-          @for="contest" 
-          @theme="orange" 
-          @contestId={{contest.id}} />
-      </div>
-    </div>
+<ContestView
+  @contest={{contest}}
+  @page={{page}}
+  @status={{status}}
+  @difficulty={{difficulty}}
+  @problemListRoute="contests.old-contest.problem"
+  @setOffset={{action 'setOffset'}} as |contestView|>
+  <PracticeFilterComponent
+    @status={{status}}
+    @changeStatusFilter={{action (mut status)}}
+    @difficulty={{difficulty}}
+    @changeDifficultyFilter={{action (mut difficulty)}} />
+  <div class="border-card mt-5">
+    {{contestView.leaderboardComponent}}
   </div>
-</ProblemListView>
+</ContestView>

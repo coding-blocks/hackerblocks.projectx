@@ -2,11 +2,13 @@ import Component from '@ember/component';
 import { restartableTask } from 'ember-concurrency-decorators';
 import { inject as service } from '@ember/service';
 import { action, computed } from '@ember/object';
+import { alias } from '@ember/object/computed';
 
 export default class ProblemListView extends Component {
   @service store
   
-  problems = []
+  @alias('fetchProblemsTask.lastSuccessful.value') problems
+  
   difficulty = []
   status = []
   showError = false
@@ -25,29 +27,15 @@ export default class ProblemListView extends Component {
     return filter
   }
 
-  @action
-  changeStatusFilter(status) {
-    this.set('status', status)
-  }
-  @action
-  changeDifficultyFilter(difficulty) {
-    this.set('difficulty', difficulty)
-  }
-
-  @action
-  onApply() {
-    this.fetchProblemsTask.perform(this.problemFilter, this.page)
-  }
-
   @restartableTask fetchProblemsTask = function *(filter = {}, page = {}) {
-    const problems = yield this.store.query('problem', { 
-      filter,
-      page,
-      contest_id: this.contest.id
-    })
-    .catch(err => { this.set('showError', true)})
-    
-    this.set('problems', problems)
-    return problems
+    try {
+      return yield this.store.query('problem', { 
+        filter,
+        page,
+        contest_id: this.contest.id
+      })
+    } catch (err) {
+      this.set('showError', true)
+    }
   }
 }

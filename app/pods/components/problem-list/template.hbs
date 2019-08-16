@@ -32,9 +32,7 @@
       </div>
     </div>
     <div class="li-right">
-      <button {{action toggleBookmark problem}}>
-        <i class="{{if (or problem.bookmarkedBy problem.bookmark) 'fas' 'far'}} fa-bookmark font-lg pr-2"></i>
-      </button>
+      {{yield problem}}
       
       {{#link-to route problem.id}}
         <button class={{concat "button-dashed button-" theme}}>

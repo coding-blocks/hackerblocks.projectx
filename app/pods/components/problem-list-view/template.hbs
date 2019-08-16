@@ -3,13 +3,6 @@
 {{else}}
   {{yield (hash
     problems=problems
-    filterComponent=(component 'practice-filter-component' 
-      status=status
-      changeStatusFilter=(action 'changeStatusFilter')
-      difficulty=difficulty
-      changeDifficultyFilter=(action 'changeDifficultyFilter')
-      onApply=(action 'onApply')
-    )
     showError=showError
   )}}
 {{/if}}

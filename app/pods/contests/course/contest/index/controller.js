@@ -18,31 +18,9 @@ export default class ContestController extends Controller {
       limit: this.limit
     }
   }
-  @computed('contest')
-  get problemCount() {
-    if (this.contest) {
-      return this.contest.hasMany('problems').ids().length
-    }
-  }
 
   @action
   setOffset(offset) {
     this.set('offset', offset)
-  }
-
-  @action
-  async toggleBookmark(problem) {
-    const bookmark = await problem.get('bookmark')
-    if (bookmark) {
-      await bookmark.destroyRecord()
-      return problem.set('bookmarkedBy', null)
-    }
-    const bookmarkProblem = this.store.createRecord('bookmarked-problem', {
-      problem,
-      contest: this.contest,
-      contentTypeId: this.course_contest.id
-    })
-
-    bookmarkProblem.save()
   }
 }
