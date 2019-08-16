@@ -36,7 +36,7 @@
         {{else}}
           <ProblemList 
             @route={{problemListRoute}}
-            @theme="orange" 
+            @theme={{or theme "orange"}} 
             @problems={{problemView.problems}} as |problem|>
             {{#if contentTypeId}}
               <button {{action 'toggleBookmark' problem}}>
@@ -56,6 +56,7 @@
         leaderboardComponent=(component 'leaderboard-view'
           title='leaderboard'
           for='contest'
+          theme='orange'
           contestId=contest.id)
       )}}
     </div>
