@@ -11,4 +11,8 @@ export default class ProblemController extends Controller {
     })
     this.transitionToRoute('contests.hiring.contest.feedback')
   }
+
+  @action onTimerEnd(){
+    this.transitionToRoute('contests.hiring.contest.feedback')
+  }
 }
