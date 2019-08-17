@@ -16,6 +16,7 @@ export default Model.extend({
   submissionCount: DS.attr(),
   contest: DS.belongsTo('contest'),
   solutionStubs: DS.hasMany('solution-stub'),
+  tags: DS.hasMany('tags'),
   editorial: DS.belongsTo('editorial'),
   createdBy: DS.belongsTo('user'),
   topSubmission: DS.belongsTo('submission'),

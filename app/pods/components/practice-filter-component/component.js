@@ -1,7 +1,15 @@
 import Component from '@ember/component';
 import { action } from '@ember/object';
+import { dropTask } from 'ember-concurrency-decorators';
+import { timeout } from 'ember-concurrency';
+import { inject as service } from '@ember/service';
+import { alias } from '@ember/object/computed';
 
 export default class PracticeFilterComponent extends Component {
+  @service store
+
+  @alias('searchTagsTask.lastSuccessful.value') availableTags
+
   @action 
   updateDifficultyFilter(val) {
     if (this.difficulty.includes(val)) {
@@ -19,5 +27,16 @@ export default class PracticeFilterComponent extends Component {
       this.status.addObject(val)
     }
     this.changeStatusFilter([...this.status])
+  }
+
+  @dropTask searchTagsTask = function *(query = '') {
+    timeout(500)
+    return yield this.store.query('tag', {
+      filter: {
+        name: {
+          $iLike: `%${query}%`
+        }
+      }
+    })
   }
 }

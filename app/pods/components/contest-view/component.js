@@ -7,6 +7,7 @@ export default class ContestViewComponent extends Component {
 
   status = []
   difficulty = []
+  tag = ''
   
   @computed('contest')
   get problemCount() {

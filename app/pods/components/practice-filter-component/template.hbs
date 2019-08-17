@@ -55,4 +55,18 @@
       </label>
     </div>
   </div>
+  {{#if tags}}
+    <div class="font-mds bold mt-5 mb-4">Category</div>
+    <div class="row no-gutters mb-3">
+      <div class="col-12">
+        <EmberPowerSelect
+          @search={{action (perform searchTagsTask)}}
+          @options={{availableTags}}
+          @selecte={{tags}}
+          @onchange={{action updateTagFilter}} as |tag|>
+          {{tag.name}}
+        </EmberPowerSelect>
+      </div>
+    </div>
+  {{/if}}
 </div>

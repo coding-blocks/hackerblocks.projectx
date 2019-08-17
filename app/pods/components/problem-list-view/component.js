@@ -11,19 +11,25 @@ export default class ProblemListView extends Component {
   
   difficulty = []
   status = []
+  tag = ''
   showError = false
 
   didReceiveAttrs() {
     this.fetchProblemsTask.perform(this.problemFilter, this.page)
   }
 
-  @computed('difficulty', 'status')
+  @computed('difficulty', 'status', 'tag')
   get problemFilter() {
     const filter = {}
     if (this.difficulty.length) {
       filter.difficulty = this.difficulty
     }
     filter.submission_status = this.status
+    filter.tags = {
+      name: {
+        $iLike: `%${this.tag}%`
+      }
+    }
     return filter
   }
 
