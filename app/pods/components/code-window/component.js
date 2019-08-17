@@ -5,6 +5,7 @@ export default class CodeWindowComponent extends Component {
   code = ''
   isLanguageSelectOpen = false
   customInputOpen = true
+  customInput = ''
   
   languageSpecs = [
     {
@@ -60,6 +61,7 @@ export default class CodeWindowComponent extends Component {
     } else {
       this.selectLanguage('cpp')
     }
+    this.set('customInput', this.input)
   }
 
   @action

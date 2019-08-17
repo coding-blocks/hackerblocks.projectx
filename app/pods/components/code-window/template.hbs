@@ -33,7 +33,7 @@
         <button 
           class="button-dashed button-orange ml-3 mr-1"
           disabled={{or onRunTask.isRunning onSubmitTask.isRunning}}
-          {{action (perform onRunTask selectedLanguage.code code input)}}>
+          {{action (perform onRunTask selectedLanguage.code code customInput)}}>
           {{if onRunTask.isRunning "Running" "Compile and Test"}}
         </button>
         <button 
@@ -45,7 +45,7 @@
       </div>
     </div>
     {{#if customInputOpen}}
-      {{textarea name="input" cols="30" rows="5" class="mx-auto my-4 white w-100" value=input}}
+      {{textarea name="input" cols="30" rows="5" class="mx-auto my-4 white w-100" value=customInput}}
     {{/if}}
   </div>
 </div>
