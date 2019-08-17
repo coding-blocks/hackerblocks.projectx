@@ -21,4 +21,8 @@ export default class QuizController extends Controller {
     })
     this.transitionToRoute('contests.admission.contest.feedback')
   }
+
+  @action onTimerEnd(){
+    this.transitionToRoute('contests.admission.contest.feedback')
+  }
 }

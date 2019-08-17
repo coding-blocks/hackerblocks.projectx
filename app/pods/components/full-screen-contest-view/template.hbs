@@ -6,7 +6,7 @@
     </div>
     <div class="mx-3">
       <Timer 
-        @to={{attempt.end_time_moment}} @onEnd={{action onTimerEnd}} as |time| >
+        @to={{attempt.end_time_moment}} @onEnd={{action (or onTimerEnd (perform submitTask))}} as |time| >
         <ul class="divided-list timer font-xs d-inline mr-4">
           <li class="timer-item pr-md-3 pr-2">
             <div class="list-heading font-xl bold">{{time.days}}</div>
