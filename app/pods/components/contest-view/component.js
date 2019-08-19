@@ -5,8 +5,9 @@ import { inject as service } from '@ember/service';
 export default class ContestViewComponent extends Component {
   @service store 
 
-  status = []
+  status = null
   difficulty = []
+  tags = []
   
   @computed('contest')
   get problemCount() {

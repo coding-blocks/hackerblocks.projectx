@@ -13,6 +13,9 @@ export default class ContestIndexRoute extends Route {
     },
     status: {
       refreshModel: false
+    },
+    tags: {
+      refreshModel: false
     }
   }
 
