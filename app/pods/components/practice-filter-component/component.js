@@ -46,6 +46,7 @@ export default class PracticeFilterComponent extends Component {
   }
 
   @dropTask searchTagsTask = function *(query = '') {
+    yield timeout(500)
     return yield this.store.query('tag', {
       filter: {
         name: {
