@@ -10,24 +10,27 @@ export default class ProblemListView extends Component {
   @alias('fetchProblemsTask.lastSuccessful.value') problems
   
   difficulty = []
-  status = []
-  tag = ''
+  status = null
+  tags = []
   showError = false
 
   didReceiveAttrs() {
     this.fetchProblemsTask.perform(this.problemFilter, this.page)
   }
 
-  @computed('difficulty', 'status', 'tag')
+  @computed('difficulty', 'tags')
   get problemFilter() {
     const filter = {}
     if (this.difficulty.length) {
-      filter.difficulty = this.difficulty
+      filter.difficulty = {
+        $in: this.difficulty
+      }
     }
-    filter.submission_status = this.status
-    filter.tags = {
-      name: {
-        $iLike: `%${this.tag}%`
+    if (this.tags.length) {
+      filter.tags = {
+        id: {
+          $in: this.tags
+        }
       }
     }
     return filter
@@ -37,6 +40,7 @@ export default class ProblemListView extends Component {
     try {
       return yield this.store.query('problem', { 
         filter,
+        status: this.status,
         page,
         contest_id: this.contest.id
       })

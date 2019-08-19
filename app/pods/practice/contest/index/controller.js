@@ -9,8 +9,8 @@ export default class ContestController extends Controller {
   offset = 0
   limit = 10
   difficulty = []
-  status = []
-  tags = [1, 2, 3]
+  status = null
+  tags = []
 
   @computed('offset')
   get page () {

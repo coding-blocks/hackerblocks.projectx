@@ -9,13 +9,13 @@
   <div class="row no-gutters mb-3">
     <div class="col-6">
       <label class="input-checkbox checkbox-solid">
-        <input type="checkbox" checked={{includes status "solved"}} onClick={{action updateStatusFilter "solved"}}> Solved
+        <input type="checkbox" checked={{eq status "solved"}} onClick={{action updateStatusFilter "solved"}}> Solved
         <span></span>
       </label>
     </div>
     <div class="col-6">
       <label class="input-checkbox checkbox-solid">
-        <input type="checkbox" checked={{includes status "unsolved"}} onClick={{action updateStatusFilter "unsolved"}}> Unsolved
+        <input type="checkbox" checked={{eq status "unsolved"}} onClick={{action updateStatusFilter "unsolved"}}> Unsolved
         <span></span>
       </label>
     </div>
@@ -23,13 +23,13 @@
   <div class="row no-gutters mb-3">
     <div class="col-6">
       <label class="input-checkbox checkbox-solid">
-        <input type="checkbox" checked={{includes status "wrong"}} onClick={{action updateStatusFilter "wrong"}}> Wrong
+        <input type="checkbox" checked={{eq status "wrong"}} onClick={{action updateStatusFilter "wrong"}}> Wrong
         <span></span>
       </label>
     </div>
     <div class="col-6">
       <label class="input-checkbox checkbox-solid">
-        <input type="checkbox" checked={{includes status "partial"}} onClick={{action updateStatusFilter "partial"}}> Partially Solved
+        <input type="checkbox" checked={{eq status "partial"}} onClick={{action updateStatusFilter "partial"}}> Partially Solved
         <span></span>
       </label>
     </div>
@@ -55,17 +55,17 @@
       </label>
     </div>
   </div>
-  {{#if tags}}
+  {{#if changeTagsFilter}}
     <div class="font-mds bold mt-5 mb-4">Category</div>
     <div class="row no-gutters mb-3">
       <div class="col-12">
-        <PowerSelect
+        <PowerSelectMultiple
           @search={{action (perform searchTagsTask)}}
           @options={{availableTags}}
-          @selected={{tags}}
+          @selected={{selectedTags}}
           @onchange={{action updateTagFilter}} as |tag|>
           {{tag.name}}
-        </PowerSelect>
+        </PowerSelectMultiple>
       </div>
     </div>
   {{/if}}
