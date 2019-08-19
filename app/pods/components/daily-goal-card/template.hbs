@@ -11,8 +11,8 @@
       <img src="/app/images/hexagon.jpg" alt="Badge Logo" class="badge w-30" />
       <i class="fas fa-lock fa-2x position-absolute white"></i>
     </div>
-    <progress value="{{streak.perfectSubmissionCount}}" max="7" class="mt-4 mb-2"></progress>
-    <h4 class="font-xs">{{or streak.perfectSubmissionCount 0}} of 7 DCB's completed</h4>
+    <progress value="{{streak.perfectSubmissionCount}}" max="{{totalDcbs}}" class="mt-4 mb-2"></progress>
+    <h4 class="font-xs">{{or streak.perfectSubmissionCount 0}} of {{totalDcbs}} DCB's completed</h4>
 
     <div class="divider-h my-4 px-5"></div>
   </div>
