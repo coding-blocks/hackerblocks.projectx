@@ -5,11 +5,12 @@ import {inject as service} from '@ember/service';
 export default class ContestController extends Controller {
   @service store
 
-  queryParams = ['offset', 'limit', 'difficulty', 'status']
+  queryParams = ['offset', 'limit', 'difficulty', 'status', 'tags']
   offset = 0
   limit = 10
   difficulty = []
   status = []
+  tags = [1, 2, 3]
 
   @computed('offset')
   get page () {

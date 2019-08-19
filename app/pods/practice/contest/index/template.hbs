@@ -4,6 +4,7 @@
   @header={{component 'practice-header' practice=practice}}
   @status={{status}}
   @difficulty={{difficulty}}
+  @tag={{tags}}
   @contentTypeId={{practice.id}}
   @problemListRoute="practice.contest.problem"
   @theme="purple"
@@ -15,7 +16,9 @@
     @status={{status}}
     @changeStatusFilter={{action (mut status)}}
     @difficulty={{difficulty}}
-    @changeDifficultyFilter={{action (mut difficulty)}} />
+    @changeDifficultyFilter={{action (mut difficulty)}}
+    @tags={{tags}}
+    @changeTagsFilter={{action (mut tags)}} />
   <div class="border-card px-0 mt-5">
     {{contestView.leaderboardComponent theme='purple'}}
   </div>

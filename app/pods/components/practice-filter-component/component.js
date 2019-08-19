@@ -28,9 +28,12 @@ export default class PracticeFilterComponent extends Component {
     }
     this.changeStatusFilter([...this.status])
   }
+  @action
+  updateTagFilter(val) {
+    this.changeTagsFilter(val)
+  }
 
   @dropTask searchTagsTask = function *(query = '') {
-    timeout(500)
     return yield this.store.query('tag', {
       filter: {
         name: {
