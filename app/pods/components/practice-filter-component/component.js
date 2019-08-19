@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { action, computed } from '@ember/object';
-import { dropTask } from 'ember-concurrency-decorators';
+import { restartableTask } from 'ember-concurrency-decorators';
 import { timeout } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 import { alias } from '@ember/object/computed';
@@ -45,7 +45,7 @@ export default class PracticeFilterComponent extends Component {
     this.changeTagsFilter(vals.mapBy('id'))
   }
 
-  @dropTask searchTagsTask = function *(query = '') {
+  @restartableTask searchTagsTask = function *(query = '') {
     yield timeout(500)
     return yield this.store.query('tag', {
       filter: {
