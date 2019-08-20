@@ -11,6 +11,7 @@ export default Model.extend({
   banner: DS.attr(),
   thumbnail: DS.attr(),
   theme: DS.attr(),
+  prizes: DS.attr(),
   overview: DS.attr(),
   description: DS.attr(),
   organization: DS.belongsTo('organization')

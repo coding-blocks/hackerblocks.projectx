@@ -125,8 +125,7 @@
           <i class="fas fa-trophy fa-5x"></i>
         </div>
         <div class="description t-align-l col-8">
-          <div class="extra-bold font-xl">WIN PRIZES</div>
-          <h4>Upto Rs 1 Lakh</h4>
+          {{markdown-to-html competition.prizes}}
         </div>
       </div>
       {{#unless currentAttempt}}
