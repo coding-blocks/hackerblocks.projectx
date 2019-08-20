@@ -18,9 +18,4 @@ export default class UpcomingCompetitionContestComponent extends Component {
   get hasStarted () {
     return this.contest.start_time < new Date()
   }
-
-  @computed('contest.problems.@each')
-  get problemCount() {
-    return ("0" + this.contest.hasMany('problems').ids().length).slice(-2)
-  }
 }

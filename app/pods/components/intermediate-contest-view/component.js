@@ -16,6 +16,7 @@ export default class IntermediateContestComponent extends Component {
   @computed('contest.problems')
   get problemCount() {
     if (this.contest) {
+      if (this.contest.stats) return this.contest.stats.problemcount
       return this.get('contest').hasMany('problems').ids().length
     }
   }
