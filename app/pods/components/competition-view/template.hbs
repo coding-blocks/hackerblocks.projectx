@@ -1,80 +1,104 @@
 <h3 class="mb-5">{{competition.name}}</h3>
 <div class="row">
   <div class="col-12 col-md-8">
-    <div class="border-card px-5 pb-0 pt-5 bg-gradient-dblue-lr white">
-      <img src={{competition.banner}} alt="">
-      <div class="divider-h mt-4"></div>
+    <div class="pb-5">
+      <img src={{competition.banner}} alt="Competition Banner">
+    </div>
+
+    <div class="border-card px-5 pb-0 pt-5 bg-gradient-{{competition.theme}} white">
       <div class="word-wrap white my-4">
         {{markdown-to-html competition.overview}}
       </div>
-      <div class="row my-4">
-        <div class="col-md-5 col-12">
-          <h5 class="mb-4">Top Colleges</h5>
-          <div class="img-desc orange my-4">
-            <div>
-              <h2>#1</h2>
-            </div>
-            <div class="description t-align-l pl-md-2 pl-3">
-              <div class="font-sm bold">Bharati Vidyapeeth College of Engineering</div>
-              <span>43000 Points</span>
-            </div>
-          </div>
-          <div class="img-desc my-4">
-            <div>
-              <h2>#2</h2>
-            </div>
-            <div class="description t-align-l pl-md-2 pl-3">
-              <div class="font-sm bold">Gurunank Dev University</div>
-              <span>42000 Points</span>
-            </div>
-          </div>
-          <div class="img-desc my-4">
-            <div>
-              <h2>#3</h2>
-            </div>
-            <div class="description t-align-l pl-md-2 pl-3">
-              <div class="font-sm bold">Maharaja Agresen Institute Of Technology</div>
-              <span>40000 Points</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-7 col-12">
-          <h5 class="mb-4">Top Students</h5>
-          {{#each topThree as |row index|}}
-            <div class="img-desc align-items-center my-4 {{if (eq index 0) "orange"}}">
+      {{#if topThree}}
+        <div class="row my-4">
+          <div class="col-md-5 col-12">
+            <h5 class="mb-4">Top Colleges</h5>
+            <div class="img-desc orange my-4">
               <div>
-                <h2>#{{inc index}}</h2>
+                <h2>#1</h2>
               </div>
-              <div class="pl-xl-2 pl-3">
-                <div class="img-ring s-50x50">
-                  <img class="round w-100 h-100"
-                    src="{{row.user.photo}}"
-                    alt="">
+              <div class="description t-align-l pl-md-2 pl-3">
+                <div class="font-sm bold">Bharati Vidyapeeth College of Engineering</div>
+                <span>43000 Points</span>
+              </div>
+            </div>
+            <div class="img-desc my-4">
+              <div>
+                <h2>#2</h2>
+              </div>
+              <div class="description t-align-l pl-md-2 pl-3">
+                <div class="font-sm bold">Gurunank Dev University</div>
+                <span>42000 Points</span>
+              </div>
+            </div>
+            <div class="img-desc my-4">
+              <div>
+                <h2>#3</h2>
+              </div>
+              <div class="description t-align-l pl-md-2 pl-3">
+                <div class="font-sm bold">Maharaja Agresen Institute Of Technology</div>
+                <span>40000 Points</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-7 col-12">
+            <h5 class="mb-4">Top Students</h5>
+            {{#each topThree as |row index|}}
+              <div class="img-desc align-items-center my-4 {{if (eq index 0) "orange"}}">
+                <div>
+                  <h2>#{{inc index}}</h2>
+                </div>
+                <div class="pl-xl-2 pl-3">
+                  <div class="img-ring s-50x50">
+                    <img class="round w-100 h-100"
+                      src="{{row.user.photo}}"
+                      alt="">
+                  </div>
+                </div>
+                <div class="description pl-xl-2 pl-3">
+                  <div class="font-mds bold">{{row.user.name}}<span class="font-xs regular"> ({{row.score}} Points)</span></div>
+                  <div>{{row.college.name}}</div>
                 </div>
               </div>
-              <div class="description pl-xl-2 pl-3">
-                <div class="font-mds bold">{{row.user.name}}<span class="font-xs regular"> ({{row.score}} Points)</span></div>
-                <div>{{row.college.name}}</div>
-              </div>
-            </div>
-          {{/each}}
+            {{/each}}
+          </div>
         </div>
+      {{/if}}
+    </div>
+
+    <div class="border-card p-5 mt-4">
+      <div class="row justify-content-between mx-0">
+        <h5>About Company</h5>
+        <img src={{competition.organization.logo}} width="120" alt="">
+      </div>
+      <div class="row mx-0 mt-4">
+        {{markdown-to-html competition.organization.about}}
       </div>
     </div>
 
-    <div class="border-card px-5 pb-0 pt-5 mt-4">
-      <LeaderboardView 
-        @title="Overall Leaderboard"
-        @for="competition" 
-        @competitionId={{competition.id}} 
-        @columns=['college']
-        @allowFilter=true />
+    <div class="border-card p-5 mt-4">
+      <h5>Guidelines</h5>
+      <div class="word-wrap my-4">
+        {{markdown-to-html competition.description}}
+      </div>
     </div>
+
+    {{#if topThree}}
+      <div class="border-card px-5 pb-0 pt-5 mt-4">
+        <LeaderboardView 
+          @title="Overall Leaderboard"
+          @for="competition" 
+          @competitionId={{competition.id}} 
+          @columns=['college']
+          @allowFilter=true />
+      </div>
+    {{/if}}
   </div>
 
   <div class="col-12 col-md-4">
     {{#if upcomingContest}}
       <UpcomingCompetitionContest
+        class="mb-5"
         @contest={{upcomingContest}} as |hasStarted|>
         {{#if hasStarted}}
           {{#link-to
@@ -95,7 +119,7 @@
       </UpcomingCompetitionContest>
     {{/if}}
 
-    <div class="border-card p-5 white bg-gradient-orange my-5">
+    <div class="border-card p-5 white bg-gradient-orange mb-5">
       <div class="img-desc justify-content-center align-items-center">
         <div class="col-4 pl-0">
           <i class="fas fa-trophy fa-5x"></i>
@@ -105,6 +129,13 @@
           <h4>Upto Rs 1 Lakh</h4>
         </div>
       </div>
+      {{#unless currentAttempt}}
+        <div class="row justify-content-center mt-4">
+          <button class="button-solid button-white orange" {{action (perform createCurrentAttempt)}}>
+            Register
+          </button>
+        </div>
+      {{/unless}}
     </div>
 
     <div class="border-card my-5">
@@ -114,41 +145,90 @@
   </div>
 </div>
 
-<div class="row mt-5">
-  <div class="col-12">
-    <div class="border-card py-5 px-0 mb-5 position-relative">
-      <div class="px-md-5 px-4">
-        <h5 class="t-align-c">Archived CodSule Contests</h5>
-        <div class="font-sm t-align-c mt-2 mb-5">
-          These contests are already ended. You can still participate, however you
-          will
-          not be awarded any points for these contest.
+{{#if competition.contests}}
+  <div class="row mt-5">
+    <div class="col-12">
+      <div class="border-card py-5 px-0 mb-5 position-relative">
+        <div class="px-md-5 px-4">
+          <h5 class="t-align-c">Archived CodSule Contests</h5>
+          <div class="font-sm t-align-c mt-2 mb-5">
+            These contests are already ended. You can still participate, however you
+            will
+            not be awarded any points for these contest.
+          </div>
         </div>
-      </div>
-      <div class="flex-row all-center px-2">
+        <div class="flex-row all-center px-2">
+          
+          {{!-- <span class="font-lg extra-bold pointer" onclick={{action "seek" "left"}} role="button">
+            〈
+          </span> --}}
         
-        {{!-- <span class="font-lg extra-bold pointer" onclick={{action "seek" "left"}} role="button">
-          〈
-        </span> --}}
-      
-        <div id="carousel-card-row" class="row c-card-carousel pb-0 mx-sm-3 mx-1">
-          {{#each competition.contests as |contest index|}}
-            <div class="col-xl-3 col-lg-4 col-md-6 col-8" id={{concat "card-" index}}>
-              <ArchivedCompetitionContestCard 
-                class="h-100"
-                @onParticipate={{action onParticipate contest.id}}
-                @contest={{contest}} />
-            </div>
-          {{/each}}
-        </div>
-        {{!-- <span class="font-xl bold pointer" onclick={{action "seek" "right"}} role="button">
-          〉
-        </span> --}}
-        {{!-- <span class="font-xl bold pointer">
-          〉
-        </span> --}}
+          <div id="carousel-card-row" class="row c-card-carousel pb-0 mx-sm-3 mx-1">
+            {{#each competition.contests as |contest index|}}
+              <div class="col-xl-3 col-lg-4 col-md-6 col-8" id={{concat "card-" index}}>
+                <ArchivedCompetitionContestCard 
+                  class="h-100"
+                  @theme={{competition.theme}}
+                  @onParticipate={{action onParticipate contest.id}}
+                  @contest={{contest}} />
+              </div>
+            {{/each}}
+          </div>
+          {{!-- <span class="font-xl bold pointer" onclick={{action "seek" "right"}} role="button">
+            〉
+          </span> --}}
+          {{!-- <span class="font-xl bold pointer">
+            〉
+          </span> --}}
 
+        </div>
       </div>
     </div>
   </div>
-</div>
+{{/if}}
+
+{{#if showRegisteredModal}}
+  <ModalDialog
+  @onClose={{action (mut showRegisteredModal) false}}
+  @translucentOverlay={{true}}
+>
+  <div class="br-15 overflow-hidden p-0 bg-white t-align-c">
+    <div class="bg-grey py-4">
+      <h5>Registration Successful</h5>
+    </div>
+    <div class="p-5">
+      <div class="row">
+        <div class="s-80x80 bg-gradient-green-lr br-50 p-4 mx-auto mb-3">
+          <i class="fas fa-check white mt-sm-1 mt-2 fa-2x"></i>
+        </div>
+      </div>
+      <div class="row mb-4">
+        Your registration for {{competition.name}} has been recorded with the following details.
+      </div>
+      <div class="row align-items-center mb-4">
+        <div class="col-4">
+          <span class="bold">Name: </span>
+        </div>
+        <input class="col-8 input-text" value="{{currentUser.user.name}}" disabled />
+      </div>
+      <div class="row align-items-center mb-4">
+        <div class="col-4">
+          <span class="bold">Email: </span>
+        </div>
+        <input class="col-8 input-text" value="{{currentUser.user.email}}" disabled />
+      </div>
+      <div class="row align-items-center mb-4">
+        <div class="col-4">
+          <span class="bold">OneAuth ID: </span>
+        </div>
+        <input class="col-8 input-text" value="{{currentUser.user.oauth_id}}" disabled />
+      </div>
+      <div class="row align-items-center all-center">
+        <button class="button-solid button-orange" {{action (mut showRegisteredModal) false}}>
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</ModalDialog>
+{{/if}}

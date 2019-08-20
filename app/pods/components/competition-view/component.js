@@ -1,23 +1,42 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { restartableTask } from 'ember-concurrency-decorators';
+import { restartableTask, dropTask } from 'ember-concurrency-decorators';
 import { alias } from '@ember/object/computed';
-// import { action, computed } from '@ember/object';
 
 export default class CompetitionViewComponent extends Component {
   @service api
   @service store
-
-  // cardScrollIndex = 0
+  @service currentUser
 
   @alias('fetchTopThreeTask.lastSuccessful.value') topThree
   @alias('fetchRecentContestTask.lastSuccessful.value') upcomingContest
+  @alias('fetchCurrentAttempt.lastSuccessful.value') currentAttempt
 
   didReceiveAttrs() {
-    this.fetchRecentContestTask.perform()
+    this.fetchCurrentAttempt.perform()
     this.fetchTopThreeTask.perform()
   }
 
+  @dropTask createCurrentAttempt = function *() {
+    yield this.store.createRecord('competition-attempt', {
+      competition: this.competition
+    }).save()
+    this.set('showRegisteredModal', true)
+    yield this.fetchCurrentAttempt.perform()
+  }
+  @restartableTask fetchCurrentAttempt = function *() {
+    const currentAttempt = yield this.store.queryRecord('competition-attempt', {
+      custom: {
+        ext: 'url',
+        url: 'current-attempt'
+      },
+      competition_id: this.competition.id
+    })
+    if (currentAttempt.id) {
+      this.fetchRecentContestTask.perform()
+      return currentAttempt
+    }
+  }
   @restartableTask fetchRecentContestTask = function *() {
     const payload = yield this.api.request(`competitions/${this.competition.id}/recent-contest`, {
       method: 'GET'
@@ -26,7 +45,6 @@ export default class CompetitionViewComponent extends Component {
     const contest = this.store.peekRecord('contest', payload.data.id)
     return contest
   }
-
   @restartableTask fetchTopThreeTask = function *() {
     return yield this.store.query('competition-leaderboard', {
       include: 'user,college',
@@ -41,31 +59,4 @@ export default class CompetitionViewComponent extends Component {
       }
     })
   }
-
-  // @computed ('cardScrollIndex')
-  // get showScrollLeft () {
-  //   return this.cardScrollIndex - 4 >= 0
-  // }
-
-  // @computed ('competition.contests', 'cardScrollIndex')
-  // get showScrollRight () {
-  //   return this.cardScrollIndex + 4 < this.competition.contests.length
-  // }
-
-  // @action
-  // seek (direction) {
-  //   const row = this.element.querySelector('#carousel-card-row')
-  //   switch (direction) {
-  //     case 'left':
-  //       this.incrementProperty('cardScrollIndex', -4)
-  //       break;
-  //     case 'right':
-  //         this.incrementProperty('cardScrollIndex', +4)
-  //   }
-
-  //   row.scrollTo(
-  //     row.querySelector('#card-' + this.cardScrollIndex).offsetLeft,
-  //     0
-  //   )
-  // }
 }
