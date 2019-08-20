@@ -131,9 +131,20 @@
       </div>
       {{#unless currentAttempt}}
         <div class="row justify-content-center mt-4">
-          <button class="button-solid button-white orange" {{action (perform createCurrentAttempt)}}>
-            Register
-          </button>
+          {{#if currentUser.user.id}}
+            <button 
+              class="button-solid button-white orange" 
+              {{action (perform createCurrentAttempt)}}>
+              Register
+            </button>
+          {{else}}
+            <LinkTo
+              @route='login'
+              @tagName='button'
+              class="button-solid button-white orange">
+              Login to Register
+            </LinkTo>
+          {{/if}}
         </div>
       {{/unless}}
     </div>
@@ -158,11 +169,6 @@
           </div>
         </div>
         <div class="flex-row all-center px-2">
-          
-          {{!-- <span class="font-lg extra-bold pointer" onclick={{action "seek" "left"}} role="button">
-            〈
-          </span> --}}
-        
           <div id="carousel-card-row" class="row c-card-carousel pb-0 mx-sm-3 mx-1">
             {{#each competition.contests as |contest index|}}
               <div class="col-xl-3 col-lg-4 col-md-6 col-8" id={{concat "card-" index}}>
@@ -174,13 +180,6 @@
               </div>
             {{/each}}
           </div>
-          {{!-- <span class="font-xl bold pointer" onclick={{action "seek" "right"}} role="button">
-            〉
-          </span> --}}
-          {{!-- <span class="font-xl bold pointer">
-            〉
-          </span> --}}
-
         </div>
       </div>
     </div>
