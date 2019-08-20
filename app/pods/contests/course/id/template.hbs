@@ -3,7 +3,7 @@
   <div class="col-12 col-md-4">
     <ContestCard 
       @contest={{contest.contest}} 
-      @theme="nostalgia-purple">
+      @theme="{{course.theme}}">
       {{#link-to 'contests.course.contest' contest.id}}
         <button class="button-solid button-orange mt-3 mb-2">
           Solve Challenge

@@ -6,6 +6,7 @@
     {{#each admission_contests as |contest|}}
       <div class="col-12 col-md-4">
         <ContestCard
+          class="mb-5"
           @contest={{contest.contest}}>
           {{#link-to
             'contests.admission.contest'
