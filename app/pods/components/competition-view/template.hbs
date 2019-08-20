@@ -128,7 +128,7 @@
           {{markdown-to-html competition.prizes}}
         </div>
       </div>
-      {{#unless currentAttempt}}
+      {{#unless (or currentAttempt fetchCurrentAttempt.isRunning)}}
         <div class="row justify-content-center mt-4">
           {{#if currentUser.user.id}}
             <button 
