@@ -13,6 +13,9 @@ export default class IndexRoute extends Route {
     },
     status: {
       refreshModel: false
+    },
+    tags: {
+      refreshModel: false
     }
   }
   

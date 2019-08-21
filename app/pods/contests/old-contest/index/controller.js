@@ -5,11 +5,12 @@ import { inject as service } from '@ember/service';
 export default class IndexController extends Controller {
   @service store
 
-  queryParams = ['offset', 'limit', 'status', 'difficulty']
+  queryParams = ['offset', 'limit', 'status', 'difficulty', 'tags']
   offset = 0
   limit = 10
   status = null
   difficulty = []
+  tags = []
 
   @computed('offset')
   get page() {

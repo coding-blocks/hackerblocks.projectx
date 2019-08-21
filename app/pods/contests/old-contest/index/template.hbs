@@ -3,13 +3,16 @@
   @page={{page}}
   @status={{status}}
   @difficulty={{difficulty}}
+  @tags={{tags}}
   @problemListRoute="contests.old-contest.problem"
   @setOffset={{action 'setOffset'}} as |contestView|>
   <PracticeFilterComponent
     @status={{status}}
     @changeStatusFilter={{action (mut status)}}
     @difficulty={{difficulty}}
-    @changeDifficultyFilter={{action (mut difficulty)}} />
+    @changeDifficultyFilter={{action (mut difficulty)}}
+    @tags={{tags}}
+    @changeTagsFilter={{action (mut tags)}} />
   <div class="border-card mt-5 px-0">
     {{contestView.leaderboardComponent}}
   </div>
