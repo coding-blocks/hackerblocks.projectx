@@ -5,7 +5,7 @@ export default class Logout extends Route {
   @service api;
   @service session;
 
-  async afterModel() {
+  async afterModel(transition) {
     await this.api.request("/jwt/logout")
     this.session.invalidate();
     window.location = '/'
