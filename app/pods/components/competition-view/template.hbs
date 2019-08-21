@@ -170,13 +170,15 @@
         <div class="flex-row all-center px-2">
           <div id="carousel-card-row" class="row c-card-carousel pb-0 mx-sm-3 mx-1">
             {{#each competition.contests as |contest index|}}
-              <div class="col-xl-3 col-lg-4 col-md-6 col-8" id={{concat "card-" index}}>
-                <ArchivedCompetitionContestCard 
-                  class="h-100"
-                  @theme={{competition.theme}}
-                  @onParticipate={{action onParticipate contest.id}}
-                  @contest={{contest}} />
-              </div>
+              {{#if contest.hasEnded}}
+                <div class="col-xl-3 col-lg-4 col-md-6 col-8 w-100" id={{concat "card-" index}}>
+                  <ArchivedCompetitionContestCard 
+                    class="h-100"
+                    @theme={{competition.theme}}
+                    @onParticipate={{action onParticipate contest.id}}
+                    @contest={{contest}} />
+                </div>
+              {{/if}}
             {{/each}}
           </div>
         </div>
