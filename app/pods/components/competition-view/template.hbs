@@ -160,7 +160,7 @@
     <div class="col-12">
       <div class="border-card py-5 px-0 mb-5 position-relative">
         <div class="px-md-5 px-4">
-          <h5 class="t-align-c">Archived CodSule Contests</h5>
+          <h5 class="t-align-c">Archived Contests</h5>
           <div class="font-sm t-align-c mt-2 mb-5">
             These contests are already ended. You can still participate, however you
             will
@@ -168,10 +168,10 @@
           </div>
         </div>
         <div class="flex-row all-center px-2">
-          <div id="carousel-card-row" class="row c-card-carousel pb-0 mx-sm-3 mx-1">
+          <div id="carousel-card-row" class="row c-card-carousel pb-0 mx-sm-3 mx-1 w-100">
             {{#each competition.contests as |contest index|}}
               {{#if contest.hasEnded}}
-                <div class="col-xl-3 col-lg-4 col-md-6 col-8 w-100" id={{concat "card-" index}}>
+                <div class="col-xl-3 col-lg-4 col-md-6 col-8" id={{concat "card-" index}}>
                   <ArchivedCompetitionContestCard 
                     class="h-100"
                     @theme={{competition.theme}}
