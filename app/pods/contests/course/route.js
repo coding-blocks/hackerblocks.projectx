@@ -3,8 +3,6 @@ import AuthenticatedRouteMixin from 'hackerblocks/mixins/authenticated-route-mix
 
 export default Route.extend(AuthenticatedRouteMixin, {
   model(){
-    return this.store.findAll('course', {
-      include: 'course_contests'
-    })
+    return this.store.findAll('course')
   }
 });
