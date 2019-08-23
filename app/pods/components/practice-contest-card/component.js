@@ -35,15 +35,12 @@ export default class PracticeContestCard extends Component {
       type: 'get',
       contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
       data: {
-        filter: {
-          contest_id: this.practice.belongsTo('contest').id() 
-        }
+        contest_id: this.practice.belongsTo('contest').id() 
       }  
     })
     
     this.store.pushPayload(payload)
     const problem = this.store.peekRecord('problem', payload.data.id)
     this.set('problem', problem)
-    return problem
   }
 }
