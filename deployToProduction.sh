@@ -2,9 +2,10 @@
 
 rm -rf dist/*
 ember build --env production
+chmod 600 key.pem
 
-ssh codingblocks@srv17.cb.lk "mkdir ~/temp"
-scp -r ./dist/* codingblocks@srv17.cb.lk:~/temp/
-ssh codingblocks@srv17.cb.lk "rm -rf ~/frontends/hackerblocks/* && \
+ssh -o StrictHostKeyChecking=no -i key.pem $USER@$SERVER "mkdir ~/temp"
+scp -o StrictHostKeyChecking=no -i key.pem -r ./dist/* $USER@$SERVER:~/temp/
+ssh -o StrictHostKeyChecking=no -i key.pem $USER@$SERVER "rm -rf ~/frontends/hackerblocks/* && \
   cp -rf ~/temp/* ~/frontends/hackerblocks && \
   rm -rf ~/temp"
