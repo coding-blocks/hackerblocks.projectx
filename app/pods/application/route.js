@@ -28,8 +28,8 @@ export default Route.extend(ApplicationRouteMixin, {
         
         try {
           await this.session.authenticate('authenticator:jwt', { identification: code, password: code, code })
+          return this.transitionTo('index', { queryParams: { code: undefined } })
         } catch (error) {
-          debugger
           console.log(error)
           if (error.json.err === 'USER_EMAIL_NOT_VERIFIED') {
             this.transitionTo('error', {
