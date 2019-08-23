@@ -14,16 +14,11 @@ export default class LeaderboardViewComponent extends Component {
     offset: 0,
     limit: 10
   }
-  selectedLanguage = null
+  hasRows = false
 
   didReceiveAttrs() {
     this.fetchLeaderboardTask.perform()
     this.fetchCollegesTask.perform()
-  }
-
-  @computed('columns')
-  get showLanguage() {
-    return this.columns && this.columns.includes('language')
   }
 
   @computed('columns')
@@ -63,10 +58,12 @@ export default class LeaderboardViewComponent extends Component {
       page: this.page
     })
 
+    this.set('hasRows', this.hasRows || leaderboard.length !== 0)
+
     return leaderboard
   }
   @restartableTask fetchCollegesTask = function *(query = '') {
-    return this.store.query('college', {
+    return yield this.store.query('college', {
       filter: {
         name: {
           $iLike: `%${query}%`
