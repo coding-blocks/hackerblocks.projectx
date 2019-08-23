@@ -35,7 +35,9 @@ export default class PracticeContestCard extends Component {
       type: 'get',
       contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
       data: {
-        contest_id: this.practice.belongsTo('contest').id() 
+        filter: {
+          contest_id: this.practice.belongsTo('contest').id() 
+        }
       }  
     })
     
