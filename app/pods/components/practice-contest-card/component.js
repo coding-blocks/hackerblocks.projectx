@@ -44,6 +44,5 @@ export default class PracticeContestCard extends Component {
     this.store.pushPayload(payload)
     const problem = this.store.peekRecord('problem', payload.data.id)
     this.set('problem', problem)
-    return problem
   }
 }
