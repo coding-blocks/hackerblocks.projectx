@@ -22,4 +22,4 @@ before_script:
   - ember build --env production
 
 script: 
-  - if [ "$TRAVIS_BRANCH" = "master" ]; then bash ./deployToProduction.sh
+  - if [ "$TRAVIS_BRANCH" = "master" ]; then bash ./deployToProduction.sh; fi
