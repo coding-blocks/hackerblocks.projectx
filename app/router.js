@@ -95,6 +95,7 @@ Router.map(function() {
   })
   this.route('help');
   this.route('login');
+  this.route('error');
 });
 
 export default Router;
