@@ -61,7 +61,14 @@ Router.map(function() {
       });
     });
 
-    this.route('contest', function() {});
+    this.route('contest', {path: '/:contest_id'}, function() {
+      this.route('problem');
+      this.route('attempt', function() {
+        this.route('problem', {path: '/p/:problem_id'});
+        this.route('quiz', {path: '/q/:quiz_id'});
+      });
+      this.route('feedback');
+    });
     this.route('old-contest', {path: '/c/:contest_id'}, function() {
       this.route('problem', {path: '/p/:problem_id'});
     });

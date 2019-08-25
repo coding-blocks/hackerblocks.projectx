@@ -10,17 +10,17 @@
 
 <div class="{{unless fullScreen "border-card"}} p-5">
   {{#if (eq judgeResult.result "compile_error")}}
-    <h1>Compilation Error</h1>
+    <h2>Compilation Error</h2>
   {{else if (eq judgeResult.result "success")}}
-    <h1>Success</h1>
+    <h2>Compiled Successfully</h2>
   {{else}}
-    <h1>Judge Error</h1>
+    <h2>Submission not judged, try again later</h2>
   {{/if}}
   <span class="font-sm">Check the compiler output, fix the error and try again.</span>
 
   <div class="divider-h"></div>
 
-  <span class="font-sm bold">Compile Message</span>
+  <span class="font-sm bold">Compiler Message</span>
   <div class="bg-grey p-2">
     <pre class="p-2">{{output}}</pre>
   </div>

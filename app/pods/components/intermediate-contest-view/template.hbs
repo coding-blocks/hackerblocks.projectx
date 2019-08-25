@@ -32,12 +32,21 @@
     {{#unless contest.isYetToStart}}
       <div>
         {{#if contest_attempt}}
-          {{#link-to
-            nextRoute
-            class="button-solid button-orange font-sm extra-bold my-3"
-          }}
-            Resume Challenge
-          {{/link-to}}
+          {{#if nextRoute.route}}
+            <LinkTo
+              @route={{nextRoute.route}}
+              @model={{nextRoute.model}}
+              class="button-solid button-orange font-sm extra-bold my-3">
+              Resume Challenge
+            </LinkTo>
+          {{else}}
+            {{#link-to
+              nextRoute
+              class="button-solid button-orange font-sm extra-bold my-3"
+            }}
+              Resume Challenge
+            {{/link-to}}
+          {{/if}}
         {{else}}
           <button
             class="button-solid button-orange font-sm extra-bold my-3"

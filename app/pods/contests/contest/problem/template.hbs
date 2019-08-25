@@ -1,0 +1,17 @@
+<div class="row my-4">
+  <div class="col-12">
+    <PracticeProblemCard @problem={{problem}} />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-8">
+    <ProblemView @contest={{contest}} @problem={{problem}} />
+  </div>
+  <div class="col-12 col-md-4">
+    {{#if problem.canSubmitReview}}
+    <RatingCard class="py-4" @contest={{contest}} @problem={{problem}} />
+    {{/if}}
+    <AuthorCard class="py-4" @author={{problem.createdBy}} />
+  </div>
+</div>
