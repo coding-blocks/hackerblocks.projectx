@@ -21,6 +21,7 @@ export default class QuizRoute extends Route {
       },
       contest_id: contest.id
     })
+    debugger
     const quiz_attempt = this.store.queryRecord('quiz-attempt', {
       custom: {
         ext: 'url',
@@ -28,7 +29,7 @@ export default class QuizRoute extends Route {
       },
       filter: {
         contest_id: contest.id,
-        quiz_id: quiz.quiz_id
+        quiz_id: quiz.id
       }
     })
 
