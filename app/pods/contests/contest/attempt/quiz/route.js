@@ -28,7 +28,7 @@ export default class QuizRoute extends Route {
       },
       filter: {
         contest_id: contest.id,
-        quiz_id: quiz.id
+        quiz_id: quiz.quiz_id
       }
     })
 
