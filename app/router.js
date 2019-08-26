@@ -62,7 +62,7 @@ Router.map(function() {
     });
 
     this.route('contest', {path: '/:contest_id'}, function() {
-      this.route('problem');
+      this.route('problem', {path: '/p/:problem_id'});
       this.route('attempt', function() {
         this.route('problem', {path: '/p/:problem_id'});
         this.route('quiz', {path: '/q/:quiz_id'});
