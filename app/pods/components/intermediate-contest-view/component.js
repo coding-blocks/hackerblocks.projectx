@@ -34,6 +34,7 @@ export default class IntermediateContestComponent extends Component {
     })
     try {
       yield contest_attempt.save()
+      this.contest.set('currentAttempt', contest_attempt)
       this.set('showStartDialog', false)
       if (this.onAfterCreate){
         this.onAfterCreate()

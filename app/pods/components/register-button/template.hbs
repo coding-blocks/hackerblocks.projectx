@@ -8,7 +8,7 @@
       Register
     </button>
   {{else}}
-    {{#link-to route contestTypeModel.id}}
+    {{#link-to route contestTypeModel.contest.id}}
       <button class="button-solid button-orange mt-3 mb-2">
         {{#if contestTypeModel.contest.isYetToStart}}
           View Contest

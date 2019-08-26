@@ -1,0 +1,12 @@
+<div class="d-flex font-xs bold mb-4 mt-1">
+  <BreadCrumbs
+    @outputStyle="foundation"
+    @tagName="ul"
+    @linkable={{true}}
+    @crumbClass="px-3" />
+</div>
+
+<IntermediateContestView
+  @nextRoute={{nextRoute}}
+  @onAfterCreate={{onAfterCreate}}
+  @contest={{contest}} />
