@@ -18,7 +18,7 @@ export default class FeedbackRoute extends Route {
   }
   
   model() {
-    const { contest, contest_attempt } = this.modelFor('contests.contest')
+    const { contest } = this.modelFor('contests.contest')
     const feedback = this.store.createRecord('contest-feedback', {
       stars: 5,
       body: '',
@@ -27,7 +27,6 @@ export default class FeedbackRoute extends Route {
 
     return RSVP.hash({
       contest,
-      contest_attempt,
       feedback
     })
   }
@@ -38,7 +37,7 @@ export default class FeedbackRoute extends Route {
   }
   
   afterModel(model) {
-    if (!model.contest_attempt) {
+    if (!model.contest.get('currentAttempt')) {
       this.transitionTo('contests')
     }
   }

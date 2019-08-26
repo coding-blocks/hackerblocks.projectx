@@ -20,6 +20,12 @@ export default class ContestRoute extends Route {
     })
   }
 
+  afterModel(model) {
+    this.set('breadCrumb', {
+      title: model.contest.name
+    })
+  }
+
   setupController(controller, model) {
     controller.set('contest', model.contest)
     controller.set('contest_attempt', model.contest_attempt)
