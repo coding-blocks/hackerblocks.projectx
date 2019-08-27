@@ -36,9 +36,9 @@
       
       {{#link-to route problem.id}}
         {{#if (and problem.topSubmission (eq problem.topSubmission.score 100))}}
-          <button class="button-solid button-green">Solve Challenge</button>
+          <button class="button-solid button-green">Solve Again</button>
         {{else if problem.topSubmission}}
-          <button class="button-solid button-orange">Solve Challenge</button>
+          <button class="button-solid button-orange">Try Again</button>
         {{else}}
           <button class={{concat "button-dashed button-" theme}}>
             Solve Challenge
