@@ -29,6 +29,7 @@ export default Model.extend({
   plagiarismFiltering: DS.attr(),
   problemCount: DS.attr(),
   stats: DS.attr(),
+  allowedLanguages: DS.attr(),
   dcb: DS.belongsTo('dcb'),
   problems: DS.hasMany('problems'),
   quizzes: DS.hasMany('quiz'),

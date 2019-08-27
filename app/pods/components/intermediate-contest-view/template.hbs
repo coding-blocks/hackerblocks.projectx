@@ -91,19 +91,28 @@
         {{/if}}
       </div>
       <div class="row justify-content-center mt-4">
-        <button  
-          class="button-dashed button-orange font-sm extra-bold mr-2"
-          {{action (mut showStartDialog) false}} >
-          <i class="fas fa-arrow-left mr-3"></i>
-          <span class="d-sm-inline d-none">Take me back</span>
-          <span class="d-sm-none d-inline">Back</span>
-        </button>
-        <button 
-          class="button-solid button-orange font-sm extra-bold ml-2"
-          {{action (perform createAttemptTask)}}>
-          <span class="d-sm-inline d-none">Yes, start with my test</span>
-          <span class="d-inline d-sm-none">Start</span>
-        </button>
+        {{#if queued}}
+          <button  
+            class="button-dashed button-orange font-sm extra-bold mr-2"
+            {{action (mut showStartDialog) false}} >
+            <i class="fas fa-arrow-left mr-3"></i>
+            <span class="d-sm-inline d-none">Take me back</span>
+            <span class="d-sm-none d-inline">Back</span>
+          </button>
+          <button 
+            class="button-solid button-orange font-sm extra-bold ml-2"
+            {{action (perform createAttemptTask)}}>
+            <span class="d-sm-inline d-none">Yes, start with my test</span>
+            <span class="d-inline d-sm-none">Start</span>
+          </button>
+        {{else}}
+          <p>
+            <Timer @to={{queueTimeEnd}} @onEnd={{action (mut queued) true}} as |time|>
+              Please wait while we queue you for the contest
+              <strong>Estimated time: {{time.seconds}} seconds</strong>
+            </Timer>
+          </p>
+        {{/if}}
       </div>
     </div>
   </div>

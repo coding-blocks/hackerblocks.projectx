@@ -3,6 +3,7 @@ import { computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
 import { restartableTask } from 'ember-concurrency-decorators';
 import { inject as service } from '@ember/service';
+import moment from 'moment';
 
 export default class IntermediateContestComponent extends Component {
   @service store
@@ -18,6 +19,13 @@ export default class IntermediateContestComponent extends Component {
     if (this.contest) {
       if (this.contest.stats) return this.contest.stats.problemcount
       return this.get('contest').hasMany('problems').ids().length
+    }
+  }
+
+  @computed('showStartDialog')
+  get queueTimeEnd() {
+    if (this.showStartDialog) {
+      return moment().add(Math.floor(Math.random() * 60), 'seconds')
     }
   }
 

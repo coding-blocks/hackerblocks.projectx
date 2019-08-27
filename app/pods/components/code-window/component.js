@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { action } from '@ember/object';
+import { action, computed } from '@ember/object';
 
 export default class CodeWindowComponent extends Component {
   code = ''
@@ -54,14 +54,20 @@ export default class CodeWindowComponent extends Component {
 
   didReceiveAttrs() {
     this._super(...arguments)
-    const languages = this.get('allowedLanguages') || ['c', 'cpp', 'python2', 'python3', 'java', 'node', 'csharp']
-    this.set('languages', languages)
     if (this.codeStubs.toArray().length) {
       this.selectLanguage(this.codeStubs.toArray()[0].language)
     } else {
-      this.selectLanguage('cpp')
+      this.selectLanguage(this.languages[0].code)
     }
     this.set('customInput', this.input)
+  }
+
+  @computed('allowedLanguages')
+  get languages() {
+    if (this.allowedLanguages) {
+      return this.languageSpecs.filter(lang => this.allowedLanguages.includes(lang.code))
+    }
+    return this.languageSpecs
   }
 
   @action
