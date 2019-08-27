@@ -35,9 +35,15 @@
       {{yield problem}}
       
       {{#link-to route problem.id}}
-        <button class={{concat "button-dashed button-" theme}}>
-          Solve Challenge
-        </button>
+        {{#if (and problem.topSubmission (eq problem.topSubmission.score 100))}}
+          <button class="button-solid button-green">Solve Again</button>
+        {{else if problem.topSubmission}}
+          <button class="button-solid button-orange">Try Again</button>
+        {{else}}
+          <button class={{concat "button-dashed button-" theme}}>
+            Solve Challenge
+          </button>
+        {{/if}}
       {{/link-to}}
     </div>
   </div>
