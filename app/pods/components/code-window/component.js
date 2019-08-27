@@ -54,11 +54,7 @@ export default class CodeWindowComponent extends Component {
 
   didReceiveAttrs() {
     this._super(...arguments)
-    if (this.codeStubs.toArray().length) {
-      this.selectLanguage(this.codeStubs.toArray()[0].language)
-    } else {
-      this.selectLanguage(this.languages[0].code)
-    }
+    this.selectLanguage(this.languages[0].code)
     this.set('customInput', this.input)
   }
 
