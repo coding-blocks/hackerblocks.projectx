@@ -11,6 +11,13 @@ export default class QuizRoute extends Route {
       replace: true
     }
   }
+
+  async beforeModel() {
+    const { contest } = this.modelFor('contests.contest')
+    if (! await contest.get('currentAttempt')) {
+      this.transitionTo('contests.contest.attempt')
+    }
+  }
   
   async model(params) {
     const { contest } = this.modelFor('contests.contest')

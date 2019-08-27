@@ -6,6 +6,13 @@ import RSVP from 'rsvp';
 export default class ProblemRoute extends Route {
   @service navigation
 
+  async beforeModel() {
+    const { contest } = this.modelFor('contests.contest')
+    if (! await contest.get('currentAttempt')) {
+      this.transitionTo('contests.contest.attempt')
+    }
+  }
+
   async model(params) {
     const { contest } = this.modelFor('contests.contest')
     const problem = this.store.queryRecord('problem', {
