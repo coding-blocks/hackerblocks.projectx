@@ -2,7 +2,6 @@ import Component from '@ember/component';
 import { action, computed } from '@ember/object';
 
 export default class CodeWindowComponent extends Component {
-  code = ''
   isLanguageSelectOpen = false
   customInputOpen = true
   customInput = ''
@@ -56,6 +55,10 @@ export default class CodeWindowComponent extends Component {
     this._super(...arguments)
     this.selectLanguage(this.languages[0].code)
     this.set('customInput', this.input)
+    this.languageSpecs.map(spec => {
+      const codeStub = this.codeStubs.find(stub => stub.language === spec.code)
+      spec.source = codeStub ? codeStub.body : ''
+    })
   }
 
   @computed('allowedLanguages')
@@ -69,8 +72,6 @@ export default class CodeWindowComponent extends Component {
   @action
   selectLanguage(languageCode) {
     this.set('selectedLanguage', this.languageSpecs.find(spec => spec.code === languageCode))
-    const codeStub = this.codeStubs.find(stub => stub.language === this.selectedLanguage.code)
-    this.set('code', codeStub ? codeStub.body : '')
   }
 
   @action

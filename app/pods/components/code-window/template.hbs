@@ -19,8 +19,8 @@
     <MonacoEditor
       class="monaco-editor"
       @language={{selectedLanguage.mode}}
-      @code={{code}}
-      @onChange={{action (mut code)}}
+      @code={{selectedLanguage.source}}
+      @onChange={{action (mut selectedLanguage.source)}}
       @theme="vs-dark" />
   </div>
   <div class="pt-4 pb-5 px-5 input-div">
@@ -33,13 +33,13 @@
         <button 
           class="button-dashed button-orange ml-3 mr-1"
           disabled={{or onRunTask.isRunning onSubmitTask.isRunning}}
-          {{action (perform onRunTask selectedLanguage.code code customInput)}}>
+          {{action (perform onRunTask selectedLanguage.code selectedLanguage.source customInput)}}>
           {{if onRunTask.isRunning "Running" "Compile and Test"}}
         </button>
         <button 
           class="button-solid button-orange mr-3 ml-1" 
           disabled={{or onRunTask.isRunning onSubmitTask.isRunning}}
-          {{action (perform onSubmitTask selectedLanguage.code code)}}>
+          {{action (perform onSubmitTask selectedLanguage.code selectedLanguage.source)}}>
           {{if onSubmitTask.isRunning "Submitting" "Submit Code"}}
           </button>
       </div>

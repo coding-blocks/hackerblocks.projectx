@@ -1,4 +1,6 @@
-{{#if hasRows}}
+{{#if fetchLeaderboardTask.isRunning}}
+  <LoadingComponent />
+{{else if hasRows}}
   {{#if title}}
     <h5 class="t-align-c">{{title}}</h5>
   {{/if}}
