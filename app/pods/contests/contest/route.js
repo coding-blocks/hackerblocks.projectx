@@ -4,7 +4,12 @@ import RSVP from 'rsvp';
 
 export default class ContestRoute extends Route {
   async model(params) {
-    const contest = await this.store.findRecord('contest', params.contest_id)
+    const contest = await this.store.queryRecord('contest', {
+      custom: {
+        ext: 'url',
+        url: `${params.contest_id}/details`
+      }
+    })
     const contest_attempt = await this.store.queryRecord('contest-attempt', {
       custom: {
         ext: 'url',
