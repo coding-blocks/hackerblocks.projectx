@@ -1,6 +1,17 @@
 {{#if fetchProblemsTask.isRunning}}
   <LoadingComponent />
 {{else}}
+  <div class="right-input">
+    <Input 
+      class="input-text input-text--non-rounded" 
+      placeholder="Search problems by name"
+      @enter={{action onQuery}}
+      @type="text" />
+  </div>
+  <p>
+    Showing results for <span class="orange">{{query}}</span>
+  </p>
+  <div class="divider-h mt-5"></div>
   {{yield (hash
     problems=problems
     showError=showError
