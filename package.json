@@ -74,7 +74,7 @@
     "node": "8.* || >= 10.*"
   },
   "dependencies": {
-    "@coding-blocks/motley": "^0.4.4",
+    "@coding-blocks/motley": "^0.4.5",
     "cal-heatmap": "^3.6.2",
     "ember-composable-helpers": "^2.3.1"
   }
