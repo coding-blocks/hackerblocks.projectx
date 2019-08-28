@@ -6,10 +6,12 @@ export default Service.extend({
     api: service(),
     store: service(),
     user: {},
-    async load () {
-        const currentUser = this.user
-        if (currentUser && currentUser.id) {
-            return Promise.resolve(currentUser)
+    async load (force = false) {
+        if (!force) {
+            const currentUser = this.user
+            if (currentUser && currentUser.id) {
+                return Promise.resolve(currentUser)
+            }
         }
         const user = await this.store.queryRecord('user', { custom: {ext: 'url', url: 'me' }})
         this.set('user', user)
