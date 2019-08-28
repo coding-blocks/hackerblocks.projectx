@@ -6,14 +6,15 @@
       class="input-text input-text--non-rounded" 
       placeholder="Search problems by name"
       @enter={{action onQuery}}
-      @type="text" />
+      @type="text"
+      @value={{searchQuery}} />
   </div>
   {{#if query}}
-    <p>
+    <h5 class="bold mt-4">
       Showing results for <span class="orange">{{query}}</span>
-    </p>
+    </h5>
   {{/if}}
-  <div class="divider-h mt-5"></div>
+  <div class="divider-h mt-4"></div>
   {{yield (hash
     problems=problems
     showError=showError

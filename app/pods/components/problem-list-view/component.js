@@ -16,6 +16,7 @@ export default class ProblemListView extends Component {
   
   didReceiveAttrs() {
     this.fetchProblemsTask.perform(this.problemFilter, this.page)
+    this.set('searchQuery', this.query)
   }
 
   @computed('difficulty', 'tags', 'query')
