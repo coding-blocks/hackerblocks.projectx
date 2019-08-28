@@ -18,6 +18,9 @@ export default class IndexRoute extends Route {
     tags: {
       refreshModel: false
     },
+    q: {
+      refreshModel: false
+    }
   }
 
   model() {
