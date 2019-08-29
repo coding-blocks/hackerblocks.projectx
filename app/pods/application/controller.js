@@ -3,4 +3,9 @@ import { inject as service } from '@ember/service';
 
 export default class ApplicationController extends Controller {
   @service navigation
+  @service serverTime
+
+  init(){
+    this.serverTime.syncMoment()
+  }
 }
