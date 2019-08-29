@@ -10,8 +10,7 @@ export default class ErrorController extends Controller {
 
   @action
   tryAgain() {
-    const route = this.router.recognize(this.next)
-    this.transitionToRoute(route ? route.name : 'index')
+    this.transitionToRoute(this.next)
   }
 
   @computed('errorCode')

@@ -4,14 +4,22 @@ import Mixin from '@ember/object/mixin';
 
 export default Mixin.create(AuthenticatedRouteMixin,{
   currentUser: service(),
-  beforeModel() {
+  router: service(),
+  beforeModel(transition) {
     if (this.get('currentUser.user') && (!this.get('currentUser.user.email') || !this.get('currentUser.user.verifiedemail'))) {
-      return this.transitionTo('error', {
+      throw new Error('USER_EMAIL_NOT_VERIFIED')
+    }
+    return this._super(...arguments)
+  },
+  actions: {
+    error(err, transition) {
+      debugger
+      this.transitionTo('error', {
         queryParams: {
-          errorCode: 'USER_EMAIL_NOT_VERIFIED'
+          errorCode: 'USER_EMAIL_NOT_VERIFIED',
+          next: this.router.get('currentURL')
         }
       })
     }
-    return this._super(...arguments)
   }
 });
