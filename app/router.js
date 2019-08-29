@@ -19,6 +19,8 @@ Router.map(function() {
           this.route('problem', { path: '/p/:problem_id' });
         });
       });
+
+      this.route('attempt', function() {});
     });
     this.route('admission', function() {
       this.route('cast', function() {
@@ -66,6 +68,7 @@ Router.map(function() {
       this.route('attempt', function() {
         this.route('problem', {path: '/p/:problem_id'});
         this.route('quiz', {path: '/q/:quiz_id'});
+        this.route('web');
       });
       this.route('feedback');
     });

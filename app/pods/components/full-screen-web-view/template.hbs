@@ -1,0 +1,52 @@
+<div class="row no-gutters overflow-hidden code-area">
+  <div class="col-12 px-xl-5 px-4 position-relative h-100 overflow-y-auto">
+    <div class="row no-gutters pt-4">
+      <div class="col-6 word-wrap">
+        <div class="font-mds">Problem</div>
+        <h4>{{problem.name}}</h4>
+      </div>
+      <div class="col-6">
+        <ul class="divided-list t-align-r mt-0 pull-right">
+          <li class="px-3">
+            <h4 class="orange">{{problem.difficultyString}}</h4>
+            <div class="list-data font-mds">Dificulty</div>
+          </li>
+          <li class="px-3">
+            <h4 class="orange">100</h4>
+            <div class="list-data font-mds">Max Points</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="divider-h my-2"></div>
+    <div class="row no-gutters">
+      <div class="tab-nav-underline w-100 justify-content-start bg-white position-sticky">
+        <div class="tab {{if (eq currentTab 'problem') 'active'}} pr-5 pl-0" {{action (mut currentTab) 'problem'}}
+          style="flex-grow: 0">
+          Problem
+        </div>
+        <div class="tab {{if (eq currentTab 'submissions') 'active'}} px-5" {{action (mut currentTab) 'submissions'}}
+          style="flex-grow: 0">
+          Submissions
+        </div>
+      </div>
+      <div class="w-100">
+        {{#liquid-if (eq currentTab 'problem')}}
+        {{problem.content}}
+
+        {{else if (eq currentTab 'submissions')}}
+        <SubmissionsList @contest={{contest}} @problem={{problem}} />
+        {{/liquid-if}}
+      </div>
+    </div>
+
+    <div class="divider-h my-5"></div>
+
+
+    <div class="row">
+      <JottedEditor
+        @onChange={{handleTextChange}}
+       />
+    </div>
+  </div>
+</div>
