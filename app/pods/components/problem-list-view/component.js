@@ -13,12 +13,13 @@ export default class ProblemListView extends Component {
   status = null
   tags = []
   showError = false
-
+  
   didReceiveAttrs() {
     this.fetchProblemsTask.perform(this.problemFilter, this.page)
+    this.set('searchQuery', this.query)
   }
 
-  @computed('difficulty', 'tags')
+  @computed('difficulty', 'tags', 'query')
   get problemFilter() {
     const filter = {}
     if (this.difficulty.length) {
@@ -32,6 +33,9 @@ export default class ProblemListView extends Component {
           $in: this.tags
         }
       }
+    }
+    filter.name = {
+      $iLike: `%${this.query}%`
     }
     return filter
   }

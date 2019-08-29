@@ -11,6 +11,8 @@
   @status={{status}}
   @difficulty={{difficulty}}
   @tags={{tags}}
+  @query={{q}}
+  @onQuery={{action (mut q)}}
   @problemListRoute="contests.contest.problem"
   @contentTypeId={{contest.id}}
   @setOffset={{action 'setOffset'}} as |contestView|>
