@@ -5,7 +5,8 @@ export default class ApplicationController extends Controller {
   @service navigation
   @service serverTime
 
-  init(){
+  constructor(){
+    super(...arguments)
     this.serverTime.syncMoment()
   }
 }

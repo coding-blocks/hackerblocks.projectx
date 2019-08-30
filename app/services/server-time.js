@@ -51,7 +51,7 @@ export default Service.extend({
   },
 
   syncMoment () {
-    var offset = new Date(this.now).getTime() - Date.now();
+    const offset = new Date(this.now).getTime() - Date.now();
     moment.now = function () {
       return offset + Date.now();
     }
