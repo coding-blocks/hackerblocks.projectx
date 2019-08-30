@@ -21,6 +21,22 @@ export default class IndexController extends Controller {
     }
   }
 
+  @computed('contest.currentAttempt')
+  get nextRoute() {
+    return 'contests.contest.attempt'
+  }
+
+  @action
+  onAfterCreate() {
+    const problem_id = this.contest.hasMany('problems').ids()[0]
+    if (problem_id) {
+      this.transitionToRoute('contests.contest.attempt.problem', problem_id)
+    } else {
+      const quiz_id = this.contest.hasMany('quizzes').ids()[0]
+      this.transitionToRoute('contests.contest.attempt.quiz', quiz_id)
+    }
+  }
+
   @action
   setOffset(offset) {
     this.set('offset', offset)
