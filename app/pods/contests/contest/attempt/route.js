@@ -18,6 +18,16 @@ export default class AttemptRoute extends VerifiedEmailRoute {
     return this.modelFor('contests.contest')
   }
 
+  afterModel(model) {
+    const problem_id = model.contest.hasMany('problems').ids()[0]
+    if (problem_id) {
+      return this.transitionTo('contests.contest.attempt.problem', problem_id)
+    } else {
+      const quiz_id = model.contest.hasMany('quizzes').ids()[0]
+      return this.transitionTo('contests.contest.attempt.quiz', quiz_id)
+    }
+  }
+
   setupController(controller, model) {
     controller.set('contest', model.contest)
     controller.set('contest_attempt', model.contest_attempt)

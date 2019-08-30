@@ -23,19 +23,7 @@ export default class IndexController extends Controller {
 
   @computed('contest.currentAttempt')
   get nextRoute() {
-    const problem_id = this.contest.hasMany('problems').ids()[0]
-    if (problem_id) {
-      return {
-        route: 'contests.contest.attempt.problem',
-        model: problem_id
-      }
-    } else {
-      const quiz_id = this.contest.hasMany('quizzes').ids()[0]
-      return {
-        route: 'contests.contest.attempt.quiz',
-        model: quiz_id
-      }
-    }
+    return 'contests.contest.attempt'
   }
 
   @action

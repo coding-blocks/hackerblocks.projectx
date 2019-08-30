@@ -5,8 +5,11 @@ import { action } from '@ember/object';
 import { later } from '@ember/runloop';
 
 export default class AttemptController extends Controller{
+  @service api
+
   @dropTask submitTask = function* () {
     later(() => {
+      debugger
       return this.api.request(`contest-attempts/${this.contest_attempt.id}/submit`, {
         method: 'POST'
       })
