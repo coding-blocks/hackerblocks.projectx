@@ -3,6 +3,7 @@ import Moment from 'moment';
 import ENV from 'hackerblocks/config/environment';
 import { inject as service } from '@ember/service';
 import { task } from 'ember-concurrency';
+import moment from 'moment';
 
 export default Service.extend({
   poll: service(),
@@ -38,6 +39,7 @@ export default Service.extend({
   refreshCurrentTime: task (function * () {
     const data = yield this.ajax.request(ENV.apiHost + '/time')
     this.set ('now', Moment.unix(data.now/1000))
+    this.syncMoment()
   }).restartable(),
 
   getUnixTime () {
@@ -46,5 +48,12 @@ export default Service.extend({
 
   getTime () {
     return this.now
+  },
+
+  syncMoment () {
+    const offset = new Date(this.now).getTime() - Date.now();
+    moment.now = function () {
+      return offset + Date.now();
+    }
   }
 });
