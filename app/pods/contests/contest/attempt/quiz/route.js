@@ -59,12 +59,4 @@ export default class QuizRoute extends Route {
     }
     throw err
   }
-
-  activate() {
-    this.navigation.setVisibility(false)
-  }
-
-  deactivate() {
-    this.navigation.setVisibility(true)
-  }
 }
