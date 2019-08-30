@@ -1,11 +1,8 @@
 import Route from '@ember/routing/route';
 import { action } from '@ember/object';
-import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
 
 export default class ProblemRoute extends Route {
-  @service navigation
-
   async beforeModel() {
     const { contest } = this.modelFor('contests.contest')
     if (! await contest.get('currentAttempt')) {
@@ -42,13 +39,5 @@ export default class ProblemRoute extends Route {
     if (err.isAdapterError) {
       this.transitionTo('contests.contest')
     }
-  }
-  
-  activate() {
-    this.navigation.setVisibility(false)
-  }
-
-  deactivate() {
-    this.navigation.setVisibility(true)
   }
 }

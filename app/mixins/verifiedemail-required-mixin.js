@@ -13,7 +13,6 @@ export default Mixin.create(AuthenticatedRouteMixin,{
   },
   actions: {
     error(err, transition) {
-      debugger
       this.transitionTo('error', {
         queryParams: {
           errorCode: 'USER_EMAIL_NOT_VERIFIED',
