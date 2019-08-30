@@ -6,27 +6,33 @@ export default class JottedEditorComponent extends Component{
   css = ''
   js = ''
 
-  didInsertElement() {
-    this.jotted = new Jotted(this.element, {
-      files: [{
-        type: 'html',
-        content: this.html
-      }, {
-        type: 'css',
-        content: this.css
-      }, {
-        type: 'js',
-        content: this.js
-      }]
-    })
+  async didInsertElement() {
+    this.element.querySelector('script').onload = () => {
+      this.jotted = new Jotted(this.element, {
+        files: [{
+          type: 'html',
+          content: this.html
+        }, {
+          type: 'css',
+          content: this.css
+        }, {
+          type: 'js',
+          content: this.js
+        }],
+        plugins: [
+          'ace',
+          'console'
+        ]
+      })
 
-    if (typeof this.onReady == 'function') {
-      this.onReady(this.jotted)
+      if (typeof this.onReady == 'function') {
+        this.onReady(this.jotted)
+      }
+
+      this.jotted.on('change', (params, done) => {
+        this.onChange(params)
+        done(null, params)
+      })
     }
-
-    this.jotted.on('change', (params, done) => {
-      this.onChange(params)
-      done(null, params)
-    })
   }
 }

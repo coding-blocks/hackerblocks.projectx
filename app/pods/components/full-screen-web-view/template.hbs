@@ -43,10 +43,17 @@
     <div class="divider-h my-5"></div>
 
 
-    <div class="row">
+    <div class="row no-gutters">
       <JottedEditor
+        style="height:400px"
+        class="w-100"
         @onChange={{handleTextChange}}
        />
+     
     </div>
+    <div class="row no-gutters justify-content-end my-2">
+      <button class="button-solid button-orange">Submit</button>
+    </div>
+    
   </div>
 </div>
