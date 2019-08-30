@@ -9,8 +9,7 @@ export default class AttemptController extends Controller{
 
   @dropTask submitTask = function* () {
     later(() => {
-      debugger
-      return this.api.request(`contest-attempts/${this.contest_attempt.id}/submit`, {
+      return this.api.request(`contest-attempts/${this.contest.get('currentAttempt.id')}/submit`, {
         method: 'POST'
       })
     }, Math.floor(Math.random() * 15) * 1000)

@@ -30,7 +30,6 @@ export default class AttemptRoute extends VerifiedEmailRoute {
 
   setupController(controller, model) {
     controller.set('contest', model.contest)
-    controller.set('contest_attempt', model.contest_attempt)
   }
 
   activate() {
