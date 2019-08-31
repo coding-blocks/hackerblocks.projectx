@@ -29,7 +29,26 @@
         </ul>
       </div>
     </div>
-    {{#unless contest.isYetToStart}}
+    {{#if contest.isYetToStart}}
+      <div class="mr-3">
+        <Timer @to={{moment contest.start_time}} as |time|>
+          <ul class="divided-list timer">
+            <li class="timer-item">
+              <div class="list-heading white">{{time.hours}}</div>
+              <div class="list-data">Hours</div>
+            </li>
+            <li class="timer-item">
+              <div class="list-heading white">{{time.minutes}}</div>
+              <div class="list-data">Minutes</div>
+            </li>
+            <li class="timer-item">
+              <div class="list-heading white">{{time.seconds}}</div>
+              <div class="list-data">Seconds</div>
+            </li>
+          </ul>
+        </Timer>
+      </div>
+    {{else}}
       <div>
         {{#if contest_attempt}}
           {{#if nextRoute.route}}
@@ -55,7 +74,7 @@
           </button>
         {{/if}}
       </div>
-    {{/unless}}
+    {{/if}}
   </div>
 </div>
 
