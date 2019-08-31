@@ -6,11 +6,14 @@ const VerifiedEmailRoute = Route.extend(VerifiedEmailRouteMixin)
 export default class AttemptRoute extends VerifiedEmailRoute {
   @service navigation;
 
-  beforeModel() {
+  async beforeModel() {
     super.beforeModel()
-    const { contest } = this.modelFor('contests.contest')
+    const { contest, contest_attempt } = this.modelFor('contests.contest')
     if (!contest.max_attempts) {
       this.transitionTo('contests.index')
+    }
+    if (!contest_attempt) {
+      this.transitionTo('contests.contest', contest.id)
     }
   }
 
