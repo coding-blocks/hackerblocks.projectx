@@ -14,6 +14,7 @@ export default Model.extend({
   canSubmitReview: DS.attr(),
   successRate: DS.attr(),
   submissionCount: DS.attr(),
+  problemType: DS.attr(),
   contest: DS.belongsTo('contest'),
   solutionStubs: DS.hasMany('solution-stub'),
   tags: DS.hasMany('tags'),

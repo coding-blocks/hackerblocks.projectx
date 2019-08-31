@@ -22,13 +22,6 @@ export default class IndexRoute extends Route {
     }
   }
 
-  beforeModel() {
-    const { contest } = this.modelFor('contests.contest')
-    if (contest.max_attempts) {
-      this.transitionTo('contests.contest.attempt')
-    }
-  }
-
   model() {
     return this.modelFor('contests.contest')
   }

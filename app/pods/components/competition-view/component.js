@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { inject as service } from '@ember/service';
 import { restartableTask, dropTask } from 'ember-concurrency-decorators';
 import { alias } from '@ember/object/computed';
+import { computed } from '@ember/object';
 
 export default class CompetitionViewComponent extends Component {
   @service api
@@ -11,6 +12,11 @@ export default class CompetitionViewComponent extends Component {
   @alias('fetchTopThreeTask.lastSuccessful.value') topThree
   @alias('fetchRecentContestTask.lastSuccessful.value') upcomingContest
   @alias('fetchCurrentAttempt.lastSuccessful.value') currentAttempt
+
+  @computed('competition.contests')
+  get archivedContests() {
+    return this.competition.contests.filter(contest => contest.hasEnded)
+  }
 
   didReceiveAttrs() {
     this.fetchCurrentAttempt.perform()

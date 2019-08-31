@@ -5,25 +5,33 @@
     @linkable={{true}}
     @crumbClass="px-3" />
 </div>
-<ContestView
-  @contest={{contest}}
-  @page={{page}}
-  @status={{status}}
-  @difficulty={{difficulty}}
-  @tags={{tags}}
-  @query={{q}}
-  @onQuery={{action (mut q)}}
-  @problemListRoute="contests.contest.problem"
-  @contentTypeId={{contest.id}}
-  @setOffset={{action 'setOffset'}} as |contestView|>
-  <PracticeFilterComponent
+
+{{#if contest.max_attempts}}
+  <IntermediateContestView 
+    @nextRoute={{nextRoute}} 
+    @onAfterCreate={{onAfterCreate}} 
+    @contest={{contest}} />
+{{else}}
+  <ContestView
+    @contest={{contest}}
+    @page={{page}}
     @status={{status}}
-    @changeStatusFilter={{action (mut status)}}
     @difficulty={{difficulty}}
-    @changeDifficultyFilter={{action (mut difficulty)}} 
     @tags={{tags}}
-    @changeTagsFilter={{action (mut tags)}} />
-  <div class="border-card mt-5 px-0">
-    {{contestView.leaderboardComponent}}
-  </div>
-</ContestView>
+    @query={{q}}
+    @onQuery={{action (mut q)}}
+    @problemListRoute="contests.contest.problem"
+    @contentTypeId={{contest.id}}
+    @setOffset={{action 'setOffset'}} as |contestView|>
+    <PracticeFilterComponent
+      @status={{status}}
+      @changeStatusFilter={{action (mut status)}}
+      @difficulty={{difficulty}}
+      @changeDifficultyFilter={{action (mut difficulty)}} 
+      @tags={{tags}}
+      @changeTagsFilter={{action (mut tags)}} />
+    <div class="border-card mt-5 px-0">
+      {{contestView.leaderboardComponent}}
+    </div>
+  </ContestView>
+{{/if}}

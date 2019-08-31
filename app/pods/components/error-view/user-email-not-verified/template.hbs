@@ -1,0 +1,29 @@
+<div class="all-center">
+  <div class="">
+    <div class="row mb-4">
+      <h3>Email Verification</h3>
+    </div>
+    <div class="row font-md">
+      <span class="bold">Your email is not verified!</span>
+    </div>
+    <div class="row font-md mb-4">
+      <p>
+        If you think this is an error then contact support@codingblocks.com and then try again
+      </p>
+    </div>
+    {{#if verification_sent}}
+      <p>Mail has been sent to your account</p>
+      <button 
+        class="button-solid button-orange"
+        {{action 'reloadUser'}} >
+        Try Again
+      </button>
+    {{else}}
+      <button 
+        class="button-solid button-orange"
+        {{action 'sendVerifyEmail'}} >
+        Send Verifcation Mail
+      </button>
+    {{/if}}
+  </div>
+</div>
