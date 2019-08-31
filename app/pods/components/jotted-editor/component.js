@@ -62,6 +62,10 @@ export default class JottedEditorComponent extends Component{
         this.onReady(this.jotted)
       }
 
+      // don't allow paste
+      const blockPaste = (e) => e.onPaste = () => ""
+      Object.values(this.jotted._get('plugins').ace.editor).forEach(blockPaste)
+
       this.jotted.on('change', (params, done) => {
         this.set('_' + params.type, params.content)
         window.sessionStorage.setItem(this.key, JSON.stringify(this.jotted.getContent()))
