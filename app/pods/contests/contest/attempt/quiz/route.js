@@ -1,11 +1,8 @@
 import Route from '@ember/routing/route';
-import { inject as service } from '@ember/service';
 import { action } from '@ember/object';
 import RSVP from 'rsvp';
 
 export default class QuizRoute extends Route {
-  @service navigation
-  
   queryParams = {
     q: {
       replace: true
@@ -28,7 +25,7 @@ export default class QuizRoute extends Route {
       },
       contest_id: contest.id
     })
-    debugger
+    
     const quiz_attempt = this.store.queryRecord('quiz-attempt', {
       custom: {
         ext: 'url',
@@ -61,13 +58,5 @@ export default class QuizRoute extends Route {
       this.transitionTo('contests.contest')
     }
     throw err
-  }
-
-  activate() {
-    this.navigation.setVisibility(false)
-  }
-
-  deactivate() {
-    this.navigation.setVisibility(true)
   }
 }

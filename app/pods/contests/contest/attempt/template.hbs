@@ -1,1 +1,8 @@
-{{outlet}}
+<FullScreenContestView 
+  @route="contests.contest.attempt" 
+  @attempt={{contest.currentAttempt}} 
+  @onTimerEnd={{onTimerEnd}}
+  @submitTask={{submitTask}} 
+  @contest={{contest}}>
+  {{outlet}}
+</FullScreenContestView>
