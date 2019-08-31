@@ -8,11 +8,11 @@ export default class AttemptRoute extends VerifiedEmailRoute {
 
   async beforeModel() {
     super.beforeModel()
-    const { contest, contest_attempt } = this.modelFor('contests.contest')
+    const { contest } = this.modelFor('contests.contest')
     if (!contest.max_attempts) {
       this.transitionTo('contests.index')
     }
-    if (!contest_attempt) {
+    if (!await contest.get('currentAttempt')) {
       this.transitionTo('contests.contest', contest.id)
     }
   }
