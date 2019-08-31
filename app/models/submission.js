@@ -36,7 +36,7 @@ export default Model.extend({
       return {
         color: 'green',
         icon: 'fas fa-check',
-        message: 'Accepted'
+        message: 'Submitted'
       }
     } else {
       switch(this.explanation) {

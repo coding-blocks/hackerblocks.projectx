@@ -46,7 +46,8 @@ export default class JottedEditorComponent extends Component{
         }],
         plugins: [
           'ace',
-          'console'
+          'console',
+          'play'
         ]
       })
 
