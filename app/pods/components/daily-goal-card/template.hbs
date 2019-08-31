@@ -26,7 +26,10 @@
       <div class="row c-card-carousel mx-3">
         {{#each badges as |badge|}}
         <div class="col-md-4 col-3 col-lg-3 px-2">
-          <img src="{{badge.icon}}" alt="Badge Logo" class="v-align-m">
+          <div class="badge-container">
+            <img src="{{badge.icon}}" alt="Badge Logo" class="v-align-m">
+            <div class="badge-number--{{badge.theme}} badge-number extra-bold">{{badge.metric}}</div>
+          </div>
           <div class="card-md bold mt-2">
             Completed {{badge.metric}} DCB Streaks
           </div>

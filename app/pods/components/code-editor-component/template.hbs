@@ -9,4 +9,10 @@
 <div class="result">
   {{yield (component resultComponent judgeResult=lastResult)}}
 </div>
-  
+
+{{#if showAwardedBadge}}
+  <AwardBadgeComponent 
+    @badge={{badge}} 
+    @type={{if (eq badge.contest.contest_type 'dcb') 'streak' 'fibonacci'}}
+    @onClose={{action (mut showAwardedBadge) false}}/>
+{{/if}}

@@ -21,6 +21,7 @@ export default Model.extend({
   user: DS.belongsTo('user'),
   createdAt: DS.attr(),
   submissionType: DS.attr(),
+  badge: DS.belongsTo('badge'),
   executionTime: Ember.computed('judge_result', function () {
     const testcases = get(this, 'judge_result.data.testcases')
     if (!testcases) 
