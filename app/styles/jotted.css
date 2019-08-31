@@ -426,3 +426,15 @@
   .jotted-plugin-console.jotted-theme-bin.jotted-has-html.jotted-has-css.jotted-has-js .jotted-pane {
     width: 20%;
   }
+
+  .jotted.disabled:before {
+    content: 'Submitting...';
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    background-color: rgba(243, 243, 243, 0.6);
+    text-align: center;
+    padding-top: 15%;
+  }

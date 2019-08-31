@@ -46,12 +46,11 @@
     <div class="row no-gutters">
       <JottedEditor
         style="height:400px"
-        class="w-100"
+        class="w-100 disabled"
         @onChange={{handleTextChange}}
         @onReady={{onEditorReady}}
         @key={{key}}
        />
-     
     </div>
     <div class="row no-gutters justify-content-end my-2">
       <button class="button-solid button-orange" onclick={{perform submitTask}}>Submit</button>
