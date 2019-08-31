@@ -9,6 +9,7 @@ export default class CodeEditorComponent extends Component {
   @service scroller
 
   lastResult = null
+  showAwardedBadge = false
 
   @dropTask onRunTask = function*(language, code, input) {
     const response = yield this.api.request('submissions/run', {
@@ -49,7 +50,14 @@ export default class CodeEditorComponent extends Component {
     let maxTries = 20
     while(maxTries--) {
       yield timeout(2000)
-      const submission = yield this.store.findRecord('submission', response.submissionId, { refresh: true })
+      const submission = yield this.store.findRecord('submission', response.submissionId, {
+        refresh: true,
+        include: 'badge'
+      })
+      if (submission.get('badge.id')) {
+        this.set('badge', submission.get('badge'))
+        this.set('showAwardedBadge', true)
+      }
       if (submission.judge_result){
         if (submission.judge_result.error){
           this.set('resultComponent', 'run-result')
