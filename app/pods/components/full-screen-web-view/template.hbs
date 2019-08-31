@@ -43,12 +43,13 @@
 
 
     <div class="row no-gutters">
-      <JottedEditor
-        style="height:400px"
-        class="w-100 disabled"
-        @onChange={{handleTextChange}}
-        @onReady={{onEditorReady}}
-        @key={{key}} />
+      <div style="height: 400px" class="jotted w-100 {{if submitTask.isRunning "disabled"}}">
+        <JottedEditor
+          style="height: 400px"
+          @onChange={{handleTextChange}}
+          @onReady={{onEditorReady}}
+          @key={{key}} />
+      </div>
     </div>
     <div class="row no-gutters justify-content-end my-2">
       <button 
