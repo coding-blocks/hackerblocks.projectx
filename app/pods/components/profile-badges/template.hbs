@@ -8,8 +8,8 @@
       <div class="row c-card-carousel mx-3 align-items-center w-100">
         {{#each badges as |badge|}}
         <div class="col-lg-3 col-sm-4 col-6 px-2">
-          <div>
-            <div class="badge-container">
+          <div class="flex-col all-center">
+            <div class="badge-container w-40">
               <img src="{{badge.icon}}" alt="Badge Logo" class="v-align-m">
               <div class="badge-number--{{badge.theme}} badge-number extra-bold">{{badge.metric}}</div>
             </div>
