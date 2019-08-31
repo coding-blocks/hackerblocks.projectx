@@ -21,13 +21,15 @@
             <td class="pb-4 pt-4">{{submission.executionTime}}</td>
             <td class="pb-4 pt-4">{{submission.language}}</td>
             <td class="pb-4 pt-4 t-align-r">
-              <a 
-                class="pr-3 orange pointer" 
-                role="button"
-                onclick={{action "viewSubmission" submission}}
-              >
-                View
-              </a>
+              {{#unless (eq submission.submissionType 'web')}}
+                <a 
+                  class="pr-3 orange pointer" 
+                  role="button"
+                  onclick={{action "viewSubmission" submission}}
+                >
+                  View
+                </a>
+              {{/unless}}
               <span class="normal">{{submission.submitAtHumanize}}</span> 
             </td>
           </tr>
@@ -43,7 +45,10 @@
       </p>
     </div>
   {{/if}}
-  {{submissions-list/analytics-graph contest=contest problem=problem}}
+
+  {{#unless hideAnalytics}}
+    {{submissions-list/analytics-graph contest=contest problem=problem}}
+  {{/unless}}
 </div>
 
 {{#if showModal}}

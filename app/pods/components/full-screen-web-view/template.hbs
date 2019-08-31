@@ -30,17 +30,16 @@
           Submissions
         </div>
       </div>
-      <div class="w-100">
+      <div class="w-100 my-4">
         {{#liquid-if (eq currentTab 'problem')}}
-        {{problem.content}}
-
+          {{markdown-to-html problem.content.description}}
         {{else if (eq currentTab 'submissions')}}
-        <SubmissionsList @contest={{contest}} @problem={{problem}} />
+          <SubmissionsList @contest={{contest}} @problem={{problem}} @hideAnalytics={{true}} />
         {{/liquid-if}}
       </div>
     </div>
 
-    <div class="divider-h my-5"></div>
+    <div class="divider-h mb-5"></div>
 
 
     <div class="row no-gutters">
@@ -49,12 +48,19 @@
         class="w-100"
         @onChange={{handleTextChange}}
         @onReady={{onEditorReady}}
-        @key={{key}}
-       />
-     
+        @key={{key}} />
     </div>
     <div class="row no-gutters justify-content-end my-2">
-      <button class="button-solid button-orange" onclick={{perform submitTask}}>Submit</button>
+      <button 
+        class="button-solid button-orange" 
+        onclick={{perform submitTask}}
+        disabled={{submitTask.isRunning}}>
+        {{#if submitTask.isRunning}}
+          Submitting
+        {{else}}
+          Submit
+        {{/if}}
+      </button>
     </div>
     
   </div>

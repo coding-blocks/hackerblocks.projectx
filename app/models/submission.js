@@ -20,6 +20,7 @@ export default Model.extend({
   contest: DS.belongsTo('contest'),
   user: DS.belongsTo('user'),
   createdAt: DS.attr(),
+  submissionType: DS.attr(),
   executionTime: Ember.computed('judge_result', function () {
     const testcases = get(this, 'judge_result.data.testcases')
     if (!testcases) 
@@ -30,47 +31,55 @@ export default Model.extend({
   submitAtHumanize: Ember.computed('createdAt', function() {
     return moment(this.createdAt).fromNow()
   }),
-  resultParams: Ember.computed('explanation', function() {
-    switch(this.explanation) {
-      case 'Perfect': return {
+  resultParams: Ember.computed('explanation', 'submissionType', function() {
+    if (this.submissionType === 'web') {
+      return {
         color: 'green',
         icon: 'fas fa-check',
         message: 'Accepted'
       }
-      case 'FailedTestcase': return {
-        color: 'red',
-        icon: 'fas fa-times',
-        message: 'Wrong Answer'
-      }
-      case 'TimeLimitExceeded': return {
-        color: 'orange',
-        icon: 'fas fa-exclamation',
-        message: 'TLE'
-      }
-      case 'CompilationError': return {
-        color: 'orange',
-        icon: 'fas fa-exclamation',
-        message: 'Compilation Error'
-      }
-      case 'ContestOver': return {
-        color: 'orange',
-        icon: 'fas fa-exclamation',
-        message: 'Contest Over'
-      }
-      case 'TestcaseUnlocked': return {
-        color: 'orange',
-        icon: 'fas fa-exclamation',
-        message: 'Test Case Unlocked'
-      }
-      case 'EditorialUnlocked': return {
-        color: 'orange',
-        icon: 'fas fa-exclamation',
-        message: 'Editorial Unlocked'
-      }
-      default: return {
-        color: 'orange',
-        icon: 'fas fa-exclamation',
-        message: 'Submission Not Judged'
+    } else {
+      switch(this.explanation) {
+        case 'Perfect': return {
+          color: 'green',
+          icon: 'fas fa-check',
+          message: 'Accepted'
+        }
+        case 'FailedTestcase': return {
+          color: 'red',
+          icon: 'fas fa-times',
+          message: 'Wrong Answer'
+        }
+        case 'TimeLimitExceeded': return {
+          color: 'orange',
+          icon: 'fas fa-exclamation',
+          message: 'TLE'
+        }
+        case 'CompilationError': return {
+          color: 'orange',
+          icon: 'fas fa-exclamation',
+          message: 'Compilation Error'
+        }
+        case 'ContestOver': return {
+          color: 'orange',
+          icon: 'fas fa-exclamation',
+          message: 'Contest Over'
+        }
+        case 'TestcaseUnlocked': return {
+          color: 'orange',
+          icon: 'fas fa-exclamation',
+          message: 'Test Case Unlocked'
+        }
+        case 'EditorialUnlocked': return {
+          color: 'orange',
+          icon: 'fas fa-exclamation',
+          message: 'Editorial Unlocked'
+        }
+        default: return {
+          color: 'orange',
+          icon: 'fas fa-exclamation',
+          message: 'Submission Not Judged'
+        }
       }
     }
   })

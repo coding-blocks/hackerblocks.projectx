@@ -68,7 +68,6 @@ Router.map(function() {
       this.route('attempt', function() {
         this.route('problem', {path: '/p/:problem_id'});
         this.route('quiz', {path: '/q/:quiz_id'});
-        this.route('web');
         this.route('loading');
       });
       this.route('feedback');

@@ -1,5 +1,11 @@
 <div class="col-11 offset-1">
-  <FullScreenProblemView
+  {{#if (eq problem.problemType 'web')}}
+    <FullScreenWebView
     @problem={{problem}}
     @contest={{contest}} />
+  {{else}}
+    <FullScreenProblemView
+      @problem={{problem}}
+      @contest={{contest}} />
+  {{/if}}
 </div>
