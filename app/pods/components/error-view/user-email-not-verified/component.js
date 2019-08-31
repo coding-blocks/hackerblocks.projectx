@@ -15,7 +15,7 @@ export default class NotVerifiedComponent extends Component {
 
   @action
   async reloadUser() {
-    this.currentUser.load(true)
+    await this.currentUser.load(true)
     if (this.currentUser.user.get('email') && this.currentUser.user.get('verifiedemail')) {
       this.tryAgain()
     }

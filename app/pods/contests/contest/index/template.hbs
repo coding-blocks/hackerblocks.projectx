@@ -9,6 +9,7 @@
 {{#if contest.max_attempts}}
   <IntermediateContestView 
     @nextRoute={{nextRoute}} 
+    @handleUnverifiedEmail={{handleUnverifiedEmail}}
     @onAfterCreate={{onAfterCreate}} 
     @contest={{contest}} />
 {{else}}

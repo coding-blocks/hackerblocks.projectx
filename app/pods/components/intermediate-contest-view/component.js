@@ -48,6 +48,10 @@ export default class IntermediateContestComponent extends Component {
         this.onAfterCreate()
       }
     } catch (err) {
+      const error = err.errors[0]
+      if (error.code === 405 && this.handleUnverifiedEmail) {
+        return this.handleUnverifiedEmail('USER_EMAIL_NOT_VERIFIED')
+      }
       contest_attempt.deleteRecord()
       throw err
     }

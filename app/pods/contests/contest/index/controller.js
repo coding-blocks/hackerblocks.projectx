@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default class IndexController extends Controller {
   @service store
+  @service router
 
   queryParams = ['offset', 'limit', 'status', 'difficulty', 'tags', 'q']
   offset = 0
@@ -24,6 +25,16 @@ export default class IndexController extends Controller {
   @computed('contest.currentAttempt')
   get nextRoute() {
     return 'contests.contest.attempt'
+  }
+
+  @action
+  handleUnverifiedEmail(code) {
+    this.transitionToRoute('error', {
+      queryParams: {
+        errorCode: code,
+        next: this.router.get('currentURL')
+      }
+    })
   }
 
   @action
