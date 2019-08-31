@@ -19,7 +19,7 @@ export default class AttemptRoute extends VerifiedEmailRoute {
   }
 
   afterModel(model, transition) {
-    if (transition.targetName === 'contests.contest.attempt') {
+    if (transition.targetName === 'contests.contest.attempt.index') {
       const problem_id = model.contest.hasMany('problems').ids()[0]
       if (problem_id) {
         return this.transitionTo('contests.contest.attempt.problem', problem_id)
