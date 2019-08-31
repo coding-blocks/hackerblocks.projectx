@@ -1,5 +1,6 @@
 @import "ember-modal-dialog/ember-modal-structure.css";
 @import "ember-modal-dialog/ember-modal-appearance.css";
+@import "jotted.css";
 
 body{
   padding-top: 62px;

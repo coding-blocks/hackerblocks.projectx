@@ -19,6 +19,8 @@ Router.map(function() {
           this.route('problem', { path: '/p/:problem_id' });
         });
       });
+
+      this.route('attempt', function() {});
     });
     this.route('admission', function() {
       this.route('cast', function() {
