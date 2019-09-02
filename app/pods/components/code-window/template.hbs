@@ -1,51 +1,56 @@
-<div class="c-code-card">
-  <div class="row px-5 py-4 justify-content-between align-items-center bg-grey m-0">
-    <div class="col-6 p-0">
-      <span class="font-sm extra-bold">{...} Code Editor</span>
-    </div>
-    <div>
-      <select class="dropdown d-inline-block" onchange={{action "selectLanguage" value="target.value"}}>
-        {{#each-in languages as |key value|}}
-          <option 
-            value="{{value.code}}" 
-            selected={{eq value.code selectedLanguage.code}}>
-            {{value.name}}
-          </option>
-        {{/each-in}}
-      </select>
-    </div>
+<div class="row px-5 py-4 justify-content-between bg-grey w-100 m-0">
+  <div class="col-6 p-0">
+    <span class="font-sm extra-bold">{...} Code Editor</span>
   </div>
   <div>
-    <MonacoEditor
-      class="monaco-editor"
-      @language={{selectedLanguage.mode}}
-      @code={{selectedLanguage.source}}
-      @onChange={{action (mut selectedLanguage.source)}}
-      @theme="vs-dark" />
-  </div>
-  <div class="pt-4 pb-5 px-5 input-div">
-    <div class="row justify-content-between align-items-center">
-      <a class="col-4 white extra-bold p-0 pointer" {{action "toggleCustomInputOpen"}}>
-        <i class="fas fa-angle-{{if customInputOpen "up" "down"}} mx-3"></i>
-        <span>Provide Custom Input</span>
-      </a>
-      <div>
-        <button 
-          class="button-dashed button-orange ml-3 mr-1"
-          disabled={{or onRunTask.isRunning onSubmitTask.isRunning}}
-          {{action (perform onRunTask selectedLanguage.code selectedLanguage.source customInput)}}>
-          {{if onRunTask.isRunning "Running" "Compile and Test"}}
-        </button>
-        <button 
-          class="button-solid button-orange mr-3 ml-1" 
-          disabled={{or onRunTask.isRunning onSubmitTask.isRunning}}
-          {{action (perform onSubmitTask selectedLanguage.code selectedLanguage.source)}}>
-          {{if onSubmitTask.isRunning "Submitting" "Submit Code"}}
-          </button>
-      </div>
-    </div>
-    {{#if customInputOpen}}
-      {{textarea name="input" cols="30" rows="5" class="mx-auto my-4 white w-100" value=customInput}}
-    {{/if}}
+    <select class="dropdown d-inline-block" onchange={{action "selectLanguage" value="target.value"}}>
+      {{#each-in languages as |key value|}}
+        <option 
+          value="{{value.code}}" 
+          selected={{eq value.code selectedLanguage.code}}>
+          {{value.name}}
+        </option>
+      {{/each-in}}
+    </select>
   </div>
 </div>
+<div class="flex-1 w-100">
+  <MonacoEditor
+    class="monaco-editor"
+    @language={{selectedLanguage.mode}}
+    @code={{selectedLanguage.source}}
+    @onChange={{action (mut selectedLanguage.source)}}
+    @theme="vs-dark" />
+</div>
+<div class="pt-4 pb-4 px-xl-5 px-4 w-100">
+  <div class="row justify-content-between align-items-center">
+    <a class="col-lg-4 col-12 white extra-bold pr-0 pointer" {{action "toggleCustomInputOpen"}}>
+      <i class="fas fa-angle-{{if customInputOpen "up" "down"}} mr-3"></i>
+      <span>Provide Custom Input</span>
+    </a>
+    <div class="d-none d-lg-block">
+      <button class="button-dashed button-orange ml-3 mr-1" disabled={{or onRunTask.isRunning onSubmitTask.isRunning}}
+        {{action (perform onRunTask selectedLanguage.code selectedLanguage.source customInput)}}>
+        {{if onRunTask.isRunning "Running" "Compile and Test"}}
+      </button>
+      <button class="button-solid button-orange mr-3 ml-1" disabled={{or onRunTask.isRunning onSubmitTask.isRunning}}
+        {{action (perform onSubmitTask selectedLanguage.code selectedLanguage.source)}}>
+        {{if onSubmitTask.isRunning "Submitting" "Submit Code"}}
+      </button>
+    </div>
+  </div>
+  {{#if customInputOpen}}
+  {{textarea name="input" cols="30" rows="5" class="mx-auto my-4 white w-100" value=customInput}}
+  {{/if}}
+  <div class="d-flex my-1 justify-content-center d-lg-none d-block">
+    <button class="button-dashed button-orange ml-3 mr-1" disabled={{or onRunTask.isRunning onSubmitTask.isRunning}}
+      {{action (perform onRunTask selectedLanguage.code selectedLanguage.source customInput)}}>
+      {{if onRunTask.isRunning "Running" "Compile and Test"}}
+    </button>
+    <button class="button-solid button-orange mr-3 ml-1" disabled={{or onRunTask.isRunning onSubmitTask.isRunning}}
+      {{action (perform onSubmitTask selectedLanguage.code selectedLanguage.source)}}>
+      {{if onSubmitTask.isRunning "Submitting" "Submit Code"}}
+    </button>
+  </div>
+</div>
+

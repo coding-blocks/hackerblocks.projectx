@@ -6,9 +6,16 @@
   {{/if}}
 </div>
 <div class="{{unless fullScreen "border-card"}} p-0 test-cases-card">
-  <div class="row no-gutters">
-    <div class="col-md-2 col-4 bg-grey">
+  <div class="row no-gutters bg-grey">
+    <div class="col-4 col-md-3">
       <h5 class="p-4 test-cases-card__grey-heading">Test Cases</h5>
+    </div>
+    <div class="col-8 col-md-9">
+      <h5 class="py-4 px-5 test-cases-card__grey-heading">Result</h5>
+    </div>
+  </div>
+  <div class="row no-gutters">
+    <div class="col-md-3 col-4 bg-grey">
       <ul class="font-mds extra-bold mt-0">
         {{#each judgeResult.data.testcases as |testcase index|}}
           <li class="p-4 d-flex align-items-center {{if (eq selectedIndex index) "test-cases-card__active"}}">
@@ -41,8 +48,7 @@
         {{/each}}
       </ul>
     </div>
-    <div class="col-md-10 col-8 b-left">
-      <h5 class="py-4 px-5 test-cases-card__grey-heading">Result</h5>
+    <div class="col-md-9 col-8">
       <div class="py-5 px-5">
         <h6 class="bold">Compile Message</h6>
         <div class="bg-grey p-4 mt-3 mb-5">
