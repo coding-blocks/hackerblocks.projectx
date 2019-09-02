@@ -1,10 +1,12 @@
-<div class="c-code-window flex-col">
-  <div class="d-flex white bg-dark-grey align-items-center justify-content-between py-4 w-100 top-bar">
-    <div class="col-xl-7 col-lg-6 col-5 offset-1">
-      <h2>{{contest.name}}</h2>
-      <div class="font-sm">This is a timed contest. You have limited attempts to attempt this test.</div>
+<div class="code-window flex-col">
+  <div class="d-flex white bg-dark-grey py-4 w-100 code-window__top-bar">
+    <div class="li-left col-xl-7 col-lg-6 col-md-5 col-4 offset-md-1">
+      <div>
+        <h2>{{contest.name}}</h2>
+        <div class="font-sm">This is a timed contest. You have limited attempts to attempt this test.</div>
+      </div>
     </div>
-    <div class="mx-3">
+    <div class="li-right mx-3">
       <Timer 
         @to={{attempt.end_time_moment}} @onEnd={{action (or onTimerEnd (perform submitTask))}} as |time| >
         <ul class="divided-list timer font-xs d-inline mr-4">
@@ -25,16 +27,19 @@
             <div class="list-data">Seconds</div>
           </li>
         </ul>
+      </Timer>
+      <div>
         <button 
           class="button-solid button-orange font-sm extra-bold mx-3"
           {{action (mut showSubmitDialog) true}}>
           Submit Test
         </button>
-      </Timer>
+      </div>
     </div>
   </div>
-  <div class="row no-gutters flex-1 w-100">
+  <div class="row no-gutters flex-1">
     <FullScreenProblemList 
+      class="col-1 bg-dark-grey code-window__side-bar bl h-100 px-0 t-align-c d-none d-md-block"
       @route={{route}}
       @contest={{contest}} />
     {{yield}}
