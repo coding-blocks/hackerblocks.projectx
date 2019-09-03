@@ -23,6 +23,7 @@ export default Model.extend({
   topSubmission: DS.belongsTo('submission', { inverse: 'problem' }),
   bookmark: DS.belongsTo('bookmarked-problem'),
   bookmarkedBy: DS.attr(),
+  progress: DS.belongsTo('progress'),
   difficultyString: Ember.computed('difficulty', function() {
     switch (parseInt(this.difficulty)) {
       case 1: return 'Easy'

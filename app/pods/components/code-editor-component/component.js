@@ -66,6 +66,22 @@ export default class CodeEditorComponent extends Component {
         }
         this.set('lastResult', submission.judge_result)
         this.scroller.scrollVertical('.result');
+
+        if (this.fullScreen) {
+          const score = +submission.score
+          const progress = yield this.problem.get('progress')
+          if (progress.get('status') === 'done') {
+            return
+          }
+          if (score === 100) {
+            progress.set('status', 'done')
+          } else if (score > 0 && score < 100) {
+            progress.set('status', 'undone')
+          } else {
+            progress.set('status', 'failed')
+          }
+          progress.save()
+        }
         return submission
       }
     }

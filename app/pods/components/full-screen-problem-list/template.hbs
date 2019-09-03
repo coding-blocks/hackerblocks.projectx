@@ -1,40 +1,36 @@
-<div class="col-1 bg-dark-grey side-bar bl h-100 px-0 t-align-c flex-col">
-  <div class="py-5 logo">
-    <LinkTo @route="index">
-      <img src="/app/images/logo_white.png" alt="Logo">
-    </LinkTo>
-  </div>
-  {{#each problemIds as |id index|}}
-    {{#link-to
-      problemRoute
-      id
-      class="white d-block v-align-ma py-4 pointer"
-    }}
-      <ProblemStatus
-        @problem_id={{id}}
-        @contest={{contest}} as |status|>
-        {{#if (eq status.score 0)}}
-          <span class="font-lg red">&#10625;</span>
-        {{else if (not status.score)}}
-          <span class="font-lg dark-grey">&#10625;</span>
-        {{else if (and (gt status.score 0) (lt status.score 100))}}
-          <span class="font-lg yellow">&#10625;</span>
-        {{else}}
-          <span class="font-lg green">&#10625;</span>
-        {{/if}}
-        <i class="fas fa-code mx-1 mx-xl-3 font-lg"></i>
-        <span class="font-xl extra-bold">{{inc index}}</span>
-      </ProblemStatus>
-    {{/link-to}}
-  {{/each}}
-  {{#each quizIds as |id index|}}
-    {{#link-to
-      quizRoute
-      id
-      class="white d-block v-align-ma py-4 pointer"
-    }}
-      <i class="fas fa-puzzle-piece mx-1 mx-xl-3 font-mds"></i>
-      <span class="font-xl extra-bold">{{inc index}}</span>
-    {{/link-to}}
-  {{/each}}
+<div class="py-5 logo">
+  <LinkTo @route="index">
+    <img src="/app/images/logo_white.png" alt="Logo">
+  </LinkTo>
 </div>
+{{#each progressHash as |item index|}}
+  {{#link-to
+    problemRoute
+    item.problemId
+    class="white d-block v-align-ma py-4 pointer"
+  }}
+    {{#if (eq item.progress.status 'failed')}}
+      <span class="font-lg red">&#10625;</span>
+    {{else if (eq item.progress.status 'done')}}
+      <span class="font-lg green">&#10625;</span>
+    {{else if (eq item.progress.status 'undone')}}
+      <span class="font-lg yellow">&#10625;</span>
+    {{else if (eq item.progress.status 'viewed')}}
+      <span class="font-lg white">&#10625;</span>
+    {{else}}
+      <span class="font-lg dark-grey">&#10625;</span>
+    {{/if}}
+    <i class="fas fa-code mx-1 mx-xl-3 font-lg"></i>
+    <span class="font-xl extra-bold">{{inc index}}</span>
+  {{/link-to}}
+{{/each}}
+{{#each quizIds as |id index|}}
+  {{#link-to
+    quizRoute
+    id
+    class="white d-block v-align-ma py-4 pointer"
+  }}
+    <i class="fas fa-puzzle-piece mx-1 mx-xl-3 font-mds"></i>
+    <span class="font-xl extra-bold">{{inc index}}</span>
+  {{/link-to}}
+{{/each}}

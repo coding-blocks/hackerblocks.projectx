@@ -18,7 +18,7 @@ export default class ProblemRoute extends Route {
         url: `${params.problem_id}`
       },
       contest_id: contest.id,
-      include: 'solution_stubs'
+      include: 'solution_stubs,progresses'
     })
 
     return RSVP.hash({
@@ -26,6 +26,18 @@ export default class ProblemRoute extends Route {
       contest_attempt: contest.get('currentAttempt'),
       problem
     })
+  }
+
+  async afterModel(model) {
+    let progress = model.problem.get('progress')
+    if(!progress.get('id')){
+      progress = await this.store.createRecord('progress', {
+        status: 'viewed', 
+        problem: model.problem,
+        contestAttempt: model.contest.get('currentAttempt')
+      })
+      progress.save()
+    }
   }
 
   setupController(controller, model) {

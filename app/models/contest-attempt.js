@@ -8,6 +8,7 @@ export default Model.extend({
   end_time: DS.attr(),
   contest: DS.belongsTo('contest'),
   user: DS.belongsTo('user'),
+  progresses: DS.hasMany('progress'),
   start_time_moment: Ember.computed('start_time', function() {
     return moment(this.start_time)
   }),

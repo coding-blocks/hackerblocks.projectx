@@ -17,8 +17,14 @@ export default class AttemptRoute extends VerifiedEmailRoute {
     }
   }
 
-  model() {
-    return this.modelFor('contests.contest')
+  async model() {
+    const model = this.modelFor('contests.contest')
+    await this.store.query('progress', {
+      filter: {
+        contest_attempt_id: model.contest.get('currentAttempt.id')
+      }
+    })
+    return model
   }
 
   afterModel(model, transition) {
