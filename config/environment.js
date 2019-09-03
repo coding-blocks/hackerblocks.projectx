@@ -61,10 +61,11 @@ module.exports = function(environment) {
   }
 
   if (environment === 'staging') {
-    ENV.publicUrl = 'http://hack.codingblocks.xyz/admin';
+    ENV.publicUrl = 'http://hack.codingblocks.xyz/app';
     ENV.apiHost = 'https://api.codingblocks.xyz';
     ENV.oneauthURL = 'https://account.codingblocks.com'
-    ENV.clientId = "2146237097"
+    ENV.rootURL = '/app';
+    ENV.clientId = "3680446660"
   }
 
   if (environment === 'production') {
