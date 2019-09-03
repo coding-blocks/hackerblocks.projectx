@@ -14,7 +14,11 @@
               <div class="badge-number--{{badge.theme}} badge-number extra-bold">{{badge.metric}}</div>
             </div>
             <h5 class="mt-3">{{badge.contest.name}}</h5>
-            <div class="card-md">Completed {{badge.metric}} {{badge.contest.name}} Challenges</div>
+            {{#if (eq badge.contest.contest_type 'dcb')}}
+              <div class="card-md">Completed {{badge.metric}} {{badge.contest.name}} Streaks</div>
+            {{else}}
+              <div class="card-md">Achieved Level {{badge.metric}} in {{badge.contest.name}}</div>
+            {{/if}}
             <div class="card-mds mt-2 dark-grey">{{moment-format badge.createdAt 'DD MMM YYYY'}}</div>
           </div>
         </div>
