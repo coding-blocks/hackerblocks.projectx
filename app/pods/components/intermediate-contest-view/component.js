@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
 import { restartableTask } from 'ember-concurrency-decorators';
+import { timeout } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 import moment from 'moment';
 
@@ -41,7 +42,9 @@ export default class IntermediateContestComponent extends Component {
       contest: this.contest
     })
     try {
+      yield timeout(Math.floor(Math.random() * 30000))
       yield contest_attempt.save()
+      yield timeout(Math.floor(Math.random() * 30000))
       this.contest.set('currentAttempt', contest_attempt)
       this.set('showStartDialog', false)
       if (this.onAfterCreate){

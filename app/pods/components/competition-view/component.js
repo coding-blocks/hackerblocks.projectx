@@ -9,7 +9,6 @@ export default class CompetitionViewComponent extends Component {
   @service store
   @service currentUser
 
-  @alias('fetchTopThreeTask.lastSuccessful.value') topThree
   @alias('fetchRecentContestTask.lastSuccessful.value') upcomingContest
   @alias('fetchCurrentAttempt.lastSuccessful.value') currentAttempt
 
@@ -20,7 +19,6 @@ export default class CompetitionViewComponent extends Component {
 
   didReceiveAttrs() {
     this.fetchCurrentAttempt.perform()
-    this.fetchTopThreeTask.perform()
   }
 
   @dropTask createCurrentAttempt = function *() {
@@ -50,19 +48,5 @@ export default class CompetitionViewComponent extends Component {
     this.store.pushPayload('contest', payload)
     const contest = this.store.peekRecord('contest', payload.data.id)
     return contest
-  }
-  @restartableTask fetchTopThreeTask = function *() {
-    return yield this.store.query('competition-leaderboard', {
-      include: 'user,college',
-      exclude: 'user.*,college.*',
-      sort: '-score',
-      filter: {
-        competitionId: this.competition.id
-      },
-      page: {
-        offset: 0,
-        limit: 3
-      }
-    })
   }
 }
