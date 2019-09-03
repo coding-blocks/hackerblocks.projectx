@@ -54,23 +54,13 @@
       </div>
     </div>
   </div>
-  <div class="col-6 position-relative h-100 overflow-y-auto">
-    <div class="c-code-editor w-100">
-      <CodeEditorComponent @problem={{problem}} @contest={{contest}} as |RunResult|>
-        <RunResult @fullScreen={{true}} /> 
-      </CodeEditorComponent>
-    </div>
+  <div class="col-md-6 col-12 code-window--mb-45 h-100 overflow-y-auto">
+    <CodeEditorComponent 
+      class="h-100"
+      @problem={{problem}} 
+      @fullScreen={{true}}
+      @contest={{contest}} as |RunResult|>
+      <RunResult @fullScreen={{true}} /> 
+    </CodeEditorComponent>
   </div>
-<<<<<<< HEAD
-=======
-</div>
-<div class="col-md-6 col-12 code-window--mb-45 h-100 overflow-y-auto">
-  <CodeEditorComponent 
-    class="h-100"
-    @problem={{problem}} 
-    @fullScreen={{true}}
-    @contest={{contest}} as |RunResult|>
-    <RunResult @fullScreen={{true}} /> 
-  </CodeEditorComponent>
->>>>>>> bafd6d3... progress flow
 </div>
