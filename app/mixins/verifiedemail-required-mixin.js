@@ -12,13 +12,16 @@ export default Mixin.create(AuthenticatedRouteMixin,{
     return this._super(...arguments)
   },
   actions: {
-    error() {
-      this.transitionTo('error', {
-        queryParams: {
-          errorCode: 'USER_EMAIL_NOT_VERIFIED',
-          next: this.router.get('currentURL')
-        }
-      })
+    error(err) {
+      if (err.errors[0].status == 405) {
+        this.transitionTo('error', {
+          queryParams: {
+            errorCode: 'USER_EMAIL_NOT_VERIFIED',
+            next: this.router.get('currentURL')
+          }
+        })
+      }
+      throw err
     }
   }
 });
