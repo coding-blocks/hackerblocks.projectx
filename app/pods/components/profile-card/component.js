@@ -5,7 +5,7 @@ import { computed } from '@ember/object';
 export default class ProfileCard extends Component{
   @service currentUser;
 
-  @computed('currentUser')
+  @computed('currentUser', 'user')
   get userHimself() {
     return this.user.id === this.currentUser.user.id
   }
