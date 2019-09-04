@@ -1,16 +1,15 @@
-<div class="overflow-y-auto no-scrollbar question-area question-container h-100">
-  <div class="font-mds mb-4">Question {{this.index}}</div>
-  <div class="font-sm bold word-wrap">
-    {{markdown-to-html question.description}}
-  </div>
-  {{!-- <div class="bg-grey h-20 my-4 br-5"></div> --}}
-  <div class="mt-5">
-    {{#each question.choices as |choice|}}
-      {{question-container/choice-view
-        choice=choice
-        submission=submission
-        selectAnswer=(action (perform selectAnswerTask choice.id)) }}
-    {{/each}}
-  </div>
+<div class="font-mds mb-4">Question {{this.index}}</div>
+<div class="font-sm bold word-wrap">
+  {{markdown-to-html question.description}}
 </div>
+{{!-- <div class="bg-grey h-20 my-4 br-5"></div> --}}
+<div class="my-5">
+  {{#each question.choices as |choice|}}
+    {{question-container/choice-view
+      choice=choice
+      submission=submission
+      selectAnswer=(action (perform selectAnswerTask choice.id)) }}
+  {{/each}}
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML-full"></script>

@@ -8,6 +8,8 @@ export default class FullScreenQuizView extends Component {
   @service store
 
   @alias('fetchQuestionTask.lastSuccessful.value') question
+
+  hideQuestionPad = true
   
   @computed('quiz.questions')
   get questionCount() {
@@ -56,5 +58,10 @@ export default class FullScreenQuizView extends Component {
     const index = this.index || 1
     const question_id = this.quiz.hasMany('questions').ids()[index - 1]
     return this.store.findRecord('question', question_id)
+  }
+
+  @action
+  toggleQuestionPad() {
+    this.toggleProperty('hideQuestionPad')
   }
 }

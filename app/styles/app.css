@@ -22,8 +22,12 @@ body{
 
 .monaco-editor, .monaco-editor * {
   width: 100%;
-  height: 400px;
+  height: 100%;
   border: none;
+}
+
+.code-editor--height{
+  height: 700px;
 }
 
 .submission-window {
@@ -57,4 +61,10 @@ body{
 .q5{
     background-color: #e63030 !important;
   fill: #e63030 !important;
+}
+
+
+/* MOVE TO MOTLEY */
+.code-window{
+  margin-top: -62px;
 }

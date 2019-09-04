@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { alias } from '@ember/object/computed';
-import { restartableTask } from 'ember-concurrency-decorators';
+import { restartableTask, dropTask } from 'ember-concurrency-decorators';
 import { timeout } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 import moment from 'moment';
@@ -11,6 +11,7 @@ export default class IntermediateContestComponent extends Component {
   @service currentUser
 
   showStartDialog = false
+  envProgress=0
 
   @alias('contest.currentAttempt')
   contest_attempt
@@ -37,11 +38,19 @@ export default class IntermediateContestComponent extends Component {
     }
   }
 
+  @dropTask updateEnvProgress = function *() {
+    while (this.envProgress < 60) {
+      this.set('envProgress', Math.min(60, this.envProgress + 1))
+      yield timeout(1000)
+    }
+  }
+
   @restartableTask createAttemptTask = function *() {
     const contest_attempt = this.store.createRecord('contest-attempt', {
       contest: this.contest
     })
     try {
+      this.updateEnvProgress.perform()
       yield timeout(Math.floor(Math.random() * 30000))
       yield contest_attempt.save()
       yield timeout(Math.floor(Math.random() * 30000))
