@@ -1,0 +1,44 @@
+{{#if (eq screenType 'mobile')}}
+<div class="py-4 bg-grey overflow-y-auto overflow-x-hidden no-scrollbar questions">
+  <div class="mb-4">
+    <h2 class="mb-4 t-align-c">Total Questions: {{questionCount}}</h2>
+    <div class="row all-center v-align-ma">
+      <div>
+        <span class="font-sm extra-bold green mx-xl-3 mx-2"><span class="font-xl mr-3">&#10625;</span>Attempted</span>
+      </div>
+      <div>
+        <span class="font-sm extra-bold mx-xl-3 mx-2"><span class="font-xl mr-3">&#10625;</span>Unattempted</span>
+      </div>
+      <div>
+        <span class="font-sm extra-bold orange mx-xl-3 mx-2"><span class="font-xl mr-3">&#10625;</span>Marked
+          for Review</span>
+      </div>
+    </div>
+  </div>
+  <div class="options font-lg bold">
+    {{yield}}
+  </div>
+</div>
+{{else}}
+<div class="border-card question-card px-xl-5 px-4 pb-5 pt-0 t-align-c no-scrollbar">
+  <div class="position-sticky tl bg-white pt-4">
+    <h2 class="mb-4">Total Questions: {{questionCount}}</h2>
+    <div class="row all-center v-align-ma">
+      <div>
+        <span class="font-sm extra-bold green mx-xl-3 mx-2"><span class="font-xl mr-3">&#10625;</span>Attempted</span>
+      </div>
+      <div>
+        <span class="font-sm extra-bold mx-xl-3 mx-2"><span class="font-xl mr-3">&#10625;</span>Unattempted</span>
+      </div>
+      <div>
+        <span class="font-sm extra-bold orange mx-xl-3 mx-2"><span class="font-xl mr-3">&#10625;</span>Marked
+          for Review</span>
+      </div>
+    </div>
+    <div class="divider-h mt-4"></div>
+  </div>
+  <div class="options font-lg bold">
+    {{yield}}
+  </div>
+</div>
+{{/if}}

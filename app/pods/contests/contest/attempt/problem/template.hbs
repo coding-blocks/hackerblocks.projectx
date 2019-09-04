@@ -1,6 +1,7 @@
 <div class="col-md-11 col-12 offset-md-1">
   {{#if (eq problem.problemType 'web')}}
     <FullScreenWebView
+    class="row no-gutters overflow-hidden code-window__code-area"
     @problem={{problem}}
     @contest={{contest}} />
   {{else}}
