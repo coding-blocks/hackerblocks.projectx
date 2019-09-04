@@ -4,7 +4,7 @@ import { computed } from '@ember/object';
 export default class SubmitResult extends Component {
   selectedIndex = 0
 
-  didUpdateAttrs() {
+  didRender() {
     this.element.scrollIntoView({behavior: "smooth", block: "end" })
   }
 
