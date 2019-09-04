@@ -22,7 +22,7 @@ export default class CodeEditorComponent extends Component {
       }
     })
 
-    let maxTries = 20
+    let maxTries = 30
     while(maxTries--) {
       yield timeout(2000)
       const submission = yield this.store.findRecord('submission', response.submissionId, { refresh: true })
@@ -47,7 +47,7 @@ export default class CodeEditorComponent extends Component {
       }
     })
 
-    let maxTries = 20
+    let maxTries = 30
     while(maxTries--) {
       yield timeout(2000)
       const submission = yield this.store.findRecord('submission', response.submissionId, {
