@@ -83,4 +83,14 @@ export default class CodeWindowComponent extends Component {
   toggleCustomInputOpen() {
     this.toggleProperty('customInputOpen')
   }
+
+  @action
+  editorOnReady(editor) {
+    editor.onKeyDown((event)=>{
+      const {keyCode, ctrlKey, metaKey} = event;
+      if((keyCode === 33 || 52) && (metaKey || ctrlKey)){
+        event.preventDefault();
+      }
+    });
+  }
 }

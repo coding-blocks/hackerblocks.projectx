@@ -19,6 +19,7 @@
     class="monaco-editor"
     @language={{selectedLanguage.mode}}
     @code={{selectedLanguage.source}}
+    @onReady={{action 'editorOnReady'}}
     @onChange={{action (mut selectedLanguage.source)}}
     @theme="vs-dark" />
 </div>
