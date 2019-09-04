@@ -20,6 +20,9 @@ module.exports = function(defaults) {
     'ember-cli-uglify': {
       /* https://github.com/mike-north/ember-monaco/issues/54 */
       exclude: EmberApp.env() == 'production' ? ['ember-monaco/**'] : []
+    },
+    babel: {
+      sourceMaps: 'inline'
     }
   });
 
