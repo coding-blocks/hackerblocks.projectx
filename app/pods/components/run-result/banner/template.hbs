@@ -1,0 +1,9 @@
+<div class="{{unless fullScreen "border-card mb-5"}} p-0">
+  {{#if (eq judgeResult.result "success")}}
+  {{run-result/compiled-successfully-message}}
+  {{else if (eq judgeResult.result "compile_error")}}
+  {{run-result/error-run-message}}
+  {{else if (not (eq judgeResult.result "success"))}}
+  {{run-result/judgement-delay-run-message}}
+  {{/if}}
+</div>

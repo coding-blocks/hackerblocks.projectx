@@ -1,10 +1,7 @@
-<div class="{{unless fullScreen "border-card mb-5"}} p-0">
-  {{#if correctAnswer}}
-    {{submit-result/success-submission-message}}
-  {{else}}
-    {{submit-result/wrong-submission-message}}
-  {{/if}}
-</div>
+{{#unless fullScreen}}
+  {{submit-result/banner judgeResult=judgeResult}}
+{{/unless}}
+
 <div class="{{unless fullScreen "border-card"}} p-0 test-cases-card">
   <div class="row no-gutters bg-grey">
     <div class="col-4 col-md-3">

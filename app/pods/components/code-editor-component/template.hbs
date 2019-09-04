@@ -6,7 +6,15 @@
   @onRunTask={{onRunTask}} 
   @onSubmitTask={{onSubmitTask}} 
   @disablePaste={{fullScreen}}
-  class="overflow-hidden {{innerLayoutClass}}" /> 
+  class="overflow-hidden {{innerLayoutClass}}"> 
+  {{#if fullScreen}}
+    {{#if (eq resultComponent 'submit-result')}}
+      {{submit-result/banner judgeResult=lastResult fullScreen=fullScreen}}
+    {{else if (eq resultComponent 'run-result')}}
+      {{run-result/banner judgeResult=lastResult fullScreen=fullScreen}}
+    {{/if}}
+  {{/if}}
+</CodeWindow>
 
 <div class="result">
   {{yield (component resultComponent judgeResult=lastResult)}}

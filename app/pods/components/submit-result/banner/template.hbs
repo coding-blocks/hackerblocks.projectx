@@ -1,0 +1,7 @@
+<div class="{{unless fullScreen "border-card mb-5"}} p-0">
+  {{#if correctAnswer}}
+  {{submit-result/success-submission-message}}
+  {{else}}
+  {{submit-result/wrong-submission-message}}
+  {{/if}}
+</div>
