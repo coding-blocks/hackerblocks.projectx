@@ -17,6 +17,11 @@
 </CodeWindow>
 
 <div class="result">
+  {{#if submitSpam}}
+    <div class="{{unless fullScreen "border-card"}} p-5 bg-grey">
+      <h4>Too many submission requests. Try Again in few seconds</h4>
+    </div>
+  {{/if}}
   {{yield (component resultComponent judgeResult=lastResult)}}
 </div>
 
