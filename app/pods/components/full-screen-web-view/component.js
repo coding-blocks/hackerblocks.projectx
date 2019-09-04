@@ -65,7 +65,10 @@ export default class FullScreenWebViewComponent extends Component {
         links
       }
     })
-    
+
+    const progress = yield this.problem.get('progress')
+    progress.set('status', 'done')
+    progress.save()
   }
 
 }
