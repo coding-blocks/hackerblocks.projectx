@@ -11,10 +11,6 @@ export default class CodeEditorComponent extends Component {
   lastResult = null
   showAwardedBadge = false
 
-  scrollToResult() {
-    this.element.querySelector('.result').scrollIntoView({behavior: "smooth", block: "end" })
-  }
-
   @dropTask onRunTask = function*(language, code, input) {
     try {
       const response = yield this.api.request('submissions/run', {
@@ -33,7 +29,6 @@ export default class CodeEditorComponent extends Component {
         if (submission.judge_result){
           this.set('resultComponent', 'run-result')
           this.set('lastResult', submission.judge_result)
-          this.scrollToResult()
           return submission
         }
       }
@@ -41,7 +36,6 @@ export default class CodeEditorComponent extends Component {
     } catch (err) {
       if (err.status == 429) {
         this.set('submitSpam', true)
-        this.scrollToResult()
         later(() => this.set('submitSpam', false), 10000)
       }
     }
@@ -77,7 +71,6 @@ export default class CodeEditorComponent extends Component {
             this.set('resultComponent', 'submit-result')
           }
           this.set('lastResult', submission.judge_result)
-          this.scrollToResult()
   
           if (this.fullScreen) {
             const score = +submission.score
@@ -101,7 +94,6 @@ export default class CodeEditorComponent extends Component {
     } catch (err) {
       if (err.status == 429) {
         this.set('submitSpam', true)
-        this.scrollToResult()
         later(() => this.set('submitSpam', false), 10000)
       }
     }
