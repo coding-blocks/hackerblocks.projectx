@@ -39,19 +39,22 @@ export default class IntermediateContestComponent extends Component {
   }
 
   @dropTask updateEnvProgress = function *() {
-    while (this.envProgress < 60) {
-      this.set('envProgress', Math.min(60, this.envProgress + 1))
+    this.set('envProgress', 0)
+    while (this.envProgress < 50) {
+      this.set('envProgress', Math.min(50, this.envProgress + 1))
+      this.set('showStartDialog', true)
       yield timeout(1000)
     }
   }
 
   @restartableTask createAttemptTask = function *() {
-    const contest_attempt = this.store.createRecord('contest-attempt', {
-      contest: this.contest
-    })
+    let contest_attempt
     try {
       this.updateEnvProgress.perform()
       yield timeout(Math.floor(Math.random() * 30000))
+      contest_attempt = this.store.createRecord('contest-attempt', {
+        contest: this.contest
+      })
       yield contest_attempt.save()
       yield timeout(Math.floor(Math.random() * 30000))
       this.contest.set('currentAttempt', contest_attempt)
@@ -60,11 +63,21 @@ export default class IntermediateContestComponent extends Component {
         this.onAfterCreate()
       }
     } catch (err) {
+      // Stop Initializing environment
+      this.updateEnvProgress.cancelAll()
+
+      // Delete In-Store contest attempt
+      if (contest_attempt) {
+        contest_attempt.deleteRecord()
+      }
+
+      // If error is email unverified use the callback
       const error = err.errors[0]
       if (error.code === 405 && this.handleUnverifiedEmail) {
         return this.handleUnverifiedEmail('USER_EMAIL_NOT_VERIFIED')
       }
-      contest_attempt.deleteRecord()
+
+      // Propagate the error
       throw err
     }
   }
