@@ -12,4 +12,11 @@ export default class SubmitResult extends Component {
   get compilerMessage() {
     return this.judgeResult.data.testcases[this.selectedIndex].result
   }
+
+  @computed('judgeResult.data.testcases')
+  get correctAnswer() {
+    return this.judgeResult.data.testcases.reduce((prev, curr) => 
+      curr.result !== 'correct' ? false : true
+    , true)
+  }
 }
