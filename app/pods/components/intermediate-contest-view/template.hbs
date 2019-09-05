@@ -29,9 +29,9 @@
         </ul>
       </div>
     </div>
-    {{#if contest.isYetToStart}}
+    {{#if (and contest.isYetToStart (not contestStarted))}}
       <div class="mr-3">
-        <Timer @to={{moment contest.start_time}} as |time|>
+        <Timer @to={{moment contest.start_time}} @onEnd={{action (mut contestStarted) true}} as |time|>
           <ul class="divided-list timer">
             <li class="timer-item">
               <div class="list-heading white">{{time.hours}}</div>
