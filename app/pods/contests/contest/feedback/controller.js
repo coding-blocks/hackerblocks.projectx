@@ -4,11 +4,11 @@ import { action } from '@ember/object';
 export default class FeedbackController extends Controller {
   @action
   onSkip() {
-    this.transitionToRoute('contests')
+    this.transitionToRoute('index')
   }
 
   @action
   afterSave() {
-    this.transitionToRoute('contests')
+    this.transitionToRoute('index')
   }
 }

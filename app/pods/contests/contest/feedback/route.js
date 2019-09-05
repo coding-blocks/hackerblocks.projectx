@@ -13,7 +13,7 @@ export default class FeedbackRoute extends Route {
       }
     })
     if (feedbacks.length) {
-      this.transitionTo('contests')
+      this.transitionTo('index')
     }
   }
   
@@ -38,7 +38,7 @@ export default class FeedbackRoute extends Route {
   
   afterModel(model) {
     if (!model.contest.get('currentAttempt')) {
-      this.transitionTo('contests')
+      this.transitionTo('index')
     }
   }
 
