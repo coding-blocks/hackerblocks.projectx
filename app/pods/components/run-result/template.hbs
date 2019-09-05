@@ -3,14 +3,12 @@
 {{/unless}}
 
 <div class="{{unless fullScreen "border-card"}} p-5 bg-grey">
-  {{#unless (eq judgeResult.result "success")}}
-    {{#if (eq judgeResult.result "compile_error")}}
-      <h2>Compilation Error</h2>
-      <div class="font-sm my-2">Check the compiler output, fix the error and try again.</div>
-    {{else}}
-      <h2>Submission not judged, try again later</h2>
-    {{/if}}
-  {{/unless}}
+  {{#if (eq judgeResult.result "compile_error")}}
+    <h2>Compilation Error</h2>
+    <div class="font-sm my-2">Check the compiler output, fix the error and try again.</div>
+  {{else}}
+    <h2>Submission not judged, try again later</h2>
+  {{/if}}
 
   <div class="divider-h my-4"></div>
   <div class="font-sm bold">Compile Message</div>
