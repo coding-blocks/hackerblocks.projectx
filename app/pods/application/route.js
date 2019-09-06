@@ -2,6 +2,7 @@ import Route from '@ember/routing/route';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import { inject as service } from '@ember/service';
 import { isNone } from '@ember/utils';
+import config from 'hackerblocks/config/environment'
 
 export default Route.extend(ApplicationRouteMixin, {
     session: service(),
@@ -18,6 +19,10 @@ export default Route.extend(ApplicationRouteMixin, {
         localStorage.setItem('redirectionPath', null)
         window.location.href = redirectionPath
       }
+    },
+
+    sessionInvalidated () {
+      window.location.replace(config.homeUrl)
     },
 
     async beforeModel (transition) {
