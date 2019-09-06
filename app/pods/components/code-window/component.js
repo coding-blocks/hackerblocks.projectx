@@ -72,6 +72,7 @@ export default class CodeWindowComponent extends Component {
   @action
   selectLanguage(languageCode) {
     this.set('selectedLanguage', this.languageSpecs.find(spec => spec.code === languageCode))
+    this.trigger("restoreCodeFromStorage")
   }
 
   @action
@@ -93,6 +94,44 @@ export default class CodeWindowComponent extends Component {
           event.preventDefault();
         }
       });
+    }
+    // this.set('editor', editor)
+    this.trigger("restoreCodeFromStorage")
+  }
+
+  @action 
+  onChange (val) {
+    this.set('selectedLanguage.source', val)
+    // we should always have this here
+    const editorCode = JSON.parse(window.localStorage.getItem(this.storageKey))
+    
+    editorCode[this.selectedLanguage.code] = val
+    window.localStorage.setItem(this.storageKey, JSON.stringify(editorCode))
+  }
+
+  @action
+  restoreCodeFromStorage () {
+    if (!this.storageKey) {
+      return ;
+    }
+
+    let editorCode = window.localStorage.getItem(this.storageKey)
+
+    try {
+      JSON.parse(editorCode)
+    } catch (err) {
+      // handle corruption
+      window.localStorage.setItem(this.storageKey, "{}")
+      editorCode = `{}`
+    }
+
+
+    if (!editorCode) {
+      window.localStorage.setItem(this.storageKey, JSON.stringify({}))
+    } else if (JSON.parse(editorCode)[this.selectedLanguage.code]) {
+      // set this as default when editor loads if we have some for this language
+      // editor.setValue(JSON.parse(editorCode)[this.selectedLanguage.code])
+      this.set('selectedLanguage.source', JSON.parse(editorCode)[this.selectedLanguage.code])
     }
   }
 }
