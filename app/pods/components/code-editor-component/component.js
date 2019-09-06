@@ -13,6 +13,7 @@ export default class CodeEditorComponent extends Component {
 
   @dropTask onRunTask = function*(language, code, input) {
     try {
+      this.set('resultComponent', 'submission-status')
       const response = yield this.api.request('submissions/run', {
         method: 'POST',
         data: {
@@ -34,6 +35,7 @@ export default class CodeEditorComponent extends Component {
       }
       return null
     } catch (err) {
+      this.set('resultComponent', '')
       if (err.status == 429) {
         this.set('submitSpam', true)
         later(() => this.set('submitSpam', false), 10000)
@@ -43,6 +45,8 @@ export default class CodeEditorComponent extends Component {
 
   @dropTask onSubmitTask = function*(language, code) {
     try {
+      this.set('resultComponent', 'submission-status')
+
       const response = yield this.api.request('submissions/submit', {
         method: 'POST',
         data: {
@@ -92,6 +96,7 @@ export default class CodeEditorComponent extends Component {
       }
       return null
     } catch (err) {
+      this.set('resultComponent', '')
       if (err.status == 429) {
         this.set('submitSpam', true)
         later(() => this.set('submitSpam', false), 10000)
