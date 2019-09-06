@@ -48,7 +48,7 @@
       {{#liquid-if (eq currentTab 'problem')}}
       <ProblemExplanation @problem={{problem}} />
       {{else if (eq currentTab 'submissions')}}
-      <SubmissionsList @contest={{contest}} @problem={{problem}} />
+      <SubmissionsList @contest={{contest}} @problem={{problem}} @setSelectedSubmission={{action (mut selectedSubmission)}}/>
       {{/liquid-if}}
     </div>
   </div>
@@ -58,6 +58,7 @@
     class="h-100"
     @problem={{problem}} 
     @fullScreen=true
+    @submission={{selectedSubmission}}
     @contest={{contest}} as |RunResult|>
     <RunResult @fullScreen={{true}} /> 
   </CodeEditorComponent>

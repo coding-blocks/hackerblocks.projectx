@@ -59,6 +59,14 @@ export default class CodeWindowComponent extends Component {
       const codeStub = this.codeStubs.find(stub => stub.language === spec.code)
       spec.source = codeStub ? codeStub.body : ''
     })
+    if(this.submission){
+      this.setSubmission()
+    }
+  }
+
+  setSubmission =  () => {
+    this.set('selectedLanguage', this.languageSpecs.find(spec => spec.code === this.submission.language))
+    this.set('selectedLanguage.source', atob(this.submission.source))
   }
 
   @computed('allowedLanguages')
