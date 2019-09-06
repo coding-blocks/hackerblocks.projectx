@@ -34,6 +34,8 @@ module.exports = function(environment) {
   };
 
   
+  ENV.homeUrl = "https://hack.codingblocks.com"
+  
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;

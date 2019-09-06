@@ -68,3 +68,11 @@ body{
 .code-window{
   margin-top: -62px;
 }
+
+.submission-status-img{
+  height: 170px;
+}
+
+.test-info-popup{
+  width: 240px;
+}

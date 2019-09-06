@@ -6,6 +6,10 @@ export default class LoginRoute extends Route {
     env.clientId
   }&redirect_uri=${env.publicUrl}`; 
 
+  beforeModel() {
+    localStorage.setItem('redirectionPath', this.get('router.currentURL') || window.location.pathname)
+  }
+
   activate () {
     window.location.href = this.loginUrl
   }

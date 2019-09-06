@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 import { dropTask } from 'ember-concurrency-decorators';
 import { timeout } from 'ember-concurrency';
 import { later } from '@ember/runloop';
+import { computed } from '@ember/object'
 
 export default class CodeEditorComponent extends Component {
   @service api
@@ -11,8 +12,14 @@ export default class CodeEditorComponent extends Component {
   lastResult = null
   showAwardedBadge = false
 
+  @computed('problem.id', 'contest.id')
+  get storageKey () {
+    return `hb:code:${this.problem.id}:${this.contest.id}`
+  }
+
   @dropTask onRunTask = function*(language, code, input) {
     try {
+      this.set('resultComponent', 'submission-status')
       const response = yield this.api.request('submissions/run', {
         method: 'POST',
         data: {
@@ -34,6 +41,7 @@ export default class CodeEditorComponent extends Component {
       }
       return null
     } catch (err) {
+      this.set('resultComponent', '')
       if (err.status == 429) {
         this.set('submitSpam', true)
         later(() => this.set('submitSpam', false), 10000)
@@ -43,6 +51,8 @@ export default class CodeEditorComponent extends Component {
 
   @dropTask onSubmitTask = function*(language, code) {
     try {
+      this.set('resultComponent', 'submission-status')
+
       const response = yield this.api.request('submissions/submit', {
         method: 'POST',
         data: {
@@ -92,6 +102,7 @@ export default class CodeEditorComponent extends Component {
       }
       return null
     } catch (err) {
+      this.set('resultComponent', '')
       if (err.status == 429) {
         this.set('submitSpam', true)
         later(() => this.set('submitSpam', false), 10000)

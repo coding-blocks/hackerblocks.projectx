@@ -66,9 +66,9 @@
             </li>
             <div class="divider-h my-3"></div>
             <li>
-              <LinkTo @route='logout' class="dark-grey">
+              <a class="dark-grey"  href={{logoutLink}} >
                 Logout
-              </LinkTo>
+              </a>
             </li>
           </ul>
         </div>
@@ -286,9 +286,9 @@
       </a>
     </div>
     <div class="light my-4">
-      <LinkTo @route='logout'>
-        <button>Logout</button>
-      </LinkTo>
+      <a class="dark-grey"  href={{logoutLink}} >
+        Logout
+      </a>
     </div>
   </div>
 </div>
