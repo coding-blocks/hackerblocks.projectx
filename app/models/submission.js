@@ -9,7 +9,7 @@ export default Model.extend({
   submit_at: DS.attr(),
   msecs_elapsed: DS.attr(),
   language: DS.attr(),
-  score: DS.attr(),
+  score: DS.attr('number'),
   result: DS.attr(),
   tc_runs: DS.attr(),
   judge_result: DS.attr(),
