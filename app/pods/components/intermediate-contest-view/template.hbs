@@ -105,7 +105,14 @@
       <div>
         {{#if createAttemptTask.last.isError}}
           <span class="red">
-            Either you've reached your max attempts or you're not registered for this contest. Please drop a mail at support@codingblocks.com for help.
+            {{#each createAttemptTask.lastErrored.error.errors as |error|}}
+              <p>
+                {{error.detail}}  
+              </p>
+            {{/each}}
+            <p>
+              Please drop a mail at support@codingblocks.com for help.
+            </p>
           </span>
         {{/if}}
       </div>
