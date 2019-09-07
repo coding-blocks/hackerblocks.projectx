@@ -7,6 +7,14 @@
     <div class="col-6">
       <ul class="divided-list t-align-r mt-0 pull-right">
         <li class="px-3">
+          {{#if (eq problem.progress.status 'done')}}
+            <h4 class="green">Accepted</h4>
+          {{else}}
+            <h4 class="orange">Not Submitted</h4>
+          {{/if}}
+          <div class="list-data font-mds">Status</div>
+        </li>
+        <li class="px-3">
           <h4 class="orange">{{problem.difficultyString}}</h4>
           <div class="list-data font-mds">Dificulty</div>
         </li>

@@ -19,11 +19,11 @@
             </li>
           {{/if}}
           <li class="px-4">
-            <div class="list-heading font-md extra-bold mb-2 orange">{{moment-format contest.start_time 'D MMM'}}</div>
+            <div class="list-heading font-md extra-bold mb-2 orange">{{moment-format contest.start_time 'D MMM h:mm A'}}</div>
             <div class="list-data font-mds">Starts</div>
           </li>
           <li class="pl-4">
-            <div class="list-heading font-md extra-bold mb-2 orange">{{moment-format contest.end_time 'D MMM'}}</div>
+            <div class="list-heading font-md extra-bold mb-2 orange">{{moment-format contest.end_time 'D MMM h:mm A'}}</div>
             <div class="list-data font-mds">Ends</div>
           </li>
         </ul>
@@ -89,7 +89,6 @@
 
 {{#if showStartDialog}}
 <ModalDialog
-  @onClose={{action (mut showStartDialog) false}}
   @translucentOverlay={{true}}
 >
   <div class="overflow-hidden bg-white t-align-c">
@@ -102,6 +101,7 @@
         browser, your session will resume from where you left off, but the
         timer will NOT stop.
       </div>
+      <p class="bold">Please do not refresh or change browser tab!</p>
       <div>
         {{#if createAttemptTask.last.isError}}
           <span class="red">
@@ -112,7 +112,7 @@
       <div class="row justify-content-center mt-4">
         {{#if queued}}
           {{#if createAttemptTask.isRunning}} 
-            <h5 class="orange">
+            <h5 class="orange mb-3">
               {{#if contest_attempt}}
                 Initializing the Environment
               {{else}}

@@ -55,10 +55,19 @@ export default class CodeWindowComponent extends Component {
     this._super(...arguments)
     this.selectLanguage(this.languages[0].code)
     this.set('customInput', this.input)
-    this.languageSpecs.map(spec => {
-      const codeStub = this.codeStubs.find(stub => stub.language === spec.code)
-      spec.source = codeStub ? codeStub.body : ''
-    })
+    if(this.submission){
+      this.setSubmission()
+    }else{
+      this.languageSpecs.map(spec => {
+        const codeStub = this.codeStubs.find(stub => stub.language === spec.code)
+        spec.source = codeStub ? codeStub.body : ''
+      })
+    }
+  }
+
+  setSubmission =  () => {
+    this.set('selectedLanguage', this.languageSpecs.find(spec => spec.code === this.submission.language))
+    this.set('selectedLanguage.source', atob(this.submission.source))
   }
 
   @computed('allowedLanguages')
