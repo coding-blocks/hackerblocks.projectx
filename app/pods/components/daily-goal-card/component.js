@@ -9,11 +9,16 @@ export default class DailyGoalCardComponent extends Component {
 
   totalDcbs = 7
 
-  didReceiveAttrs(){
+  @computed('streak')
+  get nextDCBCount(){
     if(this.streak){
-      const perfectSubmissionCount = this.streak.get('perfectSubmissionCount')
+      const perfectSubmissionCount = this.streak.get('perfectSubmissionCount') || 0
       this.set('totalDcbs', (Math.floor(perfectSubmissionCount / 7) + 1) * 7)
+      return 7 - (perfectSubmissionCount % 7)
     }
+  }
+  
+  didReceiveAttrs(){
     this.fetchBadgesTask.perform()
   }
 
