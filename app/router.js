@@ -106,6 +106,7 @@ Router.map(function() {
   this.route('help');
   this.route('login');
   this.route('error');
+  this.route('404', { path: '/*:' });
 });
 
 export default Router;
