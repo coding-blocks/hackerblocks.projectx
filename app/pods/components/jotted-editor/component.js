@@ -44,6 +44,7 @@ export default class JottedEditorComponent extends Component{
           type: 'js',
           content: this.js
         }],
+        showBlank: true,
         plugins: [
           'ace',
           'console',
@@ -67,10 +68,12 @@ export default class JottedEditorComponent extends Component{
       Object.values(this.jotted._get('plugins').ace.editor).forEach(blockPaste)
 
       this.jotted.on('change', (params, done) => {
-        this.set('_' + params.type, params.content)
+        this.set('_' + params.type, params.aceEditor.getSession().getValue())
+
         window.sessionStorage.setItem(this.key, JSON.stringify(this.jotted.getContent()))
         done(null, params)
       })
+
     }
     this._super(...arguments)
   }
