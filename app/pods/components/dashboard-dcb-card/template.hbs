@@ -69,13 +69,13 @@
             <h3>Streak Master</h3>
             <a href="#" class="white"><i class="fas fa-info-circle fa-md blue"></i></a>
           </div>
-          <span class="Font-sm">Solve 7 consecutive DCB’s to earn this badge</span>
+          <span class="Font-sm">Solve {{sub totalDCBs streak.perfectSubmissionCount}} consecutive DCB’s to earn this badge</span>
           <div class="row mt-1 align-items-center">
             <div class="col-8">
-              <progress value="{{streak.perfectSubmissionCount}}" max="7" class="w-90 d-inline-block"></progress>
+              <progress value="{{streak.perfectSubmissionCount}}" max="{{totalDCBs}}" class="w-90 d-inline-block"></progress>
             </div>
             <div class="col-4">
-              <span class="card-md bold float-right">{{streak.perfectSubmissionCount}}/7 DCBs Solved</span>
+              <span class="card-md bold float-right">{{streak.perfectSubmissionCount}}/{{totalDCBs}} DCBs Solved</span>
             </div>
           </div>
         </div>
