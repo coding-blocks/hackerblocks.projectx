@@ -12,13 +12,18 @@ export default class DashboardDcbCard extends Component {
   @alias('fetchDcbTopProblemTask.lastSuccessful.value') topProblem
   @alias('fetchContestStreakTask.lastSuccessful.value') streaks
   dcb_id = 1
+  totalDCBs = 7
 
   @computed('streaks')
   get streak() {
     if (this.streaks) {
-      return this.streaks.toArray()[0]
+      const streak = this.streaks.toArray()[0]
+      const perfectSubmissionCount = streak.get('perfectSubmissionCount') || 0
+      this.set('totalDCBs', (Math.floor(perfectSubmissionCount / 7) + 1) * 7)
+      return streak
     }
   }
+
   @computed('topProblem')
   get topProblemEnd() {
     if (this.topProblem) {
