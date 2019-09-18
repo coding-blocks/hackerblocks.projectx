@@ -1,0 +1,39 @@
+{{#if fetchTestcasesTask.isRunning}}
+{{!-- Just Wait for now --}}
+{{!-- two loading components look too bloated --}}
+{{else if testcases}}
+  <div class="t-align-c">
+    <h4 class="mb-4">Download Testcases</h4>
+    <div class="row justify-content-center">
+      {{#each testcases as |testcase ind|}}
+        <div class="col-6 row">
+          <a href={{testcase.input}} target="_blank" class="button-dashed button-orange font-sm extra-bold mx-3 my-3">
+            Input {{inc ind}}
+            <i class="fas fa-arrow-down ml-3"></i>
+          </a>
+          <a href={{testcase.expected_output}} target="_blank" class="button-dashed button-orange font-sm extra-bold mx-3 my-3">
+            Output {{inc ind}}
+            <i class="fas fa-arrow-down ml-3"></i>
+          </a>
+        </div>
+      {{/each}}
+    </div>
+  </div>
+{{else}}
+  <div class="t-align-c">
+    <div class="pt-5 pb-4">
+      <i class="fas fa-unlock-alt fa-4x w-100"></i>
+    </div>
+    <h4>Testcases Locked</h4>
+    <h6 class="normal">If you unlock the testcases, you will not be awarded any score for this problem</h6>
+    <button 
+      class="button-solid button-orange font-sm extra-bold mt-4 mb-5"
+      {{action (perform unlockTestcasesTask)}}>
+      {{#if unlockTestcasesTask.isRunning}}
+        Unlocking ...
+      {{else}}
+        Yes, I want to unlock
+      {{/if}}
+    </button>
+  </div>
+{{/if}}

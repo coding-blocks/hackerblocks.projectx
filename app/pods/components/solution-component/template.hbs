@@ -1,26 +1,2 @@
-{{#if fetchEditorialTask.isRunning}}
-  <LoadingComponent />
-{{else if editorial}}
-  {{markdown-to-html editorial.content}}
-{{else}}
-  <div class="t-align-c">
-    <div class="pt-5 pb-4 mt-5">
-      <i class="fas fa-unlock-alt fa-4x w-100 t-align-c"></i>
-    </div>
-    <h4>Editorial Locked</h4>
-    <h6 class="normal">If you unlock the editorial, you will not be awarded any score for this problem</h6>
-    {{#if unlockEditorialTask.last.isError}}
-      <h6 class="red"> Editorial for the Problem doesn't exists</h6>
-    {{else}}
-      <button 
-        class="button-solid button-orange font-sm extra-bold mt-4 mb-5" 
-        {{action (perform unlockEditorialTask)}}>
-        {{#if unlockEditorialTask.isRunning}}
-          Unlocking...
-        {{else}}
-          Yes, I want to unlock
-        {{/if}}
-      </button>
-    {{/if}}
-  </div>
-{{/if}}
+{{solution-component/editorial-view contest=contest problem=problem}}
+{{solution-component/testcase-view contest=contest problem=problem}}
