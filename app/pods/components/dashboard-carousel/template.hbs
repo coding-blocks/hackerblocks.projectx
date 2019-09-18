@@ -1,6 +1,7 @@
 {{#if banners}}
-  <div class="position-relative mb-5 banner">
-    {{#carousel-container transitionInterval=400 as |ui controls|}}
+  <div class="position-relative mb-5">
+    {{#carousel-container 
+      transitionInterval=500 as |ui controls|}}
       <div class="carousel-body">
         {{#each banners as |banner|}}
           {{#ui.item}}
