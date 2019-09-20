@@ -30,7 +30,11 @@
           @route="dcb.problem"
           @problems={{previous_problems}} 
           @theme="blue" 
-          @toggleBookmark={{action 'toggleBookmark'}}/>
+          @toggleBookmark={{action 'toggleBookmark'}} as |problem|>
+          <button {{action 'toggleBookmark' problem}}>
+            <i class="{{if (or problem.bookmarkedBy problem.bookmark) 'fas' 'far'}} fa-bookmark font-lg pr-2"></i>
+          </button>
+        </ProblemList>
       </div>
     </div>
     <div class="col-12 col-md-4 mt-md-0 mt-5">
