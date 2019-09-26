@@ -3,6 +3,8 @@ import env from 'hackerblocks/config/environment';
 import { inject as service } from '@ember/service';
 
 export default class LoginRoute extends Route {
+  @service session
+
   loginUrl = `${env.oneauthURL}/oauth/authorize?response_type=code&client_id=${
     env.clientId
   }&redirect_uri=${env.publicUrl}`; 
@@ -11,7 +13,11 @@ export default class LoginRoute extends Route {
     localStorage.setItem('redirectionPath', window.location.pathname)
   }
 
-  activate () {
-    window.location.href = this.loginUrl
+  afterModel() {
+    if(this.session.isAuthenticated){
+      this.transitionTo('index')
+    } else {
+      window.location.href = this.loginUrl
+    }
   }
 }
