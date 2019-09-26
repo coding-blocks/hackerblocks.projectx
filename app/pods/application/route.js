@@ -12,7 +12,7 @@ export default Route.extend(ApplicationRouteMixin, {
             refreshModel: true
         }
     },
-    
+
     sessionInvalidated () {
       window.location.replace(config.homeUrl)
     },
@@ -26,7 +26,10 @@ export default Route.extend(ApplicationRouteMixin, {
         const { code } = transition.to.queryParams
         
         try {
-          await this.session.authenticate('authenticator:jwt', { identification: code, password: code, code })
+          await (
+            this.session.authenticate('authenticator:jwt', { identification: code, password: code, code })
+              .then(() => this.currentUser.load())
+          )
           return this.transitionTo('index', { queryParams: { code: undefined } })
         } catch (error) {
           console.log(error)
