@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'hackerblocks',
     podModulePrefix: 'hackerblocks/pods',
     environment,
-    rootURL: '/',
+    rootURL: '/app/',
     locationType: 'auto',
     'ember-simple-auth-token': {
       identificationField: 'code',
@@ -42,8 +42,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.publicUrl = 'http://localhost:4200'
-    ENV.apiHost = 'http://localhost:3000'
+    ENV.publicUrl = 'http://test.hackerblocks/app/'
+    ENV.apiHost = 'http://test.hackbackend'
     ENV.oneauthURL = 'https://account.codingblocks.com'
     ENV.clientId = 3680446660
   }

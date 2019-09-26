@@ -16,7 +16,7 @@ export default Route.extend(ApplicationRouteMixin, {
     sessionAuthenticated () {
       const redirectionPath = localStorage.getItem('redirectionPath')
       if (!isNone(redirectionPath)) {
-        localStorage.setItem('redirectionPath', null)
+        localStorage.removeItem('redirectionPath')
         window.location.href = redirectionPath
       }
     },

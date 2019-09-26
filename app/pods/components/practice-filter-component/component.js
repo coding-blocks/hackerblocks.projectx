@@ -23,6 +23,10 @@ export default class PracticeFilterComponent extends Component {
     }
   }
 
+  didReceiveAttrs() {
+    this.searchTagsTask.perform()
+  }
+
   @action 
   updateDifficultyFilter(val) {
     if (this.difficulty.includes(val)) {
