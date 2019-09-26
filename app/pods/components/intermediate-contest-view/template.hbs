@@ -34,6 +34,10 @@
         <Timer @to={{moment contest.start_time}} @onEnd={{action (mut contestStarted) true}} as |time|>
           <ul class="divided-list timer">
             <li class="timer-item">
+              <div class="list-heading white">{{time.days}}</div>
+              <div class="list-data">Days</div>
+            </li>
+            <li class="timer-item">
               <div class="list-heading white">{{time.hours}}</div>
               <div class="list-data">Hours</div>
             </li>
