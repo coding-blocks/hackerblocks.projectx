@@ -4,14 +4,16 @@
   {{/if}}
   <div class="row">
     {{#each admission_contests as |contest|}}
-    <div class="col-12 col-md-4">
+    <div class="col-12 col-md-4 mb-4">
       <ContestCard
         @contest={{contest.contest}}>
         {{#link-to
           'contests.contest'
           contest.contest.id
-          class="button-solid button-orange extra-bold mt-4 mb-2 mx-auto d-block" }}
-          Solve Challenge
+        }}
+            <button class="button-solid button-orange extra-bold mt-4 mb-2 mx-auto d-block">
+              Solve Challenge
+            </button>
         {{/link-to}}
       </ContestCard>
     </div>
