@@ -1,9 +1,9 @@
-# hackerblocks
+# Hackerblocks👩‍💻👨‍💻
 
 This README outlines the details of collaborating on this Ember application.
 A short introduction of this app could easily go here.
 
-## Prerequisites
+## Prerequisites✍
 
 You will need the following things properly installed on your computer.
 
@@ -48,7 +48,7 @@ Make use of the many generators for code, try `ember help generate` for more det
 
 Specify what it takes to deploy your app.
 
-## Further Reading / Useful Links
+## Further Reading / Useful Links(from where you can get more help)
 
 * [ember.js](https://emberjs.com/)
 * [ember-cli](https://ember-cli.com/)
