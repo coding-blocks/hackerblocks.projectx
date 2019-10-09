@@ -15,6 +15,7 @@ export default Model.extend({
   private_code: DS.attr(),
   passing_score: DS.attr(),
   image: DS.attr(),
+  icon: DS.attr(),
   oldStatus: DS.attr(),
   status: DS.attr(),
   show_banner: DS.attr(),
