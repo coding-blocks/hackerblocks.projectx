@@ -13,6 +13,14 @@ export default Route.extend(ApplicationRouteMixin, {
         }
     },
 
+    sessionAuthenticated () {
+      const redirectionPath = localStorage.getItem('redirectionPath')
+      if (!isNone(redirectionPath)) {
+        localStorage.removeItem('redirectionPath')
+        window.location.href = redirectionPath
+      }
+    },
+
     sessionInvalidated () {
       window.location.replace(config.homeUrl)
     },
