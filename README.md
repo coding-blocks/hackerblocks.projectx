@@ -1,7 +1,7 @@
-# hackerblocks
+# [Hackerblocks](https://hack.codingblocks.com/)
 
+Hackerblocks is home to 30K+ talented developers. Practice coding, prepare for interviews, and get prizes.
 This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
 
 ## Prerequisites
 
