@@ -15,7 +15,7 @@ You will need the following things properly installed on your computer.
 ## Installation
 
 * `git clone <repository-url>` this repository
-* `cd hackerblocks`
+* `cd hackerblocks.projectx`
 * `npm install`
 
 ## Running / Development
