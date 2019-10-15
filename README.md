@@ -26,7 +26,7 @@ You will need the following things properly installed on your computer.
 
 ### Code Generators
 
-Make use of the many generators for code, try `ember help generate` for more details
+Make use of the many generators for code, try `ember help generate` for more details.
 
 ### Running Tests
 
