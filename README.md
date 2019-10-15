@@ -1,3 +1,8 @@
+
+<h1 align=center>
+ <img align=center width="40%" src="https://hack.codingblocks.com/images/hb_logo.png" />
+</h1>
+
 # Hacker Blocks - https://hack.codingblocks.com/
 
 This README outlines the details of collaborating on this Ember application.
