@@ -5,14 +5,26 @@
 
 {{#if showRegistrationForm}}
   <ModalDialog 
-    @onClose={{action (mut showRegistrationForm) false}} 
     @translucentOverlay={{true}} 
     @containerClass="w-50">
     <div class="br-15 overflow-hidden p-0 bg-white t-align-c">
-      <FormView 
-        @form={{contest.registrationForm}} 
-        @onCancel={{action (mut showRegistrationForm) false}}
-        @onSubmitTask={{createRegistrationTask}} />
+      {{#if success}}
+        <div class="p-5">
+          <div class="row">
+            <div class="s-80x80 bg-gradient-green-lr br-50 p-4 mx-auto mb-3">
+              <i class="fas fa-check white mt-sm-1 mt-2 fa-2x"></i>
+            </div>
+          </div>
+          <div class="row mb-4 justify-content-center">
+            Your registration for {{contest.name}} is successful.
+          </div>
+        </div>
+      {{else}}
+        <FormView 
+          @form={{contest.registrationForm}} 
+          @onCancel={{action (mut showRegistrationForm) false}}
+          @onSubmitTask={{createRegistrationTask}} />
+      {{/if}}
     </div>
   </ModalDialog>
 {{/if}}
