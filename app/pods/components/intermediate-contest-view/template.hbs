@@ -29,6 +29,13 @@
         </ul>
       </div>
     </div>
+    {{#if (and (not contestRegistration) contest.acceptRegistrations)}}
+      <div>
+        <RegisterButton
+          @contest={{contest}}
+          @onAfterSave={{action (perform fetchRegistrationTask)}} />
+      </div>
+    {{/if}}
     {{#if (and contest.isYetToStart (not contestStarted))}}
       <div class="mr-3">
         <Timer @to={{moment contest.start_time}} @onEnd={{action (mut contestStarted) true}} as |time|>
@@ -71,11 +78,13 @@
             {{/link-to}}
           {{/if}}
         {{else}}
-          <button
-            class="button-solid button-orange font-sm extra-bold my-3"
-            {{action (toggle 'showStartDialog' this)}} >
-            Start Challenge
-          </button>
+          {{#if contestRegistration}}
+            <button
+              class="button-solid button-orange font-sm extra-bold my-3"
+              {{action (toggle 'showStartDialog' this)}} >
+              Start Challenge
+            </button>
+          {{/if}}
         {{/if}}
       </div>
     {{/if}}

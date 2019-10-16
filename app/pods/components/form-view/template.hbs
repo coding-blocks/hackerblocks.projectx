@@ -1,0 +1,43 @@
+<div class="bg-grey py-4">
+  <h5>Registration Form</h5>
+</div>
+<div class="p-5">
+  {{#each form.fields as |field|}}
+    <div class="row align-items-center mb-4">
+      <div class="col-3">
+        <span class="bold">{{field.title}} {{if field.required "*"}}: </span>
+      </div>
+      {{component 
+        (concat 'form-view/' field.type '-field') 
+        class="col-9 t-align-l"
+        field=field 
+        fieldValue=(get formEntry field.name)
+        onUpdate=(action 'onUpdate' field.name)
+      }}
+    </div>
+  {{/each}}
+  <div class="row">
+    <p>Field marked with (*) are required</p>
+  </div>
+  <div class="row align-items-center all-center">
+    <button class="button-solid button-orange" {{action (perform onSubmitTask) formEntry}}>
+      {{#if onSubmitTask.isRunning}}
+        Registering ...
+      {{else}}
+        Register
+      {{/if}}
+    </button>
+    <button class="button-dashed button-orange" {{action onCancel}}>
+      Cancel
+    </button>
+  </div>
+  {{#if onSubmitTask.last.isError}}
+    <div class="row">
+      {{#each onSubmitTask.lastErrored.error.errors as |error|}}
+        <p class="red">
+          {{error.detail}}
+        </p>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>

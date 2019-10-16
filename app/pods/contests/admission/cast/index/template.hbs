@@ -9,9 +9,12 @@
           class="mb-5"
           @contest={{contest.contest}}
           @showTimer=true >
-          <RegisterButton 
-            @contestTypeModel={{contest}} 
-            @route='contests.contest' />
+          <LinkTo
+            class="button-solid button-orange mt-4 mb-2 mx-auto"
+            @route="contests.contest"
+            @model={{contest.contest.id}}>
+            View Contest  
+          </LinkTo>
         </ContestCard>
       </div>
     {{/each}}

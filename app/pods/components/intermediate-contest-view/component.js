@@ -13,8 +13,8 @@ export default class IntermediateContestComponent extends Component {
   showStartDialog = false
   envProgress=0
 
-  @alias('contest.currentAttempt')
-  contest_attempt
+  @alias('contest.currentAttempt') contest_attempt
+  @alias('fetchRegistrationTask.lastSuccessful.value') contestRegistration
 
   @computed('contest.problems')
   get problemCount() {
@@ -38,6 +38,12 @@ export default class IntermediateContestComponent extends Component {
     }
   }
 
+  didReceiveAttrs() {
+    if (this.contest.acceptRegistrations) {
+      this.fetchRegistrationTask.perform()
+    }
+  }
+
   @dropTask updateEnvProgress = function *() {
     this.set('envProgress', 0)
     while (this.envProgress < 50) {
@@ -45,6 +51,15 @@ export default class IntermediateContestComponent extends Component {
       this.set('showStartDialog', true)
       yield timeout(1000)
     }
+  }
+
+  @restartableTask fetchRegistrationTask = function *() {
+    return this.store.queryRecord('contest-registration', {
+      custom: {
+        ext: 'url',
+        url: `contest/${this.contest.id}`
+      }
+    })
   }
 
   @restartableTask createAttemptTask = function *() {

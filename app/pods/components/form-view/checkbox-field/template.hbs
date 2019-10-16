@@ -1,0 +1,11 @@
+{{#each field.options as |option|}}
+  <label class="input-checkbox checkbox-solid px-2">
+    <input 
+      type="checkbox" 
+      name={{field.name}} 
+      value={{option.value}}
+      checked={{includes fieldValue option.value}}
+      onclick={{action 'updateFieldValue' option.value}} > {{option.name}}
+    <span></span>
+  </label>
+{{/each}}

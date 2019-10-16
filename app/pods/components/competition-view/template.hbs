@@ -54,12 +54,12 @@
             Participate
           {{/link-to}}
         {{else}}
-          <RegisterButton  
-            @contestTypeModel={{hash 
-              contest=upcomingContest
-              id=competition.id
-            }} 
-          @route="contests.contest" />
+          <LinkTo
+            class="button-solid button-orange mt-4 mb-2 mx-auto"
+            @route="contests.contest"
+            @model={{upcomingContest.id}}>
+            View Contest  
+          </LinkTo>
         {{/if}}
       </UpcomingCompetitionContest>
     {{/if}}
