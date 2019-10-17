@@ -11,7 +11,11 @@ export default class QuestionContainer extends Component {
     }
   }
   @dropTask selectAnswerTask = function *(choiceId) {
-    this.submission.set('answer_id', choiceId)
+    if (this.submission.answer_id === choiceId) {
+      this.submission.set('answer_id', null)
+    } else {
+      this.submission.set('answer_id', choiceId)
+    }
     return yield this.submission.save()
   }
 }

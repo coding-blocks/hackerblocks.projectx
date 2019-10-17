@@ -66,12 +66,10 @@ export default class IntermediateContestComponent extends Component {
     let contest_attempt
     try {
       this.updateEnvProgress.perform()
-      yield timeout(Math.floor(Math.random() * 30000))
       contest_attempt = this.store.createRecord('contest-attempt', {
         contest: this.contest
       })
       yield contest_attempt.save()
-      yield timeout(Math.floor(Math.random() * 30000))
       this.contest.set('currentAttempt', contest_attempt)
       this.set('showStartDialog', false)
       if (this.onAfterCreate){
