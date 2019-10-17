@@ -4,7 +4,7 @@
 <div class="p-5">
   {{#each form.fields as |field|}}
     <div class="row align-items-center mb-4">
-      <div class="col-3">
+      <div class="col-3 t-align-l">
         <span class="bold">{{field.title}} {{if field.required "*"}}: </span>
       </div>
       {{component 
@@ -16,11 +16,11 @@
       }}
     </div>
   {{/each}}
-  <div class="row">
+  <div class="row dark-grey">
     <p>Field marked with (*) are required</p>
   </div>
   <div class="row align-items-center all-center">
-    <button class="button-solid button-orange" {{action (perform onSubmitTask) formEntry}}>
+    <button class="button-solid button-orange mr-3" {{action (perform onSubmitTask) formEntry}}>
       {{#if onSubmitTask.isRunning}}
         Registering ...
       {{else}}
@@ -32,7 +32,7 @@
     </button>
   </div>
   {{#if onSubmitTask.last.isError}}
-    <div class="row">
+    <div class="row justify-content-center">
       {{#each onSubmitTask.lastErrored.error.errors as |error|}}
         <p class="red">
           {{error.detail}}
