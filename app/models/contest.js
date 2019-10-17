@@ -48,6 +48,11 @@ export default Model.extend({
     switch (this.contest_type) {
       case 'practice': return 'Practice Contest'
       case 'competition_contest': return 'Competition Contest'
+      case 'hiring_contest': return 'Hiring Contest'
+      case 'dcb': return 'DCB'
+      case 'college_contest': return 'College Contest'
+      case 'admission_contest': return 'Admission Contest'
+      case 'course_contest': return 'Course Contest'
       default: return 'Contest'
     }
   }),

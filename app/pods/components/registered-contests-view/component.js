@@ -15,14 +15,7 @@ export default class RegisteredContestView extends Component {
 
   @restartableTask fetchRegisteredContestTask = function *() {
     return yield this.store.query('contest-registration', {
-      include: 'contest',
-      filter: {
-        contest: {
-          start_time: {
-            $gt: moment()
-          }
-        }
-      }
+      include: 'contest'
     })
   }
 }
