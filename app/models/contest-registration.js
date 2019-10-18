@@ -4,6 +4,7 @@ const { Model } = DS;
 
 export default Model.extend({
   contentTypeId: DS.attr(),
+  form: DS.attr(),
   contest: DS.belongsTo('contest'),
   user: DS.belongsTo('user'),
   route: Ember.computed('contest', 'contentTypeId', function() {

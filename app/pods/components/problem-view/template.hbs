@@ -20,11 +20,13 @@
       {{action (mut selectedTab) "discuss"}}>
       Discuss
     </div>
-    <div 
-      class="tab {{if (eq selectedTab "solution") "active"}} py-4 pointer"
-      {{action (mut selectedTab) "solution"}}>
-      Solution
-    </div>
+    {{#if contest.allowTestcaseEditorialUnlock}}
+      <div 
+        class="tab {{if (eq selectedTab "solution") "active"}} py-4 pointer"
+        {{action (mut selectedTab) "solution"}}>
+        Solution
+      </div>
+    {{/if}}
   </div>
 
   {{#liquid-if (eq selectedTab "problem")}}

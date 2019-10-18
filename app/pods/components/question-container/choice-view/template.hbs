@@ -4,7 +4,8 @@
     type="radio" 
     name="group-2" 
     id={{choice.id}}
-    onchange={{action selectAnswer}} />
-  {{choice.description}}
+    onclick={{action selectAnswer}} />
+  {{markdown-to-html choice.title}}
+  {{markdown-to-html choice.description}}
   <span></span>
 </label>

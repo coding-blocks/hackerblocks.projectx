@@ -1,4 +1,4 @@
-# hackerblocks
+# Hacker Blocks - https://hack.codingblocks.com/
 [![Build Status](https://travis-ci.org/coding-blocks/hackerblocks.projectx.svg?branch=master)](https://travis-ci.org/coding-blocks/hackerblocks.projectx)
 
 This README outlines the details of collaborating on this Ember application.
