@@ -76,7 +76,7 @@
             {{/link-to}}
           {{/if}}
         {{else}}
-          {{#if contestRegistration}}
+          {{#if (or (not contest.acceptRegistrations) contestRegistration)}}
             <button
               class="button-solid button-orange font-sm extra-bold my-3"
               {{action (toggle 'showStartDialog' this)}} >
@@ -129,17 +129,7 @@
       </div>
       <div class="row justify-content-center mt-4">
         {{#if queued}}
-          {{#if createAttemptTask.isRunning}} 
-            <h5 class="orange mb-3">
-              {{#if contest_attempt}}
-                Initializing the Environment
-              {{else}}
-                Creating the Attempt
-              {{/if}}
-            </h5>
-            <progress max="50" value={{envProgress}}></progress>
-          {{else}}
-            <button  
+          <button  
               class="button-dashed button-orange font-sm extra-bold mr-2"
               {{action (mut showStartDialog) false}} >
               <i class="fas fa-arrow-left mr-3"></i>
@@ -152,7 +142,6 @@
               <span class="d-sm-inline d-none">Yes, start with my test</span>
               <span class="d-inline d-sm-none">Start</span>
             </button>
-          {{/if}}
         {{else}}
           <p>
             <Timer @to={{queueTimeEnd}} @onEnd={{action (mut queued) true}} as |time|>
