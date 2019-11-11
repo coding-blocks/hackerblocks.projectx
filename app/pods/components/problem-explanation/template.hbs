@@ -27,7 +27,7 @@
   {{#if problem.content.explanation}}
     <div class="extra-bold">Explanation</div>
     <div class="bg-grey br-5 w-60 px-4 py-2 my-2">
-      <pre>{{problem.content.explanation}}</pre>
+      {{markdown-to-html problem.content.explanation}}
     </div>
   {{/if}}
 </div>
