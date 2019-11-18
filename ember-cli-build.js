@@ -37,6 +37,7 @@ module.exports = function(defaults) {
   // along with the exports of each module as its value.
 
   app.import('node_modules/@coding-blocks/motley/dist/hb/app.min.css')
+  app.import('node_modules/js-base64/base64.min.js')
 
   return app.toTree();
 };
