@@ -1,6 +1,6 @@
 {{#unless (eq judgeResult.result "success")}}
 <div class="{{unless fullScreen "border-card mb-5"}} p-0">
-  {{#if (eq judgeResult.result "compile_error")}}
+  {{#if (or (eq judgeResult.result "compile_error") (eq judgeResult.result "error"))}}
   {{run-result/error-run-message}}
   {{else if (not (eq judgeResult.result "success"))}}
   {{run-result/judgement-delay-run-message}}
@@ -9,7 +9,7 @@
 {{/unless}}
 
 <div class="{{unless fullScreen "border-card"}} p-5 bg-grey">
-  {{#if (eq judgeResult.result "compile_error")}}
+  {{#if (or (eq judgeResult.result "compile_error") (eq judgeResult.result "error"))}}
   <h2>Compilation Error</h2>
   <div class="font-sm my-2">Check the compiler output, fix the error and try again.</div>
   {{else if (eq judgeResult.result "success")}}

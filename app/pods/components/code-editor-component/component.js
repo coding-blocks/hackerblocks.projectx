@@ -3,7 +3,8 @@ import { inject as service } from '@ember/service';
 import { dropTask } from 'ember-concurrency-decorators';
 import { timeout } from 'ember-concurrency';
 import { later } from '@ember/runloop';
-import { computed } from '@ember/object'
+import { computed } from '@ember/object';
+import { Base64 } from 'js-base64';
 
 export default class CodeEditorComponent extends Component {
   @service api
@@ -24,8 +25,8 @@ export default class CodeEditorComponent extends Component {
         method: 'POST',
         data: {
           problem_id: this.problem.id,
-          input: window.btoa(input),
-          source: window.btoa(code),
+          input: Base64.encode(input),
+          source: Base64.encode(code),
           language
         }
       })
@@ -58,7 +59,7 @@ export default class CodeEditorComponent extends Component {
         data: {
           contest_id: this.contest.id,
           problem_id: this.problem.id,
-          source: window.btoa(code),
+          source: Base64.encode(code),
           language
         }
       })
