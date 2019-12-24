@@ -69,5 +69,15 @@
     <script src="/index.js"></script>
 
     {{content-for "body-footer"}}
+    
+    <script>
+    if(window.top === window.self) {
+      let head = document.getElementsByTagName('head')[0];
+      let script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = 'https://embed.small.chat/T54NF3W77G56JR5UVD.js';
+      head.appendChild(script);
+    }
+  </script>
   </body>
 </html>
