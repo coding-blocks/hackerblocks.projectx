@@ -9,7 +9,7 @@ export default class ContestViewComponent extends Component {
   difficulty = []
   tags = []
   
-  @computed('contest')
+  @computed('contest.problems')
   get problemCount() {
     return this.contest.hasMany('problems').ids().length
   }
