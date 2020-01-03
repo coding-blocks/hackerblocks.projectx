@@ -5,10 +5,10 @@
       <div class="carousel-body">
         {{#each banners as |banner|}}
           {{#ui.item}}
-            <img 
+            <a href = {{banner.link}} target = "_blank"><img 
               src={{banner.image_url}}
               alt={{banner.alt_text}} 
-              class="w-100 h-100">
+              class="w-100 h-100"></a>
           {{/ui.item}}
         {{/each}}
       </div>
