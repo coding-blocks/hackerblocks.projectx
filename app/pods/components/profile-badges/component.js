@@ -21,6 +21,7 @@ export default class ProfileBadgesComponent extends Component{
   @restartableTask fetchBadgesTask = function *() {
     return yield this.store.query('badge', {
       include: 'contest',
+      exclude: 'contest.*',
       filter: {
         userId: this.userId
       }
