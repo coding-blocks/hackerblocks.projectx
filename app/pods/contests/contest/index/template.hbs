@@ -51,28 +51,14 @@
           </h5>
         {{/if}}
         <div class="divider-h mt-4"></div>
-        <ContestView::ContentListView 
-          @filter = {{filter}}        
-          @contest={{contest}} 
-          @page={{page}} as |problemView|>
-          {{#if problemView.showError}}
-            You are not authorized to view problems of this contest.
-          {{else}}
-            <ProblemList 
-              @route={{contests.contest.problem}}
-              @theme={{or theme "orange"}} 
-              @problems={{problemView.problems}} as |problem|>
-              {{#if contest.id}}
-                <button {{action 'toggleBookmark' problem}}>
-                  <i class="{{if (or problem.bookmarkedBy problem.bookmark) 'fas' 'far'}} fa-bookmark font-lg pr-2"></i>
-                </button>
-              {{/if}}
-            </ProblemList>
-            <PaginationPill 
-              @pagination={{problemView.problems.meta.pagination}} 
-              @setOffset={{action setOffset}} />
-          {{/if}}
-        </ContestView::ContentListView>
+        <Contest::ContestContentList
+          @contest={{contest}}
+          @page={{page}}
+          @filter={{filter}} as |contents|>
+          <PaginationPill 
+            @pagination={{contents.meta.pagination}} 
+            @setOffset={{action (mut offset)}} />
+          </Contest::ContestContentList>
       </div>
     </div>
 
@@ -84,7 +70,7 @@
         @changeDifficultyFilter={{action (mut difficulty)}} 
         @tags={{tags}}
         @changeTagsFilter={{action (mut tags)}} />
-        <div class="border-card py-5 mt-4">
+        <div class="border-card py-5 mt-4 p-0">
           <LeaderboardView
             @title ='leaderboard'
             @for = 'contest'

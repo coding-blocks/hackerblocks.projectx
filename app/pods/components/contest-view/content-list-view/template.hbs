@@ -1,9 +1,0 @@
-{{#if fetchContentsTask.isRunning}}
-  <LoadingComponent />
-{{else}}
-  
-  {{yield (hash
-    problems=contents
-    showError=showError
-  )}}
-{{/if}}

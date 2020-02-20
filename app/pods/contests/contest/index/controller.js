@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { action, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { restartableTask } from 'ember-concurrency-decorators';
 
 export default class IndexController extends Controller {
   @service store
@@ -20,7 +21,6 @@ export default class IndexController extends Controller {
       limit: this.limit
     }
   }
-  
   @computed('status','difficulty','tags', 'q')
   get filter() {
     return {
@@ -38,7 +38,6 @@ export default class IndexController extends Controller {
       }
     }
   }
-
   @computed('contest.currentAttempt')
   get nextRoute() {
     return 'contests.contest.attempt'
@@ -53,7 +52,6 @@ export default class IndexController extends Controller {
       }
     })
   }
-
   @action
   onAfterCreate() {
     const problem_id = this.contest.hasMany('problems').ids()[0]
@@ -64,12 +62,6 @@ export default class IndexController extends Controller {
       this.transitionToRoute('contests.contest.attempt.quiz', quiz_id)
     }
   }
-
-  @action
-  setOffset(offset) {
-    this.set('offset', offset)
-  }
-
   async toggleBookmark(problem){
     const bookmark = await problem.get('bookmark')
     if(bookmark){

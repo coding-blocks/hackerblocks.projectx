@@ -1,22 +1,12 @@
 import Component from '@ember/component';
 import { restartableTask } from 'ember-concurrency-decorators';
-import { inject as service } from '@ember/service';
-import { action, computed } from '@ember/object';
-import { alias } from '@ember/object/computed';
+import { inject as service} from '@ember/service';
 
-export default class ContentListView extends Component {
+export default class ContentList extends Component {
   @service store
-  
-  @alias('fetchContentsTask.lastSuccessful.value') contents
-  
-  difficulty = []
-  status = null
-  tags = []
-  showError = false
-  
+
   didReceiveAttrs() {
-    this.fetchContentsTask.perform()
-    this.set('searchQuery', this.query)
+    this.set('taskTrigger', true)
   }
 
   @restartableTask fetchContentsTask = function *() {

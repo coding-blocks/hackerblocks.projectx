@@ -1,0 +1,45 @@
+<div class="row no-gutters pointer my-4 pb-4">
+  <div class="li-left">
+    <div>
+      <h5>
+        {{content.name}}
+      </h5>
+      <ul class="divided-list">
+        <li class="px-3">
+          <div class="list-heading">{{content.difficultyString}}</div>
+          <div class="list-data">Difficulty</div>
+        </li>
+        <li class="px-3">
+          <div class="list-heading">{{content.submissionCount}}</div>
+          <div class="list-data">Submissions</div>
+        </li>
+        <li class="px-3">
+          <div class="list-heading">100</div>
+          <div class="list-data">Max Points</div>
+        </li>
+        {{#if content.successRate}}
+          <li class="px-3">
+            <div class="list-heading">{{content.successRate}}%</div>
+            <div class="list-data">Success Rate</div>
+          </li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+  <div class="li-right">
+    <button class="button-dashed button-orange">
+      Solve Challenge
+    </button>
+    {{!-- {{#link-to route problem.id}}
+      {{#if (and problem.topSubmission (eq problem.topSubmission.score 100))}}
+        <button class="button-solid button-green">Solve Again</button>
+      {{else if problem.topSubmission}}
+        <button class="button-solid button-orange">Try Again</button>
+      {{else}}
+        <button class={{concat "button-dashed button-" theme}}>
+          Solve Challenge
+        </button>
+      {{/if}}
+    {{/link-to}} --}}
+  </div>
+</div>
