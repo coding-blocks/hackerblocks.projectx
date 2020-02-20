@@ -1,5 +1,5 @@
-<div class="row no-gutters pointer my-4 pb-4">
-  <div class="li-left">
+<div class="row no-gutters justify-content-between align-items-center pointer my-4">
+  <div>
     <div>
       <h5>
         {{content.name}}
@@ -26,20 +26,9 @@
       </ul>
     </div>
   </div>
-  <div class="li-right">
+  <div>
     <button class="button-dashed button-orange">
       Solve Challenge
     </button>
-    {{!-- {{#link-to route problem.id}}
-      {{#if (and problem.topSubmission (eq problem.topSubmission.score 100))}}
-        <button class="button-solid button-green">Solve Again</button>
-      {{else if problem.topSubmission}}
-        <button class="button-solid button-orange">Try Again</button>
-      {{else}}
-        <button class={{concat "button-dashed button-" theme}}>
-          Solve Challenge
-        </button>
-      {{/if}}
-    {{/link-to}} --}}
   </div>
 </div>
