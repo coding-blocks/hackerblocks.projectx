@@ -15,46 +15,42 @@
 {{else}}
   <div class="row my-4">
     <div class="col-12 col-md-8 mb-5">
-      {{#if header}}
-        {{component header}}
-      {{else}}
-        <div class="border-card p-md-4 px-3 bg-black white">
-          <div class="row mx-0 align-items-center">
-            <div class="col-xl-10 col-md-9 col-9">
-              <div class="img-desc align-items-center justify-content-center">
-                {{#if contest.image}}
-                  <div class="col-2">
-                    <img src="{{contest.image}}" alt="" class="">
-                  </div>
-                {{/if}}
-                <div class="description t-align-l col-10">
-                  <h2>{{contest.name}}</h2>
-                  <span class="font-sm mt-1">Arrays | LinkedList | Stacks | Queues | Trees | Graphs</span>
+      <div class="border-card p-md-4 px-3 bg-black white">
+        <div class="row mx-0 align-items-center">
+          <div class="col-xl-10 col-md-9 col-9">
+            <div class="img-desc align-items-center justify-content-center">
+              {{#if contest.image}}
+                <div class="col-2">
+                  <img src="{{contest.image}}" alt="" class="">
                 </div>
+              {{/if}}
+              <div class="description t-align-l col-10">
+                <h2>{{contest.name}}</h2>
+                <span class="font-sm mt-1">Arrays | LinkedList | Stacks | Queues | Trees | Graphs</span>
               </div>
             </div>
-            <div>
-              <div style="font-size: 2.58rem" class="extra-bold">{{contest.stats.content-count}}</div>
-              <div class="font-sm">PROBLEMS</div>
-            </div>
+          </div>
+          <div>
+            <div style="font-size: 2.58rem" class="extra-bold">{{contest.stats.content-count}}</div>
+            <div class="font-sm">PROBLEMS</div>
           </div>
         </div>
-      {{/if}}
+      </div>
       <div class="border-card mt-4">
         <div class="right-input">
-      <Input 
-        class="input-text input-text--non-rounded" 
-        placeholder="Search problems by name"
-        @enter={{action (mut q)}}
-        @type="text"
-        @value={{searchQuery}} />
-    </div>
-    {{#if q}}
-      <h5 class="bold mt-4">
-        Showing results for <span class="orange">{{q}}</span>
-      </h5>
-    {{/if}}
-    <div class="divider-h mt-4"></div>
+          <Input 
+            class="input-text input-text--non-rounded" 
+            placeholder="Search problems by name"
+            @enter={{action (mut q)}}
+            @type="text"
+            @value={{searchQuery}} />
+        </div>
+        {{#if q}}
+          <h5 class="bold mt-4">
+            Showing results for <span class="orange">{{q}}</span>
+          </h5>
+        {{/if}}
+        <div class="divider-h mt-4"></div>
         <ContestView::ContentListView 
           @filter = {{filter}}        
           @contest={{contest}} 
