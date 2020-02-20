@@ -25,8 +25,14 @@ export default class IndexController extends Controller {
   get filter() {
     return {
       status: this.status,
-      difficulty: this.difficulty,
-      tags: this.tags,
+      difficulty: {
+        $in: this.difficulty
+      },
+      tags: {
+        id: {
+          $in: this.tags
+        }
+      },
       name: {
         $iLike: `%${this.q}%`
       }
