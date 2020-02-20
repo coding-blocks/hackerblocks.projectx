@@ -84,12 +84,12 @@
         @changeDifficultyFilter={{action (mut difficulty)}} 
         @tags={{tags}}
         @changeTagsFilter={{action (mut tags)}} />
-        <div class="border-card p-lg-5 p-4 mt-4">
-      <LeaderboardView
-        @title ='leaderboard'
-        @for = 'contest'
-        @theme = 'orange'
-        @contestId = {{contest.id}} />    
+        <div class="border-card py-5 mt-4">
+          <LeaderboardView
+            @title ='leaderboard'
+            @for = 'contest'
+            @theme = 'orange'
+            @contestId = {{contest.id}} />    
         </div>
     </div>
   </div>
