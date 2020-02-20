@@ -13,7 +13,7 @@
     @onAfterCreate={{onAfterCreate}} 
     @contest={{contest}} />
 {{else}}
-  <ContestView
+  {{!-- <ContestView
     @contest={{contest}}
     @page={{page}}
     @status={{status}}
@@ -23,7 +23,79 @@
     @onQuery={{action (mut q)}}
     @problemListRoute="contests.contest.problem"
     @contentTypeId={{contest.id}}
-    @setOffset={{action 'setOffset'}} as |contestView|>
+    @setOffset={{action 'setOffset'}} as |contestView|/>    
+    <div class="border-card mt-5 px-0">
+      {{contestView.leaderboardComponent}}
+    </div>
+  </ContestView> --}}
+  <div class="row my-4">
+  <div class="col-12 col-md-8 mb-5">
+    {{#if header}}
+      {{component header}}
+    {{else}}
+      <div class="border-card p-md-4 px-3 bg-black white">
+        <div class="row mx-0 align-items-center">
+          <div class="col-xl-10 col-md-9 col-9">
+            <div class="img-desc align-items-center justify-content-center">
+              {{#if contest.image}}
+                <div class="col-2">
+                  <img src="{{contest.image}}" alt="" class="">
+                </div>
+              {{/if}}
+              <div class="description t-align-l col-10">
+                <h2>{{contest.name}}</h2>
+                <span class="font-sm mt-1">Arrays | LinkedList | Stacks | Queues | Trees | Graphs</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size: 2.58rem" class="extra-bold">{{contest.stats.content-count}}</div>
+            <div class="font-sm">PROBLEMS</div>
+          </div>
+        </div>
+      </div>
+    {{/if}}
+    <div class="border-card mt-4">
+      <div class="right-input">
+    <Input 
+      class="input-text input-text--non-rounded" 
+      placeholder="Search problems by name"
+      @enter={{action (mut q)}}
+      @type="text"
+      @value={{searchQuery}} />
+  </div>
+  {{#if query}}
+    <h5 class="bold mt-4">
+      Showing results for <span class="orange">{{query}}</span>
+    </h5>
+  {{/if}}
+  <div class="divider-h mt-4"></div>
+      <ContestView::ContentListView 
+        @filter = {{filter}}        
+        @contest={{contest}} 
+        @page={{page}} as |problemView|>
+        {{#if problemView.showError}}
+          You are not authorized to view problems of this contest.
+        {{else}}
+          <ProblemList 
+            @route={{contests.contest.problem}}
+            @theme={{or theme "orange"}} 
+            @problems={{problemView.problems}} as |problem|>
+            {{#if contest.id}}
+              <button {{action 'toggleBookmark' problem}}>
+                <i class="{{if (or problem.bookmarkedBy problem.bookmark) 'fas' 'far'}} fa-bookmark font-lg pr-2"></i>
+              </button>
+            {{/if}}
+          </ProblemList>
+          <PaginationPill 
+            @pagination={{problemView.problems.meta.pagination}} 
+            @setOffset={{action setOffset}} />
+        {{/if}}
+      </ContestView::ContentListView>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-4">
     <PracticeFilterComponent
       @status={{status}}
       @changeStatusFilter={{action (mut status)}}
@@ -31,8 +103,14 @@
       @changeDifficultyFilter={{action (mut difficulty)}} 
       @tags={{tags}}
       @changeTagsFilter={{action (mut tags)}} />
-    <div class="border-card mt-5 px-0">
-      {{contestView.leaderboardComponent}}
-    </div>
-  </ContestView>
+      <div class="border-card p-lg-5 p-4 mt-4">
+    <LeaderboardView
+      @title ='leaderboard'
+      @for = 'contest'
+      @theme = 'orange'
+      @contestId = {{contest.id}} />    
+      </div>
+  </div>
+</div>
+
 {{/if}}

@@ -27,7 +27,8 @@ export default Model.extend({
   acceptRegistrations: DS.attr(),
   allowTestcaseEditorialUnlock: DS.attr(),
   plagiarismFiltering: DS.attr(),
-  problemCount: DS.attr(),
+  // problemCount: DS.attr(),s
+  contentCount: DS.attr(),
   stats: DS.attr(),
   allowedLanguages: DS.attr(),
   registrationForm: DS.attr(),

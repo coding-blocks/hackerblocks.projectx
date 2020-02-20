@@ -9,16 +9,27 @@ export default class IndexController extends Controller {
   queryParams = ['offset', 'limit', 'status', 'difficulty', 'tags', 'q']
   offset = 0
   limit = 10
-  status = null
   difficulty = []
   tags = []
   q = ''
 
-  @computed('offset')
+  @computed('offset', 'limit')
   get page() {
     return {
       offset: this.offset,
       limit: this.limit
+    }
+  }
+  
+  @computed('status','difficulty','tags', 'q')
+  get filter() {
+    return {
+      status: this.status,
+      difficulty: this.difficulty,
+      tags: this.tags,
+      name: {
+        $iLike: `%${this.q}%`
+      }
     }
   }
 
@@ -51,5 +62,20 @@ export default class IndexController extends Controller {
   @action
   setOffset(offset) {
     this.set('offset', offset)
+  }
+
+  async toggleBookmark(problem){
+    const bookmark = await problem.get('bookmark')
+    if(bookmark){
+      await bookmark.destroyRecord()
+      return problem.set('bookmarkedBy', null)
+    }
+    const bookmarkProblem = this.store.createRecord('bookmarked-problem', {
+      problem,
+      contest: this.contest,
+      contentTypeId: this.contentTypeId
+    })
+
+    bookmarkProblem.save()
   }
 }

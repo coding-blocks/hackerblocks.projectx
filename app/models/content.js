@@ -5,5 +5,6 @@ export default Model.extend({
   name: DS.attr(),
   type: DS.attr(),
   problem: DS.belongsTo('problem'),
-  quiz: DS.belongsTo('quiz')
+  quiz: DS.belongsTo('quiz'),
+  contest: DS.hasMany('contest')
 });

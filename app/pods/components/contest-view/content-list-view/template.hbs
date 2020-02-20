@@ -1,20 +1,7 @@
 {{#if fetchContentsTask.isRunning}}
   <LoadingComponent />
 {{else}}
-  <div class="right-input">
-    <Input 
-      class="input-text input-text--non-rounded" 
-      placeholder="Search problems by name"
-      @enter={{action onQuery}}
-      @type="text"
-      @value={{searchQuery}} />
-  </div>
-  {{#if query}}
-    <h5 class="bold mt-4">
-      Showing results for <span class="orange">{{query}}</span>
-    </h5>
-  {{/if}}
-  <div class="divider-h mt-4"></div>
+  
   {{yield (hash
     problems=contents
     showError=showError

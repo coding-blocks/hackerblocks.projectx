@@ -8,11 +8,6 @@ export default class ContestViewComponent extends Component {
   status = null
   difficulty = []
   tags = []
-  
-  @computed('contest.contents')
-  get contentCount() {    
-    return this.contest.hasMany('contents').ids().length
-  }
 
   @action
   async toggleBookmark(problem){

@@ -15,37 +15,15 @@ export default class ContentListView extends Component {
   showError = false
   
   didReceiveAttrs() {
-    this.fetchContentsTask.perform(this.contentFilter, this.page)
+    this.fetchContentsTask.perform()
     this.set('searchQuery', this.query)
   }
 
-  @computed('difficulty', 'tags', 'query')
-  get contentFilter() {
-    const filter = {}
-    if (this.difficulty.length) {
-      filter.difficulty = {
-        $in: this.difficulty
-      }
-    }
-    if (this.tags.length) {
-      filter.tags = {
-        id: {
-          $in: this.tags
-        }
-      }
-    }
-    filter.name = {
-      $iLike: `%${this.query}%`
-    }
-    return filter
-  }
-
-  @restartableTask fetchContentsTask = function *(filter = {}, page = {}) {
+  @restartableTask fetchContentsTask = function *() {
     try {
       return yield this.store.query('content', { 
-        filter,
-        status: this.status,
-        page,
+        filter: this.filter,        
+        page: this.page,
         contest_id: this.contest.id
       })
     } catch (err) {
