@@ -54,6 +54,7 @@
         <Contest::ContestContentList
           @contest={{contest}}
           @page={{page}}
+          @route='contests.contest.content'
           @filter={{filter}} as |contents|>
           <PaginationPill 
             @pagination={{contents.meta.pagination}} 

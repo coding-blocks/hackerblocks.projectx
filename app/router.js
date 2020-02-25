@@ -43,6 +43,7 @@ Router.map(function() {
         this.route('loading');
       });
       this.route('feedback');
+      this.route('content', {path: '/:content_id'});
     });
     this.route('old-contest', {path: '/c/:contest_id'}, function() {
       this.route('problem', {path: '/p/:problem_id'});
@@ -73,6 +74,8 @@ Router.map(function() {
   this.route('login');
   this.route('error');
   this.route('404', { path: '/*:' });
+
+  this.route('contest', function() {});
 });
 
 export default Router;

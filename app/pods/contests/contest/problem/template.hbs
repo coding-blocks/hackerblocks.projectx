@@ -7,18 +7,18 @@
 </div>
 <div class="row my-4">
   <div class="col-12">
-    <PracticeProblemCard @problem={{problem}} />
+    <PracticeProblemCard @problem={{content}} />
   </div>
 </div>
 
 <div class="row">
   <div class="col-12 col-md-8">
-    <ProblemView @contest={{contest}} @problem={{problem}} />
+    <ProblemView @contest={{contest}} @problem={{content}} />
   </div>
   <div class="col-12 col-md-4">
-    {{#if problem.canSubmitReview}}
-    <RatingCard class="py-4" @contest={{contest}} @problem={{problem}} />
-    {{/if}}
-    <AuthorCard class="py-4" @author={{problem.createdBy}} />
+    {{!-- {{#if content.canSubmitReview}}
+    <RatingCard class="py-4" @contest={{contest}} @problem={{content}} />
+    {{/if}} --}}
+    <AuthorCard class="py-4" @author={{content.createdAt}} />
   </div>
 </div>
