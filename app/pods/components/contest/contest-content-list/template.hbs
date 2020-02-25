@@ -5,8 +5,8 @@
     You are not authorized to view problems of this contest.
   {{else}}
     <div class="list-divided border-none">
-      {{#each contents as |content|}}
-        <Contest::ContestContentListItem @content={{content}} />
+      {{#each contents as |content|}}      
+        <Contest::ContestContentListItem @route={{route}} @content={{content}} />
       {{/each}}
     </div>
     {{yield contents}}

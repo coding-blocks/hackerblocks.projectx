@@ -15,7 +15,9 @@ export default class CodeEditorComponent extends Component {
 
   @computed('problem.id', 'contest.id')
   get storageKey () {
-    return `hb:code:${this.problem.id}:${this.contest.id}`
+    if(this.problem) {
+      return `hb:code:${this.problem.id}:${this.contest.id}`
+    }
   }
 
   @dropTask onRunTask = function*(language, code, input) {

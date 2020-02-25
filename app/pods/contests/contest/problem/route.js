@@ -4,10 +4,10 @@ import { action } from '@ember/object';
 export default class ProblemRoute extends Route {
   model(params) {
     const { contest } = this.modelFor('contests.contest')
-    const problem = this.store.queryRecord('problem', {
+    const content = this.store.queryRecord('content', {
       custom: {
         ext: 'url',
-        url: `${params.problem_id}`
+        url: `${params.content.problemId}`
       },
       contest_id: contest.get('id'),
       include: 'solution_stubs',
@@ -16,18 +16,18 @@ export default class ProblemRoute extends Route {
 
     return Ember.RSVP.hash({
       contest,
-      problem
+      content
     })
   }
 
   setupController(controller, model) {
     controller.set('contest', model.contest)
-    controller.set('problem', model.problem)
+    controller.set('content', model.content)
   }
 
   afterModel(model) {
     this.set('breadCrumb', {
-      title: model.problem.name
+      title: model.content.name
     })
   }
 
