@@ -7,14 +7,14 @@ export default class QuestionPill extends Component {
     if (!this.submissions) {
       return 'bg'
     }
-    
-    const submission = this.submissions.findBy('question_id', this.question_id) 
+
+    const submission = this.submissions.findBy('question_id', this.question_id)
     if (!submission) {
       return 'bg'
     }
 
-    return submission.review_later ? 
-      'bg-orange' : 
+    return submission.review_later ?
+      'bg-orange' :
       submission.answer_id ? 'bg-green' : 'bg'
   }
 }
