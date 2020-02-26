@@ -17,7 +17,6 @@ export default class LeaderboardViewComponent extends Component {
   hasRows = false
 
   didReceiveAttrs() {
-    this.fetchLeaderboardTask.perform()
     this.fetchCollegesTask.perform()
   }
 

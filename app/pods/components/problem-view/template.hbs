@@ -47,7 +47,7 @@
   {{else if (eq selectedTab "solution")}}
   <SolutionComponent 
     @contest={{contest}}
-    @problem={{problem}} />
+    @problem={{content.problem}} />
   {{else if (eq selectedTab "discuss")}}
     <ProblemDiscussView
       @contest={{contest}}
