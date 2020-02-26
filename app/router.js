@@ -43,7 +43,10 @@ Router.map(function() {
         this.route('loading');
       });
       this.route('feedback');
-      this.route('content', {path: '/:content_id'});
+      this.route('content', {path: '/:content_id'}, function() {
+        this.route('quiz');
+        this.route('problem');
+      });
     });
     this.route('old-contest', {path: '/c/:contest_id'}, function() {
       this.route('problem', {path: '/p/:problem_id'});

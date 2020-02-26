@@ -11,28 +11,4 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-12 col-md-8">
-    {{log data.type}}
-    {{#if (eq content.type "problem")}}    
-      <ProblemView 
-        @contest={{contest}} 
-        @content={{content}}
-        @problem={{content.problem}} />
-    {{else}}
-      <QuizView @contest={{contest}} @problem={{content.quiz}} />
-    {{/if}}
-  </div>
-  <div class="col-12 col-md-4">
-    {{#if (eq content.type "problem")}}
-      {{#if content.problem.canSubmitReview}}
-        <RatingCard class="py-4" @contest={{contest}} @problem={{content.problem}} />
-      {{/if}}
-      <AuthorCard class="py-4" @author={{content.createdAt}} />
-    {{else}}
-    <QuizQuestionsPad>
-      <QuestionPill/>
-    </QuizQuestionsPad>
-    {{/if}}
-  </div>
-</div>
+{{outlet}}

@@ -18,9 +18,14 @@ export default class Content extends Route {
     })
   }
 
+  afterModel(model) {
+    switch(model.content.type) {
+      case 'problem': this.transitionTo('contests.contest.content.problem')
+      case 'quiz': this.transitionTo('contests.contest.content.quiz')
+    }
+  }
+
   setupController(controller, model) {
-    this._super(controller, model)
     controller.set('content', model.content)
-    controller.set('contest', model.contest)
   }
 }
