@@ -52,16 +52,20 @@ export default class CodeWindowComponent extends Component {
   ]
 
   didReceiveAttrs() {
-    this._super(...arguments)
+    this._super(...arguments)    
     this.selectLanguage(this.languages[0].code)
     this.set('customInput', this.input)
     if(this.submission){
       this.setSubmission()
     }else{
-      this.languageSpecs.map(spec => {
+      const spec = this.languageSpecs.map(spec => {
         const codeStub = this.codeStubs.find(stub => stub.language === spec.code)
-        spec.source = codeStub ? codeStub.body : ''
+        const t = spec
+        t.source = codeStub ? codeStub.body : ''
+        return t
+        // spec.set('source', codeStub ? codeStub.body : '')
       })
+      this.set('languageSpecs', spec)
     }
   }
 
@@ -80,7 +84,13 @@ export default class CodeWindowComponent extends Component {
 
   @action
   selectLanguage(languageCode) {
-    this.set('selectedLanguage', this.languageSpecs.find(spec => spec.code === languageCode))
+    this.set('selectedLanguage', this.get('languageSpecs').find((spec) => {
+      console.log(spec,'sjhdbsdjdbjsjd')
+      if(!spec) {
+        return false
+      }
+      spec.code === languageCode
+    }))
     this.trigger("restoreCodeFromStorage")
   }
 
@@ -134,10 +144,10 @@ export default class CodeWindowComponent extends Component {
       editorCode = `{}`
     }
 
-
     if (!editorCode) {
       window.localStorage.setItem(this.storageKey, JSON.stringify({}))
-    } else if (JSON.parse(editorCode)[this.selectedLanguage.code]) {
+    } else if (
+      JSON.parse(editorCode)[this.get('selectedLanguage.code')]) {
       // set this as default when editor loads if we have some for this language
       // editor.setValue(JSON.parse(editorCode)[this.selectedLanguage.code])
       this.set('selectedLanguage.source', JSON.parse(editorCode)[this.selectedLanguage.code])

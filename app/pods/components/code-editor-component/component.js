@@ -16,7 +16,7 @@ export default class CodeEditorComponent extends Component {
   @computed('problem.id', 'contest.id')
   get storageKey () {
     if(this.problem) {
-      return `hb:code:${this.problem.id}:${this.contest.id}`
+      return `hb:code:${this.get('problem.id')}:${this.get('contest.id')}`
     }
   }
 

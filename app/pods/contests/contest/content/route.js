@@ -10,6 +10,11 @@ export default Route.extend({
       },
       contest_id,
       include: 'problem,quiz'
-    })
+    })    
+  },
+
+  setupController(controller, model) {
+    this._super(controller, model)
+    controller.set('content', model)
   }
 });
