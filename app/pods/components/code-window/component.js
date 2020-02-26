@@ -51,25 +51,7 @@ export default class CodeWindowComponent extends Component {
     }
   ]
 
-  didReceiveAttrs() {
-    this._super(...arguments)    
-    this.selectLanguage(this.languages[0].code)
-    this.set('customInput', this.input)
-    if(this.submission){
-      this.setSubmission()
-    }else{
-      const spec = this.languageSpecs.map(spec => {
-        const codeStub = this.codeStubs.find(stub => stub.language === spec.code)
-        const t = spec
-        t.source = codeStub ? codeStub.body : ''
-        return t
-        // spec.set('source', codeStub ? codeStub.body : '')
-      })
-      this.set('languageSpecs', spec)
-    }
-  }
-
-  setSubmission =  () => {
+  setSubmission = () => {
     this.set('selectedLanguage', this.languageSpecs.find(spec => spec.code === this.submission.language))
     this.set('selectedLanguage.source', atob(this.submission.source))
   }
@@ -82,14 +64,24 @@ export default class CodeWindowComponent extends Component {
     return this.languageSpecs
   }
 
+  didReceiveAttrs() {
+    this._super(...arguments)    
+    this.selectLanguage(this.languages[0].code)
+    this.set('customInput', this.input)
+    if(this.submission){
+      this.setSubmission()
+    } else {
+      this.languageSpecs.map((spec, i) => {
+        const codeStub = this.codeStubs.find(stub => stub.language === spec.code)
+        this.set(`languageSpecs.${i}.source`, codeStub ? codeStub.body : '')
+      })
+    }
+  }
+
   @action
   selectLanguage(languageCode) {
     this.set('selectedLanguage', this.get('languageSpecs').find((spec) => {
-      console.log(spec,'sjhdbsdjdbjsjd')
-      if(!spec) {
-        return false
-      }
-      spec.code === languageCode
+      return spec.code === languageCode
     }))
     this.trigger("restoreCodeFromStorage")
   }
