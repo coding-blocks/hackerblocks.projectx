@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import { hash } from 'rsvp';
 
 export default class Content extends Route {
-  model(params) {
+  model(params) {    
     const { contest } = this.modelFor('contests.contest')
     const content = this.store.queryRecord('content', {      
       custom: {
@@ -20,8 +20,12 @@ export default class Content extends Route {
 
   afterModel(model) {
     switch(model.content.type) {
-      case 'problem': this.transitionTo('contests.contest.content.problem')
-      case 'quiz': this.transitionTo('contests.contest.content.quiz')
+      case 'problem': 
+        this.transitionTo('contests.contest.content.problem')
+        break
+      case 'quiz':
+        this.transitionTo('contests.contest.content.quiz')
+        break
     }
   }
 

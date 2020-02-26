@@ -5,10 +5,11 @@
       @content={{content}}
       @problem={{problem}} />
   </div>
-  <div class="col-12 col-md-4">
-    {{#if problem.canSubmitReview}}
+  <div class="col-12 col-md-4">        
+    {{#if content.stats.can-submit-review}}
       <RatingCard 
         class="py-4" 
+        @content={{content}}
         @contest={{contest}} 
         @problem={{problem}} />
     {{/if}}
