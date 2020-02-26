@@ -13,10 +13,14 @@
 
 <div class="row">
   <div class="col-12 col-md-8">
-    <QuizView @contest={{contest}} @problem={{content.problem}} />
+    {{#if (eq content.type "problem")}}
+      <ProblemView @contest={{contest}} @problem={{content.problem}} />
+    {{else}}
+      <QuizView @contest={{contest}} @problem={{content.quiz}} />
+    {{/if}}
   </div>
   <div class="col-12 col-md-4">
-    {{#if (eq content.type 'problem')}}
+    {{#if (eq content.type "problem")}}
       {{#if content.problem.canSubmitReview}}
         <RatingCard class="py-4" @contest={{contest}} @problem={{content.problem}} />
       {{/if}}
