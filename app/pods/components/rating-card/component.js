@@ -10,11 +10,11 @@ export default class RatingCardComponent extends Component {
   feedback = null
 
   didReceiveAttrs() {
-    this.feedback = this.store.createRecord('problem-feedback', {
+    this.feedback = this.store.createRecord('content-feedback', {
       stars: 0,
       body: '',
       user: this.currentUser.user,
-      problem: this.problem,
+      content: this.content,
       contest: this.contest
     })
   }
