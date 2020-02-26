@@ -6,6 +6,7 @@ export default Model.extend({
   name: DS.attr(),
   type: DS.attr(),
   difficulty: DS.attr(),
+  stats: DS.attr(),
   problem: DS.belongsTo('problem'),
   quiz: DS.belongsTo('quiz'),
   contest: DS.hasMany('contest'),
