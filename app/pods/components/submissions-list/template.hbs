@@ -1,57 +1,60 @@
 <div class="py-4">
-  {{#if fetchSubmissionsTask.isRunning}}
-    <LoadingComponent />
-  {{else if submissions}}
-    <h4 class="mb-5 pt-4">My Submissions</h4>
-    <table class="w-100">
-      <thead class="font-sm extra-bold b-bottom">
-        <td class="pb-2">Result</td>
-        <td class="pb-2">Score</td>
-        <td class="pb-2">Time</td>
-        <td class="pb-2">Language</td>
-      </thead>
-      <tbody class="bold">
-        {{#each submissions as |submission|}}
-          <tr>
-            <td class="pb-4 pt-4 {{submission.resultParams.color}} font-sm">
-              <i class="{{submission.resultParams.icon}} pr-3"></i>
-              <span>{{submission.resultParams.message}}</span>
-            </td>
-            <td class="pb-4 pt-4">{{submission.score}}/100</td>
-            <td class="pb-4 pt-4">{{submission.executionTime}}</td>
-            <td class="pb-4 pt-4">{{submission.language}}</td>
-            <td class="pb-4 pt-4 t-align-r">
-              {{#unless (eq submission.submissionType 'web')}}
-                <a 
-                  class="pr-3 orange pointer" 
-                  role="button"
-                  onclick={{action "viewSubmission" submission}}
-                >
-                  View
-                </a>
-                <a 
-                  class="pr-3 orange pointer" 
-                  role="button"
-                  onclick={{action setSelectedSubmission submission}}
-                >
-                  Edit
-                </a>
-              {{/unless}}
-              <span class="normal">{{submission.submitAtHumanize}}</span> 
-            </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  {{else}}
-    <div class="t-align-c">
-      <img src="/app/images/submission_orange.png" alt="Submission Icon" width="58">
-      <h4>My Submissions</h4>
-      <p>
-        You haven't made a submission to this problem yet
-      </p>
-    </div>
-  {{/if}}
+  <WAsync 
+    @task={{fetchSubmissionsTask}}
+    @autoFire="true"
+    @loadingComponent="loading-component" as |submissions|>
+    {{#if submissions}}
+      <h4 class="mb-5 pt-4">My Submissions</h4>
+      <table class="w-100">
+        <thead class="font-sm extra-bold b-bottom">
+          <td class="pb-2">Result</td>
+          <td class="pb-2">Score</td>
+          <td class="pb-2">Time</td>
+          <td class="pb-2">Language</td>
+        </thead>
+        <tbody class="bold">
+          {{#each submissions as |submission|}}
+            <tr>
+              <td class="pb-4 pt-4 {{submission.resultParams.color}} font-sm">
+                <i class="{{submission.resultParams.icon}} pr-3"></i>
+                <span>{{submission.resultParams.message}}</span>
+              </td>
+              <td class="pb-4 pt-4">{{submission.score}}/100</td>
+              <td class="pb-4 pt-4">{{submission.executionTime}}</td>
+              <td class="pb-4 pt-4">{{submission.language}}</td>
+              <td class="pb-4 pt-4 t-align-r">
+                {{#unless (eq submission.submissionType 'web')}}
+                  <a 
+                    class="pr-3 orange pointer" 
+                    role="button"
+                    onclick={{action "viewSubmission" submission}}
+                  >
+                    View
+                  </a>
+                  <a 
+                    class="pr-3 orange pointer" 
+                    role="button"
+                    onclick={{action setSelectedSubmission submission}}
+                  >
+                    Edit
+                  </a>
+                {{/unless}}
+                <span class="normal">{{submission.submitAtHumanize}}</span> 
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      <div class="t-align-c">
+        <img src="/app/images/submission_orange.png" alt="Submission Icon" width="58">
+        <h4>My Submissions</h4>
+        <p>
+          You haven't made a submission to this problem yet
+        </p>
+      </div>
+    {{/if}}
+  </WAsync>
 
   {{#unless hideAnalytics}}
     {{submissions-list/analytics-graph contest=contest problem=problem}}

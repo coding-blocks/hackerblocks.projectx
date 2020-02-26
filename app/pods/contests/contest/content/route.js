@@ -1,20 +1,26 @@
 import Route from '@ember/routing/route';
+import { hash } from 'rsvp';
 
-export default Route.extend({
+export default class Content extends Route {
   model(params) {
-    const {contest_id} = this.paramsFor('contests.contest')
-    return this.store.queryRecord('content', {      
+    const { contest } = this.modelFor('contests.contest')
+    const content = this.store.queryRecord('content', {      
       custom: {
         ext: 'url',
         url: `${params.content_id}`
       },
-      contest_id,
+      contest_id: contest.id,
       include: 'problem,quiz'
     })    
-  },
+    return hash({
+      content,
+      contest
+    })
+  }
 
   setupController(controller, model) {
     this._super(controller, model)
-    controller.set('content', model)
+    controller.set('content', model.content)
+    controller.set('contest', model.contest)
   }
-});
+}

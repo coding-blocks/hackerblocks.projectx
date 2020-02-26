@@ -29,10 +29,10 @@ export default class LeaderboardViewComponent extends Component {
   @restartableTask fetchLeaderboardTask = function* () {
     let filter = {}
     let sort = ''
-    if (this.for === 'problem') {
+    if (this.for === 'content') {
       filter = {
         contestId: this.contestId,
-        problemId: this.problemId
+        contentId: this.contentId
       }
       sort = '-score,time'
     } else if (this.for === 'contest') {

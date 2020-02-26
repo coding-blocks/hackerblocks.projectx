@@ -35,13 +35,13 @@
   {{else if (eq selectedTab "submissions")}}
   <SubmissionsList 
     @contest={{contest}}
-    @problem={{problem}} />
+    @content={{content}} />
   {{else if (eq selectedTab "leaderboard")}}
   <LeaderboardView
     class="pt-5"
-    @for="problem"
+    @for="content"
     @contestId={{contest.id}}
-    @problemId={{problem.id}}
+    @contentId={{content.id}}
     @allowFilter=true 
     @columns={{array 'college'}} />
   {{else if (eq selectedTab "solution")}}

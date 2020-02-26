@@ -9,20 +9,14 @@ export default class SubmissionListComponent extends Component {
 
   showModal = false
 
-  @alias('fetchSubmissionsTask.lastSuccessful.value') submissions
-
-  didReceiveAttrs() {
-    this.fetchSubmissionsTask.perform()
-  }
-
   @restartableTask fetchSubmissionsTask = function *() {
-    const contest_id = this.contest.id
-    const problem_id = this.problem.id
+    const contest_id = this.contest.get('id')
+    const content_id = this.content.get('id')
 
     const submissions = yield this.store.query('submission', {
       filter: {
         contest_id,
-        problem_id
+        content_id
       },
       sort: '-createdAt'
     })

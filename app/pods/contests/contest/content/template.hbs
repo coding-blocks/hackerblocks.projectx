@@ -15,7 +15,10 @@
   <div class="col-12 col-md-8">
     {{log data.type}}
     {{#if (eq content.type "problem")}}    
-      <ProblemView @contest={{contest}} @problem={{content.problem}} />
+      <ProblemView 
+        @contest={{contest}} 
+        @content={{content}}
+        @problem={{content.problem}} />
     {{else}}
       <QuizView @contest={{contest}} @problem={{content.quiz}} />
     {{/if}}
