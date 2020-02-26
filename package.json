@@ -45,6 +45,7 @@
     "ember-concurrency-decorators": "^1.0.0-beta.2",
     "ember-crumbly": "^3.0.1",
     "ember-data": "~3.10.0",
+    "ember-data-url-templates": "^0.4.3",
     "ember-decorators": "^6.0.0",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^2.0.0",

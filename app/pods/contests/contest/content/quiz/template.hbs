@@ -1,13 +1,19 @@
 <div class="row">
   <div class="col-12 col-md-8">
     <QuizView 
-      @contest={{contest}} 
-      @content={{content}}
-      @quiz={{quiz}} />
+      @contentAttempt={{contentAttempt}}
+      @quiz={{quiz}}
+      @index={{q}} />
   </div>
   <div class="col-12 col-md-4">
     <QuizQuestionsPad>
-      <QuestionPill/>
+      {{#each quiz.questions as |question i|}}
+        <QuestionPill
+          @question_id={{question.id}}
+          @submissions={{contentAttempt.quizQuestionSubmissions}}
+          @changeQuestion={{action (mut q)}}
+          @index={{i}}/>
+      {{/each}}
     </QuizQuestionsPad>
   </div>
 </div>
