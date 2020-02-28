@@ -3,21 +3,22 @@
   @input={{content.problem.content.sample-input}}
   @codeStubs={{content.problem.solutionStubs}}
   @allowedLanguages={{contest.allowedLanguages}}
-  @onRunTask={{onRunTask}} 
-  @onSubmitTask={{onSubmitTask}} 
+  @onRunTask={{submission.runCodeTask}} 
+  @onSubmitTask={{submitCodeTask}} 
   @disablePaste={{fullScreen}}
   @storageKey={{storageKey}}
-  @submission={{submission}}
+  @submission={{copySubmission}}
   class="overflow-hidden {{innerLayoutClass}}" /> 
 
-{{#if (or judgeTaskGroup.isRunning lastResult)}}
+{{#if (or submission.codeTaskGroup.isRunning lastResult)}}
   <div class="result mt-5">
     {{#if submitSpam}}
       <div class="{{unless fullScreen "border-card"}} p-5 bg-grey">
         <h4>Too many submission requests. Try Again in few seconds</h4>
       </div>
     {{/if}}
-    <SubmissionResult @judgeResult={{lastResult}} />
+    <SubmissionResult 
+      @judgeResult={{if (not submission.codeTaskGroup.isRunning) lastResult}} />
   </div>
 {{/if}}
 
