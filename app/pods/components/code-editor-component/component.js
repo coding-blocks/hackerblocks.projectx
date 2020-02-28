@@ -1,16 +1,18 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { dropTask } from 'ember-concurrency-decorators';
+import { task, taskGroup } from 'ember-concurrency-decorators';
 import { timeout } from 'ember-concurrency';
 import { later } from '@ember/runloop';
 import { computed } from '@ember/object';
 import { Base64 } from 'js-base64';
+import { alias } from '@ember/object/computed';
 
 export default class CodeEditorComponent extends Component {
   @service api
   @service store
 
-  lastResult = null
+  @alias('judgeTaskGroup.lastSuccessful.value.judge_result') lastResult
+
   showAwardedBadge = false
 
   @computed('problem.id', 'contest.id')
@@ -20,13 +22,14 @@ export default class CodeEditorComponent extends Component {
     }
   }
 
-  @dropTask onRunTask = function*(language, code, input) {
+  @taskGroup({ drop: true }) judgeTaskGroup
+
+  @task({ group: 'judgeTaskGroup' }) onRunTask = function*(language, code, input) {
     try {
-      this.set('resultComponent', 'submission-status')
       const response = yield this.api.request('submissions/run', {
         method: 'POST',
         data: {
-          problem_id: this.problem.id,
+          content_id: this.content.id,
           input: Base64.encode(input),
           source: Base64.encode(code),
           language
@@ -37,8 +40,6 @@ export default class CodeEditorComponent extends Component {
         yield timeout(2000)
         const submission = yield this.store.findRecord('submission', response.submissionId, { refresh: true })
         if (submission.judge_result){
-          this.set('resultComponent', 'run-result')
-          this.set('lastResult', submission.judge_result)
           return submission
         }
       }
@@ -52,15 +53,13 @@ export default class CodeEditorComponent extends Component {
     }
   }
 
-  @dropTask onSubmitTask = function*(language, code) {
+  @task({ group: 'judgeTaskGroup' }) onSubmitTask = function*(language, code) {
     try {
-      this.set('resultComponent', 'submission-status')
-
       const response = yield this.api.request('submissions/submit', {
         method: 'POST',
         data: {
           contest_id: this.contest.id,
-          problem_id: this.problem.id,
+          content_id: this.content.id,
           source: Base64.encode(code),
           language
         }
@@ -78,13 +77,6 @@ export default class CodeEditorComponent extends Component {
           this.set('showAwardedBadge', true)
         }
         if (submission.judge_result){
-          if (submission.judge_result.error){
-            this.set('resultComponent', 'run-result')
-          } else {
-            this.set('resultComponent', 'submit-result')
-          }
-          this.set('lastResult', submission.judge_result)
-  
           if (this.fullScreen) {
             const score = +submission.score
             const progress = yield this.problem.get('progress')
@@ -105,7 +97,6 @@ export default class CodeEditorComponent extends Component {
       }
       return null
     } catch (err) {
-      this.set('resultComponent', '')
       if (err.status == 429) {
         this.set('submitSpam', true)
         later(() => this.set('submitSpam', false), 10000)

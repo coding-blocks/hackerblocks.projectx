@@ -5,10 +5,6 @@ import { dropTask } from 'ember-concurrency-decorators';
 export default class SubmissionStatusComponent extends Component {
   status = 'Submitting Your Code'
 
-  didRender() {
-    this.element.scrollIntoView({ behavior: "smooth", block: "end" })
-  }
-
   didReceiveAttrs() {
     this.setStatusTask.perform()
   }

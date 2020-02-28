@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-12 col-md-8">
     <QuizView 
+      @setOffset={{action (mut q)}}
       @contentAttempt={{contentAttempt}}
       @quiz={{quiz}}
       @index={{q}} />
@@ -15,5 +16,10 @@
           @index={{i}}/>
       {{/each}}
     </QuizQuestionsPad>
+    <div class="t-align-c mt-4">
+      <button class="button-solid button-orange">
+        Submit Quiz
+      </button>
+    </div>
   </div>
 </div>
