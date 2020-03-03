@@ -4,9 +4,9 @@ import { computed } from '@ember/object';
 import moment from 'moment';
 
 export default class ProblemController extends Controller {
-  @computed('problem')
+  @computed('content')
   get dcbEnded() {
-    return moment(this.problem.dcbProblems.start) < moment().subtract(1, 'day')
+    return moment(this.content.dcbContents.start) < moment().subtract(1, 'day')
   }
 
   @action

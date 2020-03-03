@@ -7,11 +7,11 @@
   </div>
   <div class="row justify-content-between">
     <div class="col-12 col-md-8">
-      {{#if top_problem}}
+      {{#if top_content}}
         <DcbHeader 
           class="pb-5"
           @contest={{contest}} 
-          @top_problem={{top_problem}}
+          @top_content={{top_content}}
           @toggleBookmark={{action 'toggleBookmark'}}
           @onTimerEnd={{action 'onTimerEnd'}} />
       {{/if}}
@@ -26,24 +26,23 @@
             </div>
           </div>
         </div>
-        <ProblemList 
-          @route="dcb.problem"
-          @problems={{previous_problems}} 
-          @theme="blue" 
-          @toggleBookmark={{action 'toggleBookmark'}} as |problem|>
-          <button {{action 'toggleBookmark' problem}}>
-            <i class="{{if (or problem.bookmarkedBy problem.bookmark) 'fas' 'far'}} fa-bookmark font-lg pr-2"></i>
-          </button>
-        </ProblemList>
+        <div class="list-divided border-none">
+          {{#each previous_contents as |content|}}      
+            <Contest::ContestContentListItem 
+              @route='dcb.problem'
+              @solveButtonClass='button-dashed button-blue'
+              @content={{content}} />
+          {{/each}}
+        </div>
       </div>
     </div>
     <div class="col-12 col-md-4 mt-md-0 mt-5">
       {{#if session.isAuthenticated}}
-        <ContestStreakView 
+        {{!-- <ContestStreakView 
           @contest={{contest}}
           @problem={{top_problem}}
           @streakComponent={{component 'daily-goal-card'}} 
-          class="pb-5" />
+          class="pb-5" /> --}}
       {{/if}}
       <div class="border-card px-0">
         <LeaderboardView

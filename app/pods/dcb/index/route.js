@@ -12,7 +12,7 @@ export default class DCBIndexRoute extends Route {
   setupController(controller, model) {
     controller.set('dcb', model.dcb)
     controller.set('contest', model.contest)
-    controller.set('problems', model.problems)
-    controller.set('top_problem', model.dcb.get('top_problem'))
+    controller.set('contents', model.contents)
+    controller.set('top_content', model.dcb.get('top_content'))
   }
 }

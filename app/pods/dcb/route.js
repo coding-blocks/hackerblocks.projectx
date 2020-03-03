@@ -4,14 +4,14 @@ import RSVP from 'rsvp';
 export default class DCBRoute extends Route {
   async model() {
     const dcb = await this.store.findRecord('dcb', 1, {
-      include: 'contest,problem'
+      include: 'contest,content'
     })
     const contest = await dcb.contest
-    const problems = dcb.get('problems')
+    const contents = dcb.get('contents')
     return RSVP.hash({
       dcb,
       contest,
-      problems
+      contents
     })
   }
 }
