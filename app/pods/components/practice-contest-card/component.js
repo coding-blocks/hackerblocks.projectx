@@ -31,7 +31,7 @@ export default class PracticeContestCard extends Component {
   }
 
   @restartableTask fetchNextProblemTask = function *() {
-    const payload = yield this.api.request(`practices/${this.practice.id}/next_problem`, {
+    const payload = yield this.api.request(`practices/${this.practice.id}/next_content`, {
       type: 'get',
       contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
       data: {
@@ -42,7 +42,7 @@ export default class PracticeContestCard extends Component {
     })
     
     this.store.pushPayload(payload)
-    const problem = this.store.peekRecord('problem', payload.data.id)
-    this.set('problem', problem)
+    const content = this.store.peekRecord('content', payload.data.id)
+    this.set('content', content)
   }
 }

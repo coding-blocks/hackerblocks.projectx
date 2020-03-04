@@ -13,14 +13,14 @@
         </div>
         {{/if}}
       </div>
-      <h4 class="bold mt-3">{{problem.name}}</h4>
+      <h4 class="bold mt-3">{{content.name}}</h4>
       <ul class="divided-list">
         <li class="pr-xl-3 pr-md-2 pr-3">
-          <div class="list-heading extra-bold yellow">{{problem.difficultyString}}</div>
-          <div class="list-data">Dificulty</div>
+          <div class="list-heading extra-bold yellow">{{content.difficultyString}}</div>
+          <div class="list-data">Difficulty</div>
         </li>
         <li class="px-xl-3 px-md-2 px-3">
-          <div class="list-heading extra-bold yellow">{{problem.submissionCount}}</div>
+          <div class="list-heading extra-bold yellow">{{content.stats.submission-count}}</div>
           <div class="list-data">Submissions</div>
         </li>
         <li class="pl-xl-3 pl-md-2 pl-3">
@@ -29,7 +29,7 @@
         </li>
       </ul>
       <div class="t-align-r mb-2">
-        {{#link-to "practice.contest.problem" practice.id problem.id}}
+        {{#link-to "practice.contest.problem" practice.id content.id}}
           <button class="button-solid button-white purple mt-3">Continue</button>
         {{/link-to}}
       </div>
