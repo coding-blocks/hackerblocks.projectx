@@ -36,11 +36,12 @@ Router.map(function() {
       });
     });
     this.route('contest', {path: '/:contest_id'}, function() {
-      this.route('problem', {path: '/p/:problem_id'});
       this.route('attempt', function() {
-        this.route('problem', {path: '/p/:problem_id'});
-        this.route('quiz', {path: '/q/:quiz_id'});
         this.route('loading');
+        this.route('content', {path: '/:content_id'}, function() {
+          this.route('problem', {path: '/problem'});
+          this.route('quiz', {path: '/quiz'});
+        });
       });
       this.route('feedback');
       this.route('content', {path: '/:content_id'}, function() {

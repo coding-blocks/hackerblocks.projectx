@@ -8,48 +8,37 @@ export default class QuizRoute extends Route {
       replace: true
     }
   }
-
-  async beforeModel() {
-    const { contest } = this.modelFor('contests.contest')
-    if (! await contest.get('currentAttempt')) {
-      this.transitionTo('contests.contest.attempt')
-    }
-  }
-  
   async model(params) {
     const { contest } = this.modelFor('contests.contest')
-    const quiz = await this.store.queryRecord('quiz', {
+    const content = this.modelFor('contests.contest.attempt.content')
+    const quiz = this.store.queryRecord('quiz', {
       custom: {
         ext: 'url',
-        url: `${params.quiz_id}`
+        url: `${content.get('quiz.id')}`
       },
       contest_id: contest.id
     })
-    
-    const quiz_attempt = this.store.queryRecord('quiz-attempt', {
+    const contentAttempt = this.store.queryRecord('content-attempt', {
       custom: {
         ext: 'url',
-        url: 'top-attempt'
+        url: `${content.get('id')}/topAttempt`
       },
-      filter: {
-        contest_id: contest.id,
-        quiz_id: quiz.id
-      }
+      contest_id: contest.get('id')
     })
 
     return RSVP.hash({
       contest,
-      contest_attempt: contest.get('currentAttempt'),
-      quiz,
-      quiz_attempt
+      contentAttempt,
+      content,
+      quiz
     })
   }
 
   setupController(controller, model) {
     controller.set('contest', model.contest)
-    controller.set('contest_attempt', model.contest_attempt)
+    controller.set('contentAttempt', model.contentAttempt)
+    controller.set('content', model.content)
     controller.set('quiz', model.quiz)
-    controller.set('quiz_attempt', model.quiz_attempt)
   }
 
   @action

@@ -6,8 +6,8 @@
 <div class="overflow-y-auto h-100">
   {{#each progressHash as |item index|}}
     {{#link-to
-      problemRoute
-      item.problemId
+      'contests.contest.attempt.content'
+      item.contentId
       class="white d-block v-align-ma py-4 pointer"
     }}
       {{#if (eq item.progress.status 'failed')}}
@@ -21,17 +21,7 @@
       {{else}}
         <span class="font-lg dark-grey">&#10625;</span>
       {{/if}}
-      <i class="fas fa-code mx-1 mx-xl-3 font-lg"></i>
-      <span class="font-xl extra-bold">{{inc index}}</span>
-    {{/link-to}}
-  {{/each}}
-  {{#each quizIds as |id index|}}
-    {{#link-to
-      quizRoute
-      id
-      class="white d-block v-align-ma py-4 pointer"
-    }}
-      <i class="fas fa-puzzle-piece mx-1 mx-xl-3 font-mds"></i>
+      <i class="fas mx-1 mx-xl-3 font-lg {{if (eq item.content.type "problem") "fa-code" "fa-puzzle-piece"}}"></i>
       <span class="font-xl extra-bold">{{inc index}}</span>
     {{/link-to}}
   {{/each}}

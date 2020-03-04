@@ -1,8 +1,6 @@
 import Route from '@ember/routing/route';
-import { action } from '@ember/object';
-import RSVP from 'rsvp';
 
-export default class ProblemRoute extends Route {
+export default class ContentRoute extends Route {
   async beforeModel() {
     const { contest } = this.modelFor('contests.contest')
     if (! await contest.get('currentAttempt')) {
@@ -10,22 +8,18 @@ export default class ProblemRoute extends Route {
     }
   }
 
-  async model(params) {
+  model(params) {
     const { contest } = this.modelFor('contests.contest')
-    const problem = this.store.queryRecord('problem', {
+    const content = this.store.queryRecord('content', {
       custom: {
         ext: 'url',
-        url: `${params.problem_id}`
+        url: `${params.content_id}`
       },
       contest_id: contest.id,
-      include: 'solution_stubs,progresses'
+      include: 'problem,quiz'
     })
 
-    return RSVP.hash({
-      contest,
-      contest_attempt: contest.get('currentAttempt'),
-      problem
-    })
+    return content
   }
 
   async afterModel(model) {
@@ -40,16 +34,10 @@ export default class ProblemRoute extends Route {
     }
   }
 
-  setupController(controller, model) {
-    controller.set('contest', model.contest)
-    controller.set('contest_attempt', model.contest_attempt)
-    controller.set('problem', model.problem)
-  }
-
-  @action
-  error(err) {
-    if (err.isAdapterError) {
-      this.transitionTo('contests.contest')
+  afterModel(model) {
+    switch(model.type) {
+      case 'problem': this.transitionTo('contests.contest.attempt.content.problem'); break
+      case 'quiz': this.transitionTo('contests.contest.attempt.content.quiz'); break
     }
   }
 }
