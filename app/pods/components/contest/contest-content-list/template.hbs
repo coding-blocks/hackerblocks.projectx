@@ -6,7 +6,10 @@
   {{else}}
     <div class="list-divided border-none">
       {{#each contents as |content|}}      
-        <Contest::ContestContentListItem @route={{route}} @content={{content}} />
+        <Contest::ContestContentListItem 
+          @route={{route}} 
+          @content={{content}}
+          @contest={{contest}} />
       {{/each}}
     </div>
     {{yield contents}}
