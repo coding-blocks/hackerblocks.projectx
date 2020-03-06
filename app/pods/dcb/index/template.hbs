@@ -39,11 +39,11 @@
     </div>
     <div class="col-12 col-md-4 mt-md-0 mt-5">
       {{#if session.isAuthenticated}}
-        {{!-- <ContestStreakView 
+        <ContestStreakView 
           @contest={{contest}}
-          @problem={{top_problem}}
+          @content={{top_content}}
           @streakComponent={{component 'daily-goal-card'}} 
-          class="pb-5" /> --}}
+          class="pb-5" />
       {{/if}}
       <div class="border-card px-0">
         <LeaderboardView

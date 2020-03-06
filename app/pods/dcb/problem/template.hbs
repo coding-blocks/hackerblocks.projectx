@@ -19,8 +19,8 @@
       @problem={{content.problem}} />
   </div>
   <div class="col-12 col-md-4">
-    {{!-- <DailyGoalCardSmall
-      @topSubmission={{dcb.top_problem.topSubmission}}>
+    <DailyGoalCardSmall
+      @topSubmission={{dcb.top_content.topSubmission}}>
       {{#if dcbEnded}}
         <div class="divider-h my-3"></div>
         <div>
@@ -29,7 +29,7 @@
           </p>
         </div>
       {{/if}}
-    </DailyGoalCardSmall> --}}
+    </DailyGoalCardSmall>
     {{#if problem.canSubmitReview}}
       <RatingCard 
         class="py-4"

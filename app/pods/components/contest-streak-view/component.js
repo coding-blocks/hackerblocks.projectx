@@ -14,9 +14,9 @@ export default class ContestStreakView extends Component {
       return this.streaks.toArray()[0]
     }
   }
-  @computed('problem')
+  @computed('content')
   get topSubmission() {
-    return this.problem.topSubmission
+    return this.content.topSubmission
   }
 
   didReceiveAttrs() {
