@@ -62,18 +62,4 @@ export default class IndexController extends Controller {
       this.transitionToRoute('contests.contest.attempt.quiz', quiz_id)
     }
   }
-  async toggleBookmark(problem){
-    const bookmark = await problem.get('bookmark')
-    if(bookmark){
-      await bookmark.destroyRecord()
-      return problem.set('bookmarkedBy', null)
-    }
-    const bookmarkProblem = this.store.createRecord('bookmarked-problem', {
-      problem,
-      contest: this.contest,
-      contentTypeId: this.contentTypeId
-    })
-
-    bookmarkProblem.save()
-  }
 }

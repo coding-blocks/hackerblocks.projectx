@@ -1,28 +1,68 @@
-<ContestView
-  @contest={{contest}}
-  @page={{page}}
-  @header={{component 'practice-header' practice=practice}}
-  @status={{status}}
-  @difficulty={{difficulty}}
-  @tags={{tags}}
-  @query={{q}}
-  @onQuery={{action (mut q)}}
-  @contentTypeId={{practice.id}}
-  @problemListRoute="practice.contest.problem"
-  @theme="purple"
-  @setOffset={{action 'setOffset'}} as |contestView|>
-  <LevelView 
-    @contest={{contest}}
-    @levelComponent={{component 'level-card'}} />
-  <PracticeFilterComponent
-    @status={{status}}
-    @changeStatusFilter={{action (mut status)}}
-    @difficulty={{difficulty}}
-    @changeDifficultyFilter={{action (mut difficulty)}}
-    @tags={{tags}}
-    @changeTagsFilter={{action (mut tags)}} />
-  <div class="border-card px-0 mt-5">
-    {{contestView.leaderboardComponent theme='purple'}}
+<div class="row my-4">
+  <div class="col-12 col-md-8 mb-5">
+    <div class="border-card p-md-4 px-3 bg-gradient-purple white">
+      <div class="row mx-0 align-items-center">
+        <div class="col-xl-10 col-md-9 col-9">
+          <div class="img-desc align-items-center justify-content-center">
+            <div class="col-2">
+              <img src="{{practice.logo}}" alt="" class="">
+            </div>
+            <div class="description t-align-l col-10">
+              <h2>{{contest.name}}</h2>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 2.58rem" class="extra-bold">{{contest.stats.content-count}}</div>
+          <div class="font-sm">PROBLEMS</div>
+        </div>
+      </div>
+    </div>
+    <div class="border-card mt-4">
+      <div class="right-input">
+        <Input 
+          class="input-text input-text--non-rounded" 
+          placeholder="Search problems by name"
+          @enter={{action (mut q)}}
+          @type="text"
+          @value={{searchQuery}} />
+      </div>
+      {{#if q}}
+        <h5 class="bold mt-4">
+          Showing results for <span class="orange">{{q}}</span>
+        </h5>
+      {{/if}}
+      <div class="divider-h mt-4"></div>
+      <Contest::ContestContentList
+        @solveButtonClass="button-dashed button-purple"
+        @contest={{contest}}
+        @page={{page}}
+        @route='practice.contest.content'
+        @filter={{filter}} as |contents|>
+        <PaginationPill 
+          @pagination={{contents.meta.pagination}} 
+          @setOffset={{action (mut offset)}} />
+        </Contest::ContestContentList>
+    </div>
   </div>
-</ContestView>
 
+  <div class="col-12 col-md-4">
+    <LevelView 
+      @contest={{contest}}
+      @levelComponent={{component 'level-card'}} />
+    <PracticeFilterComponent
+      @status={{status}}
+      @changeStatusFilter={{action (mut status)}}
+      @difficulty={{difficulty}}
+      @changeDifficultyFilter={{action (mut difficulty)}} 
+      @tags={{tags}}
+      @changeTagsFilter={{action (mut tags)}} />
+    <div class="border-card py-5 mt-4 p-0">
+      <LeaderboardView
+        @title ='leaderboard'
+        @for = 'contest'
+        @theme = 'purple'
+        @contestId = {{contest.id}} />    
+    </div>
+  </div>
+</div>

@@ -58,6 +58,10 @@ Router.map(function() {
   this.route('practice', function() {
     this.route('contest', {path: '/:practice_id'}, function() {
       this.route('problem', {path: '/p/:problem_id'});
+      this.route('content', {path: '/:content_id'}, function() {
+        this.route('problem');
+        this.route('quiz');
+      });
     });
   });
   this.route('problem');

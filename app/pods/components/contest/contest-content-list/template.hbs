@@ -7,6 +7,7 @@
     <div class="list-divided border-none">
       {{#each contents as |content|}}      
         <Contest::ContestContentListItem 
+          @solveButtonClass={{solveButtonClass}}
           @route={{route}} 
           @content={{content}}
           @contest={{contest}} />
