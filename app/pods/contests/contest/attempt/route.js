@@ -27,6 +27,11 @@ export default class AttemptRoute extends VerifiedEmailRoute {
     return model
   }
 
+  async afterModel(model) {
+    const contents = await model.contest.get('contents')
+    this.transitionTo('contests.contest.attempt.content', contents.get('firstObject.id'))
+  }
+
   setupController(controller, model) {
     controller.set('contest', model.contest)
   }
