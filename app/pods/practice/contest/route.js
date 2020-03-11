@@ -6,10 +6,12 @@ const AuthenticatedRoute = Route.extend(AuthenticatedRouteMixin)
 export default class ContestRoute extends AuthenticatedRoute {
   async model(params) {
     const practice = await this.store.findRecord('practice', params.practice_id, {
-      include: 'contest,tags'
+      include: 'tags'
     })
+    const contest = await practice.get('contest')
     return RSVP.hash({
-      practice
+      practice,
+      contest
     })
   }
 
