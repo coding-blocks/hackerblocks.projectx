@@ -68,7 +68,7 @@ export default class AnalyticsGraph extends Component {
   }
 
   @restartableTask fetchAnalyticsTask = function *() {
-    return yield this.api.request(`problems/${this.problem.id}/language-analytics`, {
+    return yield this.api.request(`problems/${this.problem.get('id')}/language-analytics`, {
       type: 'GET',
       data: {
         contest_id: this.contest.id
@@ -76,7 +76,7 @@ export default class AnalyticsGraph extends Component {
     })
   }
   @restartableTask fetchSubmissionSummaryTask = function *() {
-    return yield this.api.request(`problems/${this.problem.id}/submissions-summary`, {
+    return yield this.api.request(`problems/${this.problem.get('id')}/submissions-summary`, {
       type: 'GET',
       data: {
         contest_id: this.contest.id

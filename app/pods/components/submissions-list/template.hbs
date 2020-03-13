@@ -31,13 +31,6 @@
                   >
                     View
                   </a>
-                  <a 
-                    class="pr-3 orange pointer" 
-                    role="button"
-                    onclick={{action setSelectedSubmission submission}}
-                  >
-                    Edit
-                  </a>
                 {{/unless}}
                 <span class="normal">{{submission.submitAtHumanize}}</span> 
               </td>
@@ -57,7 +50,7 @@
   </WAsync>
 
   {{#unless hideAnalytics}}
-    {{submissions-list/analytics-graph contest=contest problem=problem}}
+    {{submissions-list/analytics-graph contest=contest problem=content.problem}}
   {{/unless}}
 </div>
 
