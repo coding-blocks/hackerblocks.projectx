@@ -30,8 +30,8 @@
     <button class="mr-3" {{action (perform bookmarkContentTask)}}>
       <i class="{{if content.bookmarkedContent 'fas' 'far'}} fa-bookmark font-lg pr-2"></i>
     </button>
-    {{#link-to route content.id class=(or solveButtonClass 'button-dashed button-orange') }}
-      Solve Challenge    
+    {{#link-to route content.id class=_solveButtonClass }}
+      {{_solveButtonText}}
     {{/link-to}}
   </div>
 </div>

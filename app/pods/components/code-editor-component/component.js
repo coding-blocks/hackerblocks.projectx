@@ -9,7 +9,8 @@ export default class CodeEditorComponent extends Component {
   @service store
   @service submission
 
-  @alias('submission.codeTaskGroup.lastSuccessful.value.judge_result') lastResult
+  @alias('submission.codeTaskGroup.lastSuccessful.value') lastSubmission
+  @alias('lastSubmission.judge_result') lastResult
   @equal('submission.codeTaskGroup.last.error.status', 429) submitSpam
 
   badge = null
@@ -28,8 +29,8 @@ export default class CodeEditorComponent extends Component {
 
   @task submitCodeTask = function *(language, code) {
     yield this.submission.submitCodeTask.perform(language, code)
-    if (this.lastResult.get('badge.id')) {
-      this.set('badge', this.lastResult.get('badge'))
+    if (this.lastSubmission.get('badge.id')) {
+      this.set('badge', this.lastSubmission.get('badge'))
       this.set('showAwardedBadge', true)
     }
   }
