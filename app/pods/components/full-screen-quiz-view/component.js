@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
-import { restartableTask } from 'ember-concurrency-decorators';
+import { restartableTask, dropTask } from 'ember-concurrency-decorators';
 import { alias } from '@ember/object/computed';
 import { computed, action } from '@ember/object';
 
@@ -10,6 +10,10 @@ export default class FullScreenQuizView extends Component {
   @alias('fetchQuestionTask.lastSuccessful.value') question
 
   hideQuestionPad = true
+
+  didReceiveAttrs() {
+    this.fetchQuestionTask.perform()
+  }
   
   @computed('quiz.questions')
   get questionCount() {
@@ -36,28 +40,27 @@ export default class FullScreenQuizView extends Component {
     }
   }
 
-  @computed('quiz_attempt.quiz_submissions', 'question')
-  get submission() {
-    const submission = this.quiz_attempt.quiz_submissions.findBy('question_id', this.question.id)
-    return submission || this.store.createRecord('quiz-submission', {
-      question_id: this.question.id,
-      currentattempt_id: this.quiz_attempt.id
+  @computed('contentAttempt', 'fetchQuestionTask.lastSuccessful.value')
+  get questionSubmission() {
+    const question = this.fetchQuestionTask.lastSuccessful.value
+    const submission = 
+      this.contentAttempt.quizQuestionSubmissions.findBy(
+        'question_id',
+        question.id
+      ) 
+    return submission || this.store.createRecord('quiz-question-submission', {
+      contentAttempt: this.contentAttempt,
+      question_id: question.id
     })
   }
 
-  didReceiveAttrs() {
-    this.fetchQuestionTask.perform()
-  }
-
-  @restartableTask markQuestionForReview = function *() {
-    this.submission.toggleProperty('review_later')
-    yield this.submission.save()
-  }
-
   @restartableTask fetchQuestionTask = function *() {
-    const index = this.index || 1
-    const question_id = this.quiz.hasMany('questions').ids()[index - 1]
-    return this.store.findRecord('question', question_id)
+    return (yield this.quiz.get('questions')).objectAt(this.index-1)
+  }
+
+  @dropTask reviewLaterTask = function *() {
+    this.questionSubmission.set('review_later', !this.questionSubmission.get('review_later'))
+    return this.questionSubmission.save()
   }
 
   @action

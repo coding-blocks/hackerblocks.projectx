@@ -4,7 +4,7 @@
       <div class="row justify-content-between">
         <div class="col-md-4 col-sm-6 col-6">
           <h5>TODAY'S CODE BYTE</h5>
-          <h5 class="mt-2 mb-4">{{moment-format problem.dcbProblems.start 'dddd, D MMM'}}</h5>
+          <h5 class="mt-2 mb-4">{{moment-format content.dcbContents.start 'dddd, D MMM'}}</h5>
         </div>
         <div>
           <Timer @to={{end_time}} @onEnd={{action onTimerEnd}} as |time|>
@@ -29,9 +29,9 @@
     {{/unless}}
     <div class="row justify-content-between align-items-center mr-0">
       <div class="col-10">
-        <h3 class="mb-4">{{problem.content.name}}</h3>
+        <h3 class="mb-4">{{content.name}}</h3>
       </div>
-      <button {{action toggleBookmark problem}}>
+      <button {{action toggleBookmark content}}>
         <i class="{{if (or problem.bookmarkedBy problem.bookmark) 'fas' 'far'}} fa-bookmark fa-2x"></i>
       </button>
     </div>
@@ -40,11 +40,11 @@
     {{/if}}
     <ul class="divided-list">
       <li class="px-3">
-        <div class="list-heading">{{problem.difficultyString}}</div>
+        <div class="list-heading">{{content.difficultyString}}</div>
         <div class="list-data">Difficulty</div>
       </li>
       <li class="px-3">
-        <div class="list-heading">{{problem.submissionCount}}</div>
+        <div class="list-heading">{{content.stats.submission-count}}</div>
         <div class="list-data">Submissions</div>
       </li>
       <li class="px-3">

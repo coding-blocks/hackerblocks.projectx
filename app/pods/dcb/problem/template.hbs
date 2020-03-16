@@ -9,17 +9,18 @@
   <div class="col-12 col-md-8">
     <DcbProblemCard
       class="pb-4"
-      @problem={{problem}}
+      @content={{content}}
       @toggleBookmark={{action 'toggleBookmark'}} 
       @onTimerEnd={{action 'onTimerEnd'}} />
     <ProblemView 
       class="py-4"
+      @content={{content}}
       @contest={{contest}}
-      @problem={{problem}} />
+      @problem={{content.problem}} />
   </div>
   <div class="col-12 col-md-4">
     <DailyGoalCardSmall
-      @topSubmission={{dcb.top_problem.topSubmission}}>
+      @topSubmission={{dcb.top_content.topSubmission}}>
       {{#if dcbEnded}}
         <div class="divider-h my-3"></div>
         <div>
@@ -33,10 +34,10 @@
       <RatingCard 
         class="py-4"
         @contest={{contest}}
-        @problem={{problem}} />
+        @problem={{content.problem}} />
     {{/if}}
     <AuthorCard 
-      @author={{problem.createdBy}}
+      @author={{content.problem.createdBy}}
       class="py-4" />
   </div>
 </div>

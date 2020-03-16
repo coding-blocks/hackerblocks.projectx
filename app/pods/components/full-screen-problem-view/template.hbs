@@ -7,7 +7,7 @@
     <div class="col-6">
       <ul class="divided-list t-align-r mt-0 pull-right">
         <li class="px-3">
-          <h4 class="orange">{{problem.difficultyString}}</h4>
+          <h4 class="orange">{{content.difficultyString}}</h4>
           <div class="list-data font-mds">Dificulty</div>
         </li>
         <li class="px-3">
@@ -22,15 +22,15 @@
     <div class="col-6">
       <span class="mr-2 font-mds extra-bold">Status:</span>
       <span
-        class="orange font-mds extra-bold">{{or problem.topSubmission.resultParams.message 'Not Attempted'}}</span>
+        class="orange font-mds extra-bold">{{or content.topSubmission.resultParams.message 'Not Attempted'}}</span>
     </div>
     <div class="col-6">
       <div class="row no-gutters justify-content-end">
         <div class="col-xl-6 col-5">
-          <progress value="{{or problem.topSubmission.score 0}}" max="100" class="d-inline-block v-align-m"></progress>
+          <progress value="{{or content.topSubmission.score 0}}" max="100" class="d-inline-block v-align-m"></progress>
         </div>
         <div>
-          <h5 class="d-inline-block pl-3">{{or problem.topSubmission.score 0}}/100 Pts</h5>
+          <h5 class="d-inline-block pl-3">{{or content.topSubmission.score 0}}/100 Pts</h5>
         </div>
       </div>
     </div>
@@ -48,7 +48,10 @@
       {{#liquid-if (eq currentTab 'problem')}}
       <ProblemExplanation @problem={{problem}} />
       {{else if (eq currentTab 'submissions')}}
-      <SubmissionsList @contest={{contest}} @problem={{problem}} @setSelectedSubmission={{action (mut selectedSubmission)}}/>
+      <SubmissionsList 
+        @contest={{contest}} 
+        @content={{content}} 
+        @setSelectedSubmission={{action (mut selectedSubmission)}}/>
       {{/liquid-if}}
     </div>
   </div>
@@ -56,10 +59,7 @@
 <div class="col-md-6 col-12 code-window--mb-45 h-100 overflow-y-auto">
   <CodeEditorComponent 
     class="h-100"
-    @problem={{problem}} 
+    @content={{content}} 
     @fullScreen=true
-    @submission={{selectedSubmission}}
-    @contest={{contest}} as |RunResult|>
-    <RunResult @fullScreen={{true}} /> 
-  </CodeEditorComponent>
+    @contest={{contest}} />
 </div>

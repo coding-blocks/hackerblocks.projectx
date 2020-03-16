@@ -6,18 +6,10 @@
       </div>
       <div class="col-12 col-md-8 my-lg-0 my-4">
         <ul class="divided-list my-0">
-          {{#if problemCount}}
-            <li class="pr-4">
-              <div class="list-heading font-md extra-bold mb-2 orange">{{problemCount}}</div>
-              <div class="list-data font-mds">Problems</div>
-            </li>
-          {{/if}}
-          {{#if quizCount}}
-            <li class="px-4">
-              <div class="list-heading font-md extra-bold mb-2 orange">{{quizCount}}</div>
-              <div class="list-data font-mds">Quizzes</div>
-            </li>
-          {{/if}}
+          <li class="pr-4">
+            <div class="list-heading font-md extra-bold mb-2 orange">{{contentCount}}</div>
+            <div class="list-data font-mds">Challenges</div>
+          </li>
           <li class="px-4">
             <div class="list-heading font-md extra-bold mb-2 orange">{{moment-format contest.start_time 'D MMM h:mm A'}}</div>
             <div class="list-data font-mds">Starts</div>

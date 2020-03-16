@@ -1,0 +1,5 @@
+{{#if isLoading}}
+  {{component loadingComponent}}
+{{else}}
+  {{yield result task.last.isError}}
+{{/if}}

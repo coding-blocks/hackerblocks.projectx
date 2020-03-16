@@ -16,11 +16,11 @@ export default class IntermediateContestComponent extends Component {
   @alias('contest.currentAttempt') contest_attempt
   @alias('fetchRegistrationTask.lastSuccessful.value') contestRegistration
 
-  @computed('contest.problems')
-  get problemCount() {
+  @computed('contest.contents')
+  get contentCount() {
     if (this.contest) {
-      if (this.contest.stats) return this.contest.stats.problemcount
-      return this.get('contest').hasMany('problems').ids().length
+      if (this.contest.stats) return this.contest.stats['content-count']
+      return this.get('contest').hasMany('contents').ids().length
     }
   }
 
@@ -28,13 +28,6 @@ export default class IntermediateContestComponent extends Component {
   get queueTimeEnd() {
     if (this.showStartDialog) {
       return moment().add(Math.floor(Math.random() * 60), 'seconds')
-    }
-  }
-
-  @computed('contest.quizzes')
-  get quizCount() {
-    if (this.contest) {
-      return this.get('contest').hasMany('quizzes').ids().length
     }
   }
 

@@ -1,0 +1,30 @@
+<div class="img-card p-5 hb-tab-nav">
+  <WAsync
+    @task={{fetchQuestionTask}}
+    @fireTrigger={{taskTrigger}}
+    @loadingComponent="loading-component" as |question|>
+    <QuestionContainer 
+      @submission={{questionSubmission}}
+      @index={{index}}
+      @question={{question}} />
+  </WAsync>
+</div>
+<div class="d-flex align-items-center mt-4 mx-4">
+  <button 
+    class="button-dashed button-orange"
+    disabled={{lt index 2}}
+    {{action setOffset (dec index)}}>
+    <i class="fas fa-arrow-left mr-2"></i>Previous Question
+  </button>
+  <button 
+    class="button-solid button-orange extra-bold mt-4 mb-2 mx-auto d-block" 
+    {{action (perform reviewLaterTask)}}>
+    Review Later
+  </button>
+  <button 
+    class="button-dashed button-orange"
+    disabled={{gt index (dec quiz.questions.length)}}
+    {{action setOffset (inc index)}}>
+    Next Question<i class="fas fa-arrow-right ml-2"></i>
+  </button>
+</div>

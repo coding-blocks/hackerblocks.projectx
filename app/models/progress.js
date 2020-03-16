@@ -6,5 +6,5 @@ const { Model } = DS;
 export default Model.extend({
   status: DS.attr(),
   contestAttempt: DS.belongsTo('contest-attempt'),
-  problem: DS.belongsTo('problem')
+  content: DS.belongsTo('content')
 });

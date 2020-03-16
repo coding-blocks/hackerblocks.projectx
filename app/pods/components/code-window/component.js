@@ -51,21 +51,7 @@ export default class CodeWindowComponent extends Component {
     }
   ]
 
-  didReceiveAttrs() {
-    this._super(...arguments)
-    this.selectLanguage(this.languages[0].code)
-    this.set('customInput', this.input)
-    if(this.submission){
-      this.setSubmission()
-    }else{
-      this.languageSpecs.map(spec => {
-        const codeStub = this.codeStubs.find(stub => stub.language === spec.code)
-        spec.source = codeStub ? codeStub.body : ''
-      })
-    }
-  }
-
-  setSubmission =  () => {
+  setSubmission = () => {
     this.set('selectedLanguage', this.languageSpecs.find(spec => spec.code === this.submission.language))
     this.set('selectedLanguage.source', atob(this.submission.source))
   }
@@ -78,9 +64,25 @@ export default class CodeWindowComponent extends Component {
     return this.languageSpecs
   }
 
+  didReceiveAttrs() {
+    this._super(...arguments)    
+    this.selectLanguage(this.languages[0].code)
+    this.set('customInput', this.input)
+    if(this.submission){
+      this.setSubmission()
+    } else {
+      this.languageSpecs.map((spec, i) => {
+        const codeStub = this.codeStubs.find(stub => stub.language === spec.code)
+        this.set(`languageSpecs.${i}.source`, codeStub ? codeStub.body : '')
+      })
+    }
+  }
+
   @action
   selectLanguage(languageCode) {
-    this.set('selectedLanguage', this.languageSpecs.find(spec => spec.code === languageCode))
+    this.set('selectedLanguage', this.get('languageSpecs').find((spec) => {
+      return spec.code === languageCode
+    }))
     this.trigger("restoreCodeFromStorage")
   }
 
@@ -134,10 +136,10 @@ export default class CodeWindowComponent extends Component {
       editorCode = `{}`
     }
 
-
     if (!editorCode) {
       window.localStorage.setItem(this.storageKey, JSON.stringify({}))
-    } else if (JSON.parse(editorCode)[this.selectedLanguage.code]) {
+    } else if (
+      JSON.parse(editorCode)[this.get('selectedLanguage.code')]) {
       // set this as default when editor loads if we have some for this language
       // editor.setValue(JSON.parse(editorCode)[this.selectedLanguage.code])
       this.set('selectedLanguage.source', JSON.parse(editorCode)[this.selectedLanguage.code])

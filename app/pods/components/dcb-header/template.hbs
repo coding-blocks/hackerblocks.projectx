@@ -5,7 +5,7 @@
       <h5 class="mt-2 mb-4">{{humanize_date}}</h5>
     </div>
     <div>
-      <Timer @to={{top_problem_end}} @onEnd={{action onTimerEnd}} as |time|>
+      <Timer @to={{top_content_end}} @onEnd={{action onTimerEnd}} as |time|>
         <ul class="divided-list timer">
           <li class="timer-item">
             <div class="list-heading white">{{time.hours}}</div>
@@ -26,24 +26,24 @@
   <div class="divider-h bg-white dcb-divider"></div>
   <div class="row justify-content-between align-items-center mr-0">
       <div class="col-10">
-        <h3 class="mb-4 mt-4">{{top_problem.content.name}}</h3>
+        <h3 class="mb-4 mt-4">{{top_content.name}}</h3>
       </div>
-      <button {{action toggleBookmark top_problem}}>
-        <i class="{{if (or top_problem.bookmarkedBy top_problem.bookmark) 'fas' 'far'}} fa-bookmark fa-2x"></i>
+      <button {{action toggleBookmark top_content}}>
+        <i class="{{if (or top_content.bookmarkedBy top_content.bookmark) 'fas' 'far'}} fa-bookmark fa-2x"></i>
       </button>
     </div>
   <div class="font-xs mb-5">
-    {{markdown-to-html (truncate top_problem.content.description 300 true)}}
+    {{markdown-to-html (truncate top_content.problem.details.description 300 true)}}
   </div>
   <div class="row justify-content-between align-items-center">
     <div class="col-xl-9 col-12">
       <ul class="divided-list">
         <li class="px-lg-3 px-2">
-          <div class="list-heading">{{top_problem.difficultyString}}</div>
+          <div class="list-heading">{{top_content.difficultyString}}</div>
           <div class="list-data">Difficulty</div>
         </li>
         <li class="px-lg-3 px-2">
-          <div class="list-heading">{{top_problem.submissionCount}}</div>
+          <div class="list-heading">{{top_content.stats.submission-count}}</div>
           <div class="list-data">Submissions</div>
         </li>
         <li class="px-lg-3 px-2">
@@ -57,7 +57,7 @@
       </ul>
     </div>
     <div>
-      {{#link-to 'dcb.problem' top_problem.id}}
+      {{#link-to 'dcb.problem' top_content.id}}
         <button class="button-solid button-white bold">Solve Challenge</button>
       {{/link-to}}
     </div>

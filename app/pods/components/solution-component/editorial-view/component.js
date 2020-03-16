@@ -26,8 +26,8 @@ export default class EditorialView extends Component {
         ext: 'url',
         url: 'current-editorial'
       },
-      contest_id: this.contest.id,
-      problem_id: this.problem.id
+      contest_id: this.contest.get('id'),
+      problem_id: this.problem.get('id')
     })
   }
 }

@@ -6,24 +6,30 @@ const AuthenticatedRoute = Route.extend(AuthenticatedRouteMixin)
 export default class ProblemRoute extends AuthenticatedRoute {
   model(params) {
     const { contest, dcb } = this.modelFor('dcb')
-    const problem = this.store.queryRecord('problem', {
+    const content = this.store.queryRecord('content', {
       custom: {
         ext: 'url',
-        url: `${params.problem_id}`
+        url: `${params.content_id}`
       },
       contest_id: contest.id,
-      include: 'solution_stubs'
+      include: 'problem'
     })
     return RSVP.hash({
       contest,
-      problem,
+      content,
       dcb
     })
   }
 
+  afterModel(model) {
+    if (model.content.type !== 'problem') {
+      this.transitionTo('404')
+    }
+  }
+
   setupController(controller, model) {
     controller.set('contest', model.contest)
-    controller.set('problem', model.problem)
+    controller.set('content', model.content)
     controller.set('dcb', model.dcb)
   }
 }

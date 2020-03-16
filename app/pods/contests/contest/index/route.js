@@ -3,22 +3,22 @@ import Route from '@ember/routing/route';
 export default class IndexRoute extends Route {
   queryParams = {
     offset: {
-      refreshModel: false
+      refreshModel: true
     },
     limit: {
-      refreshModel: false
+      refreshModel: true
     },
     difficulty: {
-      refreshModel: false
+      refreshModel: true
     },
     status: {
-      refreshModel: false
+      refreshModel: true
     },
     tags: {
-      refreshModel: false
+      refreshModel: true
     },
     q: {
-      refreshModel: false
+      refreshModel: true
     }
   }
 

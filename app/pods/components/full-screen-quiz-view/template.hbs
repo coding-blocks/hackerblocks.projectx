@@ -5,7 +5,8 @@
   <QuestionContainer 
     class="overflow-y-auto no-scrollbar code-window__question-area h-100 pb-5"
     @index={{index}} 
-    @submission={{submission}} 
+    @contentAttempt={{contentAttempt}}
+    @submission={{questionSubmission}} 
     @question={{question}} />
   {{/if}}
   <div class="position-sticky bl bg-white pb-3 d-md-block d-none">
@@ -21,7 +22,7 @@
       </div>
       <div>
         <button class="button-solid button-orange font-sm extra-bold mx-3 mt-2"
-          onclick={{perform markQuestionForReview}}>
+          onclick={{perform reviewLaterTask}}>
           Review Later
         </button>
       </div>
@@ -43,7 +44,7 @@
     @questionCount={{questionCount}}>
     {{#each questionIds as |id index|}}
       <QuestionPill 
-        @submissions={{quiz_attempt.quiz_submissions}} 
+        @submissions={{contentAttempt.quizQuestionSubmissions}} 
         @question_id={{id}} 
         @index={{index}}
         @changeQuestion={{changeQuestion}} />
@@ -82,7 +83,7 @@
     @questionCount={{questionCount}}>
     {{#each questionIds as |id index|}}
       <QuestionPill 
-        @submissions={{quiz_attempt.quiz_submissions}} 
+        @submissions={{contentAttempt.quizQuestionSubmissions}} 
         @question_id={{id}} 
         @index={{index}}
         @changeQuestion={{changeQuestion}} />

@@ -6,10 +6,10 @@ import Moment from 'moment';
 export default class DCBIndexController extends Controller {
   @service session 
 
-  @computed('problems')
-  get previous_problems() {
-    return this.problems
-      .filter(problem => problem.dcbProblems && !(Moment(problem.dcbProblems.start) > Moment().subtract(1, 'day')))
+  @computed('contents')
+  get previous_contents() {
+    return this.contents
+      .filter(content => content.dcbContents && !(Moment(content.dcbContents.start) > Moment().subtract(1, 'day')))
   }
 
   @action

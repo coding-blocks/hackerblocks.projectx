@@ -4,9 +4,9 @@ const { Model } = DS;
 
 export default Model.extend({
   contest: DS.belongsTo('contest'),
-  problems: DS.hasMany('problem'),
-  top_problem: Ember.computed('problems', function() {
-    const problems = this.get('problems')
-    return problems.find(problem => problem.dcbProblems && Moment(problem.dcbProblems.start) > Moment().subtract(1, 'day'))
+  contents: DS.hasMany('content'),
+  top_content: Ember.computed('contents', function() {
+    const contents = this.get('contents')
+    return contents.find(content => content.dcbContents && Moment(content.dcbContents.start) > Moment().subtract(1, 'day'))
   })
 });

@@ -3,13 +3,13 @@ import { computed } from '@ember/object';
 import moment from 'moment';
 
 export default class DcbProblemCard extends Component {
-  @computed('problem')
+  @computed('content')
   get end_time() {
-    return moment(this.problem.dcbProblems.start).add(86400, 'second')
+    return moment(this.content.dcbContents.start).add(86400, 'second')
   }
 
-  @computed('problem')
+  @computed('content')
   get ended() {
-    return moment(this.problem.dcbProblems.start).add(86400, 'second') < moment()
+    return moment(this.content.dcbContents.start).add(86400, 'second') < moment()
   }
 }

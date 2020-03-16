@@ -1,0 +1,14 @@
+<div class="d-flex font-xs bold mb-4 mt-1">
+  <BreadCrumbs
+    @outputStyle="foundation"
+    @tagName="ul"
+    @linkable={{true}}
+    @crumbClass="px-3" />
+  </div>
+<div class="row my-4">
+  <div class="col-12">
+    <ContentHeader @content={{content}} />
+  </div>
+</div>
+
+{{outlet}}

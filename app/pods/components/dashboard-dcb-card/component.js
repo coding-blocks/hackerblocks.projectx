@@ -9,7 +9,7 @@ export default class DashboardDcbCard extends Component {
   @service api
   @service store
 
-  @alias('fetchDcbTopProblemTask.lastSuccessful.value') topProblem
+  @alias('fetchDcbTopProblemTask.lastSuccessful.value') topContent
   @alias('fetchContestStreakTask.lastSuccessful.value') streaks
   dcb_id = 1
   totalDCBs = 7
@@ -24,10 +24,10 @@ export default class DashboardDcbCard extends Component {
     }
   }
 
-  @computed('topProblem')
-  get topProblemEnd() {
-    if (this.topProblem) {
-      return moment(this.topProblem.dcbProblems.start).add(86400, 'second')
+  @computed('topContent')
+  get topContentEnd() {
+    if (this.topContent) {
+      return moment(this.topContent.dcbContents.start).add(86400, 'second')
     }
   }
 
@@ -37,11 +37,14 @@ export default class DashboardDcbCard extends Component {
   }
 
   @restartableTask fetchDcbTopProblemTask = function *() {
-    const problem = yield this.api.request(`dcbs/${this.dcb_id}/top-problem`, {
-      method: 'GET'
+    const content = yield this.api.request(`dcbs/${this.dcb_id}/top-content`, {
+      method: 'GET',
+      params: {
+        include: 'problem'
+      }
     })
-    this.store.pushPayload(problem)
-    return this.store.peekRecord('problem', problem.data.id)
+    this.store.pushPayload(content)
+    return this.store.peekRecord('content', content.data.id)
   }
 
   @restartableTask fetchContestStreakTask = function *() {

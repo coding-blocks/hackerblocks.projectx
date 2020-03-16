@@ -1,5 +1,4 @@
 import Route from '@ember/routing/route';
-import RSVP from 'rsvp'
 
 export default class IndexRoute extends Route {
   queryParams = {
@@ -24,11 +23,7 @@ export default class IndexRoute extends Route {
   }
 
   model() {
-    const practice = this.modelFor('practice.contest').practice
-    return RSVP.hash({
-      practice,
-      contest: practice.contest
-    })
+    return this.modelFor('practice.contest')
   }
 
   setupController(controller, model) {

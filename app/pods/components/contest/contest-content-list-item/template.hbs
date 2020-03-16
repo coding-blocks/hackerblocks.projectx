@@ -1,0 +1,37 @@
+<div class="row no-gutters justify-content-between align-items-center pointer my-4">
+  <div>
+    <div>
+      <h5>
+        {{content.name}}
+      </h5>
+      <ul class="divided-list">
+        <li class="px-3">
+          <div class="list-heading">{{content.difficultyString}}</div>
+          <div class="list-data">Difficulty</div>
+        </li>
+        <li class="px-3">
+          <div class="list-heading">{{content.stats.submission-count}}</div>
+          <div class="list-data">Submissions</div>
+        </li>
+        <li class="px-3">
+          <div class="list-heading">100</div>
+          <div class="list-data">Max Points</div>
+        </li>
+        {{#if content.successRate}}
+          <li class="px-3">
+            <div class="list-heading">{{content.successRate}}%</div>
+            <div class="list-data">Success Rate</div>
+          </li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+  <div class="d-flex align-items-center">
+    <button class="mr-3" {{action (perform bookmarkContentTask)}}>
+      <i class="{{if content.bookmarkedContent 'fas' 'far'}} fa-bookmark font-lg pr-2"></i>
+    </button>
+    {{#link-to route content.id class=_solveButtonClass }}
+      {{_solveButtonText}}
+    {{/link-to}}
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-12 col-md-8">
+    <ProblemView 
+      @contest={{contest}} 
+      @content={{content}}
+      @problem={{problem}} />
+  </div>
+  <div class="col-12 col-md-4">        
+    {{#if content.stats.can-submit-review}}
+      <RatingCard 
+        class="pb-5" 
+        @content={{content}}
+        @contest={{contest}} />
+    {{/if}}
+    <AuthorCard 
+      class="pb-5" 
+      @author={{content.createdAt}} />
+  </div>
+</div>

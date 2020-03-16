@@ -35,19 +35,19 @@
   {{else if (eq selectedTab "submissions")}}
   <SubmissionsList 
     @contest={{contest}}
-    @problem={{problem}} />
+    @content={{content}} />
   {{else if (eq selectedTab "leaderboard")}}
   <LeaderboardView
     class="pt-5"
-    @for="problem"
+    @for="content"
     @contestId={{contest.id}}
-    @problemId={{problem.id}}
+    @contentId={{content.id}}
     @allowFilter=true 
     @columns={{array 'college'}} />
   {{else if (eq selectedTab "solution")}}
   <SolutionComponent 
     @contest={{contest}}
-    @problem={{problem}} />
+    @problem={{content.problem}} />
   {{else if (eq selectedTab "discuss")}}
     <ProblemDiscussView
       @contest={{contest}}
@@ -59,8 +59,6 @@
   <CodeEditorComponent 
     class="py-4"
     @innerLayoutClass="br-15"
-    @problem={{problem}}
-    @contest={{contest}} as |ResultView|>
-    <ResultView class="mt-5" />
-  </CodeEditorComponent>
+    @content={{content}}
+    @contest={{contest}} />
 </div>

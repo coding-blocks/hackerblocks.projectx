@@ -1,0 +1,19 @@
+<WAsync
+  @task={{fetchContentsTask}} 
+  @loadingComponent={{component 'loading-component'}}
+  @fireTrigger={{taskTrigger}} as |contents isError|>
+  {{#if isError}}
+    You are not authorized to view problems of this contest.
+  {{else}}
+    <div class="list-divided border-none">
+      {{#each contents as |content|}}      
+        <Contest::ContestContentListItem 
+          @solveButtonClass={{solveButtonClass}}
+          @route={{route}} 
+          @content={{content}}
+          @contest={{contest}} />
+      {{/each}}
+    </div>
+    {{yield contents}}
+  {{/if}}
+</WAsync>

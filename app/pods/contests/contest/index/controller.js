@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { action, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { restartableTask } from 'ember-concurrency-decorators';
 
 export default class IndexController extends Controller {
   @service store
@@ -9,19 +10,34 @@ export default class IndexController extends Controller {
   queryParams = ['offset', 'limit', 'status', 'difficulty', 'tags', 'q']
   offset = 0
   limit = 10
-  status = null
   difficulty = []
   tags = []
   q = ''
 
-  @computed('offset')
+  @computed('offset', 'limit')
   get page() {
     return {
       offset: this.offset,
       limit: this.limit
     }
   }
-
+  @computed('status','difficulty','tags', 'q')
+  get filter() {
+    return {
+      status: this.status,
+      difficulty: {
+        $in: this.difficulty
+      },
+      tags: {
+        id: {
+          $in: this.tags
+        }
+      },
+      name: {
+        $iLike: `%${this.q}%`
+      }
+    }
+  }
   @computed('contest.currentAttempt')
   get nextRoute() {
     return 'contests.contest.attempt'
@@ -36,7 +52,6 @@ export default class IndexController extends Controller {
       }
     })
   }
-
   @action
   onAfterCreate() {
     const problem_id = this.contest.hasMany('problems').ids()[0]
@@ -46,10 +61,5 @@ export default class IndexController extends Controller {
       const quiz_id = this.contest.hasMany('quizzes').ids()[0]
       this.transitionToRoute('contests.contest.attempt.quiz', quiz_id)
     }
-  }
-
-  @action
-  setOffset(offset) {
-    this.set('offset', offset)
   }
 }
