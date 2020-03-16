@@ -80,16 +80,12 @@ export default class CodeWindowComponent extends Component {
 
   @action
   selectLanguage(languageCode) {
-<<<<<<< Updated upstream
-    this.set('selectedLanguage', this.languageSpecs.find(spec => spec.code === languageCode))
-=======
     this.set('selectedLanguage', this.get('languageSpecs').find((spec) => {      
       if(!spec) {
         return false
       }
       spec.code === languageCode
     }))
->>>>>>> Stashed changes
     this.trigger("restoreCodeFromStorage")
   }
 
