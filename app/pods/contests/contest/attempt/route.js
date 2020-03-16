@@ -19,6 +19,7 @@ export default class AttemptRoute extends VerifiedEmailRoute {
 
   async model() {
     const model = this.modelFor('contests.contest')
+    await model.contest.get('problems')
     await this.store.query('progress', {
       filter: {
         contest_attempt_id: model.contest.get('currentAttempt.id')
@@ -27,13 +28,15 @@ export default class AttemptRoute extends VerifiedEmailRoute {
     return model
   }
 
-  afterModel(model, transition) {
+  async afterModel(model, transition) {
     if (transition.targetName === 'contests.contest.attempt.index') {
-      const problem_id = model.contest.hasMany('problems').ids()[0]
+      const problems = await model.contest.get('problems.firstObject')
+      const problem_id = problems.get('id')
       if (problem_id) {
         return this.transitionTo('contests.contest.attempt.problem', problem_id)
       } else {
-        const quiz_id = model.contest.hasMany('quizzes').ids()[0]
+        const quizzes = await model.contest.get('quizzes.firstObject')
+        const quiz_id = quizzes.get('id')
         return this.transitionTo('contests.contest.attempt.quiz', quiz_id)
       }
     }
