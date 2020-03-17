@@ -13,11 +13,28 @@ export default class ContestController extends Controller {
   tags = []
   q = ''
 
-  @computed('offset')
-  get page () {
+  @computed('offset', 'limit')
+  get page() {
     return {
       offset: this.offset,
       limit: this.limit
+    }
+  }
+  @computed('status','difficulty','tags', 'q')
+  get filter() {
+    return {
+      status: this.status,
+      difficulty: {
+        $in: this.difficulty
+      },
+      tags: {
+        id: {
+          $in: this.tags
+        }
+      },
+      name: {
+        $iLike: `%${this.q}%`
+      }
     }
   }
   
