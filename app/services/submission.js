@@ -55,6 +55,13 @@ export default class SubmissionService extends Service {
         include: 'badge'
       })
       if (submission.judge_result){
+        yield this.store.queryRecord('content', {      
+          custom: {
+            ext: 'url',
+            url: `${this.content.id}`
+          },
+          contest_id: this.contest.id,
+        })  
         if (this.fullScreen) {
           const score = +submission.score
           const progress = yield this.problem.get('progress')
