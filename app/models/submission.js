@@ -5,7 +5,7 @@ import DS from 'ember-data';
 const { Model } = DS;
 
 export default Model.extend({
-  source: DS.attr(),
+  solution: DS.attr(),
   submit_at: DS.attr(),
   msecs_elapsed: DS.attr(),
   language: DS.attr(),
