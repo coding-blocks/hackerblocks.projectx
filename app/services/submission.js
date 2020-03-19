@@ -8,9 +8,12 @@ export default class SubmissionService extends Service {
   @service api
   @service store
 
+  lastResult = null
+
   initialize(contest, content) {
     this.set('contest', contest)
     this.set('content', content)
+    this.set('lastResult', null)
   }
 
   @taskGroup({ drop: true }) codeTaskGroup
@@ -30,9 +33,11 @@ export default class SubmissionService extends Service {
       yield timeout(2000)
       const submission = yield this.store.findRecord('submission', response.submissionId, { refresh: true })
       if (submission.judge_result){
+        this.set('lastResult', submission)
         return submission
       }
     }
+    this.set('lastResult', null)
     return null
   }
 
@@ -77,9 +82,11 @@ export default class SubmissionService extends Service {
           }
           progress.save()
         }
+        this.set('lastResult', submission)
         return submission
       }
     }
+    this.set('lastResult', null)
     return null
   }
 

@@ -78,8 +78,8 @@ export default class IntermediateContestComponent extends Component {
       }
 
       // If error is email unverified use the callback
-      const error = err.errors[0]
-      if (error.code === 405 && this.handleUnverifiedEmail) {
+      const error = err.errors &&  err.errors[0]
+      if (error && error.code === 405 && this.handleUnverifiedEmail) {
         return this.handleUnverifiedEmail('USER_EMAIL_NOT_VERIFIED')
       }
 

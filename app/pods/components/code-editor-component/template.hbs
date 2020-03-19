@@ -11,13 +11,14 @@
   class="overflow-hidden {{innerLayoutClass}}" /> 
 
 {{#if (or submission.codeTaskGroup.isRunning lastResult)}}
-  <div class="result mt-5">
+  <div class="result {{unless fullScreen "mt-5"}}">
     {{#if submitSpam}}
       <div class="{{unless fullScreen "border-card"}} p-5 bg-grey">
         <h4>Too many submission requests. Try Again in few seconds</h4>
       </div>
     {{/if}}
     <SubmissionResult 
+      @fullScreen={{fullScreen}}
       @judgeResult={{if (not submission.codeTaskGroup.isRunning) lastResult}} />
   </div>
 {{/if}}

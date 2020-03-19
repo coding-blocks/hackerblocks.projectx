@@ -9,17 +9,17 @@ export default class CodeEditorComponent extends Component {
   @service store
   @service submission
 
-  @alias('submission.codeTaskGroup.lastSuccessful.value') lastSubmission
+  @alias('submission.lastResult') lastSubmission
   @alias('lastSubmission.judge_result') lastResult
   @equal('submission.codeTaskGroup.last.error.status', 429) submitSpam
 
   badge = null
   showAwardedBadge = false
 
-  @computed('problem.id', 'contest.id')
+  @computed('content.id', 'contest.id')
   get storageKey () {
-    if(this.problem) {
-      return `hb:code:${this.get('problem.id')}:${this.get('contest.id')}`
+    if(this.content) {
+      return `hb:code:${this.get('content.id')}:${this.get('contest.id')}`
     }
   }
 
