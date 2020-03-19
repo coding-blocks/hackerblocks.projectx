@@ -22,22 +22,16 @@ export default class ContentRoute extends Route {
     return content
   }
 
-  async afterModel(model) {
-    let progress = model.problem.get('progress')
-    if(!progress.get('id')){
-      progress = await this.store.createRecord('progress', {
-        status: 'viewed', 
-        problem: model.problem,
-        contestAttempt: model.contest.get('currentAttempt')
-      })
-      progress.save()
-    }
-  }
-
   afterModel(model) {
-    switch(model.type) {
-      case 'problem': this.transitionTo('contests.contest.attempt.content.problem'); break
-      case 'quiz': this.transitionTo('contests.contest.attempt.content.quiz'); break
+    let progress = model.get('progress')
+    const { contest_attempt: currentContestAttempt } = this.modelFor('contests.contest')
+    if(!progress.get('id')){
+      progress = this.store.createRecord('progress', {
+        status: 'viewed', 
+        content: model,
+        contestAttempt: currentContestAttempt
+      })
+      return progress.save()
     }
   }
 }

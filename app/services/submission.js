@@ -67,21 +67,6 @@ export default class SubmissionService extends Service {
           },
           contest_id: this.contest.id,
         })  
-        if (this.fullScreen) {
-          const score = +submission.score
-          const progress = yield this.problem.get('progress')
-          if (progress.get('status') === 'done') {
-            return
-          }
-          if (score === 100) {
-            progress.set('status', 'done')
-          } else if (score > 0 && score < 100) {
-            progress.set('status', 'undone')
-          } else {
-            progress.set('status', 'failed')
-          }
-          progress.save()
-        }
         this.set('lastResult', submission)
         return submission
       }

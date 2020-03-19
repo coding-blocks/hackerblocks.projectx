@@ -13,6 +13,7 @@ export default Model.extend({
   contest: DS.hasMany('contest'),
   bookmarkedContent: DS.belongsTo('bookmarked-content'),
   topSubmission: DS.belongsTo('submission'),
+  progress: DS.belongsTo('progress'),
   difficultyString: Ember.computed('difficulty', function() {
     switch (parseInt(this.difficulty)) {
       case 1: return 'Easy'

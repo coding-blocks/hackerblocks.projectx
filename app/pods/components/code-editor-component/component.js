@@ -29,6 +29,21 @@ export default class CodeEditorComponent extends Component {
 
   @task submitCodeTask = function *(language, code) {
     yield this.submission.submitCodeTask.perform(language, code)
+    if (this.fullScreen) {
+      const score = +this.lastSubmission.get('score')
+      const progress = yield this.content.get('progress')
+      if (progress.get('status') === 'done') {
+        return
+      }
+      if (score === 100) {
+        progress.set('status', 'done')
+      } else if (score > 0 && score < 100) {
+        progress.set('status', 'undone')
+      } else {
+        progress.set('status', 'failed')
+      }
+      yield progress.save()
+    }
     if (this.lastSubmission.get('badge.id')) {
       this.set('badge', this.lastSubmission.get('badge'))
       this.set('showAwardedBadge', true)
