@@ -24,12 +24,12 @@ export default class ContentRoute extends Route {
 
   afterModel(model) {
     let progress = model.get('progress')
-    const { contest_attempt: currentContestAttempt } = this.modelFor('contests.contest')
+    const { contest } = this.modelFor('contests.contest')
     if(!progress.get('id')){
       progress = this.store.createRecord('progress', {
         status: 'viewed', 
         content: model,
-        contestAttempt: currentContestAttempt
+        contestAttempt: contest.get('currentAttempt')
       })
       return progress.save()
     }
