@@ -76,3 +76,7 @@ body{
 .test-info-popup{
   width: 240px;
 }
+
+.b-orange-hover:hover  {
+  border-color: #fd7e14 !important
+}
