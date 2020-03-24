@@ -1,46 +1,63 @@
+<WAsync @task={{fetchContests}} @autoFire="true" as |contests|>
+
+  {{#if contests.length}}
+  <div class="t-align-c">
+    <div>
+      <h2>Upcoming Contests</h2>
+      <div>Participate and Win!!</div>
+    </div>
+
+  </div>
+  <div class="d-flex mb-4 mt-4" style="flex-wrap: wrap;">
+    {{#each contests as |contest|}}
+    {{#link-to "contests.contest" contest.id class="d-block col-xl-3 col-lg-4 col-md-6 mb-5" }} 
+
+    <div class="border-card p-0 b-orange-hover">
+      <div class="d-flex">
+        <div class="h-100">
+          <div class="p-4 white position-relative bg-gradient-orange">
+            <h2>{{moment-format contest.start_time 'DD'}}
+            </h2>
+            <div>{{moment-format contest.start_time 'MMM'}}</div>
+          </div>
+        </div>
+        <div class="align-self-center p-4 flex-1">
+          <div style="word-break: break-all">{{contest.contestTypeDisplay}}</div>
+          <span class="font-md bold">{{contest.name}}</span>
+        </div>
+      </div>
+    </div>
+    {{/link-to}}
+    {{/each}} 
+  </div>
+  {{else}}
+  <div class="dark-grey">
+    You don't have any Upcoming Contests.
+  </div>
+  {{/if}}
+
+</WAsync>
+
 <div class="t-align-c mb-5">
   <h2>CONTESTS</h2>
   <h5 class="bold mt-3">Participate and improve your coding skills</h5>
 </div>
 <div class="row justify-content-center">
   <div class="col-12 col-md-4 col-lg-3">
-    <PublicContestCard
-      class="mb-4"
-      @title="College"
-      @model="college-contests"
-      @logo="/app/images/collegecontest_w.png"
-      @description="Looking for a college event instead ? Proceed through here to take part in contest being organised by colleges throughout India, get informed about the upcoming ones and solve questions of archived contests."
-      @route="contests.college.all.live"
-      @theme="pink" />
+    <PublicContestCard class="mb-4" @title="College" @model="college-contests" @logo="/app/images/collegecontest_w.png" @description="Looking for a college event instead ? Proceed through here to take part in contest being organised by colleges throughout India, get informed about the upcoming ones and solve questions of archived contests."
+      @route="contests.college.all.live" @theme="pink" />
   </div>
   <div class="col-12 col-md-4 col-lg-3">
-    <PublicContestCard
-      class="mb-4"
-      @title="Course"
-      @model="course-contests"
-      @logo="/app/images/coursecontest_w.png"
-      @description="Are you a Coding Blocks champion ? Enter the arena and start solving your favourite assignment questions. New to Coding Blocks ? Worry not you can still take parts in some of these contests. Proceed to know more."
-      @route="contests.course"
-      @theme="purple-blue" />
+    <PublicContestCard class="mb-4" @title="Course" @model="course-contests" @logo="/app/images/coursecontest_w.png" @description="Are you a Coding Blocks champion ? Enter the arena and start solving your favourite assignment questions. New to Coding Blocks ? Worry not you can still take parts in some of these contests. Proceed to know more."
+      @route="contests.course" @theme="purple-blue" />
   </div>
   <div class="col-12 col-md-4 col-lg-3">
-    <PublicContestCard
-      class="mb-4"
-      @title="Admission"
-      @model="admission-contests"
-      @logo="/app/images/admissioncontest_w.png"
+    <PublicContestCard class="mb-4" @title="Admission" @model="admission-contests" @logo="/app/images/admissioncontest_w.png"
       @description="Experience the APAT (Advanced Program Admission and scholarship test) and CAST (Coders admission and scholarship test) in an all new environment. Take part in archived contests and register for upcoming ones."
-      @route="contests.admission"
-      @theme="blue" />
+      @route="contests.admission" @theme="blue" />
   </div>
   <div class="col-12 col-md-4 col-lg-3">
-    <PublicContestCard
-      class="mb-4"
-      @title="Hiring"
-      @model="hiring-contests"
-      @logo="/app/images/hiringcontest_w.png"
-      @description="Tired of not being able to get your dream job ? Participate in these amazing set of contests to get a hold of the type of questions being asked by major companies and take part in hiring contests being organised by companies on our panel."
-      @route="contests.hiring"
-      @theme="lgreen" />
+    <PublicContestCard class="mb-4" @title="Hiring" @model="hiring-contests" @logo="/app/images/hiringcontest_w.png" @description="Tired of not being able to get your dream job ? Participate in these amazing set of contests to get a hold of the type of questions being asked by major companies and take part in hiring contests being organised by companies on our panel."
+      @route="contests.hiring" @theme="lgreen" />
   </div>
 </div>
