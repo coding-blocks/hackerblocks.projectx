@@ -16,11 +16,7 @@ export default AjaxService.extend({
           }
         return headers;
     }),
-    request(url, options = {}) {
-        options.xhrFields = { 
-            withCredentials: true 
-        }
-
-        return this._super(url, options)
+    xhrFields: { 
+        withCredentials: true 
     }
 });
