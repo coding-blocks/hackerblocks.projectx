@@ -11,6 +11,12 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
   session: service(),
   host: env.apiHost,
   namespace: 'api/v2',
+  ajax(url, method, hash = {}) {
+    hash.xhrFields = { 
+      withCredentials: true 
+    }
+    return this._super(url, method, hash);
+  },
   authorize(xhr) {
     const { jwt } = this.get('session.data.authenticated');
     if (isPresent(jwt)) {
