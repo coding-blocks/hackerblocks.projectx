@@ -16,6 +16,15 @@ module.exports = function(environment) {
       refreshLeeway: 60, //send a request for refresh_token 60sec before actual expiration
       authorizationPrefix: 'JWT ',
     },
+    metricsAdapters: [
+      {
+        name: 'GoogleAnalytics',
+        environments: ['production', 'development'],
+        config: {
+          id: 'UA-83327907-12'
+        }
+      }
+    ],
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
