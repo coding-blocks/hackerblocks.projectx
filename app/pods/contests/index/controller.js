@@ -26,6 +26,7 @@ export default class IndexController extends Controller {
   @restartableTask fetchContests = function* () {
     const params = {
       page: { limit: 6 },
+      sort: 'start_time',
       filter: {
         accept_registrations: true,
         start_time: {

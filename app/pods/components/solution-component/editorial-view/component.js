@@ -15,7 +15,7 @@ export default class EditorialView extends Component {
     const unlockedEditorial = this.store.createRecord('unlocked-editorial', {
       contest: this.contest,
       problem: this.problem
-    })
+    })    
     yield unlockedEditorial.save()
     yield this.fetchEditorialTask.perform()
   }
