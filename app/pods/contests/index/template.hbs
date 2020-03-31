@@ -13,14 +13,12 @@
     {{#link-to "contests.contest" contest.id class="d-block col-xl-3 col-lg-4 col-md-6 mb-5" }} 
 
     <div class="border-card p-0 b-orange-hover">
-      <div class="d-flex">
-        <div class="h-100">
+      <div class="d-flex">        
           <div class="p-4 white position-relative bg-gradient-orange">
             <h2>{{moment-format contest.start_time 'DD'}}
             </h2>
             <div>{{moment-format contest.start_time 'MMM'}}</div>
-          </div>
-        </div>
+          </div>        
         <div class="align-self-center p-4 flex-1">
           <div style="word-break: break-all">{{contest.contestTypeDisplay}}</div>
           <span class="font-md bold">{{contest.name}}</span>
