@@ -31,9 +31,14 @@ export default class IndexRoute extends Route {
 
   afterModel(model) {
     this.metrics.trackEvent({
-      event: 'Contest View',
-      title: model.contest.name,
-      page: window.location.href
+      // (required) The name you supply for the group of objects you want to track.
+      category: model.contest.contest_type,
+      // (required) A string that is uniquely paired with each category, and commonly used to define the type of user interaction for the web object.
+      action: 'contest_viewed',
+      // (optional) string to provide additional dimensions to the event data.
+      label: model.contest.name,
+      // (optional) An integer that you can use to provide numerical data about the user event.
+      value: window.document.location.href
     })
   }
 

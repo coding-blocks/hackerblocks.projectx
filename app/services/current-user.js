@@ -6,6 +6,7 @@ export default Service.extend({
     api: service(),
     store: service(),
     session: service(),
+    metrics: service(),
     user: {},
     async load (force = false) {
         if (force) {
@@ -20,6 +21,9 @@ export default Service.extend({
         }
         const user = await this.store.queryRecord('user', { custom: {ext: 'url', url: 'me' }})
         this.set('user', user)
+        this.metrics.identify({
+            distinctId: this.user.get('oauth_id')
+        })
         return user
     }
 });
