@@ -1,19 +1,24 @@
 import Route from '@ember/routing/route';
-import VerifiedEmailRouteMixin from 'hackerblocks/mixins/verifiedemail-required-mixin';
 import { inject as service } from '@ember/service';
-const VerifiedEmailRoute = Route.extend(VerifiedEmailRouteMixin)
+import { action } from '@ember/object';
 
-export default class AttemptRoute extends VerifiedEmailRoute {
+export default class AttemptRoute extends Route {
   @service navigation;
+  @service currentUser;
 
   async beforeModel() {
     super.beforeModel()
     const { contest } = this.modelFor('contests.contest')
+    if(contest.get('control_flags.is_verification_required')) {
+      if (this.get('currentUser.user') && (!this.get('currentUser.user.email') || !this.get('currentUser.user.verifiedemail'))) {
+       throw new Error('USER_EMAIL_NOT_VERIFIED')
+     }
+    }
     if (!contest.max_attempts) {
-      this.transitionTo('contests.index')
+      return this.transitionTo('contests.index')
     }
     if (!await contest.get('currentAttempt')) {
-      this.transitionTo('contests.contest', contest.id)
+      return this.transitionTo('contests.contest', contest.id)
     }
   }
 
@@ -42,5 +47,18 @@ export default class AttemptRoute extends VerifiedEmailRoute {
 
   deactivate() {
     this.navigation.setVisibility(true)
+  }
+
+  @action
+  error(err) {
+    if (err.errors && err.errors[0].status == 405) {
+      this.transitionTo('error', {
+        queryParams: {
+          errorCode: 'USER_EMAIL_NOT_VERIFIED',
+          next: this.router.get('currentURL')
+        }
+      })
+    }
+    throw err
   }
 }
