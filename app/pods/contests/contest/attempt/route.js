@@ -8,7 +8,7 @@ export default class AttemptRoute extends Route {
   async beforeModel() {
     super.beforeModel()
     const { contest } = this.modelFor('contests.contest')
-    if(await contest.get('controlFlag.isVerificationRequired')) {
+    if(await contest.get('control_flags.is_verification_required')) {
       if (this.get('currentUser.user') && (!this.get('currentUser.user.email') || !this.get('currentUser.user.verifiedemail'))) {
        throw new Error('USER_EMAIL_NOT_VERIFIED')
      }
