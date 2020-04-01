@@ -1,19 +1,23 @@
 import Route from '@ember/routing/route';
-import VerifiedEmailRouteMixin from 'hackerblocks/mixins/verifiedemail-required-mixin';
 import { inject as service } from '@ember/service';
-const VerifiedEmailRoute = Route.extend(VerifiedEmailRouteMixin)
 
-export default class AttemptRoute extends VerifiedEmailRoute {
+export default class AttemptRoute extends Route {
   @service navigation;
+  @service currentUser;
 
   async beforeModel() {
     super.beforeModel()
     const { contest } = this.modelFor('contests.contest')
+    if(await contest.get('controlFlag.isVerificationRequired')) {
+      if (this.get('currentUser.user') && (!this.get('currentUser.user.email') || !this.get('currentUser.user.verifiedemail'))) {
+       throw new Error('USER_EMAIL_NOT_VERIFIED')
+     }
+    }
     if (!contest.max_attempts) {
-      this.transitionTo('contests.index')
+      return this.transitionTo('contests.index')
     }
     if (!await contest.get('currentAttempt')) {
-      this.transitionTo('contests.contest', contest.id)
+      return this.transitionTo('contests.contest', contest.id)
     }
   }
 

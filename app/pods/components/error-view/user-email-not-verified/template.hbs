@@ -6,7 +6,9 @@
     <div class="font-md mb-5">
       If you think this is an error then contact <strong>support@codingblocks.com</strong> and then try again
     </div>
+    {{#if (eq verification_sent true)}}
     <p>Mail has been sent to your account</p>
+    {{/if}}
     <button class="mr-3 button-solid button-orange" {{action 'sendVerifyEmail'}}>
       Send Verifcation Mail
     </button>
