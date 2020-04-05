@@ -15,7 +15,7 @@ export default class ServerTime extends Service {
     this.refreshCurrentTime.perform()
     this.set('now', Moment())
     this.poll.addPoll({
-      interval: 6000,
+      interval: 60000,
       callback: () => this.refreshCurrentTime.perform()
     })
     moment.now = () => {
