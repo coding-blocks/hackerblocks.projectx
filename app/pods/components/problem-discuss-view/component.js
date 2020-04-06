@@ -18,7 +18,7 @@ export default class ProblemDiscussViewComponent extends Component {
 
   // get Topic for this problem in this contest
   @restartableTask() fetchTopic = function *() {
-    const { topic } = yield this.api.request(`/problems/${this.problem.id}/topic`, {
+    const { topic } = yield this.api.request(`/contents/${this.content.id}/topic`, {
       data: { contest_id: this.contest.id }
     })
     this.set('currentIndex', 0)
