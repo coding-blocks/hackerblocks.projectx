@@ -45,7 +45,7 @@ export default class ProblemDiscussViewComponent extends Component {
       method: 'POST',
       data: {
         contest_id: this.contest.id,
-        problem_id: this.problem.id
+        content_id: this.content.id
       }
     })
 
