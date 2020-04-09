@@ -1,10 +1,11 @@
 import Route from '@ember/routing/route';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+import UTMCookieRouteMixin from 'hackerblocks/mixins/utm-cookie-route-mixin';
 import { inject as service } from '@ember/service';
 import { isNone } from '@ember/utils';
 import config from 'hackerblocks/config/environment'
 
-export default Route.extend(ApplicationRouteMixin, {
+export default Route.extend(ApplicationRouteMixin, UTMCookieRouteMixin, {
     session: service(),
     currentUser: service(),
     queryParams: {
@@ -26,6 +27,7 @@ export default Route.extend(ApplicationRouteMixin, {
     },
 
     async beforeModel (transition) {
+      this._super(...arguments)
       if (!isNone(transition.to.queryParams.code)) {
         if (this.get('session.isAuthenticated')) {
           return this.transitionTo('index', { queryParams: { code: undefined } })
