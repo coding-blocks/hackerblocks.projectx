@@ -26,12 +26,29 @@ export default Route.extend(ApplicationRouteMixin, {
     },
 
     async beforeModel (transition) {
-      if (!isNone(transition.to.queryParams.code)) {
+      // save any qs starting with utm_ into
+      // _cbutm cookie
+      const queryParams = transition.to.queryParams
+      const utmParams = 
+        Object
+          .keys(queryParams)
+          .filter(param => param.startsWith('utm_'))
+          .reduce((acc, curr) => {
+            acc[curr] = queryParams[curr]
+            return acc
+          }, {})
+      const _cbutm = window.btoa(JSON.stringify(utmParams))
+      const expiry = new Date();
+      expiry.setDate(expiry.getDate() + 7);
+      
+      document.cookie = `_cbutm=${_cbutm}; expires=${expiry.toUTCString()}; path=/; domain=.codingblocks.com`
+
+      if (!isNone(queryParams.code)) {
         if (this.get('session.isAuthenticated')) {
           return this.transitionTo('index', { queryParams: { code: undefined } })
         }
         // we have ?code qp
-        const { code } = transition.to.queryParams
+        const { code } = queryParams
         
         try {
           await (
