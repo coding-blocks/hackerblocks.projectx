@@ -1,10 +1,11 @@
 import Route from '@ember/routing/route';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+import UTMCookieRouteMixin from 'hackerblocks/mixins/utm-cookie-route-mixin';
 import { inject as service } from '@ember/service';
 import { isNone } from '@ember/utils';
 import config from 'hackerblocks/config/environment'
 
-export default Route.extend(ApplicationRouteMixin, {
+export default Route.extend(ApplicationRouteMixin, UTMCookieRouteMixin, {
     session: service(),
     currentUser: service(),
     queryParams: {
@@ -26,29 +27,13 @@ export default Route.extend(ApplicationRouteMixin, {
     },
 
     async beforeModel (transition) {
-      // save any qs starting with utm_ into
-      // _cbutm cookie
-      const queryParams = transition.to.queryParams
-      const utmParams = 
-        Object
-          .keys(queryParams)
-          .filter(param => param.startsWith('utm_'))
-          .reduce((acc, curr) => {
-            acc[curr] = queryParams[curr]
-            return acc
-          }, {})
-      const _cbutm = window.btoa(JSON.stringify(utmParams))
-      const expiry = new Date();
-      expiry.setDate(expiry.getDate() + 7);
-      
-      document.cookie = `_cbutm=${_cbutm}; expires=${expiry.toUTCString()}; path=/; domain=.codingblocks.com`
-
-      if (!isNone(queryParams.code)) {
+      this._super(...arguments)
+      if (!isNone(transition.to.queryParams.code)) {
         if (this.get('session.isAuthenticated')) {
           return this.transitionTo('index', { queryParams: { code: undefined } })
         }
         // we have ?code qp
-        const { code } = queryParams
+        const { code } = transition.to.queryParams
         
         try {
           await (
