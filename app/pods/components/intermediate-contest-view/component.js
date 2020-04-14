@@ -15,6 +15,7 @@ export default class IntermediateContestComponent extends Component {
 
   @alias('contest.currentAttempt') contest_attempt
   @alias('fetchRegistrationTask.lastSuccessful.value') contestRegistration
+  @alias('contest.controlFlags.show-leaderboard') showLeaderboard
 
   @computed('contest.contents')
   get contentCount() {

@@ -81,13 +81,28 @@
   </div>
 </div>
 
-<div class="all-center my-4">
-  <img class="contest-banner" src={{contest.image}} alt={{contest.name}}>
-</div>
+<div class="row">
+  {{#if showLeaderboard}}
+    <div class="col-md-6">
+      <div class="border-card py-5 mt-4 p-0">
+        <LeaderboardView
+          @title ='leaderboard'
+          @for = 'contest'
+          @theme = 'purple'
+          @contestId = {{contest.id}} />    
+      </div>
+    </div>
+  {{/if}}
+  <div class="col-md-{{if showLeaderboard "6" "12"}}">
+    <div class="all-center my-4">
+      <img class="contest-banner" src={{contest.image}} alt={{contest.name}}>
+    </div>
 
-<div class="font-xs mt-5">
-  <div class="bold">Instructions</div>
-  {{markdown-to-html contest.description}}
+    <div class="font-xs mt-5">
+      <div class="bold">Instructions</div>
+      {{markdown-to-html contest.description}}
+    </div>
+  </div>
 </div>
 
 {{#if showStartDialog}}
