@@ -7,7 +7,7 @@ export default class RunResultComponent extends Component {
   }
 
   @computed('judgeResult')
-  get output() {
+  get output() {    
     if (this.judgeResult.data){
       return window.atob(this.judgeResult.data.output)
     } else if (this.judgeResult.error) {
