@@ -57,5 +57,6 @@ export default Model.extend({
   }),
   registeredUser: DS.attr(),
   registration: DS.belongsTo('contest-registration'),
-  badgeIcon: DS.attr()
+  badgeIcon: DS.attr(),
+  controlFlags: DS.attr()
 });

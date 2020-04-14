@@ -71,6 +71,7 @@
         @changeDifficultyFilter={{action (mut difficulty)}} 
         @tags={{tags}}
         @changeTagsFilter={{action (mut tags)}} />
+      {{#if contest.controlFlags.show-leaderboard}}
         <div class="border-card py-5 mt-4 p-0">
           <LeaderboardView
             @title ='leaderboard'
@@ -78,6 +79,7 @@
             @theme = 'orange'
             @contestId = {{contest.id}} />    
         </div>
+      {{/if}}
     </div>
   </div>
 
