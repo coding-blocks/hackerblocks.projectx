@@ -10,11 +10,13 @@
       {{action (mut selectedTab) "submissions"}}>
       Submissions
     </div>
-    <div 
-      class="tab {{if (eq selectedTab "leaderboard") "active"}} py-4 pointer"
-      {{action (mut selectedTab) "leaderboard"}}>
-      Leaderboard
-    </div>
+    {{#if contest.controlFlags.show-leaderboard}}
+      <div 
+        class="tab {{if (eq selectedTab "leaderboard") "active"}} py-4 pointer"
+        {{action (mut selectedTab) "leaderboard"}}>
+        Leaderboard
+      </div>
+    {{/if}}
     <div 
       class="tab {{if (eq selectedTab "discuss") "active"}} py-4 pointer"
       {{action (mut selectedTab) "discuss"}}>
