@@ -23,6 +23,14 @@
             {{else if (eq testcase.result "Run Error")}}
               <a 
                 href="#" 
+                class="gradient-text-ornage"
+                {{action (mut selectedIndex) index}}>
+                Test Case {{index}}
+                <FaIcon @icon="exclamation" class="ml-2 gradient-text-orange" />
+              </a>
+            {{else if (eq testcase.result "Wrong Answer")}}
+              <a 
+                href="#" 
                 class="gradient-text-pink"
                 {{action (mut selectedIndex) index}}>
                 Test Case {{index}}
@@ -39,10 +47,10 @@
             {{else}}
               <a 
                 href="#" 
-                class="gradient-text-orange"
+                class="gradient-text-pink"
                 {{action (mut selectedIndex) index}}>
                 Test Case {{index}}
-                <FaIcon @icon="exclamation" class="ml-2 gradient-text-orange" />
+                <FaIcon @icon="exclamation-triangle" class="ml-2 gradient-text-pink" />
               </a>
             {{/if}}
           </li>
