@@ -12,6 +12,7 @@
       <ul class="font-mds extra-bold mt-0">
         {{#each testcases as |testcase index|}}        
           <li class="px-5 py-4 d-flex align-items-center {{if (eq selectedIndex index) "test-cases-card__active"}}">
+            {{log testcase}}
             {{#if (eq testcase.result "Success")}}
               <a 
                 href="#" 
