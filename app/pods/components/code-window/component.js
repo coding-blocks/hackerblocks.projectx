@@ -39,7 +39,7 @@ export default class CodeWindowComponent extends Component {
     },
     {
       name: "Java 8",
-      code: "java8",
+      code: "java",
       mode: "java",
       source: ""
     },
@@ -80,6 +80,7 @@ export default class CodeWindowComponent extends Component {
 
   @action
   selectLanguage(languageCode) {
+    // console.log(languageCode)
     this.set('selectedLanguage', this.get('languageSpecs').find((spec) => {
       return spec.code === languageCode
     }))
