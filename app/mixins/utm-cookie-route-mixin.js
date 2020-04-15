@@ -52,7 +52,7 @@ export default Mixin.create({
     const expiry = new Date();
     expiry.setDate(expiry.getDate() + 7);
     
-    document.cookie = `_cbutm=${_cbutm}; expires=${expiry.toUTCString()}; path=/;`
+    document.cookie = `_cbutm=${_cbutm}; expires=${expiry.toUTCString()}; path=/; domain=.codingblocks.com`
 
     this._super(...arguments)
   },
