@@ -33,7 +33,7 @@ export default class CodeWindowComponent extends Component {
     },
     {
       name: "Node",
-      code: "js",
+      code: "nodejs10",
       mode: "javascript",
       source: ""
     },
