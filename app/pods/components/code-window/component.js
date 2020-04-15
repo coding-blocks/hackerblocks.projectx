@@ -39,7 +39,7 @@ export default class CodeWindowComponent extends Component {
     },
     {
       name: "Java 8",
-      code: "java",
+      code: "java8",
       mode: "java",
       source: ""
     },
