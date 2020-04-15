@@ -6,7 +6,6 @@ export default class SubmissionTestcases extends Component {
 
   @computed('selectedIndex')
   get compilerMessage() {
-    console.log(this.testcases)    
     return this.testcases[this.selectedIndex].result
   }
 }
