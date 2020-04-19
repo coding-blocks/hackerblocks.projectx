@@ -13,17 +13,17 @@ export default class SubmissionResult extends Component {
 
   @computed('judgeResult')
   get isErrored() {
-    return this.judgeResult.stderr !== ''
+    return !!this.judgeResult.stderr
   }
 
   @computed('judgeResult')
-  get isSubmission() {
+  get isSubmission() {    
     return !!(this.judgeResult.testcases)
   }
 
   @computed('isErrored')
   get errorPayload() {    
-    if (this.isErrored) {
+    if (this.isErrored) {      
       return window.atob(this.judgeResult.stderr || this.judgeResult.stdout)
     }
   }
