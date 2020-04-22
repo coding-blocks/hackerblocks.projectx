@@ -4,7 +4,7 @@
   </div>
   <div>
     <select class="dropdown d-inline-block" onchange={{action "selectLanguage" value="target.value"}}>
-      {{#each-in languages as |key value|}}
+      {{#each-in languages as |key value|}}      
         <option 
           value="{{value.code}}" 
           selected={{eq value.code selectedLanguage.code}}>
