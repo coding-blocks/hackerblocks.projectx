@@ -1,0 +1,7 @@
+{{#if isMarkdown}}
+  {{markdown-to-html displayContent}}
+{{else}}
+  {{ displayContent }} 
+{{/if}}
+
+<a href="#" class="blue" {{action 'toggleContent'}}>{{ toggleText }}</a>
