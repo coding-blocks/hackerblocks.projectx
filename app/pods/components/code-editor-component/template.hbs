@@ -1,6 +1,6 @@
 <CodeWindow 
   class="c-code-card w-100 flex-col {{unless fullScreen "code-editor--height" "h-100"}}"
-  @input={{content.problem.content.sample-input}}
+  @input={{content.problem.details.sample_input}}
   @codeStubs={{content.problem.solutionStubs}}
   @allowedLanguages={{contest.allowedLanguages}}
   @onRunTask={{submission.runCodeTask}} 
