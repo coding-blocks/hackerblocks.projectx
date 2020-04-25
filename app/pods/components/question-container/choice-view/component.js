@@ -4,6 +4,6 @@ import { computed } from '@ember/object';
 export default class ChoiceView extends Component {
   @computed('submission.answer_id')
   get selected() {
-    return this.submission.answer_id === this.choice.id
+    return this.submission.answer_ids.includes(this.choice.id)
   }
 }

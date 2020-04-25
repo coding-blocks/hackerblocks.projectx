@@ -2,7 +2,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default class QuestionPill extends Component {
-  @computed('submissions.@each.review_later', 'submissions.@each.answer_id')
+  @computed('submissions.@each.review_later', 'submissions.@each.answer_ids')
   get color() {
     if (!this.submissions) {
       return 'bg'
@@ -15,6 +15,6 @@ export default class QuestionPill extends Component {
 
     return submission.review_later ?
       'bg-orange' :
-      submission.answer_id ? 'bg-green' : 'bg'
+      submission.answer_ids.length ? 'bg-green' : 'bg'
   }
 }

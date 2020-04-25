@@ -80,3 +80,13 @@ body{
 .b-orange-hover:hover  {
   border-color: #fd7e14 !important
 }
+
+.options {
+  grid-template-columns: repeat(4, 1fr) !important;
+
+  .circle {
+    height: 50px;
+    width: 50px;
+    background-color: #1b1e26;
+  }
+}
