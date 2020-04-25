@@ -36,4 +36,4 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.PRIVATE_KEY }}
-        script: rm -rf ~/frontends/hackerblocks.staging/* && cp -rf ~/temp/* ~/frontends/hackerblocks.staging && rm -rf ~/temp
+        script: rm -rf ~/frontends/hackerblocks.staging/* && cp -rf ~/temp/dist/* ~/frontends/hackerblocks.staging && rm -rf ~/temp
