@@ -13,7 +13,7 @@ jobs:
     - name: Install Dependencies
       run: yarn install
     - name: Build
-      run: yarn buid --env staging
+      run: yarn build --env staging
     - name: Create temp Directory
       uses: appleboy/ssh-action@master
       with:
