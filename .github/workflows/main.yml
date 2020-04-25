@@ -28,8 +28,8 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.PRIVATE_KEY }}
-        source: "dist/*"
-        target: "temp/"
+        source: "dist"
+        target: "temp"
     - name: Replace New Build
       uses: appleboy/ssh-action@master
       with:
