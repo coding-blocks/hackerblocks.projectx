@@ -7,6 +7,6 @@ export default class ApplicationController extends Controller {
 
   constructor(){
     super(...arguments)
-    this.serverTime.syncMoment()
+    this.serverTime.startSync()
   }
 }
