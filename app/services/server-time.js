@@ -9,9 +9,10 @@ export default class ServerTime extends Service {
   @service poll
   @service ajax
   
-  now = null
+  offset = 0
 
-  startSync () {
+  constructor() {
+    super(...arguments)
     this.refreshCurrentTime.perform()
     this.set('now', Moment())
     this.poll.addPoll({
@@ -19,13 +20,12 @@ export default class ServerTime extends Service {
       callback: () => this.refreshCurrentTime.perform()
     })
     moment.now = () => {
-      const offset = new Date(this.now).getTime() - Date.now();
-      return offset + Date.now();
-    }
+      return Date.now() + this.offset;      
+    } 
   }
 
   @restartableTask refreshCurrentTime = function * () {
     const data = yield this.ajax.request(ENV.apiHost + '/time')
-    this.set ('now', Moment.unix(data.now/1000))
+    this.set ('offset', Moment.unix(data.now/1000) - Date.now())
   }
 }
