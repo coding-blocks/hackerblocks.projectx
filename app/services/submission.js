@@ -75,7 +75,7 @@ export default class SubmissionService extends Service {
     return null
   }
 
-  @dropTask submitQuizTask = function *() {
+  @dropTask submitQuizTask = function *() {    
     const response = yield this.api.request('submissions/submit', {
       method: 'POST',
       data: {
