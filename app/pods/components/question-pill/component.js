@@ -3,13 +3,13 @@ import { computed } from '@ember/object';
 
 export default class QuestionPill extends Component {
   @computed('submissions.@each.review_later', 'submissions.@each.answer_ids')
-  get color() {
-    if (!this.submissions) {
+  get color() {    
+    if (!this.submissions) {      
       return 'bg'
     }
 
-    const submission = this.submissions.findBy('question_id', this.question_id)
-    if (!submission) {
+    const submission = this.submissions.findBy('question_id', this.question_id)    
+    if (!submission) {      
       return 'bg'
     }
 
