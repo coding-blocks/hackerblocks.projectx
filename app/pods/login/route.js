@@ -9,10 +9,6 @@ export default class LoginRoute extends Route {
     env.clientId
   }&redirect_uri=${env.publicUrl}`; 
 
-  beforeModel() {
-    localStorage.setItem('redirectionPath', window.location.pathname)
-  }
-
   afterModel() {
     if(this.session.isAuthenticated){
       this.transitionTo('index')
