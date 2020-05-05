@@ -16,6 +16,6 @@ export default class UpcomingCompetitionContestComponent extends Component {
   // has this contest started yet?
   @computed('contest.start_time')
   get hasStarted () {
-    return this.contest.start_time < new Date()
+    return this.contest.start_time < Moment()
   }
 }
