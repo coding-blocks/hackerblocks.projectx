@@ -5,12 +5,10 @@
   </div>
 </div>
 
-<div class="container my-5">
-  <div class="row">
-    {{#each practices as |practice|}}
-    <div class="col-12 col-md-4">
-      <PracticeContestCard @practice={{practice}} />
-    </div>
-    {{/each}}
+<div class="row">
+  {{#each practices as |practice|}}
+  <div class="col-12 col-md-4">
+    <PracticeContestCard @practice={{practice}} />
   </div>
+  {{/each}}
 </div>
