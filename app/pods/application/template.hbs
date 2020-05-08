@@ -5,8 +5,9 @@
     <div class="offset-1 w-100">
       <cb-navbar topalign="right"></cb-navbar>
     </div>
-    <div class="offset-0 offset-md-1 col-11 px-lg-5 px-md-4 px-0 pt-4">
-      <div class="container">
+    <div class="offset-0 offset-md-1 col-11 px-0">
+      <div id="outside-element" {{did-insert layout.setOutsideLayout}}></div>
+      <div class="container mt-4">
         {{outlet}}
       </div>
     </div>
