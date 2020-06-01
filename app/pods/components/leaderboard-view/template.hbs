@@ -67,7 +67,7 @@
                 {{#if showLanguage}}
                   <td class="py-4">{{myRank.language}}</td>
                 {{/if}}
-                  <td class="py-4">{{myRank.score}}</td>
+                  <td class="py-4">{{if (and myRank.score_after_plagiarism_filtering filterUsingPlagiarism) myRank.score_after_plagiarism_filtering myRank.score}}</td>
               </tr>
             {{/if}}
 
@@ -92,7 +92,7 @@
                 {{#if showLanguage}}
                 <td class="py-4">{{row.submission.language}}</td>
                 {{/if}}
-                <td class="py-4">{{row.score}}</td>
+                <td class="py-4">{{if (and row.scoreAfterPlagiarismFiltering filterUsingPlagiarism) row.scoreAfterPlagiarismFiltering row.score}}</td>
               </tr>
             {{/each}}
           </tbody>

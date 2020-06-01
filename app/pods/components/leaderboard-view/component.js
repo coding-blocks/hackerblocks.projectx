@@ -24,6 +24,11 @@ export default class LeaderboardViewComponent extends Component {
   get showCollege() {
     return this.columns && this.columns.includes('college')
   }
+  @computed('contestId')
+  get filterUsingPlagiarism() {
+    const contest = this.store.peekRecord('contest', this.contestId)
+    return contest.plagiarismFiltering
+  }
 
   @restartableTask fetchLeaderboardTask = function* () {
     let filter = {}
