@@ -29,6 +29,11 @@ export default class LeaderboardViewComponent extends Component {
     const contest = this.store.peekRecord('contest', this.contestId)
     return contest.plagiarismFiltering
   }
+  @computed('contestId')
+  get sortField() {
+    const contest = this.store.peekRecord('contest', this.contestId)
+    return contest.plagiarismFiltering ? 'score_after_plagiarism_filtering' : 'score'
+  }
 
   @restartableTask fetchLeaderboardTask = function* () {
     let filter = {}
@@ -38,17 +43,17 @@ export default class LeaderboardViewComponent extends Component {
         contestId: this.contestId,
         contentId: this.contentId
       }
-      sort = '-score,time'
+      sort = `-${this.sortField},time`
     } else if (this.for === 'contest') {
       filter = {
         contestId: this.contestId
       }
-      sort = '-score,time'
+      sort = `-${this.sortField},time`
     } else if (this.for === 'competition') {
       filter = {
         competitionId: this.competitionId
       }
-      sort = '-score'
+      sort = `-${this.sortField}`
     }
     if (this.selectedCollege) {
       filter.collegeId = this.selectedCollege.id
