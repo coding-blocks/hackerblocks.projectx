@@ -54,7 +54,7 @@ export default class SubmissionService extends Service {
 
     let maxTries = 30
     while(maxTries--) {
-      yield timeout(2000)
+      yield timeout(5000)
       const submission = yield this.store.findRecord('submission', response.submissionId, {
         refresh: true,
         include: 'badge'

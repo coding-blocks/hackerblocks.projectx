@@ -1,4 +1,7 @@
 <div class="img-card p-5 hb-tab-nav">
+  <div class="row">
+    <a href={{project.source_url}}>{{project.source_url}}</a>
+  </div>
   <div class="form-group row">
     <label class="col-sm-2 mt-2">Upload Solution</label>
     <div>
@@ -18,8 +21,8 @@
     </button>
   </div>
 </div>
-{{#if lastResult}}
-  <div>
+{{#if (or submitProjectTask.isRunning lastResult)}}
+  <div class="mt-4">
     <SubmissionResult
       @contentType={{content.type}}
       @judgeResult={{lastResult}}

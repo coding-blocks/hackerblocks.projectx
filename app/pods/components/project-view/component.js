@@ -19,8 +19,8 @@ export default class ProjectViewComponent extends Component {
   ProgressPercentage =  0
   new_expected_output = 'Loading...'
 
-  @alias('submitProjectTask.lastSuccessful.value.judge_result') lastResult
-
+  @alias('submitProjectTask.lastSuccessful.value') lastTaskResult
+  @alias('lastTaskResult.judge_result') lastResult
   
   @action triggerUpload() {
     this.set('uploadError', false)            

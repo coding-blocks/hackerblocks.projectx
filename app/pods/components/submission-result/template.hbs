@@ -4,7 +4,7 @@
   {{else if isErrored}}
     <SubmissionResult::SubmissionError @output={{errorPayload}} />
   {{else if isProjectSubmission}}
-    <SubmissionResult @message={{message}}/>
+    <SubmissionResult @message={{message}} @output={{output}}/>
   {{else if isSubmission}}
     <SubmissionResult::SubmissionTestcases @testcases={{testcasesPayload}} />
   {{else}}
