@@ -6149,6 +6149,13 @@ ember-truth-helpers@^2.1.0:
   dependencies:
     ember-cli-babel "^6.6.0"
 
+ember-uploader@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ember-uploader/-/ember-uploader-2.0.0.tgz#a8272af1c55e0f51a707364364085995a533c3ee"
+  integrity sha512-TGj2BCUtbp+JvUG2mwMMi3uoDc951rc+JkLUak6QCMCkJ+t0x1rz05qBFaenpvd01N63IRSOH+X9X+MxXpVdIg==
+  dependencies:
+    ember-cli-babel "^6.6.0"
+
 ember-weakmap@^3.0.0:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/ember-weakmap/-/ember-weakmap-3.3.2.tgz#82c0d3168df786f789600cd8386c2eabff96958d"

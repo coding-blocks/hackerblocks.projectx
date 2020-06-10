@@ -3,9 +3,11 @@
     <SubmissionResult::SubmissionStatus />
   {{else if isErrored}}
     <SubmissionResult::SubmissionError @output={{errorPayload}} />
+  {{else if isProjectSubmission}}
+    <SubmissionResult @message={{message}}/>
   {{else if isSubmission}}
     <SubmissionResult::SubmissionTestcases @testcases={{testcasesPayload}} />
   {{else}}
-    <SubmissionResult::SubmissionSuccess @output={{output}} />
+    <SubmissionResult::SubmissionSuccess @message={{message}} @output={{output}} />
   {{/if}}
 </div>

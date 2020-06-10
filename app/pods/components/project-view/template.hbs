@@ -1,0 +1,28 @@
+<div class="img-card p-5 hb-tab-nav">
+  <div class="form-group row">
+    <label class="col-sm-2 mt-2">Upload Solution</label>
+    <div>
+      {{file-uploader 
+        didUpload=(action 'didUploadFile') 
+        progress=(action 'Progress') 
+        didSign=(action 'didSignUpload') 
+        didError=(action 'didError')
+        startUpload=Trigger 
+        textInput=new_expected_output}}
+        <button {{action "triggerUpload"}} disabled={{uploadTrigger}} class="button-solid button-orange">Upload</button>
+      </div>  
+  </div>
+  <div class="t-align-c mt-4">
+    <button class="button-solid button-orange float-right" {{action (perform submitProjectTask)}}>
+      Submit Project
+    </button>
+  </div>
+</div>
+{{#if lastResult}}
+  <div>
+    <SubmissionResult
+      @contentType={{content.type}}
+      @judgeResult={{lastResult}}
+    />
+  </div>
+{{/if}}
