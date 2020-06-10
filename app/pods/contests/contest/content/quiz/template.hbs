@@ -1,43 +1,57 @@
-{{#if submitQuizTask.isRunning}}
-  <div class="row">
-    <div class="col-12">
-      <div class="border-card">
-        Loading ....
+{{#if lastResult}} {{log lastResult}}
+<div class="border-card mt-5">
+  <h4 class="bold">
+    {{quiz.title}}
+  </h4>
+
+  <div class="font-sm mt-4">
+    Your Scorecard
+  </div>
+
+  <div class="row mt-4">
+    <div class="col-md-4 col-lg-3">
+      <div class="font-mdxl bold">{{quiz.questions.length}}</div>
+      <div class="font-md bold">Total Questions</div>
+    </div>
+    <div class="col-md-4 col-lg-3 green">
+      <div class="font-mdxl bold">{{totalCorrect}}</div>
+      <div class="font-md bold">Right Answers</div>
+    </div>
+    <div class="col-md-4 col-lg-3 red">
+      <div class="font-mdxl bold">{{totalIncorrect}}</div>
+      <div class="font-md bold">Wrong Answers</div>
+    </div>
+      <div class="col-md-4 col-lg-3">
+        <div class="font-mdxl bold">{{lastResult.score}}</div>
+        <div class="font-md bold">Total Score</div>
       </div>
+  </div>
+    <div class="t-align-c mt-4">
+      <button class="button-solid button-orange" {{action (perform attemptAgain)}}>
+        Attempt Again
+      </button>
+    </div>
+
+    <div class="mt-5">
+      {{#link-to 'attempt.content' activeClass="" class="button-solid button-orange"}} Go Back {{/link-to}}
     </div>
   </div>
-{{else if lastResult}}
-  <div class="row">
-    <div class="col-12">
-      <div class="border-card">
-        {{lastResult.score}}
-      </div>
-    </div>
-  </div>
-{{else}}
+  {{else}}
   <div class="row">
     <div class="col-12 col-md-8">
-      <QuizView 
-        @setOffset={{action (mut q)}}
-        @contentAttempt={{contentAttempt}}
-        @quiz={{quiz}}
-        @index={{q}} />
+      <QuizView @setOffset={{action (mut q)}} @contentAttempt={{contentAttempt}} @quiz={{quiz}} @index={{q}} />
     </div>
     <div class="col-12 col-md-4">
       <QuizQuestionsPad>
         {{#each quiz.questions as |question i|}}
-          <QuestionPill
-            @question_id={{question.id}}
-            @submissions={{contentAttempt.quizQuestionSubmissions}}
-            @changeQuestion={{action (mut q)}}
-            @index={{i}}/>
-        {{/each}}
+        <QuestionPill @question_id={{question.id}} @submissions={{contentAttempt.quizQuestionSubmissions}} @changeQuestion={{action
+          (mut q)}} @index={{i}}/> {{/each}}
       </QuizQuestionsPad>
       <div class="t-align-c mt-4">
         <button class="button-solid button-orange" {{action (perform submitQuizTask)}}>
-          Submit Quiz
+          {{#if submitQuizTask.isRunning}} Submitting {{else}} Submit {{/if}}
         </button>
       </div>
     </div>
   </div>
-{{/if}}
+  {{/if}}

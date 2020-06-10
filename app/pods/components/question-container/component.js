@@ -16,6 +16,7 @@ export default class QuestionContainer extends Component {
     } else {
       this.submission.answer_ids.addObject(choiceId)
     }
+        
     return yield this.submission.save()
   }
 }

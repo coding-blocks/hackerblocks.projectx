@@ -1,8 +1,6 @@
 import Controller from '@ember/controller';
 import { inject as service } from '@ember/service';
 
-export default class ApplicationController extends Controller {
-  @service navigation
+export default class IndexController extends Controller {
   @service layout
-  @service serverTime
 }
