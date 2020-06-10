@@ -10,7 +10,7 @@ export default class ContentRoute extends Route {
         url: `${params.content_id}`
       },
       contest_id: contest.id,
-      include: 'problem,quiz'
+      include: 'problem,quiz,project'
     })    
     return hash({
       content,
@@ -25,6 +25,9 @@ export default class ContentRoute extends Route {
         break
       case 'quiz':
         this.transitionTo('practice.contest.content.quiz')
+        break
+      case 'project':
+        this.transitionTo('practice.contest.content.project')
         break
     }
   }
