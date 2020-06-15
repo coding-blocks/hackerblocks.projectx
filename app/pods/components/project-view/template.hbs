@@ -23,6 +23,23 @@
   {{#liquid-if (eq selectedTab "problem")}}
   <ProjectView::ProjectDetailView
     @project={{project}} />
+    <div class="form-group row mt-4">
+    <label class="col-sm-3 extra-bold">Upload Solution</label>
+    
+      {{file-uploader 
+        didUpload=(action 'didUploadFile') 
+        progress=(action 'Progress') 
+        didSign=(action 'didSignUpload') 
+        didError=(action 'didError')
+        startUpload=Trigger 
+        textInput=new_expected_output}}
+      <button {{action "triggerUpload"}} disabled={{uploadTrigger}} class="button-solid button-orange float-right">Upload</button>
+      <button class="button-solid button-orange float-right ml-4" {{action (perform submitProjectTask)}}>
+      Submit Project
+    </button>
+    
+  
+  </div>
   {{else if (eq selectedTab "submissions")}}
   <ProjectView::ProjectSubmissionView 
     @contest={{contest}}
@@ -40,23 +57,6 @@
     @contest={{contest}}
     @project={{content.project}} />
   {{/liquid-if}}
-  <div class="form-group row mt-4">
-    <label class="col-sm-3 extra-bold">Upload Solution</label>
-    
-      {{file-uploader 
-        didUpload=(action 'didUploadFile') 
-        progress=(action 'Progress') 
-        didSign=(action 'didSignUpload') 
-        didError=(action 'didError')
-        startUpload=Trigger 
-        textInput=new_expected_output}}
-      <button {{action "triggerUpload"}} disabled={{uploadTrigger}} class="button-solid button-orange float-right">Upload</button>
-      <button class="button-solid button-orange float-right ml-4" {{action (perform submitProjectTask)}}>
-      Submit Project
-    </button>
-    
-  
-  </div>
 </div>
 {{#if (or submitProjectTask.isRunning lastResult)}}
   <div class="mt-4">
