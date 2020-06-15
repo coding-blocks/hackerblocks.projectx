@@ -1,7 +1,48 @@
 <div class="img-card p-5 hb-tab-nav">
-  <div class="form-group row">
-    <label class="col-sm-2 mt-2">Upload Solution</label>
-    <div>
+  <div class="tab-nav-underline">
+    <div class="tab {{if (eq selectedTab "problem") "active"}} py-4 pointer" {{action (mut selectedTab) "problem"}}>
+      Problem
+    </div>
+    <div class="tab {{if (eq selectedTab "submissions") "active"}} py-4 pointer"
+      {{action (mut selectedTab) "submissions"}}>
+      Submissions
+    </div>
+    {{#if contest.controlFlags.show-leaderboard}}
+    <div class="tab {{if (eq selectedTab "leaderboard") "active"}} py-4 pointer"
+      {{action (mut selectedTab) "leaderboard"}}>
+      Leaderboard
+    </div>
+    {{/if}}
+    {{#if contest.allowTestcaseEditorialUnlock}}
+    <div class="tab {{if (eq selectedTab "solution") "active"}} py-4 pointer" {{action (mut selectedTab) "solution"}}>
+      Solution
+    </div>
+    {{/if}}
+  </div>
+
+  {{#liquid-if (eq selectedTab "problem")}}
+  <ProjectView::ProjectDetailView
+    @project={{project}} />
+  {{else if (eq selectedTab "submissions")}}
+  <ProjectView::ProjectSubmissionView 
+    @contest={{contest}}
+    @content={{content}} />
+  {{else if (eq selectedTab "leaderboard")}}
+  <ProjectView::ProjectLeaderboardView
+    class="pt-5"
+    @for="content"
+    @contestId={{contest.id}}
+    @contentId={{content.id}}
+    @allowFilter=true 
+    @columns={{array 'college'}} />
+  {{else if (eq selectedTab "solution")}}
+  <ProjectView::ProjectSolutionView
+    @contest={{contest}}
+    @project={{content.project}} />
+  {{/liquid-if}}
+  <div class="form-group row mt-4">
+    <label class="col-sm-3 extra-bold">Upload Solution</label>
+    
       {{file-uploader 
         didUpload=(action 'didUploadFile') 
         progress=(action 'Progress') 
@@ -9,20 +50,16 @@
         didError=(action 'didError')
         startUpload=Trigger 
         textInput=new_expected_output}}
-        <button {{action "triggerUpload"}} disabled={{uploadTrigger}} class="button-solid button-orange">Upload</button>
-      </div>  
-  </div>
-  <div class="t-align-c mt-4">
-    <button class="button-solid button-orange float-right" {{action (perform submitProjectTask)}}>
+      <button {{action "triggerUpload"}} disabled={{uploadTrigger}} class="button-solid button-orange float-right">Upload</button>
+      {{!-- <button class="button-solid button-orange float-right" {{action (perform submitProjectTask)}}>
       Submit Project
-    </button>
+    </button> --}}
+    
+  
   </div>
 </div>
 {{#if lastResult}}
-  <div>
-    <SubmissionResult
-      @contentType={{content.type}}
-      @judgeResult={{lastResult}}
-    />
-  </div>
+<div>
+  <SubmissionResult @contentType={{content.type}} @judgeResult={{lastResult}} />
+</div>
 {{/if}}

@@ -4,7 +4,7 @@ import { inject as service } from '@ember/service';
 import { alias } from '@ember/object/computed';
 import { action } from '@ember/object';
 
-export default class SubmissionListComponent extends Component {
+export default class ProjectSubmissionView extends Component {
   @service store
 
   showModal = false
