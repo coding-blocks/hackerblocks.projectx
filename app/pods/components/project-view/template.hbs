@@ -58,8 +58,11 @@
   
   </div>
 </div>
-{{#if lastResult}}
-<div>
-  <SubmissionResult @contentType={{content.type}} @judgeResult={{lastResult}} />
-</div>
+{{#if (or submitProjectTask.isRunning lastResult)}}
+  <div class="mt-4">
+    <SubmissionResult
+      @contentType={{content.type}}
+      @judgeResult={{lastResult}}
+    />
+  </div>
 {{/if}}
