@@ -19,8 +19,7 @@ export default class ProjectViewComponent extends Component {
   new_expected_output = "Loading...";
   selectedTab = "problem";
 
-  @alias('submitProjectTask.lastSuccessful.value') lastTaskResult
-  @alias('lastTaskResult.judge_result') lastResult
+  @alias('submitProjectTask.lastSuccessful.value.judge_result') lastResult
   
   @action triggerUpload() {
     this.set("uploadError", false);
