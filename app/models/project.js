@@ -6,6 +6,6 @@ export default Model.extend({
   details: DS.attr(),
   time_limits: DS.attr(),
   source_url: DS.attr(),
-  solution_dirs: DS.attr(),
+  locked_files: DS.attr(),
   contest: DS.belongsTo('contest'),
 });
