@@ -4,6 +4,9 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
+    fingerprint: {
+      enabled: ['staging', 'production'].includes(process.env)
+    },
     // Add options here
     'ember-composable-helpers': {
       only: ['range', 'toggle', 'inc', 'includes', 'array', 'dec'],
