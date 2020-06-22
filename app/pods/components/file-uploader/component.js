@@ -2,8 +2,10 @@ import Ember from 'ember';
 import S3Uploader from 'ember-uploader/uploaders/s3';
 import FileField from 'ember-uploader/components/file-field';
 import config from '../../../config/environment';
+import { inject as service } from '@ember/service'
 
 export default FileField.extend({  
+  session: service(),
   signingUrl: config.apiHost + '/api/v2/aws/pre_signed_post',
   currentUser: Ember.inject.service('current-user'),
   isFileInput: Ember.computed('files', function () {
@@ -27,14 +29,14 @@ export default FileField.extend({
       this.set('startUpload', false)
     }, 0)
 
-    // const jwt = this.get('currentUser').getAuthHeaders().Authorization
+    const jwt = this.get('session.data.authenticated.jwt')
 
     const uploader = S3Uploader.create({
       signingUrl: this.get('signingUrl'),
       signingAjaxSettings: {
-        // headers: {
-        //   'X-Application-Name': 'Uploader Test'
-        // }
+        headers: {
+          'Authorization': jwt
+        }
       },
       didSign(response) {
         this.trigger('didSign', response)

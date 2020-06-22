@@ -73,6 +73,7 @@
     "eslint-plugin-node": "^9.0.1",
     "liquid-fire": "^0.30.0",
     "loader.js": "^4.7.0",
+    "minimatch": "^3.0.4",
     "qunit-dom": "^0.8.4",
     "sass": "^1.26.3",
     "showdown": "^1.9.0"

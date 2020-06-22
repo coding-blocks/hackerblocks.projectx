@@ -1,0 +1,10 @@
+<input
+  type="file"
+  id="fileInput"
+  names="files[]"
+  webkitdirectory
+  ondragover={{action (mut hovering) true}}
+  ondragenter={{action (mut hovering) true}}
+  ondragleave={{action (mut hovering) false}}
+  ondrop={{action (mut hovering) false}}
+  onchange={{action (perform fileZipTask)}}>

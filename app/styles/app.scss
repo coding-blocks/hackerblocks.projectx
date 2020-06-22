@@ -1,6 +1,7 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
 @import "ember-power-select";
+@import "./components/drag-drop.scss";
 
 body{
   padding-top: 62px;
