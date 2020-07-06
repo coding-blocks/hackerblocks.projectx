@@ -1,7 +1,8 @@
-<div class="drag-and-drop {{if hovering "hovering"}}">
-  <label for="fileInput" class="p-5">
-    {{if hovering "Drop Drop Drop" "Drop your project files here"}}
-
+<div class="drag-and-drop">
+  <label 
+    for="fileInput" 
+    class="t-align-c p-4 w-100 {{if (or hovering fileZipTask.isRunning) "hovering"}}" >
+    {{labelText}}
     <input
       type="file"
       id="fileInput"

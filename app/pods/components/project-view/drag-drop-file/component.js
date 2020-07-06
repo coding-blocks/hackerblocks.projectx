@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { dropTask } from 'ember-concurrency-decorators';
 import { inject as service } from '@ember/service';
-import { action } from '@ember/object';
+import { computed } from '@ember/object';
 
 export default class DragDropFile extends Component {
   @service zipjs;
@@ -9,10 +9,19 @@ export default class DragDropFile extends Component {
 
   hovering = false;
   allowedPatterns = ['src/']
+
+  @computed('hovering', 'fileZipTask.isRunning')
+  get labelText() {
+    if (this.fileZipTask.isRunning) {
+      return "Setting up you project submission..."
+    }
+
+    return "Drop your project folder here "
+  }
   
   @dropTask fileZipTask = function*(event) {
     this.set('hovering', false)
-    
+
     let fileList = [...event.target.files]
     fileList = fileList.reduce((acc, curr) => {
       const name = curr.webkitRelativePath.split('/').slice(1).join('/')
