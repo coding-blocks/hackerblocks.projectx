@@ -1,0 +1,17 @@
+<div class="drag-and-drop {{if hovering "hovering"}}">
+  <label for="fileInput" class="p-5">
+    {{if hovering "Drop Drop Drop" "Drop your project files here"}}
+
+    <input
+      type="file"
+      id="fileInput"
+      class="file-input"
+      names="files[]"
+      webkitdirectory
+      ondragleave={{action (mut hovering) false}}
+      ondragexit={{action (mut hovering) false}}
+      ondrop={{action (mut hovering) false}}
+      ondragenter={{action (mut hovering) true}}
+      onchange={{action (perform fileZipTask)}}>
+  </label>
+</div>

@@ -1,7 +1,7 @@
 import S3Uploader from 'ember-uploader/uploaders/s3';
 
 export default S3Uploader.extend({
-  createFormData(files, extra = {}) {
+  createFormData(files, extra = { type: 'zip' }) {
     const formData = new FormData();
 
     for (const prop in extra) {

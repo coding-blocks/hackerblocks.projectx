@@ -44,6 +44,7 @@ module.exports = function(defaults) {
 
   app.import('node_modules/@coding-blocks/motley/dist/hb/app.min.css')
   app.import('node_modules/js-base64/base64.min.js')
+  app.import('node_modules/jszip/dist/jszip.min.js')
 
   return app.toTree();
 };

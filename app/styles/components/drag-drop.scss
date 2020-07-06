@@ -1,51 +1,23 @@
-#dropFileForm {
-  margin: 16px;
-  text-align: center;
-  border-radius: 8px;
-  overflow: hidden;
-  transition: 0.5s;
-}
+.drag-and-drop {
+  display: flex;
+  justify-content: center;
 
-#dropFileForm #fileInput {
-  border: dashed 1.5px grey;
-  background-color: white;
-  display: block;
-  padding: 16px;
-  position: relative;
-  cursor: pointer;
-}
-
-#dropFileForm #fileLabel:after,
-#dropFileForm #fileLabel:before {
-  position: absolute;
-  content: "";
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #92b0b3;
-  z-index: -2;
-  border-radius: 8px 8px 0 0;
-}
-
-#dropFileForm #fileLabel:before {
-  z-index: -1;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 5%,
-    black 5%,
-    black 10%
-  );
-  opacity: 0;
-  transition: 0.5s;
-}
-
-#dropFileForm.fileHover #fileLabel:before {
-  opacity: 0.25;
-  background-color: #92b0b3;
-}
-
-#dropFileForm.fileHover {
-  box-shadow: 0 0 16px #92b0b3;
+  .hovering {
+    border: dashed #b9b9b9;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #fff;
+  }
+  
+  label {
+    .file-input {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
 }

@@ -34,35 +34,26 @@
     {{/liquid-if}}
   </div>
 
-  <div class="d-flex justify-content-between align-items-center bg-grey p-4">
+  <div class="d-flex justify-content-between align-items-center bg-grey">
     {{#if source_url}}
-      <span>
-        <a href="{{source_url}}" class="orange" target="_blank">Submission Bundle</a>
-        <button {{action (mut source_url) null}}>
-          <FaIcon @icon="times" />
+      <div class="d-flex align-items-center justify-content-between p-5 w-100">
+        <span>
+          <a href="{{source_url}}" class="orange" target="_blank">Project Folder</a>
+          <button {{action (mut source_url) null}}>
+            <FaIcon @icon="times" />
+          </button>
+        </span>
+        <button 
+          class="button-solid button-orange float-right ml-4" 
+          disabled={{submitProjectTask.isRunning}}
+          {{action (perform submitProjectTask)}}>
+          {{if submitProjectTask.isRunning 'Submitting...' 'Submit Project'}}
         </button>
-      </span>
-      <button 
-        class="button-solid button-orange float-right ml-4" 
-        disabled={{submitProjectTask.isRunning}}
-        {{action (perform submitProjectTask)}}>
-        {{if submitProjectTask.isRunning 'Submitting...' 'Submit Project'}}
-      </button>
+      </div>
     {{else}}
-      <span>
-        <span class="bold">Upload Solution</span>
-        {{file-uploader 
-          progress=(action 'onProgress') 
-          didSign=(action 'didSignUpload') 
-          didError=(action 'didError')
-          startUpload=uploadTrigger}}
-      </span>
-      <button 
-        disabled={{uploading}} 
-        class="button-solid button-orange float-right"
-        {{action "triggerUpload"}}>
-        {{if uploading 'Uploading...' 'Upload'}}
-      </button>
+      <ProjectView::DragDropFile 
+        class="w-100"
+        @onAfterUpload={{action (mut source_url)}} />
     {{/if}}
   </div>
 </div>
