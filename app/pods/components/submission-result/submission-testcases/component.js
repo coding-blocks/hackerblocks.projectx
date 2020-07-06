@@ -6,6 +6,12 @@ export default class SubmissionTestcases extends Component {
 
   @computed('selectedIndex')
   get compilerMessage() {
-    return this.testcases[this.selectedIndex].result
+    const testcase = this.testcases[this.selectedIndex]
+    
+    if (testcase.result) {
+      return testcase.result
+    }
+
+    return window.atob(testcase.score === 100 ? testcase.stdout : testcase.stderr)
   }
 }
