@@ -61,7 +61,7 @@
   <div class="mt-4">
     <SubmissionResult
       @contentType={{content.type}}
-      @judgeResult={{lastResult}}
+      @judgeResult={{if (not submitProjectTask.isRunning) lastResult}}
     />
   </div>
 {{/if}}
