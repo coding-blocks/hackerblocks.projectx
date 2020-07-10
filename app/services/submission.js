@@ -54,7 +54,7 @@ export default class SubmissionService extends Service {
 
     let maxTries = 30
     while(maxTries--) {
-      yield timeout(2000)
+      yield timeout(5000)
       const submission = yield this.store.findRecord('submission', response.submissionId, {
         refresh: true,
         include: 'badge'
@@ -94,6 +94,44 @@ export default class SubmissionService extends Service {
         if (this.fullScreen) {
           const score = +submission.score
           const progress = yield this.problem.get('progress')
+          if (progress.get('status') === 'done') {
+            return
+          }
+          if (score === 100) {
+            progress.set('status', 'done')
+          } else if (score > 0 && score < 100) {
+            progress.set('status', 'undone')
+          } else {
+            progress.set('status', 'failed')
+          }
+          progress.save()
+        }
+        return submission
+      }
+    }
+    return null
+  }
+
+  @dropTask submitProjectTask = function *(source_url) {
+    const response = yield this.api.request('submissions/submit', {
+      method: 'POST',
+      data: {
+        source: source_url,
+        contest_id: this.contest.id,
+        content_id: this.content.id
+      }
+    })
+    let maxTries = 30
+    while(maxTries--) {
+      yield timeout(2000)
+      const submission = yield this.store.findRecord('submission', response.submissionId, {
+        refresh: true,
+        include: 'badge'
+      })
+      if (submission.judge_result){
+        if (this.fullScreen) {
+          const score = +submission.score
+          const progress = yield this.content.get('progress')
           if (progress.get('status') === 'done') {
             return
           }

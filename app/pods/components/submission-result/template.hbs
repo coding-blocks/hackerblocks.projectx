@@ -6,6 +6,6 @@
   {{else if isSubmission}}
     <SubmissionResult::SubmissionTestcases @testcases={{testcasesPayload}} />
   {{else}}
-    <SubmissionResult::SubmissionSuccess @output={{output}} />
+    <SubmissionResult::SubmissionSuccess @message={{message}} @output={{output}} />
   {{/if}}
 </div>

@@ -4,6 +4,9 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
+    fingerprint: {
+      enabled: ['staging', 'production'].includes(process.env)
+    },
     // Add options here
     'ember-composable-helpers': {
       only: ['range', 'toggle', 'inc', 'includes', 'array', 'dec'],
@@ -16,9 +19,6 @@ module.exports = function(defaults) {
     },
     'ember-cli-string-helpers': {
       only: ['truncate', 'concat'],
-    },
-    fingerprint: {
-      enabled: true
     },
     'ember-cli-uglify': {
       /* https://github.com/mike-north/ember-monaco/issues/54 */
@@ -41,6 +41,7 @@ module.exports = function(defaults) {
 
   app.import('node_modules/@coding-blocks/motley/dist/hb/app.min.css')
   app.import('node_modules/js-base64/base64.min.js')
+  app.import('node_modules/jszip/dist/jszip.min.js')
 
   return app.toTree();
 };

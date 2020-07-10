@@ -41,12 +41,14 @@ Router.map(function() {
         this.route('content', {path: '/:content_id'}, function() {
           this.route('problem', {path: '/problem'});
           this.route('quiz', {path: '/quiz'});
+          this.route('project', {path: '/project'})
         });
       });
       this.route('feedback');
       this.route('content', {path: '/:content_id'}, function() {
         this.route('quiz');
         this.route('problem');
+        this.route('project')
       });
     });
   });
@@ -61,6 +63,7 @@ Router.map(function() {
       this.route('content', {path: '/:content_id'}, function() {
         this.route('problem');
         this.route('quiz');
+        this.route('project');
       });
     });
   });

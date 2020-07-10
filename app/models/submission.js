@@ -46,6 +46,7 @@ export default Model.extend({
           icon: 'fas fa-check',
           message: 'Accepted'
         }
+        case 'WrongAnswer':
         case 'FailedTestcase': return {
           color: 'red',
           icon: 'fas fa-times',

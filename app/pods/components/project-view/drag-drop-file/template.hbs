@@ -1,0 +1,18 @@
+<div class="drag-and-drop">
+  <label 
+    for="fileInput" 
+    class="t-align-c p-4 w-100 {{if (or hovering fileZipTask.isRunning) "hovering"}}" >
+    {{labelText}}
+    <input
+      type="file"
+      id="fileInput"
+      class="file-input"
+      names="files[]"
+      webkitdirectory
+      ondragleave={{action (mut hovering) false}}
+      ondragexit={{action (mut hovering) false}}
+      ondrop={{action (mut hovering) false}}
+      ondragenter={{action (mut hovering) true}}
+      onchange={{action (perform fileZipTask)}}>
+  </label>
+</div>

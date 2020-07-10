@@ -1,0 +1,67 @@
+<div class="img-card hb-tab-nav">
+  <div class="tab-nav-underline px-5 pt-4">
+    <div class="tab {{if (eq selectedTab "problem") "active"}} py-4 pointer" {{action (mut selectedTab) "problem"}}>
+      Problem
+    </div>
+    <div class="tab {{if (eq selectedTab "submissions") "active"}} py-4 pointer"
+      {{action (mut selectedTab) "submissions"}}>
+      Submissions
+    </div>
+    {{#if contest.controlFlags.show-leaderboard}}
+      <div class="tab {{if (eq selectedTab "leaderboard") "active"}} py-4 pointer"
+        {{action (mut selectedTab) "leaderboard"}}>
+        Leaderboard
+      </div>
+    {{/if}}
+  </div>
+
+  <div class="px-5 py-4">
+    {{#liquid-if (eq selectedTab "problem")}}
+      <ProjectView::ProjectDetailView
+        @project={{project}} />
+    {{else if (eq selectedTab "submissions")}}
+      <ProjectView::ProjectSubmissionView 
+        @contest={{contest}}
+        @content={{content}} />
+    {{else if (eq selectedTab "leaderboard")}}
+      <ProjectView::ProjectLeaderboardView
+        class="pt-5"
+        @for="content"
+        @contestId={{contest.id}}
+        @contentId={{content.id}}
+        @allowFilter=true 
+        @columns={{array 'college'}} />
+    {{/liquid-if}}
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center bg-grey">
+    {{#if source_url}}
+      <div class="d-flex align-items-center justify-content-between p-4 w-100">
+        <span>
+          <a href="{{source_url}}" class="orange" target="_blank">Project Folder</a>
+          <button {{action (mut source_url) null}}>
+            <FaIcon @icon="times" />
+          </button>
+        </span>
+        <button 
+          class="button-solid button-orange float-right ml-4" 
+          disabled={{submitProjectTask.isRunning}}
+          {{action (perform submitProjectTask)}}>
+          {{if submitProjectTask.isRunning 'Submitting...' 'Submit Project'}}
+        </button>
+      </div>
+    {{else}}
+      <ProjectView::DragDropFile 
+        class="w-100"
+        @onAfterUpload={{action (mut source_url)}} />
+    {{/if}}
+  </div>
+</div>
+{{#if (or submitProjectTask.isRunning lastResult)}}
+  <div class="mt-4">
+    <SubmissionResult
+      @contentType={{content.type}}
+      @judgeResult={{if (not submitProjectTask.isRunning) lastResult}}
+    />
+  </div>
+{{/if}}

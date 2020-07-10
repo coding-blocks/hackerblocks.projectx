@@ -44,6 +44,13 @@
                 Test Case {{index}}
                 <FaIcon @icon="exclamation-triangle" class="ml-2 gradient-text-orange" />
               </a>
+            {{else if testcase.time}}
+              <a 
+                href="#" 
+                class="gradient-text-orange"
+                {{action (mut selectedIndex) index}}>
+                Test Case {{index}}
+              </a>
             {{else}}
               <a 
                 href="#" 
@@ -61,8 +68,13 @@
       <div class="py-5 px-5">
         <h6 class="bold">Compile Message</h6>
         <div class="bg-grey p-4 mt-3 mb-5">
-          <div class="font-sm">{{compilerMessage}}</div>
+          <pre class="font-sm">{{compilerMessage}}</pre>
         </div>
+        {{#if testcase.time}}
+          <div class="bg-grey p-4 mt-3 mb-5">
+            <div class="font-sm">Time: {{testcase.time}}</div>
+          </div>
+        {{/if}}
       </div>
     </div>
   </div>

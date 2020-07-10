@@ -10,6 +10,7 @@ export default Model.extend({
   dcbContents: DS.attr(),
   problem: DS.belongsTo('problem'),
   quiz: DS.belongsTo('quiz'),
+  project: DS.belongsTo('project'),
   contest: DS.hasMany('contest'),
   bookmarkedContent: DS.belongsTo('bookmarked-content'),
   topSubmission: DS.belongsTo('submission'),

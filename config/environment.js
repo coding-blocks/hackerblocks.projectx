@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'hackerblocks',
     podModulePrefix: 'hackerblocks/pods',
     environment,
-    rootURL: '/app/',
+    rootURL: '/app',
     locationType: 'auto',
     'ember-simple-auth-token': {
       identificationField: 'code',

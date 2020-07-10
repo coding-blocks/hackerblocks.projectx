@@ -1,0 +1,23 @@
+<div class="py-4">
+  <p>
+    {{markdown-to-html project.details.description}}
+  </p>
+  <div class="extra-bold">Project URL</div>
+  <div class="bg-grey br-5 w-60 px-4 py-2 my-2">
+    <a href="{{ project.source_url }}" target="_blank">{{project.source_url}}</a>
+  </div>
+  <div class="extra-bold">Editable Directories</div>
+  <div class="bg-grey br-5 w-60 px-4 py-2 my-2">
+    <ul>
+      {{#each allowedDirectories as |dir|}}
+        <li>{{dir}}</li>
+      {{/each}}
+    </ul>
+  </div>
+  {{#if project.details.explanation}}
+    <div class="extra-bold">Explanation</div>
+    <div class="bg-grey br-5 w-60 px-4 py-2 my-2">
+      {{markdown-to-html project.details.explanation}}
+    </div>
+  {{/if}}
+</div>
