@@ -11,10 +11,14 @@ export default class QuestionContainer extends Component {
     }
   }
   @dropTask selectAnswerTask = function *(choiceId) {
-    if (this.submission.answer_ids.includes(choiceId)) {
-      this.submission.answer_ids.removeObject(choiceId)
+    if (this.question.multicorrect) {
+      if (this.submission.answer_ids.includes(choiceId)) {
+        this.submission.answer_ids.removeObject(choiceId)
+      } else {
+        this.submission.answer_ids.addObject(choiceId)
+      }
     } else {
-      this.submission.answer_ids.addObject(choiceId)
+      this.submission.set('answer_ids', [choiceId])
     }
         
     return yield this.submission.save()
