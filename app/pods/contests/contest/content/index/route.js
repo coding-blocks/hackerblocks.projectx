@@ -8,6 +8,8 @@ export default class IndexRoute extends Route {
         return this.transitionTo('contests.contest.content.problem')
       case 'quiz':
         return this.transitionTo('contests.contest.content.quiz')
+      case 'project':
+        return this.transitionTo('contests.contest.content.project')
     }
   }
 }

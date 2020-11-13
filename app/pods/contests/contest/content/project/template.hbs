@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="col-12 col-md-8">
+    <ProjectView 
+      @contest={{contest}} 
+      @content={{content}}
+      @project={{project}} />
+  </div>
+  <div class="col-12 col-md-4">        
+    <AuthorCard 
+      class="pb-5" 
+      @author={{content.createdAt}} />
+  </div>
+</div>
