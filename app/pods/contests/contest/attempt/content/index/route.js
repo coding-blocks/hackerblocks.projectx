@@ -6,6 +6,7 @@ export default class IndexRoute extends Route {
     switch(content.type) {
       case 'problem': this.transitionTo('contests.contest.attempt.content.problem'); break
       case 'quiz': this.transitionTo('contests.contest.attempt.content.quiz'); break
+      case 'project': this.transitionTo('contests.contest.attempt.content.project'); break
     }
   }
 }

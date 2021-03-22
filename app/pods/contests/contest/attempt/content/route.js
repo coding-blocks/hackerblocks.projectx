@@ -16,7 +16,7 @@ export default class ContentRoute extends Route {
         url: `${params.content_id}`
       },
       contest_id: contest.id,
-      include: 'problem,quiz'
+      include: 'problem,quiz,project'
     })
 
     return content
