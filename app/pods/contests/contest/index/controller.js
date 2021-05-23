@@ -7,8 +7,9 @@ export default class IndexController extends Controller {
   @service store
   @service router
 
-  queryParams = ['offset', 'limit', 'status', 'difficulty', 'tags', 'q']
+  queryParams = ['offset', 'limit', 'status', 'difficulty', 'tags', 'q','is_listed']
   offset = 0
+  is_listed=true
   limit = 10
   difficulty = []
   tags = []
@@ -21,7 +22,7 @@ export default class IndexController extends Controller {
       limit: this.limit
     }
   }
-  @computed('status','difficulty','tags', 'q')
+  @computed('status','difficulty','tags', 'q','is_listed')
   get filter() {
     return {
       status: this.status,
@@ -35,7 +36,8 @@ export default class IndexController extends Controller {
       },
       name: {
         $iLike: `%${this.q}%`
-      }
+      },
+      is_listed:true
     }
   }
   @computed('contest.currentAttempt')

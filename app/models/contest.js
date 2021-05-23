@@ -29,6 +29,7 @@ export default Model.extend({
   plagiarismFiltering: DS.attr(),
   // problemCount: DS.attr(),s
   contentCount: DS.attr(),
+  is_listed:DS.attr(),
   stats: DS.attr(),
   allowedLanguages: DS.attr(),
   registrationForm: DS.attr(),
