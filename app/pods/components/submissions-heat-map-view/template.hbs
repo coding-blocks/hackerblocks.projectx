@@ -23,7 +23,7 @@
         <tbody>
           {{#each submissions as |submission|}}
           <tr>
-            <td class="py-3">{{submission.problem.name}}</td>
+            <td class="py-3">{{submission.content.name}}</td>
             <td class="py-3">{{submission.score}}</td>
             <td class="py-3">{{submission.language}}</td>
             <td class="py-3">{{moment-from submission.createdAt}}</td>
