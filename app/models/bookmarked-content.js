@@ -10,10 +10,6 @@ export default Model.extend({
   route: Ember.computed('contest', 'problem', 'contestTypeId', function() {
     const contest_type = this.contest.get('contest_type')
     switch (contest_type) {
-      case 'practice': return {
-        name: 'practice.contest.problem',
-        model: [this.contestTypeId, this.content.get('id')]
-      }
       case 'dcb': return {
         name: 'dcb.problem',
         model: [this.content.get('id')]
