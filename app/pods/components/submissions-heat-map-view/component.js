@@ -27,8 +27,8 @@ export default class SubmissionHeatMapComponent extends Component {
       },
       date: this.date,
       user_id: this.userId,
-      include: 'problem,contest,content',
-      exclude: 'problem.*,user.*,contest.*',
+      include: 'content',
+      exclude: 'user.*,content.*',
       page: this.page
     })
     this.set('submissions', submissions)
