@@ -16,7 +16,7 @@ export default Model.extend({
   explanation: DS.attr(),
   is_top_submission: DS.attr(),
   plagiarism_detected: DS.attr(),
-  content: DS.belongsTo('content', { inverse: null }),
+  content: DS.belongsTo('content', { inverse: 'submission' }),
   contest: DS.belongsTo('contest'),
   user: DS.belongsTo('user'),
   createdAt: DS.attr(),
