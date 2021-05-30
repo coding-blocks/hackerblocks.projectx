@@ -32,7 +32,7 @@
         <h3 class="mb-4">{{content.name}}</h3>
       </div>
       <button {{action toggleBookmark content}}>
-        <i class="{{if (or problem.bookmarkedBy problem.bookmark) 'fas' 'far'}} fa-bookmark fa-2x"></i>
+        <i class="{{if content.bookmarkedContent 'fas' 'far'}} fa-bookmark fa-2x"></i>
       </button>
     </div>
     {{#if ended}}

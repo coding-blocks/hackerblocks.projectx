@@ -11,7 +11,7 @@ export default Model.extend({
     const contest_type = this.contest.get('contest_type')
     switch (contest_type) {
       case 'practice': return {
-        name: 'practice.contest.problem',
+        name: 'practice.contest.content',
         model: [this.contestTypeId, this.content.get('id')]
       }
       case 'dcb': return {
