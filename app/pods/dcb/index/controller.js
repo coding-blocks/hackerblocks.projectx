@@ -20,6 +20,7 @@ export default class DCBIndexController extends Controller {
     }
 
     const bookmarkContent = this.store.createRecord('bookmarked-content', {
+      contestTypeId: this.dcb.id,
       contest: this.contest,
       content: this.top_content
     })

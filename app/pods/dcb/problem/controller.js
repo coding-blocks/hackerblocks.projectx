@@ -17,7 +17,7 @@ export default class ProblemController extends Controller {
     }
 
     const bookmarContent = this.store.createRecord('bookmarked-content', {
-      contestTypeId:this.dcb.id,
+      contestTypeId: this.dcb.id,
       contest: this.contest,
       content: this.content
     })
