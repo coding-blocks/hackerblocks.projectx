@@ -7,8 +7,8 @@ export default class BookmarkedProblemsView extends Component {
 
   @restartableTask fetchBookmarkedContentsTask = function *() {
     return yield this.store.query('bookmarked-content', {
-      include: 'content,contest',
-      exclude: 'contest.*'
+      include: 'contest',
+      exclude: 'user.*,contest.*'
     })
   }
 }
