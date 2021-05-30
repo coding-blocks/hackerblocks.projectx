@@ -6,7 +6,7 @@ export default Model.extend({
   contestTypeId: DS.attr(),
   contest: DS.belongsTo('contest'),
   user: DS.belongsTo('user'),
-  content: DS.belongsTo('content'),
+  content: DS.belongsTo('content',{inverse:'bookmarkedContents'}),
   route: Ember.computed('contest', 'problem', 'contestTypeId', function() {
     const contest_type = this.contest.get('contest_type')
     switch (contest_type) {
