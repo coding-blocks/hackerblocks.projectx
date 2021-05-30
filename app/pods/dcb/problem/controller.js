@@ -10,17 +10,19 @@ export default class ProblemController extends Controller {
   }
 
   @action
-  async toggleBookmark(problem) {
-    const bookmark = await problem.get('bookmarkedContent')
+  async toggleBookmark(content) {
+    const bookmark = await content.get('bookmarkedContent')
     if (bookmark) {
       return bookmark.destroyRecord()
     }
-    const bookmarkProblem = this.store.createRecord('bookmarked-content', {
+
+    const bookmarContent = this.store.createRecord('bookmarked-content', {
+      contestTypeId:this.dcb.id,
       contest: this.contest,
       content: this.content
     })
 
-    bookmarkProblem.save()
+    bookmarContent.save()
   }
 
   @action onTimerEnd() {

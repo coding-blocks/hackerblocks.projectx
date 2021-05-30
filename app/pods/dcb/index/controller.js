@@ -13,17 +13,18 @@ export default class DCBIndexController extends Controller {
   }
 
   @action
-  async toggleBookmark(problem) {
-    const bookmark = await problem.get('bookmarkedContent')
+  async toggleBookmark(content) {
+    const bookmark = await content.get('bookmarkedContent')
     if (bookmark) {
       return  bookmark.destroyRecord()
     }
-    const bookmarkProblem = this.store.createRecord('bookmarked-content', {
+
+    const bookmarkContent = this.store.createRecord('bookmarked-content', {
       contest: this.contest,
       content: this.top_content
     })
 
-    bookmarkProblem.save()
+    bookmarkContent.save()
   }
 
   @action onTimerEnd(){
