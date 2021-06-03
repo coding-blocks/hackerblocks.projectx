@@ -10,7 +10,7 @@ export default class ArchivedController extends Controller {
 
   queryParams = ['offset', 'limit']
   offset = 0
-  limit = 10
+  limit = 6
 
   @restartableTask fetchContestsTask = function* () {
     try {
@@ -27,7 +27,11 @@ export default class ArchivedController extends Controller {
       this.set('showError', true)
     }
   }
-
+  @action
+  setOffset(offset) {
+    this.set('page.offset', offset)
+    this.fetchContestsTask.perform()
+  }
   @computed('offset', 'limit')
   get page() {
     return {

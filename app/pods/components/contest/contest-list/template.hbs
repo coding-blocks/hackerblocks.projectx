@@ -1,15 +1,15 @@
 <WAsync @task={{fetchContestsTask}} @loadingComponent={{component 'loading-component' }} @fireTrigger={{taskTrigger}} as
-  |college_contests isError|>
+  |typed_contests isError|>
   <div class="row">
-    {{#each college_contests as |college_contest|}}
+    {{#each typed_contests as |typed_contest|}}
     <div class="col-12 col-md-4">
-      <ContestCard class="mb-5" @contest={{college_contest.contest}} @showTimer=true>
-        {{#link-to "contests.contest" college_contest.contest.id class="button-solid button-orange mt-3 mb-2 mx-auto"}}
-        Solve Challenge
+      <ContestCard class="mb-5" @contest={{typed_contest.contest}} @showTimer=true>
+        {{#link-to "contests.contest" typed_contest.contest.id class="button-solid button-orange mt-3 mb-2 mx-auto"}}
+        {{buttonText}}
         {{/link-to}}
       </ContestCard>
     </div>
     {{/each}}
   </div>
-  <PaginationPill @pagination={{college_contests.meta.pagination}} @setOffset={{action 'setOffset' }} />
+  {{yield typed_contests}}
 </WAsync>

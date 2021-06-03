@@ -1,15 +1,23 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
 export default class LiveContestRoute extends Route {
-  model() {
-    return this.store.query('college_contest', {
-      custom: {
-        ext: 'url', url: 'live'
-      }
-    })
+  @service metrics
+
+  queryParams = {
+    offset: {
+      refreshModel: true
+    },
+    limit: {
+      refreshModel: true
+    }
   }
 
-  setupController(controller, model) {
+  model() {
+    return this.modelFor('college_contest')
+  }
+
+  async setupController(controller, model) {
     controller.set('college_contests', model)
   }
 }

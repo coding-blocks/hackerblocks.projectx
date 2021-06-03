@@ -8,9 +8,4 @@ export default class ContestList extends Component {
     this.set('taskTrigger', true)
   }
 
-  @action
-  setOffset(offset) {
-    this.set('page.offset', offset)
-    this.fetchContestsTask.perform()
-  }
 }
