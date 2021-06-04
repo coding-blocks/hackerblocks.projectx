@@ -21,11 +21,13 @@ export default class UpcomingController extends Controller {
 
   @computed('q')
   get filter() {
-    return {
-      name: {
-        $iLike: `%${this.q}%`
+    this.set('page.offset', 0)
+    if (this.q !== '')
+      return {
+        name: {
+          $iLike: `%${this.q}%`
+        }
       }
-    }
   }
 
   @restartableTask fetchContestsTask = function* () {

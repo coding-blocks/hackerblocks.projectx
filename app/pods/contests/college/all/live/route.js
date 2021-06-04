@@ -6,13 +6,13 @@ export default class LiveContestRoute extends Route {
 
   queryParams = {
     offset: {
-      refreshModel: true
+      refreshModel: false
     },
     limit: {
-      refreshModel: true
+      refreshModel: false
     },
     q: {
-      refreshModel: true
+      refreshModel: false
     }
   }
 
