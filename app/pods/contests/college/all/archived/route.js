@@ -9,9 +9,12 @@ export default class ArchiveContestRoute extends Route {
     },
     limit: {
       refreshModel: true
+    },
+    q: {
+      refreshModel: true
     }
   }
-  
+
   model() {
     return this.modelFor('college_contest')
   }

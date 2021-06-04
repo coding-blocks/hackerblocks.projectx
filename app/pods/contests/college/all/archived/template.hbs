@@ -1,12 +1,17 @@
 <div class="t-align-c font-sm mb-5">Archived Contests are already ended.
   You can still participate, however you will not be awarded any 
   points for these contest.</div>
-  
+
 {{#if (not college_contests.length)}}
 {{contest-view/empty-contest-screen}}
 {{/if}}
+<InputSearch
+  @placeholder="Search contests by name"
+  @q={{q}}>
+</InputSearch>
 
 <Contest::ContestList
+  @filter={{filter}}
   @page={{page}}
   @fetchContestsTask={{fetchContestsTask}} 
   @buttonText='Solve Challenge'

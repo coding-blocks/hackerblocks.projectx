@@ -10,6 +10,9 @@ export default class LiveContestRoute extends Route {
     },
     limit: {
       refreshModel: true
+    },
+    q: {
+      refreshModel: true
     }
   }
 

@@ -9,6 +9,7 @@ export default class UpcomingController extends Controller {
   queryParams = ['offset', 'limit']
   offset = 0
   limit = 6
+  q = ''
 
   @computed('offset', 'limit')
   get page() {
@@ -18,9 +19,19 @@ export default class UpcomingController extends Controller {
     }
   }
 
+  @computed('q')
+  get filter() {
+    return {
+      name: {
+        $iLike: `%${this.q}%`
+      }
+    }
+  }
+
   @restartableTask fetchContestsTask = function* () {
     try {
       return yield this.store.query('college_contest', {
+        filter: this.filter,
         page: this.page,
         custom: {
           ext: 'url',

@@ -9,6 +9,9 @@ export default class UpcomingContestRoute extends Route {
     },
     limit: {
       refreshModel: true
+    },
+    q: {
+      refreshModel: true
     }
   }
 

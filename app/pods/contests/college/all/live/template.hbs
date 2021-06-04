@@ -1,7 +1,14 @@
 {{#if (not college_contests.length)}}
   {{contest-view/empty-contest-screen}}
 {{/if}}
+
+<InputSearch
+  @placeholder="Search contests by name"
+  @q={{q}}>
+</InputSearch>
+
 <Contest::ContestList 
+  @filter={{filter}}
   @page={{page}} 
   @fetchContestsTask={{fetchContestsTask}} 
   @buttonText='view contest' as |typed_contests|>
