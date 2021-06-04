@@ -1,9 +1,13 @@
-<WAsync @task={{fetchContestsTask}} @loadingComponent={{component 'loading-component' }} @fireTrigger={{taskTrigger}} as
-  |typed_contests isError|>
+<WAsync @task={{fetchContestsTask}} 
+  @loadingComponent={{component 'loading-component' }} 
+  @fireTrigger={{taskTrigger}} 
+  as |typed_contests isError|>
   <div class="row">
     {{#each typed_contests as |typed_contest|}}
     <div class="col-12 col-md-4">
-      <ContestCard class="mb-5" @contest={{typed_contest.contest}} @showTimer=true>
+      <ContestCard class="mb-5" 
+        @contest={{typed_contest.contest}} 
+        @showTimer=true>
         {{#link-to "contests.contest" typed_contest.contest.id class="button-solid button-orange mt-3 mb-2 mx-auto"}}
         {{buttonText}}
         {{/link-to}}

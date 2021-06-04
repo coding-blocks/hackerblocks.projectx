@@ -4,40 +4,38 @@ import { inject as service } from '@ember/service';
 import { restartableTask } from 'ember-concurrency-decorators';
 
 export default class LiveController extends Controller {
-    @service store
-    @service router
-    @service api
+	@service store
 
-    queryParams = ['offset', 'limit']
-    offset = 0
-    limit = 6
+	queryParams = ['offset', 'limit']
+	offset = 0
+	limit = 6
 
-    @restartableTask fetchContestsTask = function* () {
-        try {
-            return yield this.store.query('college_contest', {
-                page: this.page,
-                custom: {
-                    ext: 'url',
-                    url: 'live',
+	@computed('offset', 'limit')
+	get page() {
+		return {
+			offset: this.offset,
+			limit: this.limit
+		}
+	}
 
-                }
-            })
-        } catch (err) {
-            console.log(err)
-            this.set('showError', true)
-        }
-    }
-    @action
-    setOffset(offset) {
-        this.set('page.offset', offset)
-        this.fetchContestsTask.perform()
-    }
+	@restartableTask fetchContestsTask = function* () {
+		try {
+			return yield this.store.query('college_contest', {
+				page: this.page,
+				custom: {
+					ext: 'url',
+					url: 'live',
+				}
+			})
+		} catch (err) {
+			this.set('showError', true)
+		}
+	}
 
-    @computed('offset', 'limit')
-    get page() {
-        return {
-            offset: this.offset,
-            limit: this.limit
-        }
-    }
+	@action
+	setOffset(offset) {
+		this.set('page.offset', offset)
+		this.fetchContestsTask.perform()
+	}
+
 }

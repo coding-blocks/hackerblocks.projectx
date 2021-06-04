@@ -5,12 +5,18 @@ import { restartableTask } from 'ember-concurrency-decorators';
 
 export default class ArchivedController extends Controller {
   @service store
-  @service router
-  @service api
 
   queryParams = ['offset', 'limit']
   offset = 0
   limit = 6
+
+  @computed('offset', 'limit')
+  get page() {
+    return {
+      offset: this.offset,
+      limit: this.limit
+    }
+  }
 
   @restartableTask fetchContestsTask = function* () {
     try {
@@ -23,20 +29,13 @@ export default class ArchivedController extends Controller {
         }
       })
     } catch (err) {
-      console.log(err)
       this.set('showError', true)
     }
   }
+
   @action
   setOffset(offset) {
     this.set('page.offset', offset)
     this.fetchContestsTask.perform()
-  }
-  @computed('offset', 'limit')
-  get page() {
-    return {
-      offset: this.offset,
-      limit: this.limit
-    }
   }
 }
