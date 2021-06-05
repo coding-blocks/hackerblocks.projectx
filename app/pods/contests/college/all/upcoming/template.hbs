@@ -1,19 +1,18 @@
 {{#if (not college_contests.length)}}
   {{contest-view/empty-contest-screen}}
 {{/if}}
-<div class="row">
-  {{#each college_contests as |college_contest|}}
-  <div class="col-12 col-md-4">
-    <ContestCard class="mb-5"
-      @contest={{college_contest.contest}}
-      @showTimer=true>
-      <LinkTo
-        class="button-solid button-orange mt-4 mb-2 mx-auto"
-        @route="contests.contest"
-        @model={{college_contest.contest.id}}>
-        View Contest  
-      </LinkTo>
-    </ContestCard>
-  </div>
-  {{/each}}
-</div>
+
+<InputSearch
+  @placeholder="Search contests by name"
+  @q={{q}}>
+</InputSearch>
+
+<Contest::ContestList 
+  @filter={{filter}}
+  @page={{page}} 
+  @fetchContestsTask={{fetchContestsTask}} 
+  @buttonText='view contest' as |typed_contests|>
+  <PaginationPill 
+    @pagination={{typed_contests.meta.pagination}} 
+    @setOffset={{action 'setOffset' }} />
+</Contest::ContestList>

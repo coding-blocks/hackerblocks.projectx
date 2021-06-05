@@ -1,12 +1,22 @@
 import Route from '@ember/routing/route';
-
+import { inject as service } from '@ember/service';
 export default class UpcomingContestRoute extends Route {
+  @service metrics
+
+  queryParams = {
+    offset: {
+      refreshModel: false
+    },
+    limit: {
+      refreshModel: false
+    },
+    q: {
+      refreshModel: false
+    }
+  }
+
   model() {
-    return this.store.query('college_contest', {
-      custom: {
-        ext: 'url', url: 'upcoming'
-      }
-    })
+    return this.modelFor('college_contest')
   }
 
   async setupController(controller, model) {

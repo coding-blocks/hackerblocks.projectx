@@ -1,0 +1,18 @@
+<div class="right-input">
+	<Input 
+		class="input-text input-text--non-rounded" 
+		placeholder={{placeholder}}
+		@enter={{action (mut q)}}
+		@type="text"
+		@value={{searchQuery}} />
+</div>
+
+{{#if q}}
+	<h5 class="bold mt-4">
+		Showing results for <span class="orange">{{q}}</span>
+	</h5>
+{{/if}}
+
+<div class="mt-4"></div>
+
+{{yield}}
