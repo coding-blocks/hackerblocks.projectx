@@ -21,7 +21,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.PRIVATE_KEY }}
-        script: mkdir ~/temp
+        script: mkdir -p ~/frontends/hackerblocks.staging/temp
     - name: Upload Build
       uses: appleboy/scp-action@master
       with:
@@ -29,11 +29,11 @@ jobs:
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.PRIVATE_KEY }}
         source: "dist"
-        target: "temp"
+        target: "~/frontends/hackerblocks.staging/temp"
     - name: Replace New Build
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.PRIVATE_KEY }}
-        script: rm -rf ~/frontends/hackerblocks.staging/* && cp -rf ~/temp/dist/* ~/frontends/hackerblocks.staging && rm -rf ~/temp
+        script: rm -rf ~/frontends/hackerblocks.staging/* && cp -rf ~/frontends/hackerblocks.staging/temp/dist/* ~/frontends/hackerblocks.staging && rm -rf ~/frontends/hackerblocks.staging/temp
