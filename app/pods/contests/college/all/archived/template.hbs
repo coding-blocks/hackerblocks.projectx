@@ -1,20 +1,23 @@
-<div class="t-align-c font-sm mb-5">
-  Archived Contests are already ended.
-  You can still participate, however you will not be awarded any points for these contest.
-</div>
+<div class="t-align-c font-sm mb-5">Archived Contests are already ended.
+  You can still participate, however you will not be awarded any 
+  points for these contest.</div>
+
 {{#if (not college_contests.length)}}
-  {{contest-view/empty-contest-screen}}
+{{contest-view/empty-contest-screen}}
 {{/if}}
-<div class="row">
-  {{#each college_contests as |college_contest|}}
-  <div class="col-12 col-md-4">
-    <ContestCard class="mb-5"
-      @contest={{college_contest.contest}}
-      @showTimer=true>
-        {{#link-to "contests.contest" college_contest.contest.id class="button-solid button-orange mt-3 mb-2 mx-auto"}}
-          Solve Challenge
-        {{/link-to}}
-    </ContestCard>
-  </div>
-  {{/each}}
-</div>
+<InputSearch
+  @placeholder="Search contests by name"
+  @q={{q}}>
+</InputSearch>
+
+<Contest::ContestList
+  @filter={{filter}}
+  @page={{page}}
+  @fetchContestsTask={{fetchContestsTask}} 
+  @buttonText='Solve Challenge'
+  as |typed_contests|>
+  <PaginationPill 
+    @pagination={{typed_contests.meta.pagination}} 
+    @setOffset={{action 'setOffset' }} />
+
+</Contest::ContestList>
