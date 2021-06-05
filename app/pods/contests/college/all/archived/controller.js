@@ -1,9 +1,9 @@
 import Controller from '@ember/controller';
-import { action, computed } from '@ember/object'
+import { action, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { restartableTask } from 'ember-concurrency-decorators';
 
-export default class UpcomingController extends Controller {
+export default class ArchivedController extends Controller {
   @service store
 
   queryParams = ['offset', 'limit', 'q']
@@ -37,7 +37,7 @@ export default class UpcomingController extends Controller {
         page: this.page,
         custom: {
           ext: 'url',
-          url: 'upcoming',
+          url: 'archived',
 
         }
       })
@@ -49,12 +49,5 @@ export default class UpcomingController extends Controller {
   @action
   setOffset(offset) {
     this.set('offset', offset)
-  }
-
-  @restartableTask createRegistrationTask = function* (collegeContest) {
-    yield this.store.createRecord('contest-registration', {
-      contest: collegeContest.get('contest'),
-      contentTypeId: collegeContest.get('id')
-    }).save()
   }
 }
