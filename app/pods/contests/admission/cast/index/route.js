@@ -1,20 +1,26 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 
-export default class IndexRoute extends Route {
-  model() {
-    const cast_contests = this.store.query('admission-contest', {
-      custom: {
-        ext: 'url',
-        url: 'live'
-      },
-      filter: {
-        type: 'cast'
-      }
-    })
-    return cast_contests
+export default class LiveContestRoute extends Route {
+  @service metrics
+
+  queryParams = {
+    offset: {
+      refreshModel: false
+    },
+    limit: {
+      refreshModel: false
+    },
+    q: {
+      refreshModel: false
+    }
   }
 
-  setupController(controller, model) {
+  model() {
+    return this.modelFor('admission-contest')
+  }
+
+  async setupController(controller, model) {
     controller.set('admission_contests', model)
   }
 }
