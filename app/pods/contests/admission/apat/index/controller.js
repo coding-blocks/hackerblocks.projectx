@@ -38,10 +38,10 @@ export default class LiveController extends Controller {
 					ext: 'url',
 					url: 'live',
 				},
-				filter:{
+				filter: {
 					...this.filter,
-					type:'apat'
-			}
+					type: 'apat'
+				}
 			})
 		} catch (err) {
 			this.set('showError', true)

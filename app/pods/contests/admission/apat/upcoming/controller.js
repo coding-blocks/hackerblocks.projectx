@@ -4,52 +4,52 @@ import { inject as service } from '@ember/service';
 import { restartableTask } from 'ember-concurrency-decorators';
 
 export default class UpcomingController extends Controller {
-  @service store
+	@service store
 
-  queryParams = ['offset', 'limit', 'q']
-  offset = 0
-  limit = 6
-  q = ''
+	queryParams = ['offset', 'limit', 'q']
+	offset = 0
+	limit = 6
+	q = ''
 
-  @computed('offset', 'limit')
-  get page() {
-    return {
-      offset: this.offset,
-      limit: this.limit
-    }
-  }
+	@computed('offset', 'limit')
+	get page() {
+		return {
+			offset: this.offset,
+			limit: this.limit
+		}
+	}
 
-  @computed('q')
-  get filter() {
-    this.set('offset', 0)
-    if (this.q !== '')
-      return {
-        name: {
-          $iLike: `%${this.q}%`
-        }
-      }
-  }
+	@computed('q')
+	get filter() {
+		this.set('offset', 0)
+		if (this.q !== '')
+			return {
+				name: {
+					$iLike: `%${this.q}%`
+				}
+			}
+	}
 
-  @restartableTask fetchContestsTask = function* () {
-    try {
-      return yield this.store.query('admission-contest', {
-        page: this.page,
-        custom: {
-          ext: 'url',
-          url: 'upcoming',
-        },
-        filter:{
-            ...this.filter,
-            type:'apat'
-        }
-      })
-    } catch (err) {
-      this.set('showError', true)
-    }
-  }
+	@restartableTask fetchContestsTask = function* () {
+		try {
+			return yield this.store.query('admission-contest', {
+				page: this.page,
+				custom: {
+					ext: 'url',
+					url: 'upcoming',
+				},
+				filter: {
+					...this.filter,
+					type: 'apat'
+				}
+			})
+		} catch (err) {
+			this.set('showError', true)
+		}
+	}
 
-  @action
-  setOffset(offset) {
-    this.set('offset', offset)
-  }
+	@action
+	setOffset(offset) {
+		this.set('offset', offset)
+	}
 }
