@@ -1,15 +1,23 @@
 import Route from '@ember/routing/route';
+export default class UpcomingContestRoute extends Route {
 
-export default class UpcomingRoute extends Route {
-  model() {
-    return this.store.query('hiring-contest', {
-      custom: {
-        ext: 'url', url: 'upcoming'
-      }
-    })
+  queryParams = {
+    offset: {
+      refreshModel: false
+    },
+    limit: {
+      refreshModel: false
+    },
+    q: {
+      refreshModel: false
+    }
   }
 
-  setupController(controller, model) {
+  model() {
+    return this.modelFor('hiring_contest')
+  }
+
+  async setupController(controller, model) {
     controller.set('hiring_contests', model)
   }
 }
