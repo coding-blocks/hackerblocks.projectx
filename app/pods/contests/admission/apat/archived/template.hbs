@@ -2,21 +2,21 @@
   {{#if (not admission_contests.length)}}
     {{contest-view/empty-contest-screen}}
   {{/if}}
-  <div class="row">
-    {{#each admission_contests as |contest|}}
-    <div class="col-12 col-md-4 mb-4">
-      <ContestCard
-        @contest={{contest.contest}}>
-        {{#link-to
-          'contests.contest'
-          contest.contest.id
-        }}
-            <button class="button-solid button-orange extra-bold mt-4 mb-2 mx-auto d-block">
-              Solve Challenge
-            </button>
-        {{/link-to}}
-      </ContestCard>
-    </div>
-    {{/each}}
-  </div>
+  <InputSearch
+  @placeholder="Search contests by name"
+  @q={{q}}>
+</InputSearch>
+
+<Contest::ContestList
+  @filter={{filter}}
+  @page={{page}}
+  @fetchContestsTask={{fetchContestsTask}} 
+  @buttonText='Solve Challenge'
+  as |typed_contests|>
+  <PaginationPill 
+    @pagination={{typed_contests.meta.pagination}} 
+    @setOffset={{action 'setOffset' }} />
+
+</Contest::ContestList>
+
 </div>
