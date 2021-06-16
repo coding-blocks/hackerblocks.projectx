@@ -35,7 +35,7 @@ export default class IndexController extends Controller {
       },
       name: {
         $iLike: `%${this.q}%`
-      },
+      }
     }
   }
   @computed('contest.currentAttempt')
