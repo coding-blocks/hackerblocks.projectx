@@ -21,7 +21,7 @@ export default class IndexController extends Controller {
       limit: this.limit
     }
   }
-  @computed('status','difficulty','tags', 'q',)
+  @computed('status','difficulty','tags', 'q')
   get filter() {
     return {
       status: this.status,
