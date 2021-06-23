@@ -29,6 +29,7 @@ export default class IndexController extends Controller {
       sort: 'start_time',
       filter: {
         accept_registrations: true,
+        is_listed: true,
         start_time: {
           $gt: moment().toISOString()
         }
