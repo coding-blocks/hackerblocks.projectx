@@ -10,6 +10,9 @@ export default class ContestRoute extends AuthenticatedRoute {
       custom: {
         ext: 'url',
         url: `${params.contest_id}/details`
+      },
+      filter: { 
+        is_listed: true
       }
     })
     const contest_attempt = await this.store.queryRecord('contest-attempt', {
@@ -41,7 +44,7 @@ export default class ContestRoute extends AuthenticatedRoute {
   @action
   error(err) {
     if (err.isAdapterError) {
-      
+      this.transitionTo('404')
     }
     throw err
   }

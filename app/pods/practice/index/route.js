@@ -5,8 +5,14 @@ export default class PracticeRoute extends Route {
   @service store
 
   model() {
-    return this.store.findAll('practice', {
-      include: 'tags'
+    return this.store.query('practice', {
+
+      filterRelationships: {
+        contest: {
+          is_listed: true
+        }
+      },
+      include: 'tags',
     })
   }
 
