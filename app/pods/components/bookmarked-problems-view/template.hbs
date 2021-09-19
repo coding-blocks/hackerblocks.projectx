@@ -1,48 +1,5 @@
 <div class="border-card p-5 bookmark mt-5">
   <h4 class="mb-2">Bookmarked Challenges</h4>
-
-  <WAsync
-    @task={{fetchBookmarkedContentsTask}}
-    @autoFire="true" as |bookmarkedContents|>
-
-    {{#if bookmarkedContents.length}}
-      {{#each bookmarkedContents as |bookmarkedContent|}}
-        <div class="mt-3 py-4">
-          <div class="row no-gutters align-items-center justify-content-between">
-            <h5 class="bold mr-2">{{bookmarkedContent.content.name}}</h5>
-            <h6>
-              <LinkTo
-                @route={{bookmarkedContent.route.name}}
-                @models={{bookmarkedContent.route.model}}
-                class="orange">
-                Solve<i class="fas fa-arrow-right ml-2"></i>
-              </LinkTo>
-            </h6>
-          </div>
-          <ul class="divided-list mt-3">
-            <li class="pr-xl-2 pr-md-1 pr-2">
-              <div class="list-heading extra-bold orange">{{bookmarkedContent.content.difficultyString}}</div>
-              <div class="list-data">Difficulty</div>
-            </li>
-            <li class="pl-xl-2 pl-md-1 pl-2">
-              <div class="list-heading extra-bold orange">100</div>
-              <div class="list-data">Max Pts</div>
-            </li>
-          </ul>
-        </div>
-        <div class="divider-h"></div>
-      {{/each}}
-    {{else}}
-      <div class="dark-grey">
-        You don't have any bookmarked problems.
-      </div>
-      <div class="mt-4 font-sm extra-bold">
-        <LinkTo  
-          @route="practice"
-          class="orange">
-          View Challenges
-        </LinkTo>
-      </div>
-    {{/if}}
-  </WAsync>
+  <InputSearch @placeholder="Search bookmarks by name" @q={{q}} />
+  <BookmarkedProblemsView::BookmarkedProblemsList @q={{q}} />
 </div>
