@@ -44,7 +44,7 @@ export default class ContestRoute extends AuthenticatedRoute {
   @action
   error(err) {
     if (err.isAdapterError) {
-      
+      this.transitionTo('404')
     }
     throw err
   }
