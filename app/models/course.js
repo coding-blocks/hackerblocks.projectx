@@ -6,5 +6,5 @@ export default Model.extend({
   logo: DS.attr(),
   theme: DS.attr(),
   courseContests: DS.hasMany("course-contest"),
-  "contest-count": DS.attr(),
+  "contestCount": DS.attr(),
 });
