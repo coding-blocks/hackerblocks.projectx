@@ -5,7 +5,8 @@
   @allowedLanguages={{contest.allowedLanguages}}
   @onRunTask={{submission.runCodeTask}} 
   @onSubmitTask={{submitCodeTask}} 
-  @disablePaste={{fullScreen}}
+  {{!-- @disablePaste={{fullScreen}} --}}
+  @allowPaste={{contest.allowPaste}}
   @storageKey={{storageKey}}
   @submission={{copySubmission}}
   class="overflow-hidden {{innerLayoutClass}}" /> 

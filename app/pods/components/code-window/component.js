@@ -99,7 +99,7 @@ export default class CodeWindowComponent extends Component {
 
   @action
   editorOnReady(editor) {
-    if (this.disablePaste && false) {
+    if (!this.allowPaste) {
       /* TODO */
       editor.onKeyDown((event)=>{
         const {keyCode, ctrlKey, metaKey} = event;
