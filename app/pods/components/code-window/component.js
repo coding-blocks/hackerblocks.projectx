@@ -52,8 +52,8 @@ export default class CodeWindowComponent extends Component {
   ]
 
   setSubmission = () => {
-    this.set('selectedLanguage', this.languageSpecs.find(spec => spec.code === this.submission.language))
-    this.set('selectedLanguage.source', atob(this.submission.source))
+    this.set('selectedLanguage', this.languageSpecs.find(spec => spec.code === this.copiedSubmission.language))
+    this.set('selectedLanguage.source', window.atob(this.copiedSubmission.solution.source))
   }
 
   @computed('allowedLanguages')
@@ -68,7 +68,7 @@ export default class CodeWindowComponent extends Component {
     this._super(...arguments)    
     this.selectLanguage(this.languages[0].code)
     this.set('customInput', this.input)
-    if(this.submission){
+    if(this.copiedSubmission){
       this.setSubmission()
     } else {
       this.languageSpecs.map((spec, i) => {

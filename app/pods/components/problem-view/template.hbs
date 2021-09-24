@@ -37,7 +37,8 @@
   {{else if (eq selectedTab "submissions")}}
   <SubmissionsList 
     @contest={{contest}}
-    @content={{content}} />
+    @content={{content}}
+    @copySubmission={{action "copySubmission"}} />
   {{else if (eq selectedTab "leaderboard")}}
   <LeaderboardView
     class="pt-5"
@@ -62,5 +63,6 @@
     class="py-4"
     @innerLayoutClass="br-15"
     @content={{content}}
-    @contest={{contest}} />
+    @contest={{contest}}
+    @copiedSubmission={{copiedSubmission}} />
 </div>
