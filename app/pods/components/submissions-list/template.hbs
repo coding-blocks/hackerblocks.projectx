@@ -22,6 +22,9 @@
               <td class="pb-4 pt-4">{{submission.score}}/100</td>
               <td class="pb-4 pt-4">{{submission.executionTime}}</td>
               <td class="pb-4 pt-4">{{submission.language}}</td>
+              <td class="pb-4 pt-4">
+                <button class="orange" onclick={{action "handleCopySubmission" submission}}>Copy code to editor</button>
+              </td>
               <td class="pb-4 pt-4 t-align-r">
                 {{#unless (eq submission.submissionType 'web')}}
                   <a 

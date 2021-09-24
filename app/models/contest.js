@@ -58,5 +58,6 @@ export default Model.extend({
   registeredUser: DS.attr(),
   registration: DS.belongsTo('contest-registration'),
   badgeIcon: DS.attr(),
-  controlFlags: DS.attr()
+  controlFlags: DS.attr(),
+  allowPaste: DS.attr()
 });

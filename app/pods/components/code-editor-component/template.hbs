@@ -4,10 +4,10 @@
   @codeStubs={{content.problem.solutionStubs}}
   @allowedLanguages={{contest.allowedLanguages}}
   @onRunTask={{submission.runCodeTask}} 
-  @onSubmitTask={{submitCodeTask}} 
-  @disablePaste={{fullScreen}}
+  @onSubmitTask={{submitCodeTask}}
+  @allowPaste={{contest.allowPaste}}
   @storageKey={{storageKey}}
-  @submission={{copySubmission}}
+  @submission={{copiedSubmission}}
   class="overflow-hidden {{innerLayoutClass}}" /> 
 
 {{#if (or submission.codeTaskGroup.isRunning lastResult)}}

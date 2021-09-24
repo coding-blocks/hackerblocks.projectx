@@ -31,4 +31,11 @@ export default class SubmissionListComponent extends Component {
     this.set("selectedSubmission", submission)
     this.set("showModal", true)
   }
+
+  @action
+  handleCopySubmission (submission) {
+    this.copySubmission(submission);
+    const editorElement = document.getElementById('monaco-editor');
+    editorElement.scrollIntoView({ behavior: 'smooth', block: 'start'});
+  }
 }
