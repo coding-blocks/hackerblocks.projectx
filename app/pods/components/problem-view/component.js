@@ -12,6 +12,13 @@ export default class ProblemViewComponent extends Component {
 
   @action
   copySubmission(submission) {
-    this.set('copiedSubmission', submission);
+
+    /*
+      copying class instance
+      to make child component re-render when user copy the same code.
+    */
+    var sub = Object.assign(Object.create(Object.getPrototypeOf(submission)), submission);
+
+    this.set('copiedSubmission', sub);
   }
 }
