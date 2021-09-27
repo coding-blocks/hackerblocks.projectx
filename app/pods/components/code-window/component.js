@@ -53,7 +53,7 @@ export default class CodeWindowComponent extends Component {
 
   setSubmission = () => {
     this.set('selectedLanguage', this.languageSpecs.find(spec => spec.code === this.submission.language))
-    this.set('selectedLanguage.source', atob(this.submission.source))
+    this.set('selectedLanguage.source', window.atob(this.submission.solution.source))
   }
 
   @computed('allowedLanguages')
@@ -99,7 +99,7 @@ export default class CodeWindowComponent extends Component {
 
   @action
   editorOnReady(editor) {
-    if (this.disablePaste && false) {
+    if (!this.allowPaste) {
       /* TODO */
       editor.onKeyDown((event)=>{
         const {keyCode, ctrlKey, metaKey} = event;

@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { inject as service } from '@ember/service';
+import { action } from '@ember/object';
 
 
 export default class ProblemViewComponent extends Component {
@@ -7,4 +8,10 @@ export default class ProblemViewComponent extends Component {
   @service api
 
   selectedTab = 'problem'
+  copiedSubmission = ''
+
+  @action
+  copySubmission(submission) {
+    this.set('copiedSubmission', submission);
+  }
 }
