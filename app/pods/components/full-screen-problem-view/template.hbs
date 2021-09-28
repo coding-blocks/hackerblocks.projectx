@@ -51,7 +51,8 @@
       <SubmissionsList 
         @contest={{contest}} 
         @content={{content}} 
-        @setSelectedSubmission={{action (mut selectedSubmission)}}/>
+        @copySubmission={{action "copySubmission"}}
+      />
       {{/liquid-if}}
     </div>
   </div>
@@ -61,5 +62,7 @@
     class="h-100"
     @content={{content}} 
     @fullScreen="true"
-    @contest={{contest}} />
+    @contest={{contest}}
+    @copiedSubmission={{copiedSubmission}}
+  />
 </div>
