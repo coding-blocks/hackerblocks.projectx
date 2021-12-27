@@ -13,7 +13,6 @@ export default class LoginRoute extends Route {
 
   afterModel() {
     if(this.session.isAuthenticated){
-      this.webengage.trackUser(this.store.state.session.user)
       this.transitionTo('index')
     } else {
       window.location.href = this.loginUrl

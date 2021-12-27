@@ -8,6 +8,7 @@ import config from 'hackerblocks/config/environment'
 export default Route.extend(ApplicationRouteMixin, UTMCookieRouteMixin, {
     session: service(),
     currentUser: service(),
+    webengage: service(),
     queryParams: {
         code: {
             refreshModel: true
@@ -57,7 +58,8 @@ export default Route.extend(ApplicationRouteMixin, UTMCookieRouteMixin, {
 
     async model () {
       if (this.get('session.isAuthenticated')) {
-        return this.currentUser.load()
+        await this.currentUser.load()
+        return this.webengage.trackUser(this.currentUser.user)
       }
     },
 
