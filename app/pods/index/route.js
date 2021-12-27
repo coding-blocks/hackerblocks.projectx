@@ -6,6 +6,6 @@ export default Route.extend(AuthenticatedRouteMixin, {
   webengage: service(),
 
   activate() {
-    this.webengage.trackEvent("Dashboard", {})
+    this.webengage.trackEvent("HB: Dashboard", {})
   }
 })

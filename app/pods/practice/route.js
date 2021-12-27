@@ -5,6 +5,6 @@ export default class PracticeRoute extends Route {
   @service webengage
 
   activate() {
-    this.webengage.trackEvent("Practice", {})
+    this.webengage.trackEvent("HB: Practice", {})
   }
 }

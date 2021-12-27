@@ -4,6 +4,6 @@ export default class ContestsRoute extends Route {
   @service webengage
 
   activate() {
-    this.webengage.trackEvent("Contests", {})
+    this.webengage.trackEvent("HB: Contests", {})
   }
 }

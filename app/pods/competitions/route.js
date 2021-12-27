@@ -5,6 +5,6 @@ export default Route.extend({
   webengage: service(),
 
   activate() {
-    this.webengage.trackEvent("Competitions", {})
+    this.webengage.trackEvent("HB: Competitions", {})
   }
 });

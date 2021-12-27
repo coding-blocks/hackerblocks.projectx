@@ -5,6 +5,6 @@ export default Route.extend({
   webengage: service(),
 
   activate() {
-    this.webengage.trackEvent("Help", {})
+    this.webengage.trackEvent("HB: Help", {})
   }
 });

@@ -6,7 +6,7 @@ export default class DCBRoute extends Route {
   @service webengage
 
   activate() {
-    this.webengage.trackEvent("DCB", {})
+    this.webengage.trackEvent("HB: DCB", {})
   }
 
   async model() {
