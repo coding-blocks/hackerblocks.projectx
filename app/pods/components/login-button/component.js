@@ -26,7 +26,7 @@ export default class LoginButton extends Component {
     }
 
     let timeout = setTimeout (logout, 4000)
-    const logoutUrl = env.oneauthURL + '/logout?redirect=' + env.publicUrl + '/logout'
+    const logoutUrl = env.oneauthURL + '/logout?redirect=' + env.publicUrl + 'logout'
     window.location.href = logoutUrl
   }
 
