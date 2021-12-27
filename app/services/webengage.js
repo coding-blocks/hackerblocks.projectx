@@ -7,6 +7,6 @@ export default Service.extend({
     webengage.user.login(user.get('hb_oneauth_id', user.get('oauth_id')))
   },
   trackEvent(event_name, meta) {
-    webengage.track(event_name, JSON.stringify(meta))
+    webengage.track(event_name, {...meta})
   }
 });
