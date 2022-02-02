@@ -61,7 +61,8 @@
           @contest={{contest}}
           @page={{page}}
           @route='contests.contest.content'
-          @filter={{filter}} as |contents|>
+          @filter={{filter}}
+          @filterRelationships={{filterRelationships}} as |contents|>
           <PaginationPill 
             @pagination={{contents.meta.pagination}} 
             @setOffset={{action (mut offset)}} />

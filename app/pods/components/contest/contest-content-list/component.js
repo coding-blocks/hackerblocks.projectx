@@ -12,7 +12,8 @@ export default class ContentList extends Component {
   @restartableTask fetchContentsTask = function *() {
     try {
       return yield this.store.query('content', { 
-        filter: this.filter,        
+        filter: this.filter,       
+        filterRelationships: this.filterRelationships, 
         page: this.page,
         contest_id: this.contest.id
       })

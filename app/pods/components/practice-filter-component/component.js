@@ -7,24 +7,20 @@ import { alias } from '@ember/object/computed';
 
 export default class PracticeFilterComponent extends Component {
   @service store
+  @service api
 
   @alias('searchTagsTask.lastSuccessful.value') availableTags
 
   @computed('tags')
   get selectedTags() {
-    if (this.tags.length) {
-      return this.store.query('tag', {
-        filter: {
-          id: {
-            $in: this.tags
-          }
-        }
-      })
+    if (this.tags.length && (this.allTags && this.allTags.length)) {
+      return this.get('allTags').filter(tag => this.tags.includes(tag.id))
     }
   }
 
-  didReceiveAttrs() {
-    this.searchTagsTask.perform()
+  async didReceiveAttrs() {
+    const allTags = await this.searchTagsTask.perform()
+    this.set('allTags', allTags)
   }
 
   @action 
@@ -51,10 +47,11 @@ export default class PracticeFilterComponent extends Component {
 
   @restartableTask searchTagsTask = function *(query = '') {
     yield timeout(500)
-    return yield this.store.query('tag', {
-      filter: {
-        name: {
-          $iLike: `%${query}%`
+    return yield this.api.request('/tags', {
+      data: {
+        filter: {
+            "name like": `%${query}%`,
+            "is_active =": true
         }
       }
     })

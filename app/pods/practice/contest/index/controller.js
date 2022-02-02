@@ -27,13 +27,19 @@ export default class ContestController extends Controller {
       difficulty: {
         $in: this.difficulty
       },
-      tags: {
-        id: {
-          $in: this.tags
-        }
-      },
       name: {
         $iLike: `%${this.q}%`
+      }
+    }
+  }
+
+  @computed('status','difficulty','tags', 'q')
+  get filterRelationships() {
+    return {
+      content_tags: {
+        tagId: {
+          $in: this.tags
+        }
       }
     }
   }
