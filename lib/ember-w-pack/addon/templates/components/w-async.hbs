@@ -1,5 +1,9 @@
-{{#if isLoading}}
-  {{component loadingComponent}}
+{{#if showLoader}}
+  {{#if loaderComponent}}
+    {{loaderComponent}}
+  {{else}}
+    Loading <span class="dot-loader"></span>
+  {{/if}}
 {{else}}
-  {{yield result task.last.isError}}
+  {{yield task.last.value}}
 {{/if}}
