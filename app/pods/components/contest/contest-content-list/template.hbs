@@ -1,6 +1,7 @@
 <WAsync
   @task={{fetchContentsTask}} 
   @loadingComponent={{component 'loading-component'}}
+  @autoFire="true"
   @fireTrigger={{taskTrigger}} as |contents isError|>
   {{#if isError}}
     You are not authorized to view problems of this contest.

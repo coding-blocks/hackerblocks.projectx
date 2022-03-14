@@ -2,6 +2,7 @@
   <WAsync
     @task={{fetchQuestionTask}}
     @fireTrigger={{taskTrigger}}
+    @autoFire="true"
     @loadingComponent="loading-component" as |question|>
     <QuestionContainer 
       @submission={{questionSubmission}}
