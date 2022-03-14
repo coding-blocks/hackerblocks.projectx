@@ -11,6 +11,7 @@ export default Model.extend({
   problem: DS.belongsTo('problem'),
   quiz: DS.belongsTo('quiz'),
   project: DS.belongsTo('project'),
+  webChallenge: DS.belongsTo('web-challenge'),
   contest: DS.hasMany('contest'),
   submissions:DS.hasMany('submission'),
   bookmarkedContent: DS.belongsTo('bookmarked-content'),

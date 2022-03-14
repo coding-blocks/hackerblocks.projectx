@@ -42,6 +42,7 @@ Router.map(function() {
           this.route('problem', {path: '/problem'});
           this.route('quiz', {path: '/quiz'});
           this.route('project', {path: '/project'})
+          this.route('web');
         });
       });
       this.route('feedback');
@@ -84,6 +85,8 @@ Router.map(function() {
   this.route('404', { path: '/*:' });
 
   this.route('contest', function() {});
+
+  this.route('web-challenge', function() {});
 });
 
 export default Router;

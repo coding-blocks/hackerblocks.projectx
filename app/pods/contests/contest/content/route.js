@@ -10,7 +10,7 @@ export default class Content extends Route {
         url: `${params.content_id}`
       },
       contest_id: contest.id,
-      include: 'problem,quiz,project'
+      include: 'problem,quiz,project,web-challenge'
     })    
     return hash({
       content,

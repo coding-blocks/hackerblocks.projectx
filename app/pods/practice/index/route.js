@@ -6,13 +6,11 @@ export default class PracticeRoute extends Route {
 
   model() {
     return this.store.query('practice', {
-
       filterRelationships: {
         contest: {
           is_listed: true
         }
-      },
-      include: 'tags',
+      }
     })
   }
 

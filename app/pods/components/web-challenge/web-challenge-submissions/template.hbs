@@ -1,0 +1,47 @@
+<WAsync
+  @task={{fetchSubmissionsForUserTask}}
+  @autoFire="true"
+  @triggered={{triggerFetchSubmissions}} as |submissions|>
+    <table class="w-100 mt-5">
+      <thead class="bold">
+        <tr>
+          <td class="pb-2">Result</td>
+          <td class="pb-2">Score</td>
+          <td class="pb-2">Action</td>
+          <td class="pb-2">
+            <div class="hoverable">
+              Evaluation <i class="far fa-question-circle"></i>
+              <div class="pop-up border-card br-10 bg-white p-3 black card-sm"> 
+                Your latest submission will be judged.
+              </div>
+            </div>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each submissions as |submission|}}
+          <tr class="pt-3">
+            <td>{{if submission.score 'Judged' 'Not Judged'}}</td>
+            <td>
+              {{#if submission.score}}
+                {{submission.score}}/100
+              {{else}}
+                N/A
+              {{/if}}
+            </td>
+            <td>
+              <button class="orange" {{action setSource submission.source}}>View</button>
+            </td>
+            <td>
+              {{#if submission.isTopSubmission}}
+                <span class="green">&#x2714;</span>
+              {{else}}
+                {{!-- <button class="orange" disabled={{markSubmissionTopTask.isRunning}} {{action (perform markSubmissionTopTask) submission}}>Mark for Evaluation</button> --}}
+                <span class="orange">&#x2715;</span>
+              {{/if}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>  
+    </table>
+</WAsync>

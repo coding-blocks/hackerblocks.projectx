@@ -1,0 +1,80 @@
+<div class="col-md-11 col-12 offset-md-1 px-xl-5 px-4 position-relative h-100 overflow-y-auto">
+  <div class="row no-gutters pt-4">
+    <div class="col-6 word-wrap">
+      <div class="font-mds">Web Challenge</div>
+      <h4>{{webChallenge.title}}</h4>
+    </div>
+    <div class="col-6">
+      <ul class="divided-list t-align-r mt-0 pull-right">
+        <li class="px-3">
+          <h4 class="orange">{{content.difficultyString}}</h4>
+          <div class="list-data font-mds">Dificulty</div>
+        </li>
+        <li class="px-3">
+          <h4 class="orange">100</h4>
+          <div class="list-data font-mds">Max Points</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="divider-h mt-2"></div>
+  {{!-- <div class="row align-items-center no-gutters my-4">
+    <div class="col-6">
+      <span class="mr-2 font-mds extra-bold">Status:</span>
+      <span
+        class="orange font-mds extra-bold">{{or content.topSubmission.resultParams.message 'Not Attempted'}}</span>
+    </div>
+    <div class="col-6">
+      <div class="row no-gutters justify-content-end">
+        <div class="col-xl-6 col-5">
+          <progress value="{{or content.topSubmission.score 0}}" max="100" class="d-inline-block v-align-m"></progress>
+        </div>
+        <div>
+          <h5 class="d-inline-block pl-3">{{or content.topSubmission.score 0}}/100 Pts</h5>
+        </div>
+      </div>
+    </div>
+  </div> --}}
+
+  <div class="row no-gutters mb-5">
+    <div class="tab-nav-underline w-100 justify-content-start bg-white position-sticky">
+      <div class="tab {{if (eq currentTab 'problem') 'active'}} pr-5 pl-0" {{action (mut currentTab) 'problem'}}>
+        Problem
+      </div>
+      <div class="tab {{if (eq currentTab 'submissions') 'active'}} px-5" {{action (mut currentTab) 'submissions'}}>
+        Submissions
+      </div>
+    </div>
+    <div class="w-100">
+      {{#liquid-if (eq currentTab 'problem')}}
+        <WebChallenge::WebChallengeExplanation @webChallenge={{webChallenge}} />
+      {{else if (eq currentTab 'submissions')}}
+        <WebChallenge::WebChallengeSubmissions
+          @contest={{contest}} 
+          @content={{content}} 
+          @setSource={{action 'setSource'}}
+          @triggerFetchSubmissions={{triggerFetchSubmissions}}
+        />
+      {{/liquid-if}}
+    </div>
+  </div>
+
+  <div class="border-card bg-dark-grey my-4">
+    <div class="d-flex justify-content-between align-items-center white">
+      <div>
+        <i class="far fa-question-circle"></i> Your latest submission will be judged for evaluation
+      </div>
+      <div>
+        <WPulse @class="display-inline" @triggered={{showSubmitted}}>
+          <span class="grey">Submitted</span>
+        </WPulse>
+        <button class="button-dashed button-orange mx-3" {{action 'resetSource'}}>Reset</button>
+        <button class="button-solid button-orange" {{action (perform newSubmissionTask)}} disabled={{newSubmissionTask.isRunning}}>New Submit</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="border-card bg-dark-grey">
+    <WebChallenge::WebChallengeCodeEditor @source={{source}}/>
+  </div>
+</div>

@@ -7,6 +7,7 @@ export default class IndexRoute extends Route {
       case 'problem': this.transitionTo('contests.contest.attempt.content.problem'); break
       case 'quiz': this.transitionTo('contests.contest.attempt.content.quiz'); break
       case 'project': this.transitionTo('contests.contest.attempt.content.project'); break
+      case 'web': this.transitionTo('contests.contest.attempt.content.web'); break
     }
   }
 }
