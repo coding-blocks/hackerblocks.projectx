@@ -1,4 +1,4 @@
-<div class="row c-topnav py-3 justify-content-between">
+<div class="row c-topnav navbar justify-content-between">
   <div class="col-6 px-0 d-md-none d-block">
     <div class="d-flex align-items-center ml-3">
       <div class="hamburger-menu mr-3">
@@ -14,26 +14,32 @@
     </div>
   </div>
   <div class="col-6 offset-1 d-md-block d-none">
-    <ul>
-      <li class="top-nav-option px-3 mt-2 d-none d-md-block">
-        <a href="https://online.codingblocks.com" target="blank">
-          <h6>Online Courses</h6>
-        </a>
-      </li>
-      <li class="top-nav-option px-3 mt-2 d-none d-md-block">
-        <a href="https://codingblocks.com/classroom-courses/" target="blank">
-          <h6>Classroom Courses</h6>
-        </a>
-      </li>
-      {{!-- <li class="top-nav-option px-3 mt-2 d-none d-md-block">
-        <a href="#hiring-blocks">
-          <h6>Hiring Blocks</h6>
-        </a>
-      </li> --}}
-    </ul>
+    <div class="navbar">
+      <div class="d-flex main align-items-center">
+        <nav class="nav-menu topheadnav">
+          <ul>
+            <li class="">
+              <a href="/">
+                <img src="https://cb3img.s3.ap-south-1.amazonaws.com/img/iconLearn.webp" alt="Learn">
+              <span>Learn</span>
+            </a>
+          </li>
+            <li class="active"><a href="https://hack.codingblocks.com">
+              <img src="https://cb3img.s3.ap-south-1.amazonaws.com/img/iconMonitor.webp" alt="Practice">
+              <span>Practice</span></a></li>
+            <li><a href="https://hire.codingblocks.com">
+              <img src="https://cb3img.s3.ap-south-1.amazonaws.com/img/iconHire.webp" alt="Hire">
+              <span>Get Hired</span></a></li>
+            <li><a href="https://ide.codingblocks.com">
+              <img src="https://cb3img.s3.ap-south-1.amazonaws.com/img/iconIDE.webp" alt="IDE">
+              <span>IDE</span></a></li>     
+          </ul>
+        </nav><!-- .nav-menu -->
+      </div>
+    </div>
   </div>
   <div class="align-items-center">
-    <ul class="right-nav">
+    <ul class="right-nav py-4">
       {{!-- <li class="top-nav-option px-3 pt-3">
         <a href="#search">
           <i class="fas fa-search fa-lg"></i>
@@ -60,7 +66,7 @@
         <div class="pop-up border-card p-3 br-5">
           <ul class="t-align-l">
             <li>
-              <LinkTo @route='users.id' @model={{user.id}}>
+              <LinkTo class="dark-grey" @route='users.id' @model={{user.id}}>
                 Profile
               </LinkTo>
             </li>
