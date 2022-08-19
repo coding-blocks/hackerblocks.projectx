@@ -20,5 +20,6 @@ export default class Content extends Route {
 
   setupController(controller, model) {
     controller.set('content', model.content)
+    controller.set('contest', model.contest)
   }
 }
