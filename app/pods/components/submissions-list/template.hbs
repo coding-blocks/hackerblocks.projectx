@@ -8,7 +8,9 @@
       <table class="w-100">
         <thead class="font-sm extra-bold b-bottom">
           <td class="pb-2">Result</td>
-          <td class="pb-2">Score</td>
+          {{#if contest.showProblemScore}}
+            <td class="pb-2">Score</td>
+          {{/if}}
           <td class="pb-2">Time</td>
           <td class="pb-2">Language</td>
         </thead>
@@ -19,7 +21,9 @@
                 <i class="{{submission.resultParams.icon}} pr-3"></i>
                 <span>{{submission.resultParams.message}}</span>
               </td>
-              <td class="pb-4 pt-4">{{submission.score}}/100</td>
+              {{#if contest.showProblemScore}}
+                <td class="pb-4 pt-4">{{submission.score}}/100</td>
+              {{/if}}
               <td class="pb-4 pt-4">{{submission.executionTime}}</td>
               <td class="pb-4 pt-4">{{submission.language}}</td>
               <td class="pb-4 pt-4">
