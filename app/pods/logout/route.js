@@ -7,7 +7,6 @@ export default class Logout extends Route {
 
   async beforeModel(transition) { 
     try {
-      await this.api.request("/jwt/logout")
       window.localStorage.clear()
       await this.session.invalidate();
     } catch (err) {

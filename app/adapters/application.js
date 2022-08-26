@@ -18,7 +18,7 @@ export default DS.JSONAPIAdapter.extend(DataAdapterMixin, {
     return this._super(url, method, hash);
   },
   authorize(xhr) {
-    const { jwt } = this.get('session.data.authenticated');
+    const jwt = this.get('session.data.token');
     if (isPresent(jwt)) {
       xhr.setRequestHeader('Authorization', `JWT ${jwt}`);
     }

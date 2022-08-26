@@ -7,6 +7,7 @@ import config from 'hackerblocks/config/environment'
 export default class NavBarComponent extends Component {
   @service session
   @service currentUser
+  @service router
   @alias('currentUser.user') user
 
   hideHamburgerNav = true
@@ -17,7 +18,8 @@ export default class NavBarComponent extends Component {
     this.toggleProperty('hideHamburgerNav')
   }
 
-  get logoutLink () {
-    return config.oneauthURL + '/logout?redirect=' + config.publicUrl + '/logout'
+  @action
+  logout () {
+    return this.router.transitionTo('logout')
   }
 }

@@ -50,11 +50,12 @@ module.exports = function (environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.nuxtPublicUrl = "http://localhost:8081"
     ENV.publicUrl = 'http://test.hackerblocks/app/';
     // ENV.publicUrl = "http://localhost:4200/app/";
     ENV.apiHost = 'http://test.hackbackend';
     // ENV.apiHost = "http://localhost:3000";
-    ENV.oneauthURL = "https://account.codingblocks.com";
+    ENV.oneauthURL = "http://localhost:3838";
     ENV.clientId = 3680446660;
   }
 
@@ -73,6 +74,7 @@ module.exports = function (environment) {
   }
 
   if (environment === "staging") {
+    ENV.nuxtPublicUrl = "https://hack.codingblocks.xyz"
     ENV.publicUrl = "http://hack.codingblocks.xyz/app/";
     ENV.apiHost = "https://hack-api.codingblocks.xyz";
     ENV.oneauthURL = "https://account.codingblocks.com";
@@ -81,6 +83,7 @@ module.exports = function (environment) {
   }
 
   if (environment === "production") {
+    ENV.nuxtPublicUrl = "https://hack.codingblocks.com"
     ENV.publicUrl = "https://hack.codingblocks.com/app";
     ENV.apiHost = "https://hack-api.codingblocks.com";
     ENV.oneauthURL = "https://account.codingblocks.com";
