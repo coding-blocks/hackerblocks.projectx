@@ -27,8 +27,10 @@ export default Route.extend(UTMCookieRouteMixin, {
 
     async beforeModel (transition) {
       this._super(...arguments)
-
+      
       if(!this.session.isAuthenticated) {
+        localStorage.setItem('redirectionPath', window.location.pathname)
+        localStorage.setItem('loginPrompt', true)
         window.location.href = config.nuxtPublicUrl
       }
       
