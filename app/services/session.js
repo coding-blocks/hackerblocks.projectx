@@ -39,7 +39,7 @@ export default Service.extend({
 
   validate() {
     const token = this.getCookieToken()
-
+    console.log('cookie token', token)
     if (Ember.isEmpty(token)) {
       this.set('data', null)
       this.set('isAuthenticated', false)
