@@ -29,8 +29,12 @@ export default Route.extend(UTMCookieRouteMixin, {
       this._super(...arguments)
       
       if(!this.session.isAuthenticated) {
+        const app_flow = localStorage.getItem('app_flow')
+        if(app_flow !== 'logout') {
+          localStorage.setItem('loginPrompt', true)
+        }
+        
         localStorage.setItem('redirectionPath', window.location.pathname)
-        localStorage.setItem('loginPrompt', true)
         window.location.href = config.nuxtPublicUrl
       }
       

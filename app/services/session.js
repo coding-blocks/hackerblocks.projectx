@@ -34,6 +34,7 @@ export default Service.extend({
 
   async invalidate() {
     await this.api.request('/jwt/logout').catch(err => console.log(err))
+    localStorage.setItem('app_flow', 'logout')
     window.location.href = `${ENV.oneauthURL}/logout?returnTo=${ENV.publicUrl}`
   },
 
