@@ -7,9 +7,8 @@ export default Mixin.create(AuthenticatedRouteMixin, {
   session: service(),
 
   beforeModel () {
-    localStorage.setItem('redirectionPath', window.location.pathname)
-
     if(!this.session.isAuthenticated) {
+      localStorage.setItem('redirectionPath', window.location.pathname)
       router.transitionTo('application')
     }
   }
