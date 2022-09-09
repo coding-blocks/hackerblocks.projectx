@@ -6,14 +6,13 @@ export default class LoginRoute extends Route {
   @service session
   @service store
 
-  loginUrl = `${env.oneauthURL}/oauth/authorize?response_type=code&client_id=${
-    env.clientId
-  }&redirect_uri=${env.publicUrl}`; 
+  loginUrl = `${env.nuxtPublicUrl}`; 
 
   afterModel() {
     if(this.session.isAuthenticated){
       this.transitionTo('index')
     } else {
+      localStorage.setItem('loginPrompt', true)
       window.location.href = this.loginUrl
     }
   }
