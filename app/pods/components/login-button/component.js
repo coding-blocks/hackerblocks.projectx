@@ -11,9 +11,7 @@ export default class LoginButton extends Component {
   @service router;
 
   tagName = 'span'
-  loginUrl = `${env.oneauthURL}/oauth/authorize?response_type=code&client_id=${
-    env.clientId
-  }&redirect_uri=${env.publicUrl}`;
+  loginUrl = `${env.nuxtPublicUrl}`;
 
   @action
   invalidateSession() {
@@ -32,6 +30,8 @@ export default class LoginButton extends Component {
 
   @action
   logIn () {
+    localStorage.setItem('redirectionPath', window.location.pathname)
+    localStorage.setItem('loginPrompt', true)
     window.location.href = this.loginUrl
   }
 }
