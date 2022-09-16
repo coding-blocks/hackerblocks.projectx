@@ -31,7 +31,7 @@ export default class UserTagComponent extends Component {
         labels: userTags.map(_ => _.get('tag.name')),
         datasets: [
           {
-            data: userTags.map(_ => +_.get('rating')),
+            data: userTags.map(_ => Math.round(+_.get('rating'))),
             fill:false,
             backgroundColor: this.gradient
           }
