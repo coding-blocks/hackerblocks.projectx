@@ -209,6 +209,17 @@ body{
   max-height: 56px;
 }
 
+.tooltip {
+  padding: 3px;
+  border: solid 1px black;
+  background: white;
+  border-radius: 3px;
+  display: inline-block;
+  position: absolute;
+  z-index: 100;
+  font-size: 0.7em;
+}
+
 
 // Animations
 
