@@ -9,19 +9,45 @@ export default class UserTagComponent extends Component {
 
   @alias('fetchUserTagsTask.lastSuccessful.value') userTags
 
+  options = {
+    legend: {
+      display: false
+    }, 
+    scales: {
+      xAxes: [{
+          barThickness: 30,
+          gridLines: {
+              offsetGridLines: true
+          }
+      }]
+    } 
+  }
+
   @computed('userTags.@each.tag', 'userTags.@each.rating') 
   get chartData() {
     const userTags = this.get('userTags')
     if(userTags) {
-      return userTags.map(ut => {
-        return {
-          x: ut.get('tag.name'),
-          y: Math.round(ut.get('rating'))
-        }
-      })
+      return {
+        labels: userTags.map(_ => _.get('tag.name')),
+        datasets: [
+          {
+            data: userTags.map(_ => +_.get('rating')),
+            fill:false,
+            backgroundColor: this.gradient
+          }
+        ]
+      }
     } else {
       return []
     }
+  }
+
+  didInsertElement() {
+    const ctx = document.getElementsByTagName('canvas')[0].getContext("2d")
+    const gradient = ctx.createLinearGradient(0, 0, 0, 200)
+    gradient.addColorStop(0, '#ec6333')
+    gradient.addColorStop(1, '#f19633')
+    this.set('gradient', gradient)
   }
 
   didReceiveAttrs() {
