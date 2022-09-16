@@ -4078,13 +4078,6 @@ cacheable-request@^2.1.1:
     normalize-url "2.0.1"
     responselike "1.0.2"
 
-cal-heatmap@^3.6.2:
-  version "3.6.2"
-  resolved "https://registry.yarnpkg.com/cal-heatmap/-/cal-heatmap-3.6.2.tgz#961a7f4686b3bdcf7104d951b6ff1dd58c0c62d1"
-  integrity sha1-lhp/Roazvc9xBNlRtv8d1YwMYtE=
-  dependencies:
-    d3 "^3.0.6"
-
 calculate-cache-key-for-tree@^1.2.0:
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/calculate-cache-key-for-tree/-/calculate-cache-key-for-tree-1.2.3.tgz#5a5e4fcfa2d374a63e47fe967593f179e8282825"
@@ -4803,11 +4796,6 @@ cyclist@~0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
   integrity sha1-GzN5LhHpFKL9bW7WRHRkRE5fpkA=
-
-d3@^3.0.6:
-  version "3.5.17"
-  resolved "https://registry.yarnpkg.com/d3/-/d3-3.5.17.tgz#bc46748004378b21a360c9fc7cf5231790762fb8"
-  integrity sha1-vEZ0gAQ3iyGjYMn8fPUjF5B2L7g=
 
 dag-map@^2.0.2:
   version "2.0.2"
