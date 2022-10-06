@@ -9,11 +9,11 @@ export default class ServerTime extends Service {
   @service poll
   @service ajax
   
-  offset = 0
-  
   @restartableTask refreshCurrentTime = function * () {
     const data = yield this.ajax.request(ENV.apiHost + '/time')
     const diff = Date.now() - data.now
+    this.set('diff', diff)
+    this.set('currentTimestamp', Date.now() - data.now)
     moment.now = () => {
       return Date.now() - diff;      
     } 
@@ -21,6 +21,7 @@ export default class ServerTime extends Service {
 
   @action
   startPolling() {
+    this.refreshCurrentTime.perform()
     this.poll.addPoll({
       interval: 60000,
       callback: () => this.refreshCurrentTime.perform()
