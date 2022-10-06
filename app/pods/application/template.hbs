@@ -7,6 +7,7 @@
     </div>
     <div class="offset-0 offset-md-1 col-11 px-0">
       <div id="outside-element" {{did-insert layout.setOutsideLayout}}></div>
+      <div {{did-insert serverTime.startPolling}}></div>
       <div class="container my-4">
         {{outlet}}
       </div>
