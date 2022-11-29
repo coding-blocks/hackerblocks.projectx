@@ -45,12 +45,12 @@ export default Route.extend(UTMCookieRouteMixin, {
     async model () {
       if (this.get('session.isAuthenticated')) {
         await this.currentUser.load()
-        // if(!this.currentUser.user.verifiedmobile) {
-        //   document.cookie = `cb_redirect=${config.publicUrl}; expires=${moment().add(1, 'hours').toDate()}; path=/; domain=.codingblocks.com; Secure`
-        //   window.location = config.oneauthURL + '/users/me/edit?flow=verify_user_details'
-        // } else {
-        //   document.cookie = `cb_redirect=${config.publicUrl}; expires=${moment().subtract(3, 'days').toDate()}`
-        // }
+        if(!this.currentUser.user.get('verifiedmobile')) {
+          document.cookie = `cb_redirect=${config.publicUrl}; expires=${moment().add(1, 'hours').toDate()}; path=/; domain=.codingblocks.com; Secure`
+          window.location = config.oneauthURL + '/users/me/edit?flow=verify_user_details'
+        } else {
+          document.cookie = `cb_redirect=${config.publicUrl}; expires=${moment().subtract(3, 'days').toDate()}`
+        }
       }
     },
 
