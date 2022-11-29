@@ -49,7 +49,7 @@ export default Route.extend(UTMCookieRouteMixin, {
           document.cookie = `cb_redirect=${config.publicUrl}; expires=${moment().add(1, 'hours').toDate()}; path=/; domain=.codingblocks.com; Secure`
           window.location = config.oneauthURL + '/users/me/edit?flow=verify_user_details'
         } else {
-          document.cookie = `cb_redirect=${config.publicUrl}; expires=${moment().subtract(3, 'days').toDate()}`
+          document.cookie = `cb_redirect=${config.publicUrl}; expires=${moment().subtract(3, 'days').toDate()}; path=/; Secure`
         }
       }
     },
