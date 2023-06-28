@@ -25,7 +25,8 @@ export default class QuizView extends Component {
   }
 
   @restartableTask fetchQuestionTask = function *() {
-    return (yield this.quiz.get('questions')).objectAt(this.index-1)
+    const questionId = yield this.quiz.hasMany('questions').ids().objectAt(this.index-1)
+    return yield this.store.findRecord('question', questionId)
   }
 
   @dropTask reviewLaterTask = function *() {
