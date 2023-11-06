@@ -1,3 +1,4 @@
+<cb-mobile-verification class="hide-cb-mobile-verification-prompt" />
 {{#if navigation.visible}}
   <NavBar />
   <SideNav />
@@ -15,4 +16,9 @@
   </div>
 {{else}}
   {{outlet}}
+{{/if}}
+{{#if (not currentUser.user.verifiedmobile)}}
+  <script>
+    document.getElementsByTagName('cb-mobile-verification')[0].classList.remove('hide-cb-mobile-verification-prompt')  
+  </script>
 {{/if}}

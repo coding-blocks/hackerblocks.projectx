@@ -5,4 +5,5 @@ export default class ApplicationController extends Controller {
   @service navigation
   @service layout
   @service serverTime
+  @service currentUser
 }
