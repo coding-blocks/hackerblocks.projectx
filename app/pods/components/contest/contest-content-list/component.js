@@ -14,6 +14,7 @@ export default class ContentList extends Component {
       return yield this.store.query('content', { 
         filter: this.filter,       
         filterRelationships: this.filterRelationships, 
+        exclude: 'submissions,web_challenge_submissions',
         page: this.page,
         contest_id: this.contest.id
       })
