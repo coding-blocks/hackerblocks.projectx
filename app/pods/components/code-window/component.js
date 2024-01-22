@@ -107,6 +107,18 @@ export default class CodeWindowComponent extends Component {
           event.preventDefault();
         }
       });
+
+      //stop user to perform copy/paste and right click in find and replace 
+      const editorDoc = editor._domElement;
+      const findWidgetParent = editorDoc.querySelector('.monaco-editor .overflow-guard .overlayWidgets');
+
+      findWidgetParent.addEventListener('contextmenu', event => event.preventDefault());
+      findWidgetParent.addEventListener('keydown',(event)=>{
+        const { keyCode, ctrlKey, metaKey } = event;
+        if ((keyCode === 33 || 52) && (metaKey || ctrlKey)) {
+          event.preventDefault();
+        }
+      });
     }
     // this.set('editor', editor)
     this.trigger("restoreCodeFromStorage")
