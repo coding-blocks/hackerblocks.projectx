@@ -6,4 +6,10 @@ export default class ApplicationController extends Controller {
   @service layout
   @service serverTime
   @service currentUser
+  @service monitorer
+
+  init() {
+    this._super(...arguments) 
+    this.monitorer
+  }
 }

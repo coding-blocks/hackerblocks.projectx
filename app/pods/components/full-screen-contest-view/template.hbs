@@ -5,20 +5,24 @@
       <div class="row align-items-center pl-3">
         <h2 class="text-ellipses">{{contest.name}}</h2>
         <div class="hoverable ml-3">
-          <i class="fas fa-info-circle font-md"></i>
+          <i class="fas fa-info-circle round orange font-md pulse-red"></i>
           <div class="pop-up">
             <div class="test-info-popup border-card bg-grey black">
               Note:
               <div class="bold">
-                <div>
-                  No Copy/Paste Allowed
-                </div>
+                {{#unless contest.allowPaste}}
+                  <div>
+                    No Copy/Paste Allowed
+                  </div>
+                {{/unless}}
                 <div>
                   No Multiple Logins Allowed
                 </div>
-                <div>
-                  No Tab Switching Allowed
-                </div>
+                {{#if contest.disallowTabSwitch}}
+                  <div>
+                    No Tab Switching Allowed <span class="red">You will get a penalty of 10mins in case you switch tab.</span>
+                  </div>
+                {{/if}}
               </div>
             </div>
           </div>
