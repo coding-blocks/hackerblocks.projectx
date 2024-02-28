@@ -105,6 +105,10 @@ body{
   content: '';
 }
 
+.font-xxs {
+  font-size: 0.8rem;
+}
+
 /* Navbar */
 
 .navbar {
@@ -220,6 +224,9 @@ body{
   font-size: 0.7em;
 }
 
+.pulse-red {
+  animation: pulse-animation-red 2s infinite;
+}
 
 // Animations
 
@@ -228,4 +235,13 @@ body{
   50% { content: '..'}
   75% {content: '...'}
   100% { content: ''}
+}
+
+@keyframes pulse-animation-red {
+  0% {
+    box-shadow: 0 0 0 0px rgba(255, 90, 1, 0.973);
+  }
+  100% {
+    box-shadow: 0 0 0 6px rgba(167, 89, 47, 0.032);
+  }
 }
