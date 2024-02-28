@@ -14,5 +14,12 @@ export default Model.extend({
   }),
   end_time_moment: Ember.computed('end_time', function() {
     return moment(this.end_time)
-  })
+  }),
+  monitorerData: DS.attr(),
+  tabSwitchCount: Ember.computed('monitorerData', function() {
+    return this.monitorerData && this.monitorerData['tab-switch-count']
+  }),
+  tabSwitchTimePenaltyMinutes: Ember.computed('monitorerData', function() {
+    return this.monitorerData && this.monitorerData['tab-switch-count'] * 10
+  }),
 });

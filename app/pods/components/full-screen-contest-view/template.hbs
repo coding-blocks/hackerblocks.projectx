@@ -31,31 +31,41 @@
       <div class="font-sm text-ellipses">This is a timed contest. You have limited attempts to attempt this test.</div>
 
     </div>
-    <div class="mr-md-3 ml-md-0 ml-4 mt-sm-0 mt-4">
-      <Timer class="display-inline" @to={{attempt.end_time_moment}} @onEnd={{action (or onTimerEnd (perform submitTask))}} as |time|>
-        <ul class="divided-list timer font-xs d-inline mr-4">
-          <li class="timer-item pr-md-3 pr-2">
-            <div class="list-heading font-xl bold">{{time.days}}</div>
-            <div class="list-data">Days</div>
-          </li>
-          <li class="timer-item pr-md-3 pr-2">
-            <div class="list-heading font-xl bold">{{time.hours}}</div>
-            <div class="list-data">Hours</div>
-          </li>
-          <li class="timer-item pr-md-3 pr-2">
-            <div class="list-heading font-xl bold">{{time.minutes}}</div>
-            <div class="list-data">Minutes</div>
-          </li>
-          <li class="timer-item pr-md-3 pr-2">
-            <div class="list-heading font-xl bold">{{time.seconds}}</div>
-            <div class="list-data">Seconds</div>
-          </li>
-        </ul>
-      </Timer>
-    
-      <button class="button-solid button-orange font-sm extra-bold mx-3" {{action (mut showSubmitDialog) true}}>
-        Submit Test
-      </button>
+    <div class="col-xl-4 col-lg-5 col-md-4 col-sm-12 col-12 mt-sm-0 mt-4">
+      <div class="d-flex justify-content-end align-items-center">
+        <div class="mr-4">
+          <Timer @to={{attempt.end_time_moment}} @onEnd={{action (or onTimerEnd (perform submitTask))}} as |time|>
+            <ul class="divided-list timer font-xs d-inline">
+              <li class="timer-item pr-md-3 pr-2">
+                <div class="list-heading font-xl bold">{{time.days}}</div>
+                <div class="list-data">Days</div>
+              </li>
+              <li class="timer-item pr-md-3 pr-2">
+                <div class="list-heading font-xl bold">{{time.hours}}</div>
+                <div class="list-data">Hours</div>
+              </li>
+              <li class="timer-item pr-md-3 pr-2">
+                <div class="list-heading font-xl bold">{{time.minutes}}</div>
+                <div class="list-data">Minutes</div>
+              </li>
+              <li class="timer-item pr-md-3 pr-2">
+                <div class="list-heading font-xl bold">{{time.seconds}}</div>
+                <div class="list-data">Seconds</div>
+              </li>
+            </ul>
+          </Timer>
+          {{#if attempt.tabSwitchCount}}
+            <div class="font-xxs mt-2 red t-align-c">
+              Total Tab Switches: {{attempt.tabSwitchCount}}
+              <br>
+              Total Time Penalty: {{attempt.tabSwitchTimePenaltyMinutes}} mins
+            </div>
+          {{/if}}
+        </div>
+        <button class="button-solid button-orange font-sm extra-bold mx-3" {{action (mut showSubmitDialog) true}}>
+          Submit Test
+        </button>
+      </div>
     </div>
   </div>
   <div class="row no-gutters flex-1 w-100">
