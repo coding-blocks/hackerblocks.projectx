@@ -45,7 +45,7 @@ export default Service.extend({
         fault_type: 'tab_switch'
       }
     })
-    this.setProperties('tabSwitchTrigger', true)
+    this.set('tabSwitchTrigger', true)
     await this.store.findRecord('contest-attempt', currentAttempt.id)
   },
 
