@@ -228,6 +228,13 @@ body{
   animation: pulse-animation-red 2s infinite;
 }
 
+.bottom-bar {
+  position: fixed;
+  bottom: 0;
+  padding: 2rem 4rem;
+  width: 100vw;
+}
+
 // Animations
 
 @keyframes dots {

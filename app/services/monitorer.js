@@ -7,6 +7,7 @@ export default Service.extend({
   api: service(),
   store: service(),
   isEventListenerAdded: false,
+  tabSwitchTrigger: false,
   monitoredRoutes: [
     'contests.contest.attempt.content.problem',
     'contests.contest.attempt.content.quiz',
@@ -44,7 +45,7 @@ export default Service.extend({
         fault_type: 'tab_switch'
       }
     })
-
+    this.setProperties('tabSwitchTrigger', true)
     await this.store.findRecord('contest-attempt', currentAttempt.id)
   },
 
