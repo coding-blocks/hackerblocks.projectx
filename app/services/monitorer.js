@@ -36,7 +36,7 @@ export default Service.extend({
   },
 
   async tabSwitchEventHandler() {
-    if(!document.hidden) return
+    if(!document.hidden) return this.set('tabSwitchTrigger', true)
 
     const currentAttempt = await this.router.get('currentRoute.attributes.contest.currentAttempt')
     await this.api.request(`/contest-attempts/${currentAttempt.id}/report-monitorer-fault`, {
@@ -44,8 +44,7 @@ export default Service.extend({
       data: {
         fault_type: 'tab_switch'
       }
-    })
-    this.set('tabSwitchTrigger', true)
+    }) 
     await this.store.findRecord('contest-attempt', currentAttempt.id)
   },
 
