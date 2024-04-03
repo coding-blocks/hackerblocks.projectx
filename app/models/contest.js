@@ -62,4 +62,5 @@ export default Model.extend({
   controlFlags: DS.attr(),
   allowPaste: DS.attr(),
   disallowTabSwitch: DS.attr(),
+  disallowWindowResize: DS.attr(),
 });

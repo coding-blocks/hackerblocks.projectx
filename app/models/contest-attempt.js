@@ -22,4 +22,10 @@ export default Model.extend({
   tabSwitchTimePenaltyMinutes: Ember.computed('monitorerData', function() {
     return this.monitorerData && this.monitorerData['tab-switch-count'] * 10
   }),
+  windowResizeCount: Ember.computed('monitorerData', function() {
+    return this.monitorerData && this.monitorerData['window-resize-count']
+  }),
+  windowResizeTimePenaltyMinutes: Ember.computed('monitorerData', function() {
+    return this.monitorerData && this.monitorerData['window-resize-count'] * 10
+  }),
 });

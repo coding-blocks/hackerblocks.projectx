@@ -9,21 +9,26 @@
           <div class="pop-up">
             <div class="test-info-popup border-card bg-grey black">
               Note:
-              <div class="bold">
+              <ul class="bold">
                 {{#unless contest.allowPaste}}
-                  <div>
+                  <li>
                     No Copy/Paste Allowed
-                  </div>
+                  </li>
                 {{/unless}}
-                <div>
+                <li>
                   No Multiple Logins Allowed
-                </div>
+                </li>
                 {{#if contest.disallowTabSwitch}}
-                  <div>
-                    No Tab Switching Allowed <span class="red">You will get a penalty of 10mins in case you switch tab.</span>
-                  </div>
+                  <li>
+                    Tab Switching Prohibited <span class="red">You will get a penalty of 10 mins in case you switch tab.</span>
+                  </li>
                 {{/if}}
-              </div>
+                {{#if contest.disallowWindowResize}}
+                  <li>
+                    Window Resizing Prohibited <span class="red">You will get a penalty of 10 mins every 10 secs if your window is not fullscreen</span>
+                  </li>
+                {{/if}}
+              </ul>
             </div>
           </div>
         </div>
@@ -33,7 +38,7 @@
     </div>
     <div class="col-xl-4 col-lg-5 col-md-4 col-sm-12 col-12 mt-sm-0 mt-4">
       <div class="d-flex justify-content-end align-items-center">
-        <div class="mr-4">
+        <div class="mr-4 flex-col align-items-center">
           <Timer @to={{attempt.end_time_moment}} @onEnd={{action (or onTimerEnd (perform submitTask))}} as |time|>
             <ul class="divided-list timer font-xs d-inline">
               <li class="timer-item pr-md-3 pr-2">
@@ -54,12 +59,25 @@
               </li>
             </ul>
           </Timer>
-          {{#if attempt.tabSwitchCount}}
-            <div class="font-xxs mt-2 red t-align-c">
-              Total Tab Switches: {{attempt.tabSwitchCount}}
-              <br>
-              Total Time Penalty: {{attempt.tabSwitchTimePenaltyMinutes}} mins
+          {{#if (or attempt.tabSwitchCount attempt.windowResizeCount)}}
+          <div class="hoverable pill-sm bg-gradient-pink pulse-red mt-3 py-1 px-2">
+            <span class="font-xxs">Penalties</span>
+            <div class="border-card border-dark-pink pop-up w-250x pt-2 px-3">
+              <div class="font-xxs mt-2 red">
+                {{#if contest.disallowTabSwitch}}
+                  Total Tab Switches: {{or attempt.tabSwitchCount 0}}
+                  <br>
+                  Total Time Penalty: {{or attempt.tabSwitchTimePenaltyMinutes 0}} mins
+                {{/if}}
+                <br>
+                {{#if contest.disallowWindowResize}}
+                  Total Window Resizes: {{or attempt.windowResizeCount 0}}
+                  <br>
+                  Total Time Penalty: {{or attempt.windowResizeTimePenaltyMinutes 0}} mins
+                {{/if}}
+              </div>
             </div>
+          </div>
           {{/if}}
         </div>
         <button class="button-solid button-orange font-sm extra-bold mx-3" {{action (mut showSubmitDialog) true}}>
@@ -101,6 +119,16 @@
 </ModalDialog>
 {{/if}}
 
-<WPulse @class="display-inline" @triggered={{monitorer.tabSwitchTrigger}}>
-  <div class="bottom-bar white t-align-c bg-gradient-pink font-md">You Switched the tab. 10 minutes deducted.</div>
+<div class="bottom-bar">
+<WPulse @class="display-inline" @triggered={{monitorer.tabSwitchTrigger }}>
+  <div class="white t-align-c bg-gradient-pink font-md w-100 h-100 py-4">
+    You Switched the tab. 10 minutes deducted.
+  </div>
 </WPulse>
+<WPulse @class="display-inline" @triggered={{monitorer.windowResizeTrigger}}>
+  <div class="white t-align-c bg-gradient-pink font-md w-100 h-100 py-4">
+    Your Window is not Fullscreened. 10 minutes deducted.
+</div>
+
+</WPulse>
+</div>  

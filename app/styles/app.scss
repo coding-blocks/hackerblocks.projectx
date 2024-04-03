@@ -66,6 +66,18 @@ body{
 
 
 /* MOVE TO MOTLEY */
+.w-250x {
+  width: 250%;
+}
+
+.border-dark-pink {
+  border: solid 2px #f24f5f;
+}
+
+.red {
+  color: #f24f5f !important;
+}
+
 .code-window{
   margin-top: -62px;
 }
@@ -231,7 +243,7 @@ body{
 .bottom-bar {
   position: fixed;
   bottom: 0;
-  padding: 2rem 4rem;
+  z-index: 500;
   width: 100vw;
 }
 

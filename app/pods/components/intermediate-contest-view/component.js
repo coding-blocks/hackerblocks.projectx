@@ -9,6 +9,7 @@ import moment from 'moment';
 export default class IntermediateContestComponent extends Component {
   @service store
   @service currentUser
+  @service monitorer
 
   showStartDialog = false
   envProgress=0
@@ -23,6 +24,11 @@ export default class IntermediateContestComponent extends Component {
       if (this.contest.stats) return this.contest.stats['content-count']
       return this.get('contest').hasMany('contents').ids().length
     }
+  }
+
+  @computed('contest.disallowWindowResize', 'monitorer.isBrowserFullScreened')
+  get windowResizeBlocker() {
+    return this.contest.disallowWindowResize && !!!this.monitorer.isBrowserFullScreened
   }
 
   @computed('showStartDialog')
