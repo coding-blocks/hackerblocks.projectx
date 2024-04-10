@@ -90,7 +90,7 @@ export default Service.extend({
   async setTabSwitchEvents() {//called based on route activation
     const currentAttempt = await this.router.get('currentRoute.attributes.contest.currentAttempt')
     if(!!!currentAttempt.id) return
-    
+    console.log('visibility change event listener added')
     document.addEventListener("visibilitychange", this.tabSwitchEventHandler);
   },
   
@@ -109,6 +109,7 @@ export default Service.extend({
   },
 
   async tabSwitchEventHandler() {
+    console.log('visibility changed', 'document.hidden', document.hidden)
     if(!document.hidden) return this.set('tabSwitchTrigger', true)
 
     const currentAttempt = await this.router.get('currentRoute.attributes.contest.currentAttempt')
