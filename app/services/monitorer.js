@@ -45,9 +45,7 @@ export default Service.extend({
   },
 
   setIsBrowserFullScreened() {
-    console.log(window.screen.availHeight, window.outerHeight, window.screen.availWidth, window.outerWidth)
     this.set('isBrowserFullScreened', window.screen.availHeight <= window.outerHeight && window.screen.availWidth <= window.outerWidth)
-    console.log(this.isBrowserFullScreened)
   },
 
   async enableOrDisableMonitorerEvents() {
