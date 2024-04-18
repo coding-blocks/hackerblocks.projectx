@@ -91,8 +91,10 @@ export default Service.extend({
     
     if('webkitHidden' in document) {
       document.addEventListener("webkitvisibilitychange", this.tabSwitchEventHandler);
+      console.log('webkitvisibilitychange event added')
     } else {
       document.addEventListener("visibilitychange", this.tabSwitchEventHandler);
+      console.log('visibilitychange event added')
     }
   },
   
@@ -111,6 +113,7 @@ export default Service.extend({
   },
 
   async tabSwitchEventHandler() {
+    console.log('tabSwitchEventHandler', document.hidden, document.webkitHidden)
     if(!document.hidden) return this.set('tabSwitchTrigger', true)
 
     const currentAttempt = await this.router.get('currentRoute.attributes.contest.currentAttempt')
