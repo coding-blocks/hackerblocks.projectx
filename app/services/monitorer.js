@@ -12,6 +12,7 @@ export default Service.extend({
   tabSwitchTrigger: false,
   windowResizeTrigger: false,
   isWindowResizeEventThrottled: false,
+  tabSwitchFaultDetected: false,
   isBrowserFullScreened: window.screen.availHeight === window.outerHeight && window.screen.availWidth === window.outerWidth,
   monitoredRoutes: [
     'contests.contest.attempt.content.problem',
@@ -40,6 +41,8 @@ export default Service.extend({
     this.tabSwitchEventHandler = this.tabSwitchEventHandler.bind(this)
     this.windowResizeEventHandler = this.windowResizeEventHandler.bind(this)
     this.windowResizeFaultReporter = this.windowResizeFaultReporter.bind(this)
+    this.windowFocusEventHandler = this.windowFocusEventHandler.bind(this)
+    this.windowBlurEventHandler = this.windowBlurEventHandler.bind(this)
     this.addObserver('isMonitoringEnabled', this, 'enableOrDisableMonitorerEvents')
     this.enableOrDisableMonitorerEvents()
   },
@@ -89,13 +92,14 @@ export default Service.extend({
     const currentAttempt = await this.router.get('currentRoute.attributes.contest.currentAttempt')
     if(!!!currentAttempt.id) return
     
-    if('webkitHidden' in document) {
-      document.addEventListener("webkitvisibilitychange", this.tabSwitchEventHandler);
-      console.log('webkitvisibilitychange event added')
-    } else {
-      document.addEventListener("visibilitychange", this.tabSwitchEventHandler);
-      console.log('visibilitychange event added')
-    }
+    window.addEventListener('focus', this.windowFocusEventHandler)
+    window.addEventListener('blur', this.windowBlurEventHandler)
+    
+    // if('webkitHidden' in document) {
+    //   document.addEventListener("webkitvisibilitychange", this.tabSwitchEventHandler);
+    // } else {
+    //   document.addEventListener("visibilitychange", this.tabSwitchEventHandler);
+    // }
   },
   
   async setWindowResizeEvents() {//called based on route activation
@@ -112,8 +116,26 @@ export default Service.extend({
   
   },
 
+  async windowFocusEventHandler() {
+    if(this.tabSwitchFaultDetected) {
+      this.set('tabSwitchTrigger', true)
+      this.set('tabSwitchFaultDetected', false)
+    }
+  },
+
+  async windowBlurEventHandler() {
+    this.set('tabSwitchFaultDetected', true)
+    const currentAttempt = await this.router.get('currentRoute.attributes.contest.currentAttempt')
+    await this.api.request(`/contest-attempts/${currentAttempt.id}/report-monitorer-fault`, {
+      method: 'POST', 
+      data: {
+        fault_type: 'tab_switch'
+      }
+    }) 
+    await this.store.findRecord('contest-attempt', currentAttempt.id)
+  },
+
   async tabSwitchEventHandler() {
-    console.log('tabSwitchEventHandler', document.hidden, document.webkitHidden)
     if(!document.hidden) return this.set('tabSwitchTrigger', true)
 
     const currentAttempt = await this.router.get('currentRoute.attributes.contest.currentAttempt')
