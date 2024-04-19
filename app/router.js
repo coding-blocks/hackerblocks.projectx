@@ -51,6 +51,7 @@ Router.map(function() {
         this.route('problem');
         this.route('project')
       });
+      this.route('loading');
     });
   });
   this.route('dcb', function() {
