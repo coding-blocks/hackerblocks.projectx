@@ -63,4 +63,5 @@ export default Model.extend({
   allowPaste: DS.attr(),
   disallowTabSwitch: DS.attr(),
   disallowWindowResize: DS.attr(),
+  disallowNoFace: DS.attr(),
 });

@@ -1,7 +1,7 @@
 <div class="code-window flex-col">
   <div
     class="row mx-0 white bg-dark-grey align-items-center justify-content-between py-4 w-100 code-window__top-bar tl">
-    <div class="col-xl-7 col-lg-6 col-md-5 col-sm-7 col-12 offset-md-1">
+    <div class="col-xl-6 col-lg-6 col-md-5 col-sm-7 col-12 offset-md-1">
       <div class="row align-items-center pl-3">
         <h2 class="text-ellipses">{{contest.name}}</h2>
         <div class="hoverable ml-3">
@@ -25,7 +25,12 @@
                 {{/if}}
                 {{#if contest.disallowWindowResize}}
                   <li>
-                    Window Resizing Prohibited <span class="red">You will get a penalty of 10 mins every 10 secs if your window is not fullscreen</span>
+                    Window Resizing Prohibited <span class="red">You will get a penalty of 10 mins every 10 secs if your window is not fullscreen.</span>
+                  </li>
+                {{/if}}
+                {{#if contest.disallowNoFace}}
+                  <li>
+                    Face Detection Enabled <span class="red">You will get a penalty of 10 mins every 5 secs if your face is not visible in camera.</span>
                   </li>
                 {{/if}}
               </ul>
@@ -36,8 +41,11 @@
       <div class="font-sm text-ellipses">This is a timed contest. You have limited attempts to attempt this test.</div>
 
     </div>
-    <div class="col-xl-4 col-lg-5 col-md-4 col-sm-12 col-12 mt-sm-0 mt-4">
+    <div class="col-xl-5 col-lg-5 col-md-4 col-sm-12 col-12 mt-sm-0 mt-4">
       <div class="d-flex justify-content-end align-items-center">
+        <div class="col-3 br-15">
+          <video id="monitorer_live_feed" class="w-100 br-15 {{if monitorer.noFaceDetected 'border-dark-pink' 'border-green'}}"></video>
+        </div>
         <div class="mr-4 flex-col align-items-center">
           <Timer @to={{attempt.end_time_moment}} @onEnd={{action (or onTimerEnd (perform submitTask))}} as |time|>
             <ul class="divided-list timer font-xs d-inline">
@@ -74,6 +82,12 @@
                   Total Window Resizes: {{or attempt.windowResizeCount 0}}
                   <br>
                   Total Time Penalty: {{or attempt.windowResizeTimePenaltyMinutes 0}} mins
+                {{/if}}
+                <br>
+                {{#if contest.disallowWindowResize}}
+                  Total Face Undetected: {{or attempt.noFaceCount 0}}
+                  <br>
+                  Total Time Penalty: {{or attempt.noFaceTimePenaltyMinutes 0}} mins
                 {{/if}}
               </div>
             </div>
@@ -129,6 +143,10 @@
   <div class="white t-align-c bg-gradient-pink font-md w-100 h-100 py-4">
     Your Window is not Fullscreened. 10 minutes deducted.
 </div>
-
+</WPulse>
+<WPulse @class="display-inline" @triggered={{monitorer.noFaceTrigger}}>
+  <div class="white t-align-c bg-gradient-pink font-md w-100 h-100 py-4">
+    No face detected in camera. 10 minutes deducted.
+  </div>
 </WPulse>
 </div>  

@@ -22,6 +22,9 @@ export default class IndexRoute extends Route {
     },
     q: {
       refreshModel: true
+    },
+    monitorerError: {
+      refreshModel: false
     }
   }
 

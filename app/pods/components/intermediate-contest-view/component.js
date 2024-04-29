@@ -1,5 +1,5 @@
 import Component from '@ember/component';
-import { computed } from '@ember/object';
+import { computed, action } from '@ember/object';
 import { alias } from '@ember/object/computed';
 import { restartableTask, dropTask } from 'ember-concurrency-decorators';
 import { timeout } from 'ember-concurrency';
@@ -35,6 +35,13 @@ export default class IntermediateContestComponent extends Component {
   get queueTimeEnd() {
     if (this.showStartDialog) {
       return moment().add(Math.floor(Math.random() * 60), 'seconds')
+    }
+  }
+
+  @computed('monitorerError')
+  get monitorerErrorText() {
+    switch(this.monitorerError) {
+      case "CAMERAACCESSDENIED": return 'Please grant camera permissions to continue with test.'
     }
   }
 
@@ -93,5 +100,18 @@ export default class IntermediateContestComponent extends Component {
       // Propagate the error
       throw err
     }
+  }
+
+  @action promptCameraPermission() {
+    navigator.mediaDevices.getUserMedia ({video: true},
+      // successCallback
+      function() {
+         this.set('monitorerError', '')
+      },
+   
+      // errorCallback
+      function(err) {
+        console.log(err)
+      })
   }
 }
