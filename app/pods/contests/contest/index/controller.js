@@ -7,12 +7,13 @@ export default class IndexController extends Controller {
   @service store
   @service router
 
-  queryParams = ['offset', 'limit', 'status', 'difficulty', 'tags', 'q']
+  queryParams = ['offset', 'limit', 'status', 'difficulty', 'tags', 'q', 'monitorerError']
   offset = 0
   limit = 10
   difficulty = []
   tags = []
   q = ''
+  monitorerError = null
 
   @computed('offset', 'limit')
   get page() {

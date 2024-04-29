@@ -5,6 +5,7 @@ import { action } from '@ember/object';
 export default class AttemptRoute extends Route {
   @service navigation;
   @service currentUser;
+  @service monitorer
 
   async beforeModel() {
     super.beforeModel()
@@ -60,5 +61,13 @@ export default class AttemptRoute extends Route {
       })
     }
     throw err
+  }
+  @action
+  async willTransition(transition) {
+    this._super(...arguments)
+    if(!transition.to.name.includes('contests.contest.attempt.content')) {
+      this.controller.set('isMonitorerSet', false)
+      await this.monitorer.disable()
+    }
   }
 }

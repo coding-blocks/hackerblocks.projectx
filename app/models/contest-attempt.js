@@ -28,4 +28,10 @@ export default Model.extend({
   windowResizeTimePenaltyMinutes: Ember.computed('monitorerData', function() {
     return this.monitorerData && this.monitorerData['window-resize-count'] * 10
   }),
+  noFaceCount: Ember.computed('monitorerData', function() {
+    return this.monitorerData && this.monitorerData['no-face-count']
+  }),
+  noFaceTimePenaltyMinutes: Ember.computed('monitorerData', function() {
+    return this.monitorerData && this.monitorerData['no-face-count'] * 10
+  }),
 });

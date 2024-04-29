@@ -1,122 +1,119 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
-import { timeout } from 'ember-concurrency';
-import { later } from '@ember/runloop';
+// import Monitorer from '@coding-blocks/monitorer';
 
 export default Service.extend({
   router: service(),
   api: service(),
   store: service(),
-  isTabSwitchEventListenerAdded: false,
   tabSwitchTrigger: false,
+  noFaceTrigger: false,
   windowResizeTrigger: false,
-  isWindowResizeEventThrottled: false,
-  isBrowserFullScreened: window.screen.availHeight === window.outerHeight && window.screen.availWidth === window.outerWidth,
-  monitoredRoutes: [
-    'contests.contest.attempt.content.problem',
-    'contests.contest.attempt.content.quiz',
-    // 'contests.contest.attempt.content.project',
-  ],
-  windowResizeInterval: null,
-  isCurrentRouteMonitored: computed('router.currentRouteName', function(){
-    return this.monitoredRoutes.includes(this.router.currentRouteName)
-  }),
-  isTabSwitchDisabledOnContest: computed('router.currentRoute.attributes.contest', function() {
-    if(this.router.currentRoute) {
-      return !!this.router.get('currentRoute.attributes.contest.disallowTabSwitch')
-    } else return false
-  }),
-  isWindowResizeDisabledOnContest: computed('router.currentRoute.attributes.contest', function() {
-    if(this.router.currentRoute) {
-      return !!this.router.get('currentRoute.attributes.contest.disallowWindowResize')
-    } else return false
-  }),
-  isMonitoringEnabled: computed('isCurrentRouteMonitored', 'isTabSwitchDisabledOnContest', 'isWindowResizeDisabledOnContest', function() {
-    return this.isCurrentRouteMonitored && (this.isTabSwitchDisabledOnContest || this.isWindowResizeDisabledOnContest)
-  }),
+  noFaceThrottled: false,
+  noFaceDetected: false,
+  isMonitorerFaultEventHandlerAdded: false,
+  failureRedirect: null,
   init() {
     this._super(...arguments)
-    this.tabSwitchEventHandler = this.tabSwitchEventHandler.bind(this)
-    this.windowResizeEventHandler = this.windowResizeEventHandler.bind(this)
-    this.windowResizeFaultReporter = this.windowResizeFaultReporter.bind(this)
-    this.addObserver('isMonitoringEnabled', this, 'enableOrDisableMonitorerEvents')
-    this.enableOrDisableMonitorerEvents()
+    this.monitorerFaultEventHandler = this.monitorerFaultEventHandler.bind(this)
+    this.monitorerErrorEventHandler = this.monitorerErrorEventHandler.bind(this)
+    this.monitorerSuccessEventHandler = this.monitorerSuccessEventHandler.bind(this)
   },
 
-  setIsBrowserFullScreened() {
-    this.set('isBrowserFullScreened', window.screen.availHeight <= window.outerHeight && window.screen.availWidth <= window.outerWidth)
-  },
-
-  async enableOrDisableMonitorerEvents() {
-    console.log('enable monitorer')
-    this.setIsBrowserFullScreened()
-    
-    if(!this.isMonitoringEnabled) {
-      if(this.isTabSwitchEventListenerAdded) {
-        document.removeEventListener('visibilitychange', this.tabSwitchEventHandler)
-        this.set('isTabSwitchEventListenerAdded', false)
-      }
-
-      if(this.isWindowResizeEventListenerAdded) {
-        window.removeEventListener('resize', this.windowResizeEventHandler)
-        return this.set('isWindowResizeEventListenerAdded', false)
-      }
-      if(this.windowResizeInterval) {
-        clearInterval(this.windowResizeInterval)
-        this.set('windowResizeInterval', null)
-      }
+  async setup(options) {
+    if(!this.monitorer) {
+      this.set('monitorer', new Monitorer())
     }
-    
-    if(this.isTabSwitchDisabledOnContest && !this.isTabSwitchEventListenerAdded) {
-      this.setTabSwitchEvents()
-      this.set('isTabSwitchEventListenerAdded', true)
+
+    this.set('contest', options.contest)
+    this.set('onError', options.onError)
+
+    if(!this.isMonitorerFaultEventHandlerAdded) {
+      window.addEventListener('monitorerfault', this.monitorerFaultEventHandler)
+      window.addEventListener('monitorererror', this.monitorerErrorEventHandler)
+      window.addEventListener('monitorersuccess', this.monitorerSuccessEventHandler)
     }
-    
-    if(this.isWindowResizeDisabledOnContest && !this.isWindowResizeEventListenerAdded) {
-      this.setWindowResizeEvents()
-      this.set('isWindowResizeEventListenerAdded', true)
-      later(() => {
-      })
+
+
+    if(this.contest.disallowTabSwitch) {
+      await this.enableTabSwitchMonitorer()
+    }
+
+    if(this.contest.disallowWindowResize) {
+      await this.enableWindowResizeMonitorer()
+    }
+
+    if(this.contest.disallowNoFace) {
+      await this.enableNoFaceMonitorer({ noFace: true })
     }
   },
 
-  clearPreviousEventListeners() {
-    getEventListeners(document)
+  async disable() {
+    this.set('contest', null)
+    this.set('onError', null)
+
+    await this.disableTabSwitchMonitorer()
+    await this.disableWindowResizeMonitorer()
+    await this.disableNoFaceMonitorer()
+
+    window.removeEventListener('monitorerfault', this.monitorerFaultEventHandler)
   },
 
-  async setTabSwitchEvents() {//called based on route activation
-    const currentAttempt = await this.router.get('currentRoute.attributes.contest.currentAttempt')
-    if(!!!currentAttempt.id) return
-    
-    if('webkitHidden' in document) {
-      document.addEventListener("webkitvisibilitychange", this.tabSwitchEventHandler);
-      console.log('webkitvisibilitychange event added')
-    } else {
-      document.addEventListener("visibilitychange", this.tabSwitchEventHandler);
-      console.log('visibilitychange event added')
-    }
+  async enableTabSwitchMonitorer() {
+    await this.monitorer.enable({ tabSwitch: true })
+  },
+
+  async enableWindowResizeMonitorer() {
+    await this.monitorer.enable({ windowResize: true })
+  },
+
+  async enableNoFaceMonitorer() {
+    await this.monitorer.enable({ noFace: true })
+    await this.monitorer.enable({ liveFeed: true })
   },
   
-  async setWindowResizeEvents() {//called based on route activation
-    const currentAttempt = await this.router.get('currentRoute.attributes.contest.currentAttempt')
-    if(!!!currentAttempt.id) return
-
-    if(!this.isBrowserFullScreened) {
-      if(!this.windowResizeInterval) {
-        this.windowResizeFaultReporter(true)
-        this.set('windowResizeInterval', setInterval(this.windowResizeFaultReporter, 10000))
-      }
-    }
-    window.addEventListener("resize", this.windowResizeEventHandler);
-  
+  async disableTabSwitchMonitorer() {
+    await this.monitorer.disable({ tabSwitch: true })
   },
 
-  async tabSwitchEventHandler() {
-    console.log('tabSwitchEventHandler', document.hidden, document.webkitHidden)
+  async disableWindowResizeMonitorer() {
+    await this.monitorer.disable({ windowResize: true })
+  },
+
+  async disableNoFaceMonitorer() {
+    await this.monitorer.disable({ noFace: true })
+    await this.monitorer.disable({ liveFeed: true })
+  },
+
+  async monitorerFaultEventHandler(e) {
+    const currentAttempt = await this.contest.currentAttempt
+    if(!!!currentAttempt.id) return
+    
+    switch(e.detail.code) {
+      case "TAB_SWITCHED":  await this.handleTabSwitchFault(); break;
+      case "WINDOW_RESIZED":  await this.handleWindowResizeFault(e.detail); break;
+      case "NO_FACE_DETECTED":  await this.handleNoFaceFault(e.detail); 
+                                this.set('noFaceDetected', true); break;
+    }
+  },
+
+  async monitorerErrorEventHandler(e) {
+    if(this.onError) {
+      this.onError(e.detail)
+    }
+  },
+
+  async monitorerSuccessEventHandler(e) {
+    switch(e.detail.code) {
+      case "ONEFACEDETECTED": this.set('noFaceDetected', false); break;
+    }
+  },
+
+  async handleTabSwitchFault() {
     if(!document.hidden) return this.set('tabSwitchTrigger', true)
 
-    const currentAttempt = await this.router.get('currentRoute.attributes.contest.currentAttempt')
+    const currentAttempt = await this.contest.currentAttempt
     await this.api.request(`/contest-attempts/${currentAttempt.id}/report-monitorer-fault`, {
       method: 'POST', 
       data: {
@@ -126,30 +123,11 @@ export default Service.extend({
     await this.store.findRecord('contest-attempt', currentAttempt.id)
   },
 
-  async windowResizeEventHandler() {
-    if(!this.isWindowResizeEventThrottled) {
-      this.set('isWindowResizeEventThrottled', true)
-      if(!this.windowResizeInterval) {
-        this.windowResizeFaultReporter(true)
-        this.set('windowResizeInterval', setInterval(this.windowResizeFaultReporter, 10000))
-      }
-      //to prevent multiple event hits if user is continuously resizing
-      setTimeout(() => this.set('isWindowResizeEventThrottled', false), 2500)
-    }
-  },
-
-  async windowResizeFaultReporter(delayTrigger = false) {
-    this.setIsBrowserFullScreened()
-    if(this.isBrowserFullScreened) {
-      this.set('isWindowResizeEventThrottled', false)
-      if(this.windowResizeInterval) {
-        clearInterval(this.windowResizeInterval)
-        this.set('windowResizeInterval', null)
-      }
-    }
-    else {
+  async handleWindowResizeFault(details) {
+    if(details.message === 'browser_unfullscreened') {
       this.set('windowResizeTrigger', true)
-      const currentAttempt = await this.router.get('currentRoute.attributes.contest.currentAttempt')
+
+      const currentAttempt = await this.contest.currentAttempt
       await this.api.request(`/contest-attempts/${currentAttempt.id}/report-monitorer-fault`, {
         method: 'POST', 
         data: {
@@ -159,4 +137,25 @@ export default Service.extend({
       await this.store.findRecord('contest-attempt', currentAttempt.id)
     }
   },
+
+  async handleNoFaceFault(details) {
+    if(!this.noFaceThrottled) {
+      this.set('noFaceThrottled', true)
+      setTimeout(() => this.set('noFaceThrottled', false), 5000)
+
+      this.set('noFaceTrigger', true)
+      
+      const currentAttempt = await this.contest.currentAttempt
+      const imgFileArray = new Uint8Array(await details.imageBlob.arrayBuffer())
+
+      await this.api.request(`/contest-attempts/${currentAttempt.id}/report-monitorer-fault`, {
+        method: 'POST', 
+        data: {
+          fault_type: 'no_face',
+          image_file_array: imgFileArray
+        }
+      }) 
+      await this.store.findRecord('contest-attempt', currentAttempt.id)
+    }
+  }
 });

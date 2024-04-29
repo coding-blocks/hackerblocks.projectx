@@ -70,8 +70,17 @@ body{
   width: 250%;
 }
 
+.top-left {
+  top: 0;
+  left: 0;
+}
+
 .border-dark-pink {
   border: solid 2px #f24f5f;
+}
+
+.border-green {
+  border: solid 2px #2cc528;
 }
 
 .red {
