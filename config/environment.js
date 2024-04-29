@@ -51,10 +51,10 @@ module.exports = function (environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.nuxtPublicUrl = "http://localhost:8081"
-    ENV.publicUrl = 'http://test.hackerblocks/app/';
-    // ENV.publicUrl = "http://localhost:4200/app/";
-    ENV.apiHost = 'http://test.hackbackend';
-    // ENV.apiHost = "http://localhost:3000";
+    // ENV.publicUrl = 'http://test.hackerblocks/app/';
+    ENV.publicUrl = "http://localhost:4200/app/";
+    // ENV.apiHost = 'http://test.hackbackend';
+    ENV.apiHost = "http://localhost:3000";
     ENV.oneauthURL = "http://localhost:3838";
     ENV.clientId = 3680446660;
   }
