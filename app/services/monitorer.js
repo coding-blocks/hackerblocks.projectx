@@ -1,7 +1,6 @@
 import Service from '@ember/service';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object';
-// import Monitorer from '@coding-blocks/monitorer';
 
 export default Service.extend({
   router: service(),
@@ -35,6 +34,10 @@ export default Service.extend({
       window.addEventListener('monitorersuccess', this.monitorerSuccessEventHandler)
     }
 
+    if(this.contest.disallowNoFace || contest.disallowTabSwitch || contest.disallowWindowResize) {
+      await this.enableRightClickMonitorer()
+      await this.enableKeyboardMonitorer({ console: true })
+    }
 
     if(this.contest.disallowTabSwitch) {
       await this.enableTabSwitchMonitorer()
@@ -72,20 +75,36 @@ export default Service.extend({
     await this.monitorer.enable({ noFace: true })
     await this.monitorer.enable({ liveFeed: true })
   },
-  
+
+  async enableRightClickMonitorer() {
+    await this.monitorer.enable({ rightClick: true })
+  },
+
+  async enableKeyboardMonitorer(options) {
+    await this.monitorer.enable({ keyboard: options })
+  },
+
   async disableTabSwitchMonitorer() {
     await this.monitorer.disable({ tabSwitch: true })
   },
-
+  
   async disableWindowResizeMonitorer() {
     await this.monitorer.disable({ windowResize: true })
   },
-
+  
   async disableNoFaceMonitorer() {
     await this.monitorer.disable({ noFace: true })
     await this.monitorer.disable({ liveFeed: true })
   },
 
+  async disableRightClickMonitorer() {
+    await this.monitorer.disable({ rightClick: true })
+  },
+
+  async disableKeyboardMonitorer(options) {
+    await this.monitorer.disable({ keyboard: true })
+  },
+  
   async monitorerFaultEventHandler(e) {
     const currentAttempt = await this.contest.currentAttempt
     if(!!!currentAttempt.id) return
