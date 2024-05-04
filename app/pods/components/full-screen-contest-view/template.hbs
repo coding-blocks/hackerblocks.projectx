@@ -1,4 +1,4 @@
-<div class="code-window flex-col">
+<div id="fullsceen-contest-view" class="code-window flex-col" allow="fullscreen">
   <div
     class="row mx-0 white bg-dark-grey align-items-center justify-content-between py-4 w-100 code-window__top-bar tl">
     <div class="col-xl-6 col-lg-6 col-md-5 col-sm-7 col-12 offset-md-1">
@@ -20,7 +20,7 @@
                 </li>
                 {{#if contest.disallowTabSwitch}}
                   <li>
-                    Tab Switching Prohibited <span class="red">You will get a penalty of 10 mins in case you switch tab.</span>
+                    Tab Switching Prohibited <span class="red">You will get a penalty of 10 mins in case you switch tab after 3 faults.</span>
                   </li>
                 {{/if}}
                 {{#if contest.disallowWindowResize}}
@@ -30,7 +30,12 @@
                 {{/if}}
                 {{#if contest.disallowNoFace}}
                   <li>
-                    Face Detection Enabled <span class="red">You will get a penalty of 10 mins every 5 secs if your face is not visible in camera.</span>
+                    Face Detection Enabled <span class="red">You will get a penalty of 10 mins every 5 secs if your face is not visible in camera after 3 faults.</span>
+                  </li>
+                {{/if}}
+                {{#if contest.disallowMultipleFaces}}
+                  <li>
+                    Multiple Face Detection Enabled <span class="red">You will get a penalty of 10 mins every 5 secs if multiple faces are visible in camera after 3 faults.</span>
                   </li>
                 {{/if}}
               </ul>
@@ -45,7 +50,7 @@
       <div class="d-flex justify-content-end align-items-center">
         {{#if contest.disallowNoFace}}
           <div class="col-3 br-15">
-            <video id="monitorer_live_feed" class="w-100 br-15 {{if monitorer.noFaceDetected 'border-dark-pink' 'border-green'}}"></video>
+            <video id="monitorer_live_feed" class="w-100 br-15 {{if monitorer.oneFaceDetected 'border-green' 'border-dark-pink'}}"></video>
           </div>
         {{/if}}
         <div class="mr-4 flex-col align-items-center">
@@ -69,27 +74,24 @@
               </li>
             </ul>
           </Timer>
-          {{#if (or attempt.tabSwitchCount attempt.windowResizeCount)}}
+          {{#if (or attempt.tabSwitchCount attempt.windowResizeCount attempt.noFaceCount attempt.multipleFacesCount)}}
           <div class="hoverable pill-sm bg-gradient-pink pulse-red mt-3 py-1 px-2">
             <span class="font-xxs">Penalties</span>
             <div class="border-card border-dark-pink pop-up w-250x pt-2 px-3">
               <div class="font-xxs mt-2 red">
                 {{#if contest.disallowTabSwitch}}
-                  Total Tab Switches: {{or attempt.tabSwitchCount 0}}
-                  <br>
-                  Total Time Penalty: {{or attempt.tabSwitchTimePenaltyMinutes 0}} mins
+                  Total Tab Switches: {{or attempt.tabSwitchCount 0}} | {{or attempt.tabSwitchTimePenaltyMinutes 0}} mins deducted
                 {{/if}}
                 <br>
                 {{#if contest.disallowWindowResize}}
-                  Total Window Resizes: {{or attempt.windowResizeCount 0}}
-                  <br>
-                  Total Time Penalty: {{or attempt.windowResizeTimePenaltyMinutes 0}} mins
+                  Total Window Resizes: {{or attempt.windowResizeCount 0}} | {{or attempt.windowResizeTimePenaltyMinutes 0}} mins deducted
                 {{/if}}
                 <br>
                 {{#if contest.disallowNoFace}}
-                  Total Face Undetected: {{or attempt.noFaceCount 0}}
-                  <br>
-                  Total Time Penalty: {{or attempt.noFaceTimePenaltyMinutes 0}} mins
+                  Total Face Undetected: {{or attempt.noFaceCount 0}} | {{or attempt.noFaceTimePenaltyMinutes 0}} mins deducted
+                {{/if}}
+                {{#if contest.disallowMultipleFaces}}
+                  Total Multiple Faces Detected: {{attempt.multipleFacesCount}} | {{attempt.multipleFacesTimePenaltyMinutes}} mins deducted
                 {{/if}}
               </div>
             </div>
@@ -107,7 +109,6 @@
       @route={{route}} @contest={{contest}} />
     {{yield}}
   </div>
-</div>
 
 {{#if showSubmitDialog}}
 <ModalDialog @onClose={{action (mut showSubmitDialog) false}} @translucentOverlay={{true}}>
@@ -135,6 +136,77 @@
 </ModalDialog>
 {{/if}}
 
+  {{#if monitorer.faultTrigger}}
+    <ModalDialog
+    @onClose={{action 'resetFaultMessages'}}
+    @translucentOverlay={{true}}
+  >
+    <div class="border-card br-20 p-2">
+      <div class="border-card bg-gradient-pink white br-20 p-4">
+        <h3>Faults</h3>
+        <ul>
+          <li>
+            {{#if monitorer.faultMessages.tabSwitch}}
+              <span><i class="fas fa-info-circle font-sm"></i> You switched tab {{attempt.tabSwitchCount}} {{if (eq attempt.tabSwitchCount 1) 'time' 'times'}}.</span>
+              {{#if (gt attempt.tabSwitchCount 3)}}
+                <span>10 minutes deducted.</span>
+              {{/if }}
+            {{/if}}
+          </li>
+          <li>
+            {{#if monitorer.faultMessages.noFace}}
+              <span><i class="fas fa-info-circle font-sm"></i> No Face detected {{attempt.noFaceCount}} {{if (eq attempt.noFaceCount 1) 'time' 'times'}}.</span>
+              {{#if (gt attempt.noFaceCount 3)}}
+                <span>10 minutes deducted.</span>
+              {{/if }}
+            {{/if}}
+          </li>
+          <li>
+            {{#if monitorer.faultMessages.multipleFaces}}
+              <span><i class="fas fa-info-circle font-sm"></i> Multiple faces detected {{attempt.multipleFacesCount}} {{if (eq attempt.multipleFacesCount 1) 'time' 'times'}}.</span>
+              {{#if (gt attempt.multipleFacesCount 3)}}
+                <span>10 minutes deducted.</span>
+              {{/if }}
+            {{/if}}
+          </li>
+          <li>
+            {{#if monitorer.faultMessages.windowResize}}
+              <span><i class="fas fa-info-circle font-sm"></i> You resized window {{attempt.windowResizeCount}} {{if (eq attempt.windowResizeCount 1) 'time' 'times'}}.</span>
+              {{#if (gt attempt.multipleFacesCount 3)}}
+                <span>10 minutes deducted.</span>
+              {{/if }}
+            {{/if}}
+          </li>
+          <li>
+            {{#if monitorer.faultMessages.noise}}
+              <span><i class="fas fa-info-circle font-sm"></i> Noise detected.</span>
+            {{/if}}
+          </li>
+        </ul>
+      </div>
+      <div class="border-card p-4 my-3 bg-grey">
+        {{#if contest.disallowTabSwitch}}
+          Total Tab Switches: <span class="red">{{attempt.tabSwitchCount}} | {{attempt.tabSwitchTimePenaltyMinutes}} mins deducted</span>
+        {{/if}}
+        <br>
+        {{#if contest.disallowWindowResize}}
+          Total Window Resizes: <span class="red">{{attempt.windowResizeCount}} | {{attempt.windowResizeTimePenaltyMinutes}} mins deducted</span>
+        {{/if}}
+        <br>
+        {{#if contest.disallowNoFace}}
+          Total Face Undetected: <span class="red">{{attempt.noFaceCount}} | {{attempt.noFaceTimePenaltyMinutes}} mins deducted</span>
+        {{/if}}
+        <br>
+        {{#if contest.disallowMultipleFaces}}
+          Total Multiple Faces detected: <span class="red">{{attempt.multipleFacesCount}} | {{attempt.multipleFacesTimePenaltyMinutes}} mins deducted</span>
+        {{/if}}
+      </div>
+    </div>
+  </ModalDialog>
+  {{/if}}
+</div>
+
+
 <div class="bottom-bar">
 <WPulse @class="display-inline" @triggered={{monitorer.tabSwitchTrigger }}>
   <div class="white t-align-c bg-gradient-pink font-md w-100 h-100 py-4">
@@ -149,6 +221,11 @@
 <WPulse @class="display-inline" @triggered={{monitorer.noFaceTrigger}}>
   <div class="white t-align-c bg-gradient-pink font-md w-100 h-100 py-4">
     No face detected in camera. 10 minutes deducted.
+  </div>
+</WPulse>
+<WPulse @class="display-inline" @triggered={{monitorer.multipleFacesTrigger}}>
+  <div class="white t-align-c bg-gradient-pink font-md w-100 h-100 py-4">
+    Multiple faces detected in camera. 10 minutes deducted.
   </div>
 </WPulse>
 </div>  

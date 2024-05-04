@@ -64,4 +64,7 @@ export default Model.extend({
   disallowTabSwitch: DS.attr(),
   disallowWindowResize: DS.attr(),
   disallowNoFace: DS.attr(),
+  disallowMultipleFaces: DS.attr(),
+  disallowNoise: DS.attr(),
+  enforceFullscreen: DS.attr(),
 });
