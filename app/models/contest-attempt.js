@@ -20,24 +20,24 @@ export default Model.extend({
     return this.monitorerData && this.monitorerData['tab-switch-count'] || 0
   }),
   tabSwitchTimePenaltyMinutes: Ember.computed('monitorerData', function() {
-    return this.monitorerData && this.monitorerData['tab-switch-count'] > 3 ?  (this.monitorerData['tab-switch-count'] - 3) * 10 : 0
+    return this.monitorerData && this.monitorerData['tab-switches-penalty'] || 0
   }),
   windowResizeCount: Ember.computed('monitorerData', function() {
     return this.monitorerData && this.monitorerData['window-resize-count'] || 0
   }),
   windowResizeTimePenaltyMinutes: Ember.computed('monitorerData', function() {
-    return this.monitorerData && this.monitorerData['window-resize-count'] || 0
+    return this.monitorerData && this.monitorerData['window-resizes-penalty'] || 0
   }),
   noFaceCount: Ember.computed('monitorerData', function() {
     return this.monitorerData && this.monitorerData['no-face-count'] || 0
   }),
   noFaceTimePenaltyMinutes: Ember.computed('monitorerData', function() {
-    return this.monitorerData && this.monitorerData['no-face-count'] > 3 ? (this.monitorerData['no-face-count'] - 3) * 10 : 0
+    return this.monitorerData && this.monitorerData['no-faces-penalty'] || 0
   }),
   multipleFacesCount: Ember.computed('monitorerData', function() {
     return this.monitorerData && this.monitorerData['multiple-faces-count'] || 0
   }),
   multipleFacesTimePenaltyMinutes: Ember.computed('monitorerData', function() {
-    return this.monitorerData && this.monitorerData['multiple-faces-count'] > 3 ? (this.monitorerData['multiple-faces-count'] - 3) * 10 : 0
+    return this.monitorerData && this.monitorerData['multiple-faces-penalty'] || 0
   }),
 });

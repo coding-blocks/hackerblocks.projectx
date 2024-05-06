@@ -148,33 +148,31 @@
           <li>
             {{#if monitorer.faultMessages.tabSwitch}}
               <span><i class="fas fa-info-circle font-sm"></i> You switched tab {{attempt.tabSwitchCount}} {{if (eq attempt.tabSwitchCount 1) 'time' 'times'}}.</span>
-              {{#if (gt attempt.tabSwitchCount 3)}}
-                <span>10 minutes deducted.</span>
+              {{#if (gt attempt.tabSwitchCount contest.allowedTabSwitchesNumber)}}
+                <span>{{contest.tabSwitchPenalty}} minutes deducted.</span>
               {{/if }}
             {{/if}}
           </li>
           <li>
             {{#if monitorer.faultMessages.noFace}}
               <span><i class="fas fa-info-circle font-sm"></i> No Face detected {{attempt.noFaceCount}} {{if (eq attempt.noFaceCount 1) 'time' 'times'}}.</span>
-              {{#if (gt attempt.noFaceCount 3)}}
-                <span>10 minutes deducted.</span>
+              {{#if (gt attempt.noFaceCount contest.allowedNoFacesNumber)}}
+                <span>{{contest.noFacePenalty}} minutes deducted.</span>
               {{/if }}
             {{/if}}
           </li>
           <li>
             {{#if monitorer.faultMessages.multipleFaces}}
               <span><i class="fas fa-info-circle font-sm"></i> Multiple faces detected {{attempt.multipleFacesCount}} {{if (eq attempt.multipleFacesCount 1) 'time' 'times'}}.</span>
-              {{#if (gt attempt.multipleFacesCount 3)}}
-                <span>10 minutes deducted.</span>
+              {{#if (gt attempt.multipleFacesCount contest.allowedMultipleFacesNumber)}}
+                <span>{{contest.multipleFacesPenalty}} minutes deducted.</span>
               {{/if }}
             {{/if}}
           </li>
           <li>
             {{#if monitorer.faultMessages.windowResize}}
               <span><i class="fas fa-info-circle font-sm"></i> You resized window {{attempt.windowResizeCount}} {{if (eq attempt.windowResizeCount 1) 'time' 'times'}}.</span>
-              {{#if (gt attempt.multipleFacesCount 3)}}
-                <span>10 minutes deducted.</span>
-              {{/if }}
+              <span>{{contest.windowResizePenalty}} minutes deducted.</span>
             {{/if}}
           </li>
           <li>
