@@ -46,7 +46,7 @@ export default Service.extend({
       window.addEventListener('monitorersuccess', this.monitorerSuccessEventHandler)
     }
 
-    if(this.contest.disallowNoFace || contest.disallowTabSwitch || contest.disallowWindowResize || contest.disallowMultipleFaces) {
+    if(this.contest.disallowNoFace || this.contest.disallowTabSwitch || this.contest.disallowWindowResize || this.contest.disallowMultipleFaces) {
       await this.enableRightClickMonitorer()
       await this.enableKeyboardMonitorer({ console: true })
     }
@@ -134,7 +134,7 @@ export default Service.extend({
 
   async disableMultipleFacesMonitorer() {
     await this.monitorer.disable({ multipleFaces: true })
-    await this.monitorer.disable({ liveFeed: true })
+    // await this.monitorer.disable({ liveFeed: true })
   },
 
   async disableRightClickMonitorer() {
