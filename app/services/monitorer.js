@@ -73,12 +73,12 @@ export default Service.extend({
   },
 
   async disable() {
-    this.set('contest', null)
-    this.set('onError', null)
-
+    // this.set('contest', null)
+    // this.set('onError', null)
     await this.disableTabSwitchMonitorer()
     await this.disableWindowResizeMonitorer()
     await this.disableNoFaceMonitorer()
+    await this.disableMultipleFacesMonitorer()
 
     window.removeEventListener('monitorerfault', this.monitorerFaultEventHandler)
   },

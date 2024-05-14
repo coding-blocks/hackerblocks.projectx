@@ -42,7 +42,8 @@ export default class IntermediateContestComponent extends Component {
   @computed('monitorerError')
   get monitorerErrorText() {
     switch(this.monitorerError) {
-      case "CAMERAACCESSDENIED": return 'Please grant camera permissions to continue with test.'
+      case "CAMERAACCESSDENIED": return 'Please grant camera and mic permissions to continue with test.'
+      case "ACCESS_DENIED": return 'Please grant camera and mic permissions to continue with test.'
     }
   }
 
@@ -104,7 +105,7 @@ export default class IntermediateContestComponent extends Component {
   }
 
   @action promptCameraPermission() {
-    navigator.mediaDevices.getUserMedia ({video: true},
+    navigator.mediaDevices.getUserMedia ({video: true, mic: true},
       // successCallback
       function() {
          this.set('monitorerError', '')

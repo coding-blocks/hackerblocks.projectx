@@ -33,7 +33,7 @@ export default class AttemptController extends Controller{
     this.set('isMonitorerSet', false)
     
     switch(detail.code) {
-      case "CAMERAACCESSDENIED": 
+      case "ACCESS_DENIED": 
           this.transitionToRoute('contests.contest', this.contest.id, {
             queryParams: {
               monitorerError: detail.code
