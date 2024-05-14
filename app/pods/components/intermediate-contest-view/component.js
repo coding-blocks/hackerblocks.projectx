@@ -5,6 +5,7 @@ import { restartableTask, dropTask } from 'ember-concurrency-decorators';
 import { timeout } from 'ember-concurrency';
 import { inject as service } from '@ember/service';
 import moment from 'moment';
+import ENV from 'hackerblocks/config/environment';
 
 export default class IntermediateContestComponent extends Component {
   @service store
@@ -113,5 +114,9 @@ export default class IntermediateContestComponent extends Component {
       function(err) {
         console.log(err)
       })
+  }
+
+  @action async openTestInNewWindow() {
+    window.open(`${ENV.publicUrl}contests/${this.contest.id}/attempt/`, 'popup')
   }
 }

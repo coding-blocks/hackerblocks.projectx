@@ -60,19 +60,21 @@
       <div>
         {{#if contest_attempt}}
           {{#if nextRoute.route}}
-            <LinkTo
-              @route={{nextRoute.route}}
-              @model={{nextRoute.model}}
+            <button {{action 'openTestInNewWindow'}}
               class="button-solid button-orange font-sm extra-bold my-3">
               Resume Challenge
-            </LinkTo>
+            </button>
           {{else}}
-            {{#link-to
+            {{!-- {{#link-to
               nextRoute
               class="button-solid button-orange font-sm extra-bold my-3"
             }}
               Resume Challenge
-            {{/link-to}}
+            {{/link-to}} --}}
+            <button {{action 'openTestInNewWindow'}}
+              class="button-solid button-orange font-sm extra-bold my-3">
+              Resume Challenge
+            </button>
           {{/if}}
         {{else}}
           {{#if (or (not contest.acceptRegistrations) contestRegistration)}}

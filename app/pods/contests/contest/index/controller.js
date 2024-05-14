@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { action, computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { restartableTask } from 'ember-concurrency-decorators';
+import ENV from 'hackerblocks/config/environment';
 
 export default class IndexController extends Controller {
   @service store
@@ -62,6 +62,6 @@ export default class IndexController extends Controller {
   }
   @action
   onAfterCreate() {
-    this.transitionToRoute('contests.contest.attempt')
+    window.open(`${ENV.publicUrl}contests/${this.contest.id}/attempt/`, 'popup')
   }
 }
