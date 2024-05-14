@@ -117,6 +117,6 @@ export default class IntermediateContestComponent extends Component {
   }
 
   @action async openTestInNewWindow() {
-    window.open(`${ENV.publicUrl}/contests/${this.contest.id}/attempt/`, 'popup')
+    window.open(`${ENV.publicUrl}/contests/${this.contest.id}/attempt/`, '_blank', 'popup')
   }
 }

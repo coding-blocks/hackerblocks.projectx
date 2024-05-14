@@ -62,6 +62,6 @@ export default class IndexController extends Controller {
   }
   @action
   onAfterCreate() {
-    window.open(`${ENV.publicUrl}/contests/${this.contest.id}/attempt/`, 'popup')
+    window.open(`${ENV.publicUrl}/contests/${this.contest.id}/attempt/`, '_blank', 'popup')
   }
 }
