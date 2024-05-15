@@ -40,6 +40,13 @@ export default class AttemptController extends Controller{
             }
           })
           break;
+      case "CAMERAACCESSDENIED": 
+          this.transitionToRoute('contests.contest', this.contest.id, {
+            queryParams: {
+              monitorerError: detail.code
+            }
+          })
+          break;
     }
   }
 
