@@ -91,7 +91,7 @@
   {{#if (or contest.disallowTabSwitch contest.disallowWindowResize contest.disallowNoFace)}}
     <div class="border-card bg-gradient-pink border-none text-white p-4 mt-4">
       {{#if contest.disallowTabSwitch}}
-        <i class="fas fa-info-circle font-sm"></i> Tab Switching is prohibited on this contest. You will face a penalty of 10 mins after 3 faults in case you :-
+        <i class="fas fa-info-circle font-sm"></i> Tab Switching is prohibited on this contest. You will face a penalty of {{contest.tabSwitchPentalty}} mins after 3 faults in case you :-
         <ul>
           <li>&#8226;	Switch the current tab</li>
           <li>&#8226;	Minimize the browser or switch to any other application</li>
@@ -100,25 +100,25 @@
       {{/if}}
       <br>
       {{#if contest.disallowWindowResize}}
-        <i class="fas fa-info-circle font-sm"></i> Browser Window Resize is prohibited on this contest. You will face a penalty of 10 mins every 10 secs in case you :-
+        <i class="fas fa-info-circle font-sm"></i> Browser Window Resize is prohibited on this contest. You will face a penalty of {{contest.windowResizePenalty}} mins every 10 secs in case you :-
         <ul>
           <li>&#8226;	Resize the browser window</li>
         </ul>
       {{/if}}
       {{#if contest.disallowWindowMove}}
-        <i class="fas fa-info-circle font-sm"></i> Browser Window Movement is prohibited on this contest. You will face a penalty of 10 mins every 10 secs in case you :-
+        <i class="fas fa-info-circle font-sm"></i> Browser Window Movement is prohibited on this contest. You will face a penalty of {{contest.windowMovePenalty}} mins every 10 secs in case you :-
         <ul>
           <li>&#8226;	Move the browser window</li>
         </ul>
       {{/if}}
       {{#if contest.disallowNoFace}}
-        <i class="fas fa-info-circle font-sm"></i> Face detection is enabled on this contest. You will face a penalty of 10 mins every 5 secs after 3 faults in case :-
+        <i class="fas fa-info-circle font-sm"></i> Face detection is enabled on this contest. You will face a penalty of {{contest.noFacePenalty}} mins every 5 secs after 3 faults in case :-
         <ul>
           <li>&#8226;	Your face is not visible in camera.</li>
         </ul>
       {{/if}}
       {{#if contest.disallowMultipleFaces}}
-        <i class="fas fa-info-circle font-sm"></i> Multiple face detection is enabled on this contest. You will face a penalty of 10 mins every 5 secs after 3 faults in case :-
+        <i class="fas fa-info-circle font-sm"></i> Multiple face detection is enabled on this contest. You will face a penalty of {{contest.multipleFacesPenalty}} mins every 5 secs after 3 faults in case :-
         <ul>
           <li>&#8226;	More than 1 face is visible in camera.</li>
         </ul>
