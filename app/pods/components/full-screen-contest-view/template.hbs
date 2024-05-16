@@ -143,7 +143,7 @@
   >
     <div class="border-card br-20 p-2">
       <div class="border-card bg-gradient-pink white br-20 p-4">
-        <h3>Faults</h3>
+        <h3>Faults {{monitorer.faultMessages.windowMove}}</h3>
         <ul>
           <li>
             {{#if monitorer.faultMessages.tabSwitch}}
@@ -178,7 +178,7 @@
           <li>
             {{#if monitorer.faultMessages.windowMove}}
               <span><i class="fas fa-info-circle font-sm"></i> You moved browser window {{attempt.windowMoveCount}} {{if (eq attempt.windowMoveCount 1) 'time' 'times'}}.</span>
-              {{#if (gPt attempt.windowMoveCount contest.allowedWindowMovesNumber)}}
+              {{#if (gt attempt.windowMoveCount contest.allowedWindowMovesNumber)}}
                 <span>{{contest.windowMovePenalty}} minutes deducted.</span>
               {{/if }}
             {{/if}}
