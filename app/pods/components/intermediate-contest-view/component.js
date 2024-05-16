@@ -118,6 +118,6 @@ export default class IntermediateContestComponent extends Component {
   }
 
   @action async openTestInNewWindow() {
-    window.open(`${ENV.publicUrl}/contests/${this.contest.id}/attempt/`, '_blank', `menubar=1,resizable=0,height=${window.screen.availHeight},width=${window.screen.availWidth}`)
+    window.open(`${ENV.publicUrl}/contests/${this.contest.id}/attempt/`, `hackerblocks-contest-${this.contest.id}`, `menubar=1,resizable=0,height=${window.screen.availHeight},width=${window.screen.availWidth},top=0,left=0`)
   }
 }
