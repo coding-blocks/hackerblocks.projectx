@@ -6,7 +6,7 @@
         <h2 class="text-ellipses">{{contest.name}}</h2>
         <div class="hoverable ml-3">
           <i class="fas fa-info-circle round orange font-md pulse-red"></i>
-          <div class="pop-up">
+          <div class="pop-up w-350x">
             <div class="test-info-popup border-card bg-grey black">
               Note:
               <ul class="bold">
@@ -20,22 +20,27 @@
                 </li>
                 {{#if contest.disallowTabSwitch}}
                   <li>
-                    Tab Switching Prohibited <span class="red">You will get a penalty of 10 mins in case you switch tab after 3 faults.</span>
+                    Tab Switching Prohibited <span class="red">You will get a penalty of {{contest.tabSwitchPenalty}} mins in case you switch tab after 3 faults.</span>
                   </li>
                 {{/if}}
                 {{#if contest.disallowWindowResize}}
                   <li>
-                    Window Resizing Prohibited <span class="red">You will get a penalty of 10 mins every 10 secs if your window is not fullscreen.</span>
+                    Window Resizing Prohibited <span class="red">You will get a penalty of {{contest.windowResizePenalty}} mins every 10 secs if your window is not fullscreen.</span>
+                  </li>
+                {{/if}}
+                {{#if contest.disallowWindowMove}}
+                  <li>
+                    Window Movement Prohibited <span class="red">You will get a penalty of {{contest.windowMovePenalty}} mins every 10 secs if your window is not fullscreen.</span>
                   </li>
                 {{/if}}
                 {{#if contest.disallowNoFace}}
                   <li>
-                    Face Detection Enabled <span class="red">You will get a penalty of 10 mins every 5 secs if your face is not visible in camera after 3 faults.</span>
+                    Face Detection Enabled <span class="red">You will get a penalty of {{contest.noFacePenalty}} mins every 5 secs if your face is not visible in camera after 3 faults.</span>
                   </li>
                 {{/if}}
                 {{#if contest.disallowMultipleFaces}}
                   <li>
-                    Multiple Face Detection Enabled <span class="red">You will get a penalty of 10 mins every 5 secs if multiple faces are visible in camera after 3 faults.</span>
+                    Multiple Face Detection Enabled <span class="red">You will get a penalty of {{contest.multipleFacesPenalty}} mins every 5 secs if multiple faces are visible in camera after 3 faults.</span>
                   </li>
                 {{/if}}
               </ul>
@@ -77,7 +82,7 @@
           {{#if (or attempt.tabSwitchCount attempt.windowResizeCount attempt.noFaceCount attempt.multipleFacesCount)}}
           <div class="hoverable pill-sm bg-gradient-pink pulse-red mt-3 py-1 px-2">
             <span class="font-xxs">Penalties</span>
-            <div class="border-card border-dark-pink pop-up w-250x pt-2 px-3">
+            <div class="border-card border-dark-pink pop-up w-350x l-center pt-2 px-3">
               <div class="font-xxs mt-2 red">
                 {{#if contest.disallowTabSwitch}}
                   Total Tab Switches: {{or attempt.tabSwitchCount 0}} | {{or attempt.tabSwitchTimePenaltyMinutes 0}} mins deducted
@@ -85,6 +90,10 @@
                 <br>
                 {{#if contest.disallowWindowResize}}
                   Total Window Resizes: {{or attempt.windowResizeCount 0}} | {{or attempt.windowResizeTimePenaltyMinutes 0}} mins deducted
+                {{/if}}
+                <br>
+                {{#if contest.disallowWindowMove}}
+                  Total Window Moves: {{or attempt.windowMoveCount 0}} | {{or attempt.windowMoveTimePenaltyMinutes 0}} mins deducted
                 {{/if}}
                 <br>
                 {{#if contest.disallowNoFace}}
