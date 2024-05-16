@@ -62,6 +62,6 @@ export default class IndexController extends Controller {
   }
   @action
   onAfterCreate() {
-    window.open(`${ENV.publicUrl}/contests/${this.contest.id}/attempt/`, '_blank', 'popup')
+    window.open(`${ENV.publicUrl}/contests/${this.contest.id}/attempt/`, `hackerblocks-contest-${this.contest.id}`, `menubar=0,resizable=0,height=${window.screen.availHeight},width=${window.screen.availWidth}`)
   }
 }
