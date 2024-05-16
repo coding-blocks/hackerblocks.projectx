@@ -23,6 +23,7 @@ export default Service.extend({
     noFace: false,
     multipleFaces: false,
     windowResize: false,
+    windowMove: false,
     noise: false
   },
   init() {
@@ -59,6 +60,10 @@ export default Service.extend({
       await this.enableWindowResizeMonitorer()
     }
 
+    if(this.contest.disallowWindowMove) {
+      await this.enableWindowMoveMonitorer()
+    }
+
     if(this.contest.disallowNoFace) {
       await this.enableNoFaceMonitorer()
     }
@@ -77,6 +82,7 @@ export default Service.extend({
     // this.set('onError', null)
     await this.disableTabSwitchMonitorer()
     await this.disableWindowResizeMonitorer()
+    await this.disableWindowMoveMonitorer()
     await this.disableNoFaceMonitorer()
     await this.disableMultipleFacesMonitorer()
 
@@ -89,6 +95,10 @@ export default Service.extend({
 
   async enableWindowResizeMonitorer() {
     await this.monitorer.enable({ windowResize: true })
+  },
+
+  async enableWindowMoveMonitorer() {
+    await this.monitorer.enable({ windowMove: true })
   },
 
   async enableNoFaceMonitorer() {
@@ -126,6 +136,10 @@ export default Service.extend({
   async disableWindowResizeMonitorer() {
     await this.monitorer.disable({ windowResize: true })
   },
+
+  async disableWindowMoveMonitorer() {
+    await this.monitorer.disable({ windowMove: true })
+  },
   
   async disableNoFaceMonitorer() {
     await this.monitorer.disable({ noFace: true })
@@ -158,10 +172,11 @@ export default Service.extend({
   async monitorerFaultEventHandler(e) {
     const currentAttempt = await this.contest.currentAttempt
     if(!!!currentAttempt.id) return
-    
+
     switch(e.detail.code) {
       case "TAB_SWITCHED":  await this.handleTabSwitchFault(); break;
       case "WINDOW_RESIZED":  await this.handleWindowResizeFault(e.detail); break;
+      case "WINDOW_MOVED": await this.handleWindowMoveFault(); break;
       case "NO_FACE_DETECTED":  await this.handleNoFaceFault(e.detail); 
                                 this.set('oneFaceDetected', false); break;
       case "MULTIPLE_FACES_DETECTED":  await this.handleMultipleFacesFault(e.detail); 
@@ -215,6 +230,20 @@ export default Service.extend({
       }) 
       await this.store.findRecord('contest-attempt', currentAttempt.id)
     }
+  },
+  async handleWindowMoveFault(details) {
+    this.set('faultMessages.windowMove', true)
+    this.set('faultTrigger', true)
+
+    const currentAttempt = await this.contest.currentAttempt
+    await this.api.request(`/contest-attempts/${currentAttempt.id}/report-monitorer-fault`, {
+      method: 'POST', 
+      data: {
+        fault_type: 'window_move'
+      }
+    }) 
+    await this.store.findRecord('contest-attempt', currentAttempt.id)
+    
   },
 
   async handleNoFaceFault(details) {

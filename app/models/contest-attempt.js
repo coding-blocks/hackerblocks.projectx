@@ -28,6 +28,12 @@ export default Model.extend({
   windowResizeTimePenaltyMinutes: Ember.computed('monitorerData', function() {
     return this.monitorerData && this.monitorerData['window-resizes-penalty'] || 0
   }),
+  windowMoveCount: Ember.computed('monitorerData', function() {
+    return this.monitorerData && this.monitorerData['window-move-count'] || 0
+  }),
+  windowMoveTimePenaltyMinutes: Ember.computed('monitorerData', function() {
+    return this.monitorerData && this.monitorerData['window-moves-penalty'] || 0
+  }),
   noFaceCount: Ember.computed('monitorerData', function() {
     return this.monitorerData && this.monitorerData['no-face-count'] || 0
   }),

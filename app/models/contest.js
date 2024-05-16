@@ -63,6 +63,7 @@ export default Model.extend({
   allowPaste: DS.attr(),
   disallowTabSwitch: DS.attr(),
   disallowWindowResize: DS.attr(),
+  disallowWindowMove: DS.attr(),
   disallowNoFace: DS.attr(),
   disallowMultipleFaces: DS.attr(),
   disallowNoise: DS.attr(),
@@ -70,8 +71,10 @@ export default Model.extend({
   allowedTabSwitchesNumber: DS.attr(),
   allowedNoFacesNumber: DS.attr(),
   allowedMultipleFacesNumber: DS.attr(),
+  allowedWindowMovesNumber: DS.attr(),
   tabSwitchPenalty: DS.attr(),
   noFacePenalty: DS.attr(),
   multipleFacesPenalty: DS.attr(),
-  windowResizePenalty: DS.attr()
+  windowResizePenalty: DS.attr(),
+  windowMovePenalty: DS.attr()
 });

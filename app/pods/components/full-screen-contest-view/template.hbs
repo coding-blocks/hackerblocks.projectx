@@ -176,6 +176,14 @@
             {{/if}}
           </li>
           <li>
+            {{#if monitorer.faultMessages.windowMove}}
+              <span><i class="fas fa-info-circle font-sm"></i> You moved browser window {{attempt.windowMoveCount}} {{if (eq attempt.windowMoveCount 1) 'time' 'times'}}.</span>
+              {{#if (gPt attempt.windowMoveCount contest.allowedWindowMovesNumber)}}
+                <span>{{contest.windowMovePenalty}} minutes deducted.</span>
+              {{/if }}
+            {{/if}}
+          </li>
+          <li>
             {{#if monitorer.faultMessages.noise}}
               <span><i class="fas fa-info-circle font-sm"></i> Noise detected.</span>
             {{/if}}
@@ -189,6 +197,10 @@
         <br>
         {{#if contest.disallowWindowResize}}
           Total Window Resizes: <span class="red">{{attempt.windowResizeCount}} | {{attempt.windowResizeTimePenaltyMinutes}} mins deducted</span>
+        {{/if}}
+        <br>
+        {{#if contest.disallowWindowMove}}
+          Total Window Moves: <span class="red">{{attempt.windowMoveCount}} | {{attempt.windowMoveTimePenaltyMinutes}} mins deducted</span>
         {{/if}}
         <br>
         {{#if contest.disallowNoFace}}

@@ -105,6 +105,12 @@
           <li>&#8226;	Resize the browser window</li>
         </ul>
       {{/if}}
+      {{#if contest.disallowWindowMove}}
+        <i class="fas fa-info-circle font-sm"></i> Browser Window Movement is prohibited on this contest. You will face a penalty of 10 mins every 10 secs in case you :-
+        <ul>
+          <li>&#8226;	Move the browser window</li>
+        </ul>
+      {{/if}}
       {{#if contest.disallowNoFace}}
         <i class="fas fa-info-circle font-sm"></i> Face detection is enabled on this contest. You will face a penalty of 10 mins every 5 secs after 3 faults in case :-
         <ul>
