@@ -163,6 +163,7 @@ export default Service.extend({
     this.set('faultMessages', {
       tabSwitch: false,
       windowResize: false,
+      windowMove: false,
       noFace: false,
       multipleFace: false
     })
@@ -175,7 +176,7 @@ export default Service.extend({
 
     switch(e.detail.code) {
       case "TAB_SWITCHED":  await this.handleTabSwitchFault(); break;
-      case "WINDOW_RESIZED":  await this.handleWindowResizeFault(e.detail); break;
+      case "WINDOWRESIZED":  await this.handleWindowResizeFault(e.detail); break;
       case "WINDOW_MOVED": await this.handleWindowMoveFault(); break;
       case "NO_FACE_DETECTED":  await this.handleNoFaceFault(e.detail); 
                                 this.set('oneFaceDetected', false); break;
@@ -231,7 +232,7 @@ export default Service.extend({
       await this.store.findRecord('contest-attempt', currentAttempt.id)
     }
   },
-  async handleWindowMoveFault(details) {
+  async handleWindowMoveFault() {
     this.set('faultMessages.windowMove', true)
     this.set('faultTrigger', true)
 
