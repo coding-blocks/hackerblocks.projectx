@@ -20,7 +20,7 @@
                 </li>
                 {{#if contest.disallowTabSwitch}}
                   <li>
-                    Tab Switching Prohibited <span class="red">You will get a penalty of {{contest.tabSwitchPenalty}} mins in case you switch tab after 3 faults.</span>
+                    Tab Switching Prohibited <span class="red">You will get a penalty of {{contest.tabSwitchPenalty}} mins in case you switch tab after {{contest.allowedTabSwitchesNumber}} faults.</span>
                   </li>
                 {{/if}}
                 {{#if contest.disallowWindowResize}}
@@ -35,12 +35,12 @@
                 {{/if}}
                 {{#if contest.disallowNoFace}}
                   <li>
-                    Face Detection Enabled <span class="red">You will get a penalty of {{contest.noFacePenalty}} mins every 5 secs if your face is not visible in camera after 3 faults.</span>
+                    Face Detection Enabled <span class="red">You will get a penalty of {{contest.noFacePenalty}} mins every 5 secs if your face is not visible in camera after {{contest.allowedNoFacesNumber}} faults.</span>
                   </li>
                 {{/if}}
                 {{#if contest.disallowMultipleFaces}}
                   <li>
-                    Multiple Face Detection Enabled <span class="red">You will get a penalty of {{contest.multipleFacesPenalty}} mins every 5 secs if multiple faces are visible in camera after 3 faults.</span>
+                    Multiple Face Detection Enabled <span class="red">You will get a penalty of {{contest.multipleFacesPenalty}} mins every 5 secs if multiple faces are visible in camera after {{contest.allowedMultipleFacesNumber}} faults.</span>
                   </li>
                 {{/if}}
               </ul>
