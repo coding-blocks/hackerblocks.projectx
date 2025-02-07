@@ -268,6 +268,14 @@ body{
   width: 100vw;
 }
 
+.question-child {
+  display: none;
+}
+
+.question-parent:hover .question-child {
+  display: inline-block;
+}
+
 // Animations
 
 @keyframes dots {
