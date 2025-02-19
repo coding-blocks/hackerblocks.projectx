@@ -1,7 +1,10 @@
 import Component from '@ember/component';
 import { action, computed } from '@ember/object';
+import { inject as service } from '@ember/service';
 
 export default class CodeWindowComponent extends Component {
+  @service('language-selection') languageSelection;
+
   isLanguageSelectOpen = false
   customInputOpen = true
   customInput = ''
@@ -48,9 +51,15 @@ export default class CodeWindowComponent extends Component {
       code: "csharp",
       mode: "csharp",
       source: ""
+    },
+    {
+      name: "Mysql",
+      code: "mysql",
+      mode: "mysql",
+      source: ""
     }
   ]
-
+ 
   setSubmission = () => {
     this.set('selectedLanguage', this.languageSpecs.find(spec => spec.code === this.submission.language))
     this.set('selectedLanguage.source', window.atob(this.submission.solution.source))
@@ -80,11 +89,10 @@ export default class CodeWindowComponent extends Component {
 
   @action
   selectLanguage(languageCode) {
-    // console.log(languageCode)
-    this.set('selectedLanguage', this.get('languageSpecs').find((spec) => {
-      return spec.code === languageCode
-    }))
-    this.trigger("restoreCodeFromStorage")
+    let selectedLanguage = this.languageSpecs.find((spec) => spec.code === languageCode);
+    this.set('selectedLanguage', selectedLanguage);
+    this.languageSelection.set('selectedLanguage', selectedLanguage);
+    this.trigger("restoreCodeFromStorage");
   }
 
   @action

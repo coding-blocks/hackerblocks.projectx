@@ -2,7 +2,12 @@
   <span class="font-sm bold">
     Compilation Successful
   </span>
+
   {{#if output}}
-    <pre class="mt-3 bg-grey p-4">{{output}}</pre>
+    {{#if (includes allowedLanguages "mysql")}}
+      <pre class="mt-3 bg-grey p-4">{{json-to-table output}}</pre>
+    {{else}}
+      <pre class="mt-3 bg-grey p-4">{{output}}</pre>
+    {{/if}}
   {{/if}}
 </div>

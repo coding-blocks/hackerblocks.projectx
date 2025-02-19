@@ -1,4 +1,6 @@
 <div class="{{unless fullScreen "border-card mb-5"}} p-0">
+ 
+
   {{#if isRunning}}
     <SubmissionResult::SubmissionStatus />
   {{else if isErrored}}
@@ -6,6 +8,11 @@
   {{else if isSubmission}}
     <SubmissionResult::SubmissionTestcases @testcases={{testcasesPayload}} />
   {{else}}
-    <SubmissionResult::SubmissionSuccess @message={{message}} @output={{output}} />
+<SubmissionResult::SubmissionSuccess 
+  @message={{message}} 
+  @output={{output}} 
+  @allowedLanguages={{allowedLanguages}} 
+/>
+
   {{/if}}
 </div>

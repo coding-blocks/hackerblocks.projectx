@@ -5,7 +5,7 @@ module.exports = function (environment) {
     modulePrefix: "hackerblocks",
     podModulePrefix: "hackerblocks/pods",
     environment,
-    rootURL: "/app",
+    rootURL: "/",
     locationType: "auto",
     "ember-simple-auth-token": {
       identificationField: "code",
@@ -52,7 +52,8 @@ module.exports = function (environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.nuxtPublicUrl = "http://localhost:8081"
     // ENV.publicUrl = 'http://test.hackerblocks/app/';
-    ENV.publicUrl = "http://localhost:4200/app";
+    // ENV.publicUrl = "http://localhost:4200/app";
+    ENV.publicUrl = "http://localhost:4200";
     // ENV.apiHost = 'http://test.hackbackend';
     ENV.apiHost = "http://localhost:3000";
     ENV.oneauthURL = "http://localhost:3838";
