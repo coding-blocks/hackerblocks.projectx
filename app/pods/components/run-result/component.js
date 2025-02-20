@@ -4,12 +4,12 @@ import { computed } from '@ember/object';
 export default class RunResultComponent extends Component {
   didRender() {
     this.element.scrollIntoView({behavior: "smooth", block: "end" })
-    // console.log('run')
+ 
   }
 
   @computed('judgeResult')
   get output() {    
-    // console.log('res',this)
+
     if (this.judgeResult.data){
       return window.atob(this.judgeResult.data.output)
     } else if (this.judgeResult.error) {

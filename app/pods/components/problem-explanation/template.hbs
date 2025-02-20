@@ -1,14 +1,12 @@
 
-{{log problem}}
+
 <div class="py-4">
   <p>{{markdown-to-html problem.details.description}}</p>
 
   <div class="extra-bold">Input Format</div>
-  {{#if (includes contest.allowedLanguages "mysql")}}
-    <pre>{{json-to-table problem.details.input_format}}</pre>
-  {{else}}
-    <p>{{problem.details.input_format}}</p>
-  {{/if}}
+
+    <pre>{{problem.details.input_format}}</pre>
+ 
 
   <div class="extra-bold">Constraints</div>
   <div class="bg-grey br-5 w-60 px-4 py-2 my-2">
@@ -16,21 +14,10 @@
   </div>
 
   <div class="extra-bold">Output Format</div>
-   {{#if (includes contest.allowedLanguages "mysql")}}
-    <pre>{{json-to-table problem.details.output_format}}</pre>
-  {{else}}
-    <p>{{problem.details.output_format}}</p>
-  {{/if}}
-  
-
+    <pre>{{problem.details.output_format}}</pre>
   <div class="extra-bold">Sample Input</div>
   <div class="bg-grey br-5 w-60 px-4 py-2 my-2">
-     {{#if (includes contest.allowedLanguages "mysql")}}
-    <pre>{{json-to-table problem.details.sample_input}}</pre>
-  {{else}}
-    <p>{{problem.details.sample_input}}</p>
-  {{/if}}
-
+    <pre>{{ problem.details.sample_input}}</pre>
   </div>
 
   <div class="extra-bold">Sample Output</div>
@@ -38,7 +25,7 @@
      {{#if (includes contest.allowedLanguages "mysql")}}
     <pre>{{json-to-table problem.details.sample_output}}</pre>
   {{else}}
-    <p>{{problem.details.sample_output}}</p>
+    <pre>{{problem.details.sample_output}}</pre>
   {{/if}}
 
   </div>
