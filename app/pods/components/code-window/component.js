@@ -53,7 +53,7 @@ export default class CodeWindowComponent extends Component {
       source: ""
     },
     {
-      name: "Mysql",
+      name: "MySQL 10",
       code: "mysql",
       mode: "mysql",
       source: ""

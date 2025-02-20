@@ -7,9 +7,6 @@ export default Component.extend({
 
   init() {
     this._super(...arguments);
-  
-
-  
     let contest = this.get('contest');
     // if (contest) {
     
