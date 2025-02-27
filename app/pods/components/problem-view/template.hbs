@@ -33,7 +33,7 @@
 
   {{#liquid-if (eq selectedTab "problem")}}
   <ProblemExplanation
-    @problem={{problem}} />
+    @problem={{problem}}  @contest={{contest}} />
   {{else if (eq selectedTab "submissions")}}
   <SubmissionsList 
     @contest={{contest}}
