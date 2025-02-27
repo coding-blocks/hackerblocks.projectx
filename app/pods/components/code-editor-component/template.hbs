@@ -18,7 +18,6 @@
       </div>
     {{/if}}
     <SubmissionResult 
-      @allowedLanguages={{contest.allowedLanguages}}
       @fullScreen={{fullScreen}}
       @judgeResult={{if (not submission.codeTaskGroup.isRunning) lastResult}} />
   </div>
