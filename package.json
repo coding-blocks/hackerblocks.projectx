@@ -78,7 +78,7 @@
     "minimatch": "^3.0.4",
     "qunit-dom": "^0.8.4",
     "sass": "^1.26.3",
-    "showdown": "^1.9.0"
+    "showdown": "^1.9.1"
   },
   "engines": {
     "node": "8.* || >= 10.*"
