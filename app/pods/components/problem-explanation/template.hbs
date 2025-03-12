@@ -1,12 +1,8 @@
-
-
-<div class="py-4">
+<div class="py-4 no-select">
   <p>{{markdown-to-html problem.details.description}}</p>
 
   <div class="extra-bold">Input Format</div>
-
-    <pre>{{problem.details.input_format}}</pre>
- 
+  <pre>{{problem.details.input_format}}</pre>
 
   <div class="extra-bold">Constraints</div>
   <div class="bg-grey br-5 w-60 px-4 py-2 my-2">
@@ -14,20 +10,20 @@
   </div>
 
   <div class="extra-bold">Output Format</div>
-    <pre>{{problem.details.output_format}}</pre>
+  <pre>{{problem.details.output_format}}</pre>
+
   <div class="extra-bold">Sample Input</div>
   <div class="bg-grey br-5 w-60 px-4 py-2 my-2">
-    <pre>{{ problem.details.sample_input}}</pre>
+    <pre>{{problem.details.sample_input}}</pre>
   </div>
 
   <div class="extra-bold">Sample Output</div>
   <div class="bg-grey br-5 w-60 px-4 py-2 my-2">
-     {{#if (includes contest.allowedLanguages "mysql")}}
-    <pre>{{json-to-table problem.details.sample_output}}</pre>
-  {{else}}
-    <pre>{{problem.details.sample_output}}</pre>
-  {{/if}}
-
+    {{#if (includes contest.allowedLanguages "mysql")}}
+      <pre>{{json-to-table problem.details.sample_output}}</pre>
+    {{else}}
+      <pre>{{problem.details.sample_output}}</pre>
+    {{/if}}
   </div>
 
   {{#if problem.details.explanation}}

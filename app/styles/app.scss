@@ -293,3 +293,11 @@ body{
     box-shadow: 0 0 0 6px rgba(167, 89, 47, 0.032);
   }
 }
+
+.no-select {
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  pointer-events: none; 
+}
