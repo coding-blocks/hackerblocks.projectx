@@ -1,48 +1,44 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import { jsonToTable } from '../../../util/json-to-table';
 
-export default Component.extend({
-
+export default class SubmissionResult extends Component {
   didRender() {
-    this._super(...arguments); 
-    this.element.scrollIntoView({ behavior: "smooth", block: "end" });
-  },
-
-  isRunning: computed('judgeResult', function() {
-    return !this.get('judgeResult');
-  }),
-
-  isErrored: computed('judgeResult', function() {
-    return !!this.get('judgeResult')?.stderr;
-  }),
-
-  isSubmission: computed('judgeResult', function() {
-    return !!this.get('judgeResult')?.testcases;
-  }),
-
-  errorPayload: computed('isErrored', function() {
-    if (this.get('isErrored')) {
-      return window.atob(this.get('judgeResult')?.stderr || this.get('judgeResult')?.stdout);
-    }
-  }),
-
-  output: computed('isSubmission', function() {
-    if (!this.get('isSubmission')) {
-      const output = window.atob(this.get('judgeResult')?.stdout);
-
-      return output;
-    }
-  }),
-
-  testcasesPayload: computed('isSubmission', function() {
-    if (this.get('isSubmission')) {
-      return this.get('judgeResult')?.testcases;
-    }
-  }),
-
-  jsonToTable(data) {
-    const table = jsonToTable(data);
-    return table;
+    this.element.scrollIntoView({ behavior: "smooth", block: "end" })
   }
-});
+
+  @computed('judgeResult')
+  get isRunning() {
+    return !this.judgeResult
+  }
+
+  @computed('judgeResult')
+  get isErrored() {
+    return !!this.judgeResult.stderr
+  }
+
+  @computed('judgeResult')
+  get isSubmission() {    
+    return !!(this.judgeResult.testcases)
+  }
+
+  @computed('isErrored')
+  get errorPayload() {    
+    if (this.isErrored) {      
+      return window.atob(this.judgeResult.stderr || this.judgeResult.stdout)
+    }
+  }
+
+  @computed('isSubmission')
+  get output() {
+    if (!this.isSubmission) {
+      return window.atob(this.judgeResult.stdout)
+    }
+  }
+
+  @computed('isSubmission')
+  get testcasesPayload() {
+    if (this.isSubmission) {
+      return this.judgeResult.testcases
+    }
+  }
+}

@@ -57,11 +57,9 @@
     {{/if}}
   </div>
 </div>
-
 {{#if (or submitProjectTask.isRunning lastResult)}}
   <div class="mt-4">
     <SubmissionResult
-    @allowedLanguages={{contest.allowedLanguages}}
       @contentType={{content.type}}
       @judgeResult={{if (not submitProjectTask.isRunning) lastResult}}
     />
