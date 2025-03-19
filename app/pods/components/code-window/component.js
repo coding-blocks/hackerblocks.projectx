@@ -121,6 +121,9 @@ export default class CodeWindowComponent extends Component {
       });
     }
     // this.set('editor', editor)
+    editor.updateOptions({
+      contextmenu: false
+    });
     this.trigger("restoreCodeFromStorage")
   }
 
