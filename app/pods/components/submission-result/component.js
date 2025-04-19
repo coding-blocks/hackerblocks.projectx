@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-
+import { jsonToTable } from '../../../util/json-to-table';
 export default class SubmissionResult extends Component {
   didRender() {
     this.element.scrollIntoView({ behavior: "smooth", block: "end" })
@@ -40,5 +40,9 @@ export default class SubmissionResult extends Component {
     if (this.isSubmission) {
       return this.judgeResult.testcases
     }
+  }
+  jsonToTable(data) {
+    const table = jsonToTable(data);
+      return table;
   }
 }
