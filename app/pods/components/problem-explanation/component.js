@@ -8,7 +8,7 @@ export default Component.extend({
   init(){
     this._super(...arguments);
       let contest = this.get('contest').data;
-      console.log('here is the contest',contest)
+   
       document.addEventListener('contextmenu', function (event) {
         event.preventDefault();
       });
