@@ -48,7 +48,7 @@
     </div>
     <div class="w-100">
       {{#liquid-if (eq currentTab 'problem')}}
-      <ProblemExplanation @problem={{problem}} />
+      <ProblemExplanation @problem={{problem}} @contest={{contest}}/>
       {{else if (eq currentTab 'submissions')}}
       <SubmissionsList 
         @contest={{contest}} 
