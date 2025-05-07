@@ -1,0 +1,13 @@
+.git
+.gitignore
+
+*Dockerfile*
+*docker-compose*
+
+node_modules
+
+.travis.yml
+
+.idea
+
+.vscode
