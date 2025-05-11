@@ -81,9 +81,20 @@ export default class IntermediateContestComponent extends Component {
       yield contest_attempt.save()
       this.contest.set('currentAttempt', contest_attempt)
       this.set('showStartDialog', false)
-      if (this.onAfterCreate){
-        this.onAfterCreate()
+      const cb_auth = this.getCookieValue('cb_auth')
+      const contestId=this.contest.id
+      const contentId="1"
+      if(this.contest.environment){
+        // Open Electron App
+        const electronURL = `electron-app://contest?cb_auth=${encodeURIComponent(cb_auth || "")}&contestId=${contestId}&contentId=${contentId}`;
+        window.location.href = electronURL;
+      }else{
+        //open in browser
+        if (this.onAfterCreate){
+         this.onAfterCreate()
+       }
       }
+    
     } catch (err) {
       // Stop Initializing environment
       this.updateEnvProgress.cancelAll()
@@ -104,20 +115,69 @@ export default class IntermediateContestComponent extends Component {
     }
   }
 
+    getCookieValue(name) {
+        const cookies = document.cookie.split(';').map(c => c.trim());
+        const cookie = cookies.find(c => c.startsWith(`${name}=`));
+       return cookie ? decodeURIComponent(cookie.split('=')[1]) : null;
+     }
   @action promptCameraPermission() {
     navigator.mediaDevices.getUserMedia ({video: true, mic: true},
       // successCallback
       function() {
          this.set('monitorerError', '')
       },
-   
+ 
       // errorCallback
       function(err) {
         console.log(err)
       })
   }
 
-  @action async openTestInNewWindow() {
-    window.open(`${ENV.publicUrl}/contests/${this.contest.id}/attempt/`, `hackerblocks-contest-${this.contest.id}`, `menubar=1,resizable=0,height=${window.screen.availHeight},width=${window.screen.availWidth},top=0,left=0`)
+  @action
+  async openTestInNewWindow() {
+    const cb_auth = this.getCookieValue('cb_auth');
+    const contestId = this.contest.id;
+  
+    const progresses = await this.contest.get('currentAttempt.progresses');
+    const progressProblemHash = {};
+  
+    progresses.forEach(progress => {
+      const contentId = progress.belongsTo('content').id();
+      progressProblemHash[contentId] = progress;
+    });
+  
+
+    const contents = await this.contest.contents;
+  
+    const contentWithProgress = contents.map(content => {
+      return {
+        content,
+        contentId: content.get('id'),
+        progress: progressProblemHash[content.get('id')],
+      };
+    });
+  
+    // console.log('contentWithProgress', contentWithProgress);
+  
+    const contentId = contentWithProgress.length > 0 ? contentWithProgress[0].contentId : null;
+  
+    if (!contentId) {
+      console.error('No contentId found for the contest.');
+      return;
+    }
+  
+    // console.log('contentId', contentId);
+  
+    if (this.contest.environment) {
+      const electronURL = `electron-app://contest?cb_auth=${encodeURIComponent(cb_auth || '')}&contestId=${contestId}&contentId=${contentId}`;
+      window.location.href = electronURL;
+    } else {
+      window.open(
+        `${ENV.publicUrl}/contests/${this.contest.id}/attempt/`,
+        `hackerblocks-contest-${this.contest.id}`,
+        `menubar=1,resizable=0,height=${window.screen.availHeight},width=${window.screen.availWidth},top=0,left=0`
+      );
+    }
   }
+  
 }
