@@ -8,8 +8,8 @@ export default class FullScreenProblemListComponent extends Component {
     const progressProblemHash = {}
     progresses.map(progress => progressProblemHash[progress.belongsTo('content').id()] = progress)
     // console.log('progressProblemHash', content)
-    console.log('progresses', progresses)
-    console.log('progressProblemHash', progressProblemHash)
+    // console.log('progresses', progresses)
+    // console.log('progressProblemHash', progressProblemHash)
     return this.get('contest.contents').map(content => {
       return {
           content,

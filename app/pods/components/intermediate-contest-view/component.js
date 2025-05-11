@@ -157,7 +157,7 @@ export default class IntermediateContestComponent extends Component {
       };
     });
   
-    console.log('contentWithProgress', contentWithProgress);
+    // console.log('contentWithProgress', contentWithProgress);
   
     const contentId = contentWithProgress.length > 0 ? contentWithProgress[0].contentId : null;
   
@@ -166,7 +166,7 @@ export default class IntermediateContestComponent extends Component {
       return;
     }
   
-    console.log('contentId', contentId);
+    // console.log('contentId', contentId);
   
     if (this.contest.environment) {
       const electronURL = `electron-app://contest?cb_auth=${encodeURIComponent(cb_auth || '')}&contestId=${contestId}&contentId=${contentId}`;
