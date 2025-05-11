@@ -133,41 +133,51 @@ export default class IntermediateContestComponent extends Component {
       })
   }
 
-  @action async openTestInNewWindow() {
-    const cb_auth = this.getCookieValue('cb_auth')
-
-    const contestId=this.contest.id
-    const progresses = this.contest.get('currentAttempt.progresses');
+  @action
+  async openTestInNewWindow() {
+    const cb_auth = this.getCookieValue('cb_auth');
+    const contestId = this.contest.id;
+  
+    const progresses = await this.contest.get('currentAttempt.progresses');
     const progressProblemHash = {};
+  
     progresses.forEach(progress => {
-        progressProblemHash[progress.belongsTo('content').id()] = progress;
+      const contentId = progress.belongsTo('content').id();
+      progressProblemHash[contentId] = progress;
     });
-console.log('contents',this.contest.contents)
-    const contentWithProgress = this.get('contest.contents').map(content => {
-        return {
-            content,
-            contentId: content.get('id'),
-            progress: progressProblemHash[content.get('id')]
-        };
+  
+
+    const contents = await this.contest.contents;
+  
+    const contentWithProgress = contents.map(content => {
+      return {
+        content,
+        contentId: content.get('id'),
+        progress: progressProblemHash[content.get('id')],
+      };
     });
-    console.log('contentWithProgress', contentWithProgress)
- 
+  
+    console.log('contentWithProgress', contentWithProgress);
+  
     const contentId = contentWithProgress.length > 0 ? contentWithProgress[0].contentId : null;
-
+  
     if (!contentId) {
-        console.error('No contentId found for the contest.');
-        return;
+      console.error('No contentId found for the contest.');
+      return;
     }
-    
-    console.log('contentId', contentId)
-    if(this.contest.environment){
-      // Open Electron App
-      const electronURL = `electron-app://contest?cb_auth=${encodeURIComponent(cb_auth || "")}&contestId=${contestId}&contentId=${contentId}`;
-       window.location.href = electronURL;
-    }else{
-      //open in browser
-      window.open(`${ENV.publicUrl}/contests/${this.contest.id}/attempt/`, `hackerblocks-contest-${this.contest.id}`, `menubar=1,resizable=0,height=${window.screen.availHeight},width=${window.screen.availWidth},top=0,left=0`)
+  
+    console.log('contentId', contentId);
+  
+    if (this.contest.environment) {
+      const electronURL = `electron-app://contest?cb_auth=${encodeURIComponent(cb_auth || '')}&contestId=${contestId}&contentId=${contentId}`;
+      window.location.href = electronURL;
+    } else {
+      window.open(
+        `${ENV.publicUrl}/contests/${this.contest.id}/attempt/`,
+        `hackerblocks-contest-${this.contest.id}`,
+        `menubar=1,resizable=0,height=${window.screen.availHeight},width=${window.screen.availWidth},top=0,left=0`
+      );
     }
-
   }
+  
 }
