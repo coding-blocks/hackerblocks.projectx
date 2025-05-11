@@ -1,9 +1,6 @@
 import Component from '@ember/component';
-import { inject as service } from '@ember/service';
-import jsonToTable from '../../../helpers/json-to-table';
 
 export default Component.extend({
-  
   languageSelection: service('language-selection'),
   init(){
     this._super(...arguments);
@@ -32,3 +29,4 @@ export default Component.extend({
   }
 
 });
+

@@ -48,12 +48,7 @@ export default class CodeWindowComponent extends Component {
       code: "csharp",
       mode: "csharp",
       source: ""
-    }, {
-      name: "MySQL 10",
-      code: "mysql",
-      mode: "mysql",
-      source: ""
-     }
+    }
   ]
 
   setSubmission = () => {
