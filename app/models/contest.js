@@ -38,6 +38,7 @@ export default Model.extend({
   college_contest: DS.belongsTo('college_contest'),
   contest_type: DS.attr(),
   showProblemScore: DS.attr(),
+  environment: DS.attr(),
   hasEnded: Ember.computed('end_time', function () {
     return moment(this.end_time).isBefore(moment())
   }),
