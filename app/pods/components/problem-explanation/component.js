@@ -1,11 +1,8 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-  languageSelection: service('language-selection'),
   init(){
     this._super(...arguments);
-      let contest = this.get('contest').data;
-    console.log(contest);
       document.addEventListener('contextmenu', function (event) {
         event.preventDefault();
       });
