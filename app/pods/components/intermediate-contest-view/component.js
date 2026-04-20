@@ -13,7 +13,7 @@ export default class IntermediateContestComponent extends Component {
   @service monitorer
 
   showStartDialog = false
-  envProgress=0
+  envProgress = 0
 
   @alias('contest.currentAttempt') contest_attempt
   @alias('fetchRegistrationTask.lastSuccessful.value') contestRegistration
@@ -41,7 +41,7 @@ export default class IntermediateContestComponent extends Component {
 
   @computed('monitorerError')
   get monitorerErrorText() {
-    switch(this.monitorerError) {
+    switch (this.monitorerError) {
       case "CAMERAACCESSDENIED": return 'Please grant camera and mic permissions to continue with test.'
       case "ACCESS_DENIED": return 'Please grant camera and mic permissions to continue with test.'
     }
@@ -53,7 +53,7 @@ export default class IntermediateContestComponent extends Component {
     }
   }
 
-  @dropTask updateEnvProgress = function *() {
+  @dropTask updateEnvProgress = function* () {
     this.set('envProgress', 0)
     while (this.envProgress < 50) {
       this.set('envProgress', Math.min(50, this.envProgress + 1))
@@ -62,7 +62,7 @@ export default class IntermediateContestComponent extends Component {
     }
   }
 
-  @restartableTask fetchRegistrationTask = function *() {
+  @restartableTask fetchRegistrationTask = function* () {
     return this.store.queryRecord('contest-registration', {
       custom: {
         ext: 'url',
@@ -71,7 +71,7 @@ export default class IntermediateContestComponent extends Component {
     })
   }
 
-  @restartableTask createAttemptTask = function *() {
+  @restartableTask createAttemptTask = function* () {
     let contest_attempt
     try {
       this.updateEnvProgress.perform()
@@ -82,19 +82,22 @@ export default class IntermediateContestComponent extends Component {
       this.contest.set('currentAttempt', contest_attempt)
       this.set('showStartDialog', false)
       const cb_auth = this.getCookieValue('cb_auth')
-      const contestId=this.contest.id
-      const contentId="1"
-      if(this.contest.environment){
+      const contestId = this.contest.id
+      const contents = yield this.contest.contents
+      const contentId = contents.length > 0 ? contents[0].get('id') : null
+      console.log('contentId', contentId)
+      if (this.contest.environment) {
+        if (!contentId) { throw new Error('No contentId found for the contest.') }
         // Open Electron App
         const electronURL = `electron-app://contest?cb_auth=${encodeURIComponent(cb_auth || "")}&contestId=${contestId}&contentId=${contentId}`;
         window.location.href = electronURL;
-      }else{
+      } else {
         //open in browser
-        if (this.onAfterCreate){
-         this.onAfterCreate()
-       }
+        if (this.onAfterCreate) {
+          this.onAfterCreate()
+        }
       }
-    
+
     } catch (err) {
       // Stop Initializing environment
       this.updateEnvProgress.cancelAll()
@@ -105,7 +108,7 @@ export default class IntermediateContestComponent extends Component {
       }
 
       // If error is email unverified use the callback
-      const error = err.errors &&  err.errors[0]
+      const error = err.errors && err.errors[0]
       if (error && error.code === 405 && this.handleUnverifiedEmail) {
         return this.handleUnverifiedEmail('USER_EMAIL_NOT_VERIFIED')
       }
@@ -115,20 +118,20 @@ export default class IntermediateContestComponent extends Component {
     }
   }
 
-    getCookieValue(name) {
-        const cookies = document.cookie.split(';').map(c => c.trim());
-        const cookie = cookies.find(c => c.startsWith(`${name}=`));
-       return cookie ? decodeURIComponent(cookie.split('=')[1]) : null;
-     }
+  getCookieValue(name) {
+    const cookies = document.cookie.split(';').map(c => c.trim());
+    const cookie = cookies.find(c => c.startsWith(`${name}=`));
+    return cookie ? decodeURIComponent(cookie.split('=')[1]) : null;
+  }
   @action promptCameraPermission() {
-    navigator.mediaDevices.getUserMedia ({video: true, mic: true},
+    navigator.mediaDevices.getUserMedia({ video: true, mic: true },
       // successCallback
-      function() {
-         this.set('monitorerError', '')
+      function () {
+        this.set('monitorerError', '')
       },
- 
+
       // errorCallback
-      function(err) {
+      function (err) {
         console.log(err)
       })
   }
@@ -137,18 +140,18 @@ export default class IntermediateContestComponent extends Component {
   async openTestInNewWindow() {
     const cb_auth = this.getCookieValue('cb_auth');
     const contestId = this.contest.id;
-  
+
     const progresses = await this.contest.get('currentAttempt.progresses');
     const progressProblemHash = {};
-  
+
     progresses.forEach(progress => {
       const contentId = progress.belongsTo('content').id();
       progressProblemHash[contentId] = progress;
     });
-  
+
 
     const contents = await this.contest.contents;
-  
+
     const contentWithProgress = contents.map(content => {
       return {
         content,
@@ -156,18 +159,18 @@ export default class IntermediateContestComponent extends Component {
         progress: progressProblemHash[content.get('id')],
       };
     });
-  
+
     // console.log('contentWithProgress', contentWithProgress);
-  
+
     const contentId = contentWithProgress.length > 0 ? contentWithProgress[0].contentId : null;
-  
+
     if (!contentId) {
       console.error('No contentId found for the contest.');
       return;
     }
-  
+
     // console.log('contentId', contentId);
-  
+
     if (this.contest.environment) {
       const electronURL = `electron-app://contest?cb_auth=${encodeURIComponent(cb_auth || '')}&contestId=${contestId}&contentId=${contentId}`;
       window.location.href = electronURL;
@@ -179,5 +182,5 @@ export default class IntermediateContestComponent extends Component {
       );
     }
   }
-  
+
 }
